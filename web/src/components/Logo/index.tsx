@@ -3,15 +3,17 @@ import { PAGE_HOME } from "@/constants/Config";
 import logo from "@/assets/images/logo.png";
 import { Link } from "react-router-dom";
 
-export default function Logo() {
+const Logo = ({ size = 12 }: { size?: number }) => {
   return (
     <Link to={PAGE_HOME}>
       <img
-        className="w-12 shadow-lv1 rounded-full sm:w-12 border border-gray-200 border-solid"
+        className={`w-${size} shadow-lv1 rounded-full sm:w-${size} border border-gray-200 border-solid`}
         src={logo}
         alt=""
         srcSet=""
       />
     </Link>
   );
-}
+};
+
+export default Logo;

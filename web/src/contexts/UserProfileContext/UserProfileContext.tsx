@@ -18,7 +18,7 @@ export const UserProfileProvider = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const value = React.useMemo(
     () => ({
-      userProfile: initialState,
+      userProfile: state,
       userProfilesDispatch: dispatch,
       userProfilesAction: actions,
     }),

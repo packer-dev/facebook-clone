@@ -23,9 +23,7 @@ const TypeCommentInput = ({
   commentDetail,
 }: TypeCommentInputProps) => {
   //
-  const { headers, user, socket } = useSelector<RootState, RootState>(
-    (state) => state
-  );
+  const { user, socket } = useSelector<RootState, RootState>((state) => state);
   const refContent = React.useRef<HTMLDivElement>(null);
   const handleSendComment = async (dataComment) => {
     const id = v4();

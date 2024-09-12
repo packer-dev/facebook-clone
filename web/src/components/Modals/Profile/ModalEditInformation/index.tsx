@@ -3,14 +3,10 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import ButtonComponent from "../../../ButtonComponent";
 import ModalWrapper from "../../ModalWrapper";
 import ItemEditInformation from "./ItemEditInformation";
-import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
 
 export default function ModalEditInformation({ updateUserProfile }) {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
-  // const [description, setDescription] = useState(JSON.parse(user.description));
   const [description, setDescription] = useState(JSON.parse(""));
   //
   return (

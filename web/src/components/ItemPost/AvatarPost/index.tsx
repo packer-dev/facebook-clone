@@ -1,27 +1,25 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
+import { PostDTO } from "@/interfaces/Post";
 
-export default function AvatarPost(props: any) {
+const AvatarPost = ({ postDetail }: { postDetail: PostDTO }) => {
   //
-  const {
-    postDetail: { post, imageVideoPostList },
-  } = props;
   //
   return (
     <div className="w-full mx-0 my-2.5">
       <div className="w-full relative block" style={{ height: 430 }}>
         <img
           className="w-full h-60 object-cover"
-          src={post.userPost.cover}
+          src={postDetail.post.user.cover}
           alt=""
           loading="lazy"
         />
-        <Link to={`${PAGE_VIEW_POST}/${post.id}`}>
+        <Link to={`${PAGE_VIEW_POST}/${postDetail.post.id}`}>
           <img
             className="absolute bg-white rounded-full object-cover left-1/2 transform -translate-x-1/2 border-4 border-solid border-white"
             style={{ height: 390, width: 390, top: "5%" }}
-            src={imageVideoPostList.length > 0 ? imageVideoPostList[0].src : ""}
+            src={postDetail.medias.length > 0 ? postDetail.medias[0].url : ""}
             alt=""
             loading="lazy"
           />
@@ -29,4 +27,5 @@ export default function AvatarPost(props: any) {
       </div>
     </div>
   );
-}
+};
+export default AvatarPost;

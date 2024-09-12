@@ -7,7 +7,7 @@ import EditOrDeleteComment from "./EditOrDeleteComment";
 import { RootState } from "@/reducers";
 
 import Feels from "@/components/ItemPost/Feels";
-import * as allFeel from "@/config/feels";
+import { User } from "@/interfaces/User";
 
 const ItemComment = ({
   commentPost,
@@ -17,7 +17,7 @@ const ItemComment = ({
   level,
 }) => {
   //
-  const { user, headers } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>((state) => state.user);
   const [feel, setFeel] = React.useState<any>(null);
   const refFeelComment = React.useRef<HTMLDivElement>(null);
   const refText = React.useRef<HTMLDivElement>(null);

@@ -53,7 +53,7 @@ export default function HeaderLoggedRight(props) {
               alt=""
             />
           </div>
-          <div className="w-2/3 hidden dark:text-white pt-1 text-center xl:block xl:w-auto lg:pt-2">
+          <div className="w-2/3 hidden whitespace-nowrap dark:text-white pt-1 text-center xl:block xl:w-auto lg:pt-2">
             {user.name}
           </div>
         </div>

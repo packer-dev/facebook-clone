@@ -39,7 +39,7 @@ export const AppProvider = <T,>({
       },
       actions,
     };
-  }, [state]);
+  }, [state, actions]);
   //
   return (
     <AppContextContainer.Provider value={value}>

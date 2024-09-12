@@ -18,7 +18,7 @@ export default function HomeLeft() {
   })();
   //
   return (
-    <div className="fixed h-screen pt-3 hidden sm:hidden xl:block xl:w-1/4">
+    <div className="fixed h-screen pt-6 hidden sm:hidden xl:block xl:w-1/4">
       <div className="pl-1.5 h-full w-4/6 overflow-x-hidden overflow-y-auto xl:w-full">
         <ul className="w-full left-category">
           <li

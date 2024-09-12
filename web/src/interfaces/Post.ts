@@ -11,6 +11,8 @@ export interface Post {
   type?: number;
   tags?: User[];
   feel?: string;
+  activity?: string;
+  local?: string;
 }
 
 export interface PostDTO {

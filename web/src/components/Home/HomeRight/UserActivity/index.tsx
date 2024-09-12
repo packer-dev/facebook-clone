@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as userChatsAction from "@/actions/userChat/index";
 import { RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { getFriendsByUserId } from "@/apis/userAPIs";
+import { updateData } from "@/reducers/userChat";
 
 export default function UserActivity() {
   //
@@ -33,21 +33,21 @@ export default function UserActivity() {
         if (indexZoom === -1 && indexMinize === -1) {
           if (zoom.length === 2) {
             dispatch(
-              userChatsAction.updateData("minize", [...minize, zoom[0]])
+              updateData({ key: "minize", value: [...minize, zoom[0]] })
             );
             let clone = [...zoom];
             clone[0] = item;
-            dispatch(userChatsAction.updateData("zoom", [...clone]));
+            dispatch(updateData({ key: "zoom", value: [...clone] }));
           } else {
-            dispatch(userChatsAction.updateData("zoom", [...zoom, item]));
+            dispatch(updateData({ key: "zoom", value: [...zoom, item] }));
           }
         } else if (indexMinize !== -1 && zoom.length !== 2) {
-          dispatch(userChatsAction.updateData("zoom", [...zoom, item]));
+          dispatch(updateData({ key: "zoom", value: [...zoom, item] }));
           dispatch(
-            userChatsAction.updateData(
-              "minize",
-              [...minize].filter((data) => data.id !== item.id)
-            )
+            updateData({
+              key: "minize",
+              value: [...minize].filter((data) => data.id !== item.id),
+            })
           );
         }
       }}

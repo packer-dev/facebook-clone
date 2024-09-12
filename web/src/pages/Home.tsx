@@ -7,7 +7,7 @@ import WrapperLogged from "./WrapperLogged";
 
 export default function Home() {
   //
-  useTitle("Trang chủ");
+  useTitle("Facebook");
   //
   return (
     <WrapperLogged>

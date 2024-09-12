@@ -1,22 +1,19 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { PAGE_VIEW_POST } from "../../../constants/Config";
+import { PAGE_VIEW_POST } from "@/constants/Config";
+import { PostDTO } from "@/interfaces/Post";
 
-export default function CoverPost(props) {
-  //
-  const {
-    postDetail: { imageVideoPostList, post },
-  } = props;
-  //
+const CoverPost = ({ postDetail }: { postDetail: PostDTO }) => {
   return (
     <div className="w-full my-1">
-      <Link to={`${PAGE_VIEW_POST}/${post.id}`}>
+      <Link to={`${PAGE_VIEW_POST}/${postDetail.post.id}`}>
         <img
-          src={imageVideoPostList.length > 0 && imageVideoPostList[0].src}
+          src={postDetail.medias.length > 0 && postDetail.medias[0].url}
           alt=""
           className="w-full h-64 object-cover"
         />
       </Link>
     </div>
   );
-}
+};
+export default CoverPost;

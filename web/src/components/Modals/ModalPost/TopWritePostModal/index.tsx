@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { PostContext } from "@/contexts/PostContext/PostContext";
 import InfoPostHeader from "./InfoPostHeader";
 import { RootState } from "@/reducers";
+import { PostContext } from "@/contexts/PostContext/PostContext";
 
 export default function TopWritePostModal() {
   //
@@ -18,7 +18,7 @@ export default function TopWritePostModal() {
       />
       <div className=" pl-2 " style={{ width: "calc(100% - 70px)" }}>
         <p className="pt-0.5 dark:text-white">
-          <InfoPostHeader user={user} post={posts} tagList={posts.tags} />
+          <InfoPostHeader user={user} post={posts} tagList={[]} />
         </p>
         <div className="py-0 px-1 mt-0.5 w-28 bg-gray-300 dark:bg-dark-third rounded-full">
           <div className="flex gap-1 py-1.5 justify-center text-xs relative cursor-pointer items-center">

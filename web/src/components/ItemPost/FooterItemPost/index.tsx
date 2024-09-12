@@ -13,12 +13,12 @@ type FooterItemPost = {
 const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPost) => {
   //
   const { headers } = useSelector<RootState, RootState>((state) => state);
-  const [feel, setFeel] = useState<any>({});
+  const [feel, setFeel] = useState<any>();
   const [feelList, setFeelList] = useState([]);
   const [feelLength, setFeelLength] = useState(postDetail.feel.length);
   useEffect(() => {
     //
-    setFeel([]);
+    setFeel(null);
     setFeelList([]);
     setFeelLength(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,16 +41,22 @@ const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPost) => {
             </div>
           ) : (
             <div className="flex mr-2">
-              {feel && (
+              {feel ? (
                 <img
                   src={JSON.parse(feel.content).image}
                   alt=""
                   className="w-5 h-5 transform scale-90 -ml-1 rounded-full object-cover"
                 />
+              ) : (
+                <></>
               )}
             </div>
           )}
-          {feelLength ?? <span className="font-semibold ">{feelLength}</span>}
+          {feelLength ? (
+            <span className="font-semibold ">{feelLength}</span>
+          ) : (
+            <></>
+          )}
         </div>
         {/* // {commentLength > 0 && <span>{commentLength} bình luận</span>} */}
       </div>
@@ -58,18 +64,18 @@ const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPost) => {
         <li className="w-1/3 dark:hover:bg-dark-third hover:bg-gray-100 item__hover">
           <div
             className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-100 flex w-full 
-                    font-semibold h-12 text-sm cursor-pointer justify-center items-center"
+            font-semibold h-12 text-sm cursor-pointer justify-center items-center"
           >
             <div className="flex items-center">
               {feel ? (
                 <>
                   <img
-                    src={JSON.parse("{}").image}
+                    src="https://res.cloudinary.com/ensonet-dev/image/upload/v1639997974/Reactions/like_ebd8ws.png"
                     alt=""
                     className="w-5 mr-1.5 h-5 rounded-full object-cover"
                   />
                   <span className="" style={{ color: JSON.parse("{}").color }}>
-                    {JSON.parse("{}").label}
+                    Like
                   </span>
                 </>
               ) : (
@@ -84,7 +90,7 @@ const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPost) => {
         </li>
         <li
           className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-200 w-1/3 font-semibold 
-                h-12 text-sm cursor-pointer justify-center items-center flex"
+          h-12 text-sm cursor-pointer justify-center items-center flex"
         >
           <i className="fas fa-comment-alt dark:text-gray-300"></i> &nbsp;
           <span>Bình Luận</span>

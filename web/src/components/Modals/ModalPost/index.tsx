@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ImageVideoPreview from "../../ItemPost/ImageVideoPreview";
@@ -8,13 +6,11 @@ import ModalWrapper from "../ModalWrapper";
 import BottomWritePostModal from "./BottomWritePostModal";
 import CenterWritePostModal from "./CenterWritePostModal";
 import TopWritePostModal from "./TopWritePostModal";
-import { RootState } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalPost() {
   //
-  const { posts, postsAction, postsDispatch } = useContext(PostContext);
-  const { headers } = useSelector<RootState, RootState>((state) => state);
+  const { posts } = useContext(PostContext);
   const [emojiShow, setEmojiShow] = useState(false);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const hanlePost = async () => {
@@ -23,9 +19,6 @@ export default function ModalPost() {
   useEffect(() => {
     //
     let unmounted = false;
-    const checkNull = (data) => {
-      return data ? JSON.parse(data) : null;
-    };
     const fetch = async () => {
       if (posts.id) {
         modalsDispatch(modalsAction.loadingModal(true));
@@ -46,7 +39,7 @@ export default function ModalPost() {
       className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
             z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
             shadow-lv1 dark:border-dark-third dark:bg-dark-third"
-      title={`${posts.id ? `Sửa` : `Tạo`} bài viết`}
+      title={`${posts.id ? "Edit" : "Create"} post`}
     >
       <TopWritePostModal />
       <div
@@ -71,16 +64,16 @@ export default function ModalPost() {
           type="button"
           bgColor="bg-main text-white"
           disabled={
-            posts.content.length > 0 ||
-            posts.activity ||
-            posts.imageVideo.length > 0 ||
-            posts.tags.length > 0 ||
-            posts.feel ||
-            posts.local ||
-            posts.background ||
-            posts.answerQuestion
-              ? false
-              : true
+            !(
+              posts.content.length > 0 ||
+              posts.activity ||
+              posts.imageVideo.length > 0 ||
+              posts.tags.length > 0 ||
+              posts.feel ||
+              posts.local ||
+              posts.background ||
+              posts.answerQuestion
+            )
           }
         >
           {posts.id ? "Sửa" : "Đăng"}

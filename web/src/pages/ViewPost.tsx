@@ -21,10 +21,8 @@ export default function ViewPost() {
     const fetch = async () => {
       const result = await getPostById(id);
       if (unmounted) return;
-      if (result.data) {
-        setPostDetail(result.data);
-        setIndex(0);
-      }
+      setPostDetail(result);
+      setIndex(0);
     };
     fetch();
     return () => {
@@ -39,8 +37,7 @@ export default function ViewPost() {
         <div
           className={`${
             fullscreen ? "w-full" : "w-3/4"
-          } item__hover h-full relative bg-black flex 
-                justify-center items-center`}
+          } item__hover h-full relative bg-black flex justify-center items-center`}
         >
           <ButtonViewPostTop
             fullscreen={fullscreen}
@@ -52,10 +49,7 @@ export default function ViewPost() {
             length={postDetail?.medias?.length ?? 0}
           />
           {postDetail && index !== -1 && (
-            <div
-              className="w-full h-full flex justify-center items-center max-w-full 
-                            max-h-full relative z-0 overflow-hidden"
-            >
+            <div className="w-full h-full flex justify-center items-center max-w-full max-h-full relative z-0 overflow-hidden">
               {StringUtils.checkImageOrVideoToString(
                 postDetail?.medias[index].url
               ) === "image" ? (
@@ -70,7 +64,6 @@ export default function ViewPost() {
               ) : (
                 <video
                   src={postDetail?.medias[index].url}
-                  controls
                   className="w-11/12 object-cover"
                   style={{
                     transform: `scale(${scale / 100})`,

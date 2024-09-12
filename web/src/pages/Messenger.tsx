@@ -24,7 +24,6 @@ const WrapperMessenger = (props) => {
   } = useContext(MessengerContext);
   useEffect(() => {
     //
-    let unmounted = false;
     const fetch = async () => {};
     if (user) {
       fetch();

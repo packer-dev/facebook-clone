@@ -1,16 +1,12 @@
 import React, { useContext, useState } from "react";
-import { useSelector } from "react-redux";
-
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import ButtonComponent from "../../../ButtonComponent";
 import ModalWrapper from "../../ModalWrapper";
 import ItemColor from "./ItemColor";
-import { RootState } from "@/reducers";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalChangeColor(props) {
   //
-  const { headers } = useSelector<RootState, RootState>((state) => state);
-  const { groupMessage, setGroupMessage } = props;
+  const { setGroupMessage } = props;
   const [color, setColor] = useState();
   const colors = [
     "#006AD4",
@@ -40,7 +36,7 @@ export default function ModalChangeColor(props) {
           {colors.map((item, index) => (
             <ItemColor
               item={item}
-              key={index}
+              key={item}
               color={color}
               setColor={setColor}
             />

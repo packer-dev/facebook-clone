@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
-import ButtonComponent from "../../../ButtonComponent";
 import ModalWrapper from "../../ModalWrapper";
 import emojii from "@/config/emojii";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-
-import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalChangeEmojii(props: any) {
   //
@@ -23,8 +20,6 @@ export default function ModalChangeEmojii(props: any) {
     });
     return listCategory;
   };
-  const { groupMessage, setGroupMessage } = props;
-  const { headers } = useSelector<RootState, RootState>((state) => state);
   const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const listCategory = listCategoryFun();
   const [categoryActive, setCategoryActive] = useState(
@@ -32,13 +27,14 @@ export default function ModalChangeEmojii(props: any) {
   );
   const showCategoryAll = listCategory.map((item, index) => (
     <li
+      aria-hidden
       onClick={() => setCategoryActive(item.category)}
       className={`flex justify-center py-2 px-3 mx-0.5 rounded-lg text-xl cursor-pointer ${
         categoryActive === item.category
           ? " bg-gray-300 dark:bg-dark-third"
           : " hover:bg-gray-300 dark:hover:bg-dark-third"
       }`}
-      key={index}
+      key={item?.id}
     >
       {item.thumnail}
     </li>

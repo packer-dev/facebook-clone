@@ -1,77 +1,72 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
-// import ImageVideoEditComponent from "./ImageVideoEditComponent";
+import ImageVideoEditComponent from "./ImageVideoEditComponent";
 import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalEditImageVideo() {
   //
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   const length = posts.imageVideo.length;
-  const refContainer = useRef();
-  const [data, setData] = useState("");
+  const refContainer = useRef<HTMLDivElement>();
+  const [data, setData] = useState<any>();
   useEffect(() => {
-    //
-    // const result = Array.from(posts.imageVideo).map((element, index) => {
-    //   const extension = element.name
-    //     .split(".")
-    //     [element.name.split(".").length - 1].toLowerCase();
-    //   let ImageVideo = () => {
-    //     return "";
-    //   };
-    //   if (extension === "jpg" || extension === "jpeg" || extension === "png") {
-    //     ImageVideo = (props: { src: string }) => {
-    //       return (
-    //         <img
-    //           src={props.src}
-    //           className={"w-auto max-w-full mx-auto h-full object-cover"}
-    //           alt=""
-    //         />
-    //       );
-    //     };
-    //   } else {
-    //     if (extension === "mp4" || extension === "mov") {
-    //       ImageVideo = (props) => {
-    //         return (
-    //           <video
-    //             src={props.src}
-    //             className={"w-auto max-w-full mx-auto h-full object-cover"}
-    //             alt=""
-    //           />
-    //         );
-    //       };
-    //     }
-    //   }
-    //   const width = refContainer.current.offsetWidth;
-    //   return (
-    //     <ImageVideoEditComponent
-    //       key={index}
-    //       index={index}
-    //       src={URL.createObjectURL(element)}
-    //       style={{
-    //         width:
-    //           length === 1 || length === 2
-    //             ? width
-    //             : Math.floor(width / (length === 3 || length === 4 ? 2 : 3)) -
-    //               6 +
-    //               "px",
-    //         height:
-    //           Math.floor(
-    //             width /
-    //               (length === 1 || length === 2
-    //                 ? 2
-    //                 : length === 3 || length === 4
-    //                 ? 3
-    //                 : 4)
-    //           ) - (length === 1 || length === 2 ? 20 : 60),
-    //       }}
-    //       component={<ImageVideo src={URL.createObjectURL(element)} />}
-    //       file={element}
-    //     />
-    //   );
-    // });
-    // setData(result);
-    //
+    const result = Array.from(posts.imageVideo).map((element, index) => {
+      const extension = element.name
+        .split(".")
+        [element.name.split(".").length - 1].toLowerCase();
+      let ImageVideo: any;
+      if (extension === "jpg" || extension === "jpeg" || extension === "png") {
+        ImageVideo = (props: { src: string }) => {
+          return (
+            <img
+              src={props.src}
+              className={"w-auto max-w-full mx-auto h-full object-cover"}
+              alt=""
+            />
+          );
+        };
+      } else {
+        if (extension === "mp4" || extension === "mov") {
+          ImageVideo = (props) => {
+            return (
+              <video
+                src={props.src}
+                className={"w-auto max-w-full mx-auto h-full object-cover"}
+              />
+            );
+          };
+        }
+      }
+      const width = refContainer.current.offsetWidth;
+      return (
+        <ImageVideoEditComponent
+          key={index}
+          index={index}
+          src={URL.createObjectURL(element)}
+          style={{
+            width:
+              length === 1 || length === 2
+                ? width
+                : Math.floor(width / (length === 3 || length === 4 ? 2 : 3)) -
+                  6 +
+                  "px",
+            height:
+              Math.floor(
+                width /
+                  (length === 1 || length === 2
+                    ? 2
+                    : length === 3 || length === 4
+                    ? 3
+                    : 4)
+              ) - (length === 1 || length === 2 ? 20 : 60),
+          }}
+          component={<ImageVideo src={URL.createObjectURL(element)} />}
+          file={element}
+        />
+      );
+    });
+    setData(result);
   }, [refContainer, posts.imageVideo, length]);
   //
   return (
@@ -112,16 +107,20 @@ export default function ModalEditImageVideo() {
         </div>
         <div
           className="w-full absolute z-50 bottom-0 border-t-2 border-solid border-gray-200 
-                left-0 p-2 pb-0 flex justify-end items-center gap-2 bg-white dark:bg-dark-second dark:border-dark-second"
+          left-0 p-2 pb-0 flex justify-end items-center gap-2 bg-white dark:bg-dark-second dark:border-dark-second"
         >
           <input
             type="file"
             onChange={(event) => {
               if (event.target.files.length > 0) {
+                let newFiles = [];
+                const files = event.target.files;
+                for (let index = 0; index < files.length; index++)
+                  newFiles.push(files[index]);
                 postsDispatch(
                   postsAction.updateData("imageVideo", [
                     ...posts.imageVideo,
-                    // ...event.target.files,
+                    ...newFiles,
                   ])
                 );
               }

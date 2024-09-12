@@ -11,17 +11,17 @@ export default function Feels() {
     >
       <ul
         className="flex flex-column dark:bg-dark-second bg-white rounded-full border-solid 
-                        dark:border-dark-third border-gray-300 border"
+        dark:border-dark-third border-gray-300 border"
       >
-        {allFeel.map((feel, index) => (
+        {allFeel.map((feel) => (
           <li
-            key={feel?.color + Math.random()}
+            key={JSON.stringify(feel)}
             className="p-1 cursor-pointer rounded-full hover:bg-gray-200 
-                    dark:hover:bg-dark-third relative item__hover"
+            dark:hover:bg-dark-third relative item__hover"
           >
             <span
               className="p-1 text-xs item__block rounded-full hidden bg-black text-white font-semibold 
-                        absolute bottom-full mb-2 left-0"
+              absolute bottom-full mb-2 left-0"
               style={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",

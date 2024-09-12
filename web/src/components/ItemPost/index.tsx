@@ -19,7 +19,6 @@ type ItemPostProps = {
 };
 const ItemPost = (props: ItemPostProps) => {
   //
-  const [index, setIndex] = useState(0);
   const [postDetail, setPostDetail] = useState(props.postDetail);
   const [dataComment, setDataComment] = useState({
     value: null,
@@ -48,7 +47,9 @@ const ItemPost = (props: ItemPostProps) => {
           }}
         ></p>
       )}
-      {!props.hideContent && <ContentPost postDetail={props.postDetail} />}
+      {!props.hideContent && postDetail.medias.length > 0 && (
+        <ContentPost postDetail={props.postDetail} />
+      )}
       <div className="w-full mb-4 mx-0">
         <FooterItemPost postDetail={postDetail} setPostDetail={setPostDetail} />
       </div>

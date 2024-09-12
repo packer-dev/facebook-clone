@@ -24,7 +24,7 @@ export default forwardRef(function HomePostList() {
           value: [],
         })
       );
-      const result = await getPostByIdUser(user.id);
+      const result = await getPostByIdUser(user.id, "false");
       dispatch(
         updateDataPostList({
           key: "list",

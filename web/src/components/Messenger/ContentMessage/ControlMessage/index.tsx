@@ -4,16 +4,12 @@ import ControlMessageMain from "./ControlMessageMain";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
 import SendImageVideo from "./SendImageVideo/SendImageVideo";
-
-import * as StringUtils from "@/utils/StringUtils";
 import { RootState } from "@/reducers";
 import PopoverSticker from "@/components/Popovers/PopoverSticker";
 import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
-export default function ControlMessage(props) {
+export default function ControlMessage(props: any) {
   //
-  const { user, headers, socket } = useSelector<RootState, RootState>(
-    (state) => state
-  );
+  const { user } = useSelector<RootState, RootState>((state) => state);
   const {
     dataMessage,
     setDataMessage,
@@ -21,11 +17,9 @@ export default function ControlMessage(props) {
     messages,
     setMessages,
     choose,
-    setGroupMessage,
     item,
     setChoose,
     setMembers,
-    members,
   } = props;
   const groupMessage = props.groupMessage
     ? props.groupMessage

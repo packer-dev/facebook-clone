@@ -1,30 +1,40 @@
 import React, { memo } from "react";
 import ImageVideoDisplay from "../ImageVideoDisplay";
+import { Media } from "@/interfaces/Media";
+import { Post } from "@/interfaces/Post";
 
-export default memo(function NormalPost({ imageVideoPostList, post }: any) {
+export type NormalPostProps = {
+  imageVideoPostList: Media[];
+  post: Post;
+};
+
+const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
   //
-  const content: any = post.backgroundPost ? (
-    <div
-      className="w-full relative h-80 bg-cover"
-      style={{
-        [JSON.parse(post.backgroundPost).key]: JSON.parse(post.backgroundPost)
-          .value,
-      }}
-    >
-      <div
-        className="text-2xl w-full px-4 flex justify-center text-white font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2
-       -translate-y-1/2 contentedit break-all text-center "
-      >
-        {post.content}
-      </div>
-    </div>
-  ) : (
-    <ImageVideoDisplay imageVideo={imageVideoPostList} idPost={post.id} />
+  const content: any = (
+    <ImageVideoDisplay imageVideoPostList={imageVideoPostList} post={post} />
   );
+  // post.backgroundPost ? (
+  //   <div
+  //     className="w-full relative h-80 bg-cover"
+  //     style={{
+  //       [JSON.parse(post.backgroundPost).key]: JSON.parse(post.backgroundPost)
+  //         .value,
+  //     }}
+  //   >
+  //     <div
+  //       className="text-2xl w-full px-4 flex justify-center text-white font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2
+  //      -translate-y-1/2 contentedit break-all text-center "
+  //     >
+  //       {post.content}
+  //     </div>
+  //   </div>
+  // ) : (
+  // <ImageVideoDisplay imageVideo={imageVideoPostList} idPost={post.id} />
+  // );
   //
   return (
     <div className="w-full">
-      {post.answerQuestion ? (
+      {/* {post.answerQuestion ? (
         <div
           className={`w-2/3 mx-auto flex justify-center items-center rounded-xl relative`}
           style={{
@@ -58,9 +68,11 @@ export default memo(function NormalPost({ imageVideoPostList, post }: any) {
             </div>
           </div>
         </div>
-      ) : (
-        content
-      )}
+      ) : ( */}
+      {content}
+      {/* )} */}
     </div>
   );
-});
+};
+
+export default memo(NormalPost);

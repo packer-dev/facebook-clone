@@ -1,25 +1,35 @@
+import { User } from "@/interfaces/User";
 import * as React from "react";
 
-export default function InfoPostHeader({
+type InfoPostHeaderProps = {
+  user?: User;
+  post?: any;
+  tagList?: any[];
+  hideName?: boolean;
+  tagMain?: any;
+  itemPost?: any;
+};
+
+const InfoPostHeader = ({
   user,
   post,
   tagList,
   hideName,
   tagMain,
   itemPost,
-}: any) {
+}: InfoPostHeaderProps) => {
   //
-  const checkNull = (data) => {
+  const checkNull = (data: any) => {
     return itemPost ? (data ? JSON.parse(data) : null) : data;
   };
-  const feel = checkNull(post.feel);
-  const activity = checkNull(post.activity);
-  const local = checkNull(post.local);
+  const feel = checkNull(post?.feel);
+  const activity = checkNull(post?.activity);
+  const local = checkNull(post?.local);
   //
   return (
     <>
       {!hideName && (
-        <span className="font-semibold mr-2">{`${user.firstName} ${user.lastName}`}</span>
+        <span className="font-semibold mr-2">{`${user.name}`}</span>
       )}
       {feel && (
         <span id="feelCur">
@@ -54,10 +64,11 @@ export default function InfoPostHeader({
       )}
       {local && (
         <span id="local">
-          {" "}
           tại <b className="dark:text-white"> {local.name}</b>
         </span>
       )}
     </>
   );
-}
+};
+
+export default InfoPostHeader;
