@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as userChatsAction from "@/actions/userChat/index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/reducers";
@@ -12,7 +12,7 @@ export default function ButtonRelationshipUser(props) {
   } = useSelector<RootState, RootState>((state) => state);
   const [loading, setLoading] = useState(false);
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
   const dispatch = useDispatch();
   //

@@ -17,10 +17,11 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import {
   UserProfileContext,
   UserProfileProvider,
-} from "@/contexts/UserProfileContext/UserProfileContext";
+} from "@/contexts/UserProfileContext";
 import routes from "@/routes/profileRoutes";
 import NotFound from "./NotFound";
 import WrapperLogged from "./WrapperLogged";
+import { getUserById } from "@/apis/userAPIs";
 
 type WrapperProfileProps = {
   id?: string;
@@ -37,38 +38,34 @@ const WrapperProfile = forwardRef(
     //
     const location = useLocation();
     const {
-      userProfile: { userProfile },
-      userProfilesDispatch,
-      userProfilesAction,
+      state: { userProfile },
+      updateData,
     } = useContext(UserProfileContext);
     const refPath = useRef("");
     useEffect(() => {
       //
-      if (!ref.current) return;
 
       let timeOut: any;
-      if (id !== refPath.current) {
-        setLoading(true);
-        userProfilesDispatch(
-          userProfilesAction.loadUserProfileRequest(
-            userProfilesDispatch,
-            userProfilesAction,
-            id
-          )
-        );
-        timeOut = setTimeout(() => {
-          setLoading(false);
-          ref.current.scrollTo(0, 0);
-        }, 1200);
-      }
-      refPath.current = id;
+      const fetchData = async () => {
+        if (id !== refPath.current) {
+          setLoading(true);
+          const result = await getUserById(id);
+          updateData("userProfile", result);
+          timeOut = setTimeout(() => {
+            setLoading(false);
+            ref.current.scrollTo(0, 0);
+          }, 1200);
+        }
+        refPath.current = id;
+      };
+      fetchData();
       return () => {
         clearTimeout(timeOut);
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, ref, id, refPath]);
     //
-    return userProfile === "" ? (
+    return !userProfile && !loading ? (
       <NotFound />
     ) : (
       <>
@@ -117,12 +114,9 @@ export default function Profile() {
               </div>
             )}
             <div className="w-full relative bg-gray-100 dark:bg-dark-main pt-3">
-              <div
-                className="mx-auto relative w-full lg:flex xl:w-63% md:w-4/5 lg:w-3/4 md:mx-auto 
-                            lg:flex-wrap rounded-lg"
-              >
+              <div className="mx-auto relative w-full lg:flex xl:w-63% md:w-4/5 lg:w-3/4 md:mx-auto lg:flex-wrap rounded-lg">
                 <Routes>
-                  {routes.map((route, index) => (
+                  {routes.map((route) => (
                     <Route
                       key={route?.path}
                       path={route.path}

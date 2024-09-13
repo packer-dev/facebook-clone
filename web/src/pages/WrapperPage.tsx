@@ -27,6 +27,7 @@ export default function WrapperPage(props) {
     if (!dataLocal && !user) {
       navigation(PAGE_LOGIN);
       ref.current.className = "";
+      setLoading(false);
       return;
     }
 
@@ -40,7 +41,7 @@ export default function WrapperPage(props) {
           ref.current.classList.remove("dark");
         }
         dispatch(login(result));
-        navigation(PAGE_HOME);
+        // navigation(PAGE_HOME);
       }
       setLoading(false);
     };

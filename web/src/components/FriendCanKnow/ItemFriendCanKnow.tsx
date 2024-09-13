@@ -1,15 +1,11 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { PAGE_PROFILE } from "../../constants/Config";
+import { PAGE_PROFILE } from "@/constants/Config";
 import ButtonComponent from "../ButtonComponent";
-import { RootState } from "@/reducers";
 
 export default function ItemFriendCanKnow(props: any) {
   //
   const { item, setUsers, users } = props;
-  const { user, headers } = useSelector<RootState, RootState>((state) => state);
   //
   return (
     <div

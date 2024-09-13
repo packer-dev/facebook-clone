@@ -1,15 +1,15 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { UserProfileContext } from "../../contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "../../contexts/UserProfileContext";
 
 import ItemFriendCanKnow from "./ItemFriendCanKnow";
 import { RootState } from "@/reducers";
 
 export default memo(function FriendCanKnow() {
   //
-  const { user, headers } = useSelector<RootState, RootState>((state) => state);
+  const { user } = useSelector<RootState, RootState>((state) => state);
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
   const [users, setUsers] = useState([]);
   const [show, setShow] = useState(true);

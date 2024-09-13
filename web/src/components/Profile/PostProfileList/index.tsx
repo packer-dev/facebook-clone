@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
 import { RootState } from "@/reducers";
@@ -15,9 +15,7 @@ export default function PostProfileList() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const {
-    userProfilesDispatch,
-    userProfilesAction,
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
   useEffect(() => {
     //
@@ -30,9 +28,6 @@ export default function PostProfileList() {
       });
       const result = { data: [] };
       if (unmounted) return;
-      userProfilesDispatch(
-        userProfilesAction.updateData("postList", result.data)
-      );
       dispatch({
         type: "UPDATE_DATA_POST_LIST",
         key: "list",

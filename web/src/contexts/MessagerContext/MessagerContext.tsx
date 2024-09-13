@@ -1,20 +1,19 @@
 import { Group } from "@/interfaces/Group";
 import { User } from "@/interfaces/User";
-import React, { createContext, useReducer } from "react";
+import React, { ReactNode, createContext, useReducer } from "react";
 import AppReducer from "../AppReducer";
+import { Message } from "@/interfaces/Message";
 
 export type MessageContextProps = {
-  left: any[];
-  right: any;
+  left: Group[];
+  right: Message[];
   groupMessage: Group | null;
-  usersList?: User[];
 };
 
 const initialState: MessageContextProps = {
   left: [],
-  right: null,
+  right: [],
   groupMessage: null,
-  usersList: null,
 };
 
 export const MessengerContext = createContext<{
@@ -25,7 +24,7 @@ export const MessengerContext = createContext<{
   updateData: (key: keyof MessageContextProps, value: any) => {},
 });
 
-export const MessengerProvider = (props) => {
+export const MessengerProvider = (props: { children?: ReactNode }) => {
   //
   const [state, dispatch] = useReducer(
     AppReducer<MessageContextProps>,

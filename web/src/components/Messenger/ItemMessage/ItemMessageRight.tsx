@@ -34,9 +34,8 @@ export default function ItemMessageRight(props: any) {
               item.loading
                 ? "bx bx-radio-circle text-xl text-gray-500 "
                 : "fas fa-check-circle text-gray-300"
-            } 
-                    img-mess-right absolute bottom-2.5 right-1 `}
-          ></i>
+            } img-mess-right absolute bottom-2.5 right-1 `}
+          />
         </div>
       </div>
     </div>

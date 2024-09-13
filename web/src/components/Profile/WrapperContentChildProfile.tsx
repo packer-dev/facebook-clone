@@ -1,47 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import LoadingChildren from "./LoadingChildren";
 import { RootState } from "@/reducers";
 
-export default function WrapperContentChildProfile(props) {
+type WrapperContentChildProfileProps<T> = {
+  getResultAPI?: () => Promise<any>;
+  setData: (data: T[]) => void;
+  label?: string;
+  children?: ReactNode;
+};
+
+const WrapperContentChildProfile = <T,>({
+  setData,
+  getResultAPI,
+  label,
+  children,
+}: WrapperContentChildProfileProps<T>) => {
   //
   const { user } = useSelector<RootState, RootState>((state) => state);
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     //
-    let unmounted = false;
-    let timeOut;
-    const fetch = async () => {
-      setLoading(true);
-      if (unmounted) return;
-      timeOut = setTimeout(() => {
-        props.setData([]);
-        setLoading(false);
-      }, 800);
+    let timeOut: ReturnType<typeof setTimeout>;
+    const fetchData = async () => {
+      const result = await getResultAPI();
+      setData(result?.list || result);
+      setLoading(false);
     };
-    fetch();
+    setLoading(true);
+    timeOut = setTimeout(() => {
+      if (getResultAPI) {
+        fetchData();
+      }
+    }, 800);
     return () => {
       clearTimeout(timeOut);
-      unmounted = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, location.pathname, props.setData]);
+  }, [user, location.pathname]);
   return (
     <>
       <div className="py-2 px-4 mb-2 text-center border-b-2 border-solid border-main text-main">
-        {props.label}
+        {label}
       </div>
       {
         <div
           className="my-2 w-full flex flex-wrap"
           style={{ display: loading ? "none" : "flex" }}
         >
-          {props.children}
+          {children}
         </div>
       }
       {loading && <LoadingChildren />}
     </>
   );
-}
+};
+export default WrapperContentChildProfile;

@@ -7,14 +7,14 @@ export default function DescriptionIntroduction({ user, userProfile }) {
   const refDescription = useRef<HTMLDivElement>();
   const refAbsolute = useRef<HTMLDivElement>();
   const [description, setDescription] = useState(
-    JSON.parse(userProfile.description)
+    JSON.parse(userProfile.description || "{}")
   );
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   useEffect(() => {
     //
     if (refDescription.current) {
-      setDescription(JSON.parse(userProfile.description));
+      setDescription(JSON.parse(userProfile.description || "{}"));
       refDescription.current.innerText = description.introduction;
       refDescription.current.focus();
     }
@@ -45,7 +45,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
           spellCheck={false}
         ></div>
         <p className="mt-1 text-right text-gray-500 text-sm">{`Còn ${
-          70 - description.introduction.length
+          70 - description?.introduction?.length
         } ký tự`}</p>
         <div className="text-right w-full my-1 pb-2 ">
           <ButtonComponent
@@ -62,8 +62,8 @@ export default function DescriptionIntroduction({ user, userProfile }) {
               setLoading(true);
             }}
             disabled={
-              JSON.parse(user.description).introduction ===
-              description.introduction
+              JSON.parse(user?.description || "{}")?.introduction ===
+              description?.introduction
             }
             className={`px-4 py-1.5 ml-3 rounded-lg bg-main text-white`}
           >

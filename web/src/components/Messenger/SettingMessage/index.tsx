@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import SettingMessageChild from "./SettingMessageChild";
+import { Group } from "@/interfaces/Group";
+import { useSelector } from "react-redux";
+import { RootState } from "@/reducers";
+import Avatar from "@/components/Avatar";
+import GroupAvatar from "@/components/GroupAvatar";
 
 const WrapperItemSetting = (props: any) => {
   //
@@ -34,80 +39,52 @@ const ItemSetting = (props: any) => {
   );
 };
 
-export default function SettingMessage(props) {
+const SettingMessage = ({ groupMessage }: { groupMessage: Group }) => {
   //
-  const { groupMessage, usersList } = props;
+  const { user } = useSelector<RootState, RootState>((state) => state);
+  const member = groupMessage.members.find((item) => item.user.id !== user.id);
   //
   return (
     <div className="w-1/3 hidden xl:block pr-2 wrapper-content-right shadow-xl h-full overflow-y-auto">
       <div className="w-full mt-2">
-        {usersList.length > 0 && groupMessage.typeGroupMessage === 1 ? (
+        {groupMessage.members.length > 0 && groupMessage.multiple ? (
           <>
-            <div className="w-14 h-14 mt-8 mb-3 relative mx-auto">
-              {[...usersList].slice(0, 3).map((item, index) => (
-                <img
-                  src={item.avatar}
-                  className={`w-9 h-9 border-2 border-solid border-white rounded-full object-cover absolute ${
-                    index === 0
-                      ? "top-0 left-0"
-                      : usersList.length === 2 && index === 1
-                      ? "bottom-0 right-0"
-                      : index === 1
-                      ? "top-0 right-0"
-                      : "bottom-0 transform -translate-x-1/2 left-1/2"
-                  }`}
-                  alt=""
-                />
-              ))}
-              <span className="w-3.5 h-3.5 rounded-full bg-green-500 absolute bottom-0 right-0.5"></span>
-            </div>
+            <GroupAvatar
+              group={groupMessage}
+              size={14}
+              className="mt-8 mb-3 mx-auto"
+            />
             <p className="font-semibold text-center dark:text-white">
-              {groupMessage.nameGroupMessage
-                ? groupMessage.nameGroupMessage
-                : "My group"}
+              {groupMessage.name || "My group"}
             </p>
           </>
         ) : (
           <>
-            <div
-              className="xl:w-16 xl:h-16 my-2  object-cover rounded-full 
-                        mx-auto relative w-16 h-16"
-            >
-              <img
-                src={usersList[0].avatar}
-                alt=""
-                className="xl:w-16 xl:h-16 rounded-full object-cover mx-auto w-16 h-16"
-              />
-              <span className="w-3.5 h-3.5 rounded-full bg-green-500 absolute bottom-0 right-0.5"></span>
-            </div>
+            <Avatar
+              uri={member.user.avatar}
+              className="my-2 rounded-full mx-auto"
+            />
             <p className="font-semibold text-center dark:text-white">
-              {`${usersList[0].firstName} ${usersList[0].lastName}`}
+              {member.user.name}
             </p>
           </>
         )}
         <p className="font-semibold text-center text-sm text-gray-600 dark:text-gray-300">
-          Đang hoạt động
+          Active
         </p>
       </div>
       <ul className="w-full py-2">
-        <WrapperItemSetting
-          component={ItemSetting}
-          name={`Tùy chỉnh đoạn chat`}
-        >
-          <SettingMessageChild
-            groupMessage={props.groupMessage}
-            setGroupMessage={props.setGroupMessage}
-          />
+        <WrapperItemSetting component={ItemSetting} name={`Custom chat`}>
+          <SettingMessageChild groupMessage={groupMessage} />
         </WrapperItemSetting>
+        <WrapperItemSetting component={ItemSetting} name={`Shared file`} />
         <WrapperItemSetting
           component={ItemSetting}
-          name={`Tệp được chia sẽ`}
-        ></WrapperItemSetting>
-        <WrapperItemSetting
-          component={ItemSetting}
-          name={`File phương tiện được chia sẽ`}
-        ></WrapperItemSetting>
+          name={`Shared media file`}
+        />
       </ul>
     </div>
   );
-}
+};
+
+export default SettingMessage;

@@ -1,8 +1,11 @@
-import React, { memo } from "react";
+import { ItemChatContext } from "@/contexts/ItemChatContext";
+import React, { memo, useContext } from "react";
 
 export default memo(function ControlMessageMain(props: any) {
   //
-  const { groupMessage, handleClick, setDataMessage, dataMessage } = props;
+  const {
+    state: { group, messages, members },
+  } = useContext(ItemChatContext);
   //
   return (
     <div className="w-32 flex">
@@ -11,7 +14,7 @@ export default memo(function ControlMessageMain(props: any) {
           <div className="cursor-pointer fill-65676B ">
             <div className="hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third p-1 ">
               <svg
-                fill={groupMessage.color}
+                fill={group?.data?.color}
                 className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji tftn3vyl"
                 height="20px"
                 width="20px"
@@ -30,20 +33,14 @@ export default memo(function ControlMessageMain(props: any) {
         </div>
         <input
           className="hidden"
-          onChange={(event) => {
-            if (event.target.files.length > 0) {
-              let newArray = [];
-              for (let index = 0; index < event.target.files.length; index++)
-                newArray.push(event.target.files[index]);
-              setDataMessage({ ...dataMessage, value: newArray, type: 1 });
-            }
-          }}
+          onChange={(event) => {}}
           type="file"
           name="fileImage[]"
           id="fileImageChatMain"
           multiple={false}
         />
         <label htmlFor="fileImageChatMain">
+          {" "}
           <li className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third">
             <svg
               className="a8c37x1j ms05siws hr662l2t b7h9ocf4"
@@ -53,29 +50,29 @@ export default memo(function ControlMessageMain(props: any) {
             >
               <g fill="gray">
                 <path
-                  fill={groupMessage.color}
+                  fill={group?.data?.color}
                   d="M2.882 13.13C3.476 4.743 3.773.48 3.773.348L2.195.516c-.7.1-1.478.647-1.478 1.647l1.092 11.419c0 .5.2.9.4 1.3.4.2.7.4.9.4h.4c-.6-.6-.727-.951-.627-2.151z"
                 ></path>
                 <circle cx="8.5" cy="4.5" r="1.5" fill="gray"></circle>
                 <path
-                  fill={groupMessage.color}
+                  fill={group?.data?.color}
                   d="M14 6.2c-.2-.2-.6-.3-.8-.1l-2.8 2.4c-.2.1-.2.4 0 .6l.6.7c.2.2.2.6-.1.8-.1.1-.2.1-.4.1s-.3-.1-.4-.2L8.3 8.3c-.2-.2-.6-.3-.8-.1l-2.6 2-.4 3.1c0 .5.2 1.6.7 1.7l8.8.6c.2 0 .5 0 .7-.2.2-.2.5-.7.6-.9l.6-5.9L14 6.2z"
                 ></path>
                 <path
-                  fill={groupMessage.color}
+                  fill={group?.data?.color}
                   d="M13.9 15.5l-8.2-.7c-.7-.1-1.3-.8-1.3-1.6l1-11.4C5.5 1 6.2.5 7 .5l8.2.7c.8.1 1.3.8 1.3 1.6l-1 11.4c-.1.8-.8 1.4-1.6 1.3z"
-                  stroke={groupMessage.color}
+                  stroke={group?.data?.color}
                 ></path>
               </g>
             </svg>
           </li>
         </label>
         <li
-          onClick={(event) => handleClick(0, event)}
+          aria-hidden
           className="float-left cursor-pointer p-1 fill-65676B  hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third"
         >
           <svg
-            fill={groupMessage.color}
+            fill={group?.data?.color}
             className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji"
             height="20px"
             width="20px"
@@ -97,7 +94,7 @@ export default memo(function ControlMessageMain(props: any) {
         </li>
         <li className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third">
           <svg
-            fill={groupMessage.color}
+            fill={group?.data?.color}
             className="a8c37x1j ms05siws hr662l2t b7h9ocf4 crt8y2ji"
             height="20px"
             width="20px"

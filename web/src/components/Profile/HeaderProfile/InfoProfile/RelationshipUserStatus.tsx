@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { PAGE_CREATE_STORY } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ButtonRelationshipUser from "./ButtonRelationshipUser";
 import ButtonComponent from "@/components/ButtonComponent";
 import { RootState } from "@/reducers";
@@ -13,9 +13,8 @@ export default function RelationshipUserStatus() {
   const { user } = useSelector<RootState, RootState>((state) => state);
   const navigation = useNavigate();
   const {
-    userProfile: { userProfile },
-    userProfilesDispatch,
-    userProfilesAction,
+    state: { userProfile },
+    updateData,
   } = useContext(UserProfileContext);
   const [userRelationship, setUserRelationship] = useState(null);
   const process = async (status) => {};
@@ -26,7 +25,7 @@ export default function RelationshipUserStatus() {
       const result = { data: { status: 3 } };
       if (unmounted) return;
       if (result.data.status === 3) {
-        userProfilesDispatch(userProfilesAction.updateData("isFriend", true));
+        updateData("isFriend", true);
       }
       setUserRelationship(result.data);
     };
@@ -58,7 +57,7 @@ export default function RelationshipUserStatus() {
             icon="bx bx-user-check"
             label={"Phản hồi"}
             show={false}
-          ></ButtonRelationshipUser>
+          />
           <ButtonRelationshipUser
             handleClick={(status) => process(status)}
             status={-1}
@@ -66,7 +65,7 @@ export default function RelationshipUserStatus() {
             icon="bx bx-user-delete"
             label={"Xoá lời mời"}
             show={false}
-          ></ButtonRelationshipUser>
+          />
         </>
       )}
       {userRelationship

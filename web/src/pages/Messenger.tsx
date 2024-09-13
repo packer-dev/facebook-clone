@@ -12,28 +12,38 @@ import {
 } from "@/contexts/MessagerContext/MessagerContext";
 import WrapperLogged from "./WrapperLogged";
 import { RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { getMessageListByIdUser, getMessageMain } from "@/apis/messageAPIs";
+import { Message } from "@/interfaces/Message";
+import { getGroupById } from "@/apis/groupAPIs";
 
-const WrapperMessenger = (props) => {
+const WrapperMessenger = () => {
   //
-  const { loadMessage } = props;
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>((state) => state.user);
   const params = useParams();
   const {
-    state: { left, right, groupMessage, usersList },
+    state: { left, right, groupMessage },
     updateData,
   } = useContext(MessengerContext);
   useEffect(() => {
     //
-    const fetch = async () => {};
+    const fetchMessageList = async () => {
+      const result = await getMessageListByIdUser(user.id);
+      updateData("left", result);
+    };
+    const fetchGroup = async () => {
+      const result = await getGroupById(params.id);
+      updateData("right", result?.messages);
+      updateData("groupMessage", result?.group);
+    };
     if (user) {
-      fetch();
+      fetchMessageList();
+    }
+    if (params?.id) {
+      fetchGroup();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-  useEffect(() => {
-    //
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params]);
+  }, [user, params]);
   //
   return (
     <div className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full lg:mx-auto xl:w-full h-full max-h-full">
@@ -42,20 +52,11 @@ const WrapperMessenger = (props) => {
           <MessageList allMessage={left} />
         </div>
       </div>
-      <div
-        className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 
-            dark:border-dark-second z-40"
-      >
-        {right && groupMessage && usersList ? (
+      <div className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 dark:border-dark-second z-40">
+        {right && groupMessage ? (
           <>
-            <ContentChat loadMessage={loadMessage} />
-            <SettingMessage
-              groupMessage={groupMessage}
-              setGroupMessage={(groupMessage) =>
-                updateData("groupMessage", groupMessage)
-              }
-              usersList={usersList}
-            />
+            <ContentChat />
+            <SettingMessage groupMessage={groupMessage} />
           </>
         ) : (
           <div className={`w-full h-full flex justify-center items-center`}>
@@ -65,7 +66,7 @@ const WrapperMessenger = (props) => {
                 alt=""
                 className="w-32 object-cover mx-auto"
               />
-              <p className="font-bold text-xl">Chạm để xem tin nhắn</p>
+              <p className="font-bold text-xl">Tap to view the message</p>
             </div>
           </div>
         )}
@@ -74,10 +75,10 @@ const WrapperMessenger = (props) => {
   );
 };
 
-const ContentChat = (props) => {
+const ContentChat = () => {
   //
   const {
-    state: { right, groupMessage, usersList },
+    state: { right, groupMessage },
     updateData,
   } = useContext(MessengerContext);
   const [dataMessage, setDataMessage] = useState({
@@ -88,14 +89,10 @@ const ContentChat = (props) => {
   //
   return (
     <div className="w-full z-50 xl:w-2/3 h-full max-h-full overflow-hidden flex flex-col">
-      <ContentMessageTop
-        item={usersList[0]}
-        groupMessage={groupMessage}
-        members={usersList}
-      />
+      <ContentMessageTop groupMessage={groupMessage} />
       <MainContentMessage
         messages={right}
-        item={usersList[0]}
+        item={groupMessage.members[0]}
         groupMessage={groupMessage}
       />
       <ControlMessage
@@ -103,21 +100,20 @@ const ContentChat = (props) => {
         dataMessage={dataMessage}
         messages={right}
         setDataMessage={setDataMessage}
-        setMessages={(right) => updateData("right", right)}
-        chatter={usersList[0]}
+        setMessages={(right: Message[]) => updateData("right", right)}
+        chatter={groupMessage.members[0]}
       />
     </div>
   );
 };
 
-export default function Messenger(props) {
+export default function Messenger() {
   //
-  const { loadMessage } = props;
   //
   return (
     <WrapperLogged hideChat={true} hideMessage={true}>
       <MessengerProvider>
-        <WrapperMessenger loadMessage={loadMessage}></WrapperMessenger>
+        <WrapperMessenger />
       </MessengerProvider>
     </WrapperLogged>
   );

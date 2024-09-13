@@ -31,6 +31,7 @@ export const AppProvider = <T,>({
     return {
       state,
       updateData: (key: keyof T, value: any) => {
+        console.log(key, value);
         dispatch({
           type: "UPDATE_DATA",
           key,

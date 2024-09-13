@@ -13,4 +13,5 @@ export interface Group {
   image?: string;
   seen?: any;
   multiple?: boolean;
+  is_new?: boolean;
 }

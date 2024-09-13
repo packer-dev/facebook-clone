@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import WritePost from "../../WritePost";
 import PostProfileList from "../PostProfileList";
 import ProfileLeft from "../ProfileLeft";
@@ -10,7 +10,7 @@ export default function MainProfile() {
   //
   const { user } = useSelector<RootState, RootState>((state) => state);
   const {
-    userProfile: { userProfile, isFriend },
+    state: { userProfile, isFriend },
   } = useContext(UserProfileContext);
   //
   return (

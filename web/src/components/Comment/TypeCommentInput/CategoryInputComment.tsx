@@ -40,7 +40,7 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
             aria-hidden
             onClick={(event) => handleClick(1, event)}
             className=" w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                    flex items-center justify-center -ml-1.5"
+            flex items-center justify-center -ml-1.5"
           >
             <i className="far fa-smile dark:text-white text-gray-600"></i>
           </li>
@@ -48,8 +48,12 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
             <>
               <li
                 className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                        flex items-center justify-center -ml-1.5"
+                flex items-center justify-center -ml-1.5"
               >
+                <label htmlFor={id}>
+                  {" "}
+                  <i className="fas fa-camera dark:text-white text-gray-600"></i>
+                </label>
                 <input
                   name="fileImage"
                   className="hidden"
@@ -67,13 +71,10 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
                   formEncType="multipart/form-data"
                   id={id}
                 />
-                <label htmlFor={id}>
-                  <i className="fas fa-camera dark:text-white text-gray-600"></i>
-                </label>
               </li>
               <li
                 className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                        flex items-center justify-center -ml-1.5"
+                flex items-center justify-center -ml-1.5"
               >
                 <i className="fas fa-radiation dark:text-white text-gray-600"></i>
               </li>
@@ -81,7 +82,7 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
                 aria-hidden
                 onClick={(event) => handleClick(0, event)}
                 className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                        flex items-center justify-center -ml-1.5"
+                flex items-center justify-center -ml-1.5"
               >
                 <i className="far fa-sticky-note dark:text-white text-gray-600"></i>
               </li>

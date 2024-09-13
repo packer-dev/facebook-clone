@@ -1,25 +1,38 @@
 import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import WrapperContentChildProfile from "../WrapperContentChildProfile";
 import ItemImageVideoList from "./ItemImageVideoList";
+import { getMediaByUserId } from "@/apis/postAPIs";
+import { Media } from "@/interfaces/Media";
 
-export default function ImageVideoList(props) {
+export type ImageVideoProps = {
+  post_id: string;
+  user_id: string;
+  media: Media;
+};
+
+const ImageVideoList = ({ image }: { image?: boolean }) => {
   //
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
-  const [imageVideos, setImageVideos] = useState([]);
+  const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   return (
-    <WrapperContentChildProfile
-      label={props.image ? "Ảnh" : "Video"}
+    <WrapperContentChildProfile<ImageVideoProps>
+      label={image ? "Ảnh" : "Video"}
       setData={setImageVideos}
-      url={`imageVideoPosts?idUser=${userProfile.id}&offset=0&limit=20&type=${
-        props.image ? 0 : 1
-      }`}
+      getResultAPI={() => getMediaByUserId(userProfile?.id, 1)}
     >
-      {imageVideos?.map((imageVideo) => (
-        <ItemImageVideoList imageVideo={imageVideo} key={imageVideo.id} />
-      ))}
+      <div className="w-full grid grid-cols-5 gap-1">
+        {imageVideos?.map((imageVideo) => (
+          <ItemImageVideoList
+            imageVideo={imageVideo}
+            key={imageVideo.media.id}
+          />
+        ))}
+      </div>
     </WrapperContentChildProfile>
   );
-}
+};
+
+export default ImageVideoList;

@@ -3,7 +3,7 @@ import * as React from "react";
 
 export default function InformationMain({ userProfile }) {
   //
-  const description = JSON.parse(userProfile.description);
+  const description = JSON.parse(userProfile.description || "{}");
   //
   return (
     <ul className="w-full mt-3">

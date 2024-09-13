@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 
 export default function ProfileFriendList() {
   //
   const [friends, setFriends] = useState([]);
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
   useEffect(() => {
     //

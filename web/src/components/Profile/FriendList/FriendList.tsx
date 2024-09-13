@@ -1,24 +1,26 @@
 import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import WrapperContentChildProfile from "../WrapperContentChildProfile";
 import ItemFriendList from "./ItemFriendList";
+import { FriendProfileDTO } from "@/interfaces/User";
+import { getFriendUser } from "@/apis/userAPIs";
 
 export default function FriendList() {
   //
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<FriendProfileDTO[]>([]);
   //
   return (
-    <WrapperContentChildProfile
-      url={`userRelationships/friends?idUserMain=${userProfile.id}&status=3&offset=0&limit=10&text=`}
-      label="Bạn bè"
+    <WrapperContentChildProfile<FriendProfileDTO>
+      label="Friends"
       setData={setFriends}
+      getResultAPI={() => getFriendUser(userProfile?.id, 3)}
     >
       <div className="w-full flex flex-wrap gap-2">
         {friends.map((item) => (
-          <ItemFriendList item={item} key={item.userUserRelationShip.id} />
+          <ItemFriendList item={item} key={item.user.id} />
         ))}
       </div>
     </WrapperContentChildProfile>

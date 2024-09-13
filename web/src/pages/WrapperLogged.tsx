@@ -6,6 +6,8 @@ import ItemChatMinize from "@/components/ItemChatMinize";
 import WrapperPage from "./WrapperPage";
 import { AppDispatch, RootState } from "@/reducers";
 import { updateData } from "@/reducers/userChat";
+import { generateUUID } from "@/utils";
+import { Group } from "@/interfaces/Group";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -42,7 +44,18 @@ const WrapperLogged = ({
                 ))}
                 <div
                   onClick={() => {
-                    const newData: any = { id: "new", new: true };
+                    const newData: Group = {
+                      id: generateUUID(),
+                      is_new: true,
+                      members: [
+                        {
+                          id: generateUUID(),
+                          user,
+                          is_owner: true,
+                          nickname: "",
+                        },
+                      ],
+                    };
                     dispatch(
                       updateData({
                         key: "zoom",
@@ -63,7 +76,7 @@ const WrapperLogged = ({
           {userChat.zoom.length > 0 && (
             <div className="fixed bottom-0 flex right-20 z-40">
               {userChat.zoom.map((item) => (
-                <ItemChat key={item?.id} item={item} />
+                <ItemChat key={item?.id} group={item} />
               ))}
             </div>
           )}

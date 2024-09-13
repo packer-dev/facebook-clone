@@ -52,7 +52,7 @@ const MoreThanComment = ({
       {loading ? (
         <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin"></i>
       ) : (
-        "Xem thêm bình luận"
+        "View more"
       )}
     </ButtonComponent>
   );

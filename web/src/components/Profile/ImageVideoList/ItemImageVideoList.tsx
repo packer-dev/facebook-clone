@@ -1,21 +1,25 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
+import { ImageVideoProps } from ".";
 
-export default function ItemImageVideoList(props) {
+const ItemImageVideoList = ({
+  imageVideo,
+}: {
+  imageVideo: ImageVideoProps;
+}) => {
   //
-  const { imageVideo } = props;
   const DataImageVideo = () => {
-    switch (imageVideo.typeImageVideoPost) {
-      case 0:
+    switch (imageVideo.media.type) {
+      case 1:
         return (
           <img
-            src={imageVideo.src}
-            className="w-full max-h-148 h-full object-cover"
+            src={imageVideo.media.url}
+            className="w-full h-full object-cover"
             alt=""
           />
         );
-      case 1:
+      case 2:
         return (
           <>
             <div className="w-full absolute top-0 left-0 bg-black bg-opacity-50 h-full news__view">
@@ -27,12 +31,12 @@ export default function ItemImageVideoList(props) {
             </div>
             <i
               className="bx bx-play-circle text-6xl cursor-pointer text-white absolute top-1/2  
-                    left-1/2 transform -translate-y-1/2 -translate-x-1/2 news_bntPlay"
-            ></i>
+              left-1/2 transform -translate-y-1/2 -translate-x-1/2 news_bntPlay"
+            />
             <video
-              src={imageVideo.src}
+              src={imageVideo.media.url}
               className="w-full max-h-148 h-full object-cover"
-            ></video>
+            />
           </>
         );
       default:
@@ -41,19 +45,21 @@ export default function ItemImageVideoList(props) {
   };
   //
   return (
-    <div className="w-1/5 relative case">
-      <Link to={PAGE_VIEW_POST + "/" + imageVideo.postImageVideoPost.id}>
-        <div className="w-44 h-44 m-1.5 cursor-pointer relative">
-          <DataImageVideo />
-        </div>
+    <div className="relative case" style={{ paddingTop: "100%" }}>
+      <Link
+        to={PAGE_VIEW_POST + "/" + imageVideo.post_id}
+        className="block absolute top-0 left-0 right-0 bottom-0 cursor-pointer"
+      >
+        <DataImageVideo />
       </Link>
       <div
-        className="cursor-pointer edit top-4 right-4 absolute w-10 h-10 rounded-full
-                    pt-1.5 pl-2.5 text-lg"
+        className="cursor-pointer edit top-4 right-4 absolute w-10 h-10 rounded-full pt-1.5 pl-2.5 text-lg"
         style={{ backgroundColor: "rgba(256, 256, 256, 0.2)" }}
       >
-        <i className="fas fa-pencil-alt text-gray-100"></i>
+        <i className="fas fa-pencil-alt text-gray-100" />
       </div>
     </div>
   );
-}
+};
+
+export default ItemImageVideoList;

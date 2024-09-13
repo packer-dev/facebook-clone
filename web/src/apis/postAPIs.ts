@@ -43,7 +43,12 @@ export const sendFeelPost = async (postId: string, userId: string) => {
   }).then((res) => res.json());
 };
 
-export const getMediaByUserId = async (userId: string, type: any, offset = 0, limit = 9) => {
+export const getMediaByUserId = async (
+  userId: string,
+  type: any,
+  offset = 0,
+  limit = 9
+) => {
   return fetch(
     `${API_URL}/post/media?user_id=${userId}&type=${type}&offset=${offset}&limit=${limit}`,
     {

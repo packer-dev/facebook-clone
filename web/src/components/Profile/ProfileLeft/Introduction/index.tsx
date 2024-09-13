@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import InformationMain from "./InformationMain";
 import DescriptionIntroduction from "./DescriptionIntroduction";
 import ItemFavorite from "@/components/Modals/Profile/ModalFavorite/ItemFavorite";
@@ -12,12 +12,11 @@ export default function Introduction() {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const {
-    userProfile: { userProfile },
-    userProfilesDispatch,
-    userProfilesAction,
+    state: { userProfile },
+    updateData,
   } = useContext(UserProfileContext);
   const { user } = useSelector<RootState, RootState>((state) => state);
-  const favorites = JSON.parse(userProfile.favorites);
+  const favorites = JSON.parse(userProfile.favorites || "{}");
   //
   return (
     <>
@@ -29,9 +28,7 @@ export default function Introduction() {
           handleClick={() => {
             modalsDispatch(
               modalsAction.openModalEditInformation((data) => {
-                userProfilesDispatch(
-                  userProfilesAction.updateData("userProfile", data)
-                );
+                updateData("userProfile", data);
               })
             );
           }}
@@ -53,16 +50,14 @@ export default function Introduction() {
           handleClick={() => {
             modalsDispatch(
               modalsAction.openModalFavorite((data) => {
-                userProfilesDispatch(
-                  userProfilesAction.updateData("userProfile", data)
-                );
+                updateData("userProfile", data);
               })
             );
           }}
           className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
             dark:bg-dark-second dark:text-white rounded-lg"
         >
-          {favorites.length > 0 ? "Sửa" : "Thêm"} sở thích
+          {favorites.length > 0 ? "Edit" : "Add"} favorite
         </ButtonComponent>
       )}
     </>

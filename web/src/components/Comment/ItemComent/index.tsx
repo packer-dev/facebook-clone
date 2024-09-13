@@ -21,7 +21,7 @@ const ItemComment = ({
   const [feel, setFeel] = React.useState<any>(null);
   const refFeelComment = React.useRef<HTMLDivElement>(null);
   const refText = React.useRef<HTMLDivElement>(null);
-  const refContentComment = React.useRef<HTMLDivElement>(null);
+  const refContentComment = React.useRef<HTMLImageElement>(null);
   React.useEffect(() => {
     //
     const fetch = async () => {
@@ -130,7 +130,7 @@ const ItemComment = ({
               onClick={() => setReply(true)}
               className="pr-2 cursor-pointer"
             >
-              Trả lời
+              Reply
             </li>
             <li className="pr-2 cursor-pointer">
               {moment(commentPost.commentPost.timeCreated).fromNow(true)}

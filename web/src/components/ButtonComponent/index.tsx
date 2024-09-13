@@ -12,7 +12,7 @@ type ButtonComponentProps = {
   children?: React.ReactNode;
 };
 
-export default function ButtonComponent({
+const ButtonComponent = ({
   link,
   className,
   type,
@@ -21,7 +21,7 @@ export default function ButtonComponent({
   bgColor,
   loading,
   children,
-}: ButtonComponentProps) {
+}: ButtonComponentProps) => {
   //
   const ref = React.useRef<any>();
   React.useEffect(() => {
@@ -58,4 +58,6 @@ export default function ButtonComponent({
       )}
     </button>
   );
-}
+};
+
+export default ButtonComponent;

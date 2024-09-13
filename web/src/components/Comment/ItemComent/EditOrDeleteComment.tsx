@@ -66,34 +66,34 @@ export default React.forwardRef(function EditOrDeleteComment(
     //
   }, [ref, refControl]);
   //
-  return user.id === commentPost.userCommentPost.id ? (
-    <div
-      ref={refControl}
-      className="item__flex absolute ml-6 top-1/2 transform -translate-y-1/2"
-    >
-      <span
-        onClick={() => {
-          modalsDispatch(modalsAction.openModalDeletePost(""));
-        }}
-        aria-hidden
-        className="bx bx-edit-alt text-sm text-gray-800 cursor-pointer"
-      ></span>
-      <span
-        onClick={() => {
-          modalsDispatch(
-            modalsAction.openModalDeletePost(
-              TITLE_MODAL_DELETE_COMMENT,
-              CONTENT_MODAL_DELETE_COMMENT,
-              NAME_BUTTON_MODAL_DELETE_COMMENT,
-              handleEvent
-            )
-          );
-        }}
-        aria-hidden
-        className="bx bx-trash-alt text-sm text-gray-800 cursor-pointer"
-      ></span>
-    </div>
-  ) : (
-    ""
-  );
+  if (user.id === commentPost.userCommentPost.id)
+    return (
+      <div
+        ref={refControl}
+        className="item__flex absolute ml-6 top-1/2 transform -translate-y-1/2"
+      >
+        <span
+          onClick={() => {
+            modalsDispatch(modalsAction.openModalDeletePost(""));
+          }}
+          aria-hidden
+          className="bx bx-edit-alt text-sm text-gray-800 cursor-pointer"
+        ></span>
+        <span
+          onClick={() => {
+            modalsDispatch(
+              modalsAction.openModalDeletePost(
+                TITLE_MODAL_DELETE_COMMENT,
+                CONTENT_MODAL_DELETE_COMMENT,
+                NAME_BUTTON_MODAL_DELETE_COMMENT,
+                handleEvent
+              )
+            );
+          }}
+          aria-hidden
+          className="bx bx-trash-alt text-sm text-gray-800 cursor-pointer"
+        ></span>
+      </div>
+    );
+  return <></>;
 });

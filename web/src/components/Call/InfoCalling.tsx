@@ -16,7 +16,7 @@ const InfoCalling = () => {
 
       <p className="font-bold text-2xl text-center py-1">Packer Tra</p>
       <p className="font-semibold text-sm text-center py-1 text-gray-300">
-        "Đang gọi..."
+        "Calling..."
       </p>
     </div>
   );

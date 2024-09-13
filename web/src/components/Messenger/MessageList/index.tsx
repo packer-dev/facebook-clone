@@ -29,15 +29,13 @@ export default function MessageList(props) {
       <div className="w-full text-center px-2 flex">
         <InputComponent
           type="text"
-          className="w-full mx-auto rounded-full p-2.5 flex items-center
-                    bg-gray-100 dark:bg-dark-third dark:text-white"
-          placeholder="Tìm kiếm trên messenger"
+          className="w-full mx-auto rounded-full p-2.5 flex items-center bg-gray-100 dark:bg-dark-third dark:text-white"
+          placeholder="Search on messenger"
           search={true}
         />
       </div>
       <div
-        className="w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap 
-                justify-center "
+        className="w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap justify-center "
         style={{ maxHeight: "calc(100% - 80px)" }}
       >
         {allMessage.map((itemMessage) => (

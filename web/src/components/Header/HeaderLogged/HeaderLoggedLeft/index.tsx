@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import ItemHeaderLoggedLeft from "./ItemHeaderLoggedLeft";
-import { RootState } from "@/reducers";
 import InputComponent from "@/components/InputComponent";
 import Logo from "@/components/Logo";
 
 export default function HeaderLoggedLeft() {
   //
-  const { headers } = useSelector<RootState, RootState>((state) => state);
   const [show, setShow] = useState(false);
   const [list, setList] = useState(null);
   const [loading, setLoading] = useState(false);

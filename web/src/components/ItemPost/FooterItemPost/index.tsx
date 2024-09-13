@@ -5,12 +5,12 @@ import ButtonShare from "./ButtonShare";
 import { RootState } from "@/reducers";
 import { PostDTO } from "@/interfaces/Post";
 
-type FooterItemPost = {
+type FooterItemPostProps = {
   postDetail: PostDTO;
   setPostDetail: Function;
 };
 
-const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPost) => {
+const FooterItemPost = ({ postDetail, setPostDetail }: FooterItemPostProps) => {
   //
   const { headers } = useSelector<RootState, RootState>((state) => state);
   const [feel, setFeel] = useState<any>();

@@ -24,25 +24,25 @@ export default function HeaderSignedOut(props: any) {
             type="text"
             name="email"
             className="p-2 border border-gray-300 rounded-lg"
-            width={"w-48"}
-            placeholder={`Email hoặc điện thoại`}
+            width="w-48"
+            placeholder="Email"
           />
           <InputComponent
             type="password"
             name="password"
             className="p-2 border border-gray-300 rounded-lg"
-            width={"w-48"}
-            placeholder={`Mật khẩu`}
+            width="w-48"
+            placeholder="Password"
           />
           <ButtonComponent
-            handleClick={() => alert("Chuc nang nay chua hoan thien")}
+            handleClick={() => alert("This feature are developing.")}
             type="submit"
             className="px-5 py-2 bg-1877F2 text-white rounded-lg"
           >
-            Đăng nhập
+            Login
           </ButtonComponent>
-          <ButtonComponent link={""} className="py-2 text-1877F2">
-            Bạn quên tài khoản ư ?
+          <ButtonComponent className="py-2 text-1877F2">
+            Did you forget your account?
           </ButtonComponent>
         </div>
       )}

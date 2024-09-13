@@ -27,7 +27,6 @@ const TypeCommentInput = ({
   const refContent = React.useRef<HTMLDivElement>(null);
   const handleSendComment = async (dataComment) => {
     const id = v4();
-    let imageUpload = null;
     const { value, content, type } = dataComment;
     refContent.current.innerText = "";
     const object = {
@@ -80,7 +79,6 @@ const TypeCommentInput = ({
       formData.append("id", new Date().getTime().toString());
       formData.append("publicId", "Comments/");
       formData.append("typeFile", "image");
-      imageUpload = "";
     }
     const result = { data: null };
     if (!reply) {
@@ -146,13 +144,12 @@ const TypeCommentInput = ({
               });
             }}
             onKeyDown={(event) => {
-              if (event.keyCode === 13) {
+              if (event.key === "enter") {
                 event.preventDefault();
                 handleSendComment(dataComment);
               }
             }}
-            className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-third
-                    dark:text-white py-3 "
+            className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-thirddark:text-white py-3 "
             style={{ minHeight: 30, width: "96%" }}
             contentEditable={true}
           ></div>

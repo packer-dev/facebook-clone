@@ -99,7 +99,7 @@ const routes = [
   {
     path: Config.PAGE_MESSENGER,
     exact: true,
-    element: <Messenger loadMessage={false} />,
+    element: <Messenger />,
   },
   {
     path: Config.PAGE_VIEW_POST + "/:id",

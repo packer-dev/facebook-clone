@@ -64,7 +64,7 @@ export default function HeaderLoggedRight(props) {
             aria-hidden
             onClick={async () => {
               setToggle(!toggle);
-              document.body.className = !toggle ? "dark" : "";
+              document.body.className = !toggle ? "opacity-10 dark" : "";
             }}
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"

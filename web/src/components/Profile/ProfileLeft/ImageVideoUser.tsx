@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
 import { RootState } from "@/reducers";
 
@@ -10,7 +10,7 @@ export default function ImageVideoUser() {
   //
   const { headers } = useSelector<RootState, RootState>((state) => state);
   const {
-    userProfile: { userProfile },
+    state: { userProfile },
   } = useContext(UserProfileContext);
   const navigation = useNavigate();
   const [imageVideos, setImageVideos] = useState([]);
