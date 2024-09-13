@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
 import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
+import useClickOutside from "@/hooks/useClick";
 
-export default function CenterWritePostModal(props) {
+export default function CenterWritePostModal(props: any) {
   //
   const { user } = useSelector<RootState, RootState>((state) => state);
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
@@ -17,6 +18,12 @@ export default function CenterWritePostModal(props) {
   const refInput = useRef<HTMLInputElement>();
   const refArea = useRef<HTMLTextAreaElement>();
   const { emojiShow, setEmojiShow } = props;
+  const { ref } = useClickOutside({
+    handleClick: (status: any) => {
+      setEmojiShow(status);
+    },
+    status: emojiShow,
+  });
   useEffect(() => {
     //
     if (refInput.current) {
@@ -156,16 +163,14 @@ export default function CenterWritePostModal(props) {
           }`}
         >
           <div className="relative">
-            <ButtonComponent
-              handleClick={() => {
-                setEmojiShow(!emojiShow);
-              }}
-              type="button"
-              className={`w-8 h-8 rounded-full bg-white dark:bg-dark-third flex justify-center items-center `}
-            >
-              <i className="far fa-smile text-gray-500 text-2xl dark:text-gray-300"></i>
-            </ButtonComponent>
-
+            <div aria-hidden onClick={() => setEmojiShow(!emojiShow)} ref={ref}>
+              <ButtonComponent
+                type="button"
+                className={`w-8 h-8 rounded-full bg-white dark:bg-dark-third flex justify-center items-center `}
+              >
+                <i className="far fa-smile text-gray-500 text-2xl dark:text-gray-300"></i>
+              </ButtonComponent>
+            </div>
             {emojiShow && (
               <div
                 className={`absolute w-72 bg-white border-gray-200 border-solid border-2 rounded-lg 

@@ -44,6 +44,8 @@ const WrapperProfile = forwardRef(
     const refPath = useRef("");
     useEffect(() => {
       //
+      if (!ref.current) return;
+
       let timeOut: any;
       if (id !== refPath.current) {
         setLoading(true);
@@ -81,7 +83,7 @@ export default function Profile() {
   //
   const { id } = useParams();
   const location = useLocation();
-  const refContainer = useRef();
+  const refContainer = useRef<HTMLDivElement>();
   const [loading, setLoading] = useState(true);
   //
   return (
