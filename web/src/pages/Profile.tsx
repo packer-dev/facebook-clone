@@ -51,10 +51,7 @@ const WrapperProfile = forwardRef(
           setLoading(true);
           const result = await getUserById(id);
           updateData("userProfile", result);
-          timeOut = setTimeout(() => {
-            setLoading(false);
-            ref.current.scrollTo(0, 0);
-          }, 1200);
+          setLoading(false);
         }
         refPath.current = id;
       };
@@ -64,6 +61,9 @@ const WrapperProfile = forwardRef(
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, ref, id, refPath]);
+    useEffect(() => {
+      ref.current?.scrollTo(0, 0);
+    }, [loading]);
     //
     return !userProfile && !loading ? (
       <NotFound />

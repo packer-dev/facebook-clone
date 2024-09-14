@@ -29,8 +29,7 @@ export default function ModalFavorite({ updateUserProfile }: any) {
           <InputComponent
             type={"text"}
             search={true}
-            className={`p-2 w-full border-2 border-solid 
-                     border-gray-200 rounded-full`}
+            className={`p-2 w-full border-2 border-solid border-gray-200 rounded-full`}
             ref={ref}
             placeholder={"Bạn làm gì để giải trí?"}
             handleChange={(data) => {
@@ -49,7 +48,7 @@ export default function ModalFavorite({ updateUserProfile }: any) {
             </p>
             <div
               className="p-2.5 h-24 max-h-24 overflow-y-auto w-full border-2 border-solid 
-                        border-gray-200 rounded-lg"
+              border-gray-200 rounded-lg"
             >
               <div className="w-full flex flex-wrap gap-1.5">
                 {content.choose.map((item) => (

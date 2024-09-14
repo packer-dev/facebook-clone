@@ -1,50 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/reducers";
-import { User } from "@/interfaces/User";
+import { AppDispatch, RootState } from "@/reducers";
 import { getFriendsByUserId } from "@/apis/userAPIs";
-import { updateData } from "@/reducers/userChat";
+import { updateDataUserChat } from "@/reducers/userChat";
+import { updateDataCommon } from "@/reducers/common";
+import { Group } from "@/interfaces/Group";
 
 export default function UserActivity() {
   //
-  const [users, setUsers] = useState<User[]>([]);
-  const dispatch = useDispatch();
   const {
     user,
     headers,
     userChat: { minize, zoom },
+    common: { friends },
   } = useSelector<RootState, RootState>((state) => state);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     //
     const fetch = async () => {
       const result = await getFriendsByUserId(user.id);
-      setUsers(result);
+      dispatch(
+        updateDataCommon({
+          key: "friends",
+          value: result,
+        })
+      );
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, headers]);
   //
-  return [...users.filter((item) => item.id !== user.id)].map((item) => (
+  return [...friends.filter((item) => item.id !== user.id)].map((item) => (
     <div
       aria-hidden
       onClick={() => {
         const indexMinize = minize.findIndex((data) => item.id === data.id);
         const indexZoom = zoom.findIndex((data) => item.id === data.id);
+        const newData: Group = {
+          id: item.id,
+          members: [{ id: "", user: item }],
+        };
         if (indexZoom === -1 && indexMinize === -1) {
           if (zoom.length === 2) {
             dispatch(
-              updateData({ key: "minize", value: [...minize, zoom[0]] })
+              updateDataUserChat({ key: "minize", value: [...minize, zoom[0]] })
             );
             let clone = [...zoom];
-            clone[0] = item;
-            dispatch(updateData({ key: "zoom", value: [...clone] }));
+            clone[0] = newData;
+            dispatch(updateDataUserChat({ key: "zoom", value: [...clone] }));
           } else {
-            dispatch(updateData({ key: "zoom", value: [...zoom, item] }));
+            dispatch(
+              updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
+            );
           }
         } else if (indexMinize !== -1 && zoom.length !== 2) {
-          dispatch(updateData({ key: "zoom", value: [...zoom, item] }));
           dispatch(
-            updateData({
+            updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
+          );
+          dispatch(
+            updateDataUserChat({
               key: "minize",
               value: [...minize].filter((data) => data.id !== item.id),
             })

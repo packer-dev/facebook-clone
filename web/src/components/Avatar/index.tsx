@@ -27,12 +27,12 @@ const Avatar = ({
         <img
           alt=""
           src={uri ?? `https://picsum.photos/536/354`}
-          className={`w-${size} h-${size} rounded-full mx-auto`}
+          className={`w-${size} h-${size} rounded-full mx-auto object-cover`}
         />
       )}
       {online && (
         <div
-          className={`w-4 h-4 rounded-full bg-green-500 absolute bottom-1 -mr-1 right-0 border-2 border-white`}
+          className={`w-3 h-3 rounded-full bg-green-500 absolute bottom-1 -mr-1 right-0 border-2 border-white`}
         />
       )}
       {children}

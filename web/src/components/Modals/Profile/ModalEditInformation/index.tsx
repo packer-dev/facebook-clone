@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import ButtonComponent from "../../../ButtonComponent";
 import ModalWrapper from "../../ModalWrapper";
 import ItemEditInformation from "./ItemEditInformation";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalEditInformation({ updateUserProfile }) {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const [description, setDescription] = useState(JSON.parse(""));
+  const [description, setDescription] = useState(JSON.parse("{}"));
   //
   return (
     <ModalWrapper
@@ -27,7 +27,7 @@ export default function ModalEditInformation({ updateUserProfile }) {
         placeholder={`Nhập công việc của bạn`}
         description={description}
         setDescription={setDescription}
-        value={description.work}
+        value={description?.work || ""}
       />
       <ItemEditInformation
         title="Học vấn"
@@ -35,7 +35,7 @@ export default function ModalEditInformation({ updateUserProfile }) {
         placeholder={`Nhập học vấn của bạn`}
         description={description}
         setDescription={setDescription}
-        value={description.study}
+        value={description?.study || ""}
       />
       <ItemEditInformation
         title="Sống tại"
@@ -43,7 +43,7 @@ export default function ModalEditInformation({ updateUserProfile }) {
         placeholder={`Nhập nơi sống của bạn`}
         description={description}
         setDescription={setDescription}
-        value={description.live}
+        value={description?.live || ""}
       />
       <ItemEditInformation
         title="Đến từ"
@@ -51,7 +51,7 @@ export default function ModalEditInformation({ updateUserProfile }) {
         placeholder={`Nhập quê quán của bạn`}
         description={description}
         setDescription={setDescription}
-        value={description.from}
+        value={description?.from || ""}
       />
       <ItemEditInformation
         title="Tình trạng"
@@ -59,27 +59,24 @@ export default function ModalEditInformation({ updateUserProfile }) {
         placeholder={`Nhập tình trạng của bạn`}
         description={description}
         setDescription={setDescription}
-        value={description.status}
+        value={description?.status || ""}
       />
       <hr />
       <div className="text-right pt-3">
         <ButtonComponent
           handleClick={() => modalsDispatch(modalsAction.closeModal())}
           type="button"
-          className="cursor-pointer border-none font-semibold text-white  
-                    rounded-lg p-2 mx-2 bg-gray-500"
+          className="cursor-pointer border-none font-semibold text-white rounded-lg p-2 mx-2 bg-gray-500"
         >
           Hủy
         </ButtonComponent>
         <ButtonComponent
           handleClick={async () => {
             modalsDispatch(modalsAction.loadingModal(true));
-
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className={`cursor-pointer w-1/4 border-none font-semibold bg-main 
-                     text-white rounded-lg p-2 mx-2 `}
+          className={`cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2 `}
         >
           Lưu
         </ButtonComponent>

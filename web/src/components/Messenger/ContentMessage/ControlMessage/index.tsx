@@ -85,7 +85,7 @@ export default function ControlMessage(props: any) {
           <div
             ref={refPopover}
             className="absolute hidden bottom-full bg-white border-2 border-solid border-gray-200 shadow-lv1 
-                    right-0 rounded-lg w-72"
+            right-0 rounded-lg w-72"
             style={{ height: 360 }}
           >
             {type === 1 ? (
@@ -112,7 +112,7 @@ export default function ControlMessage(props: any) {
           onClick={() => ""}
           className="cursor-pointer zoom text-xl flex items-center"
         >
-          {group?.data?.emoji}
+          {group?.data?.emoji || "💕"}
         </span>
       </div>
       {group && group.is_new && (

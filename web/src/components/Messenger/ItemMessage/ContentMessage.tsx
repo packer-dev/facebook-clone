@@ -1,12 +1,24 @@
 import React, { forwardRef } from "react";
 import ItemSticker from "../../Popovers/PopoverSticker/ItemSticker";
 import ChatText from "./ChatText";
+import { Message } from "@/interfaces/Message";
+import { Group } from "@/interfaces/Group";
 
-export default forwardRef(function ContentMessage(props: any, ref: any) {
+export type ContentMessageProps = {
+  item: Message;
+  groupMessage?: Group;
+  margin?: any;
+  left?: any;
+};
+
+export default forwardRef(function ContentMessage(
+  props: ContentMessageProps,
+  ref: any
+) {
   //
   const { item, margin, left, groupMessage } = props;
-  switch (item.typeMessage) {
-    case 0:
+  switch (item.content.type) {
+    case 1:
       return (
         <ChatText
           item={item}
@@ -15,11 +27,11 @@ export default forwardRef(function ContentMessage(props: any, ref: any) {
           left={left}
         />
       );
-    case 1:
+    case 3:
       return (
         <img
           ref={ref}
-          src={JSON.parse(item.dataMessage).value}
+          src={JSON.parse(item.content.text).value}
           alt={``}
           className="w-80 h-56 rounded-lg object-cover"
         />
@@ -29,7 +41,7 @@ export default forwardRef(function ContentMessage(props: any, ref: any) {
         <ItemSticker
           ref={ref}
           groupMessage={groupMessage}
-          sticker={JSON.parse(item.dataMessage).value}
+          sticker={JSON.parse(item.content.text).value}
           handleClick={() => ""}
         />
       );

@@ -82,7 +82,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
                 setLoading(false);
               }}
               className="w-full p-2 text-sm bg-gray-200 hover:bg-gray-300 font-semibold 
-                    rounded-lg dark:bg-dark-second dark:text-white"
+              rounded-lg dark:bg-dark-second dark:text-white"
             >
               Chỉnh sửa tiểu sử
             </ButtonComponent>
@@ -91,8 +91,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
       )}
       <div
         ref={refAbsolute}
-        className="w-full absolute top-0 left-0 items-center 
-            justify-center bg-white dark:bg-dark-second bg-opacity-50 z-10"
+        className="w-full absolute top-0 left-0 items-center justify-center bg-white dark:bg-dark-second bg-opacity-50 z-10"
         style={{ display: loading ? "flex" : "none" }}
       >
         <i className="fas fa-spinner fa-spin text-2xl"></i>

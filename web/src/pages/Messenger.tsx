@@ -13,7 +13,7 @@ import {
 import WrapperLogged from "./WrapperLogged";
 import { RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
-import { getMessageListByIdUser, getMessageMain } from "@/apis/messageAPIs";
+import { getMessageListByIdUser } from "@/apis/messageAPIs";
 import { Message } from "@/interfaces/Message";
 import { getGroupById } from "@/apis/groupAPIs";
 

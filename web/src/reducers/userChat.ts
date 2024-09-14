@@ -1,8 +1,9 @@
+import { Group } from "@/interfaces/Group";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type UserChatReduxProps = {
-  minize: any[];
-  zoom: any[];
+  minize: Group[];
+  zoom: Group[];
 };
 
 const initialState: UserChatReduxProps = {
@@ -14,7 +15,7 @@ const userChatSlice = createSlice({
   name: "userChat",
   initialState,
   reducers: {
-    updateData: (
+    updateDataUserChat: (
       state: UserChatReduxProps,
       action: PayloadAction<{
         key: keyof UserChatReduxProps;
@@ -26,6 +27,6 @@ const userChatSlice = createSlice({
   },
 });
 
-export const { updateData } = userChatSlice.actions;
+export const { updateDataUserChat } = userChatSlice.actions;
 
 export default userChatSlice;

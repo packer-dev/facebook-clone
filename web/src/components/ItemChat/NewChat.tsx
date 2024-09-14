@@ -5,19 +5,21 @@ import React, {
   useRef,
   useState,
 } from "react";
-
 import MainContentMessage from "../Messenger/ContentMessage/MainContentMessage";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
-import { Member } from "@/interfaces/Member";
+import { useSelector } from "react-redux";
+import { RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { getMessageMain } from "@/apis/messageAPIs";
 
 const ItemNewChat = forwardRef(
-  ({ item, setText }: { item: Member; setText: Function }, ref: any) => {
+  ({ item, setText }: { item: User; setText: Function }, ref: any) => {
     //
     const {
-      state: { members },
+      state: { choose },
       updateData,
     } = useContext(ItemChatContext);
-    const index = members.findIndex((dt) => dt.user.id === item.user.id);
+    const index = choose.findIndex((dt) => dt.id === item.id);
     //
     return (
       <div
@@ -27,11 +29,11 @@ const ItemNewChat = forwardRef(
             ref.current.innerText = "";
           }
           if (index === -1) {
-            updateData("members", [...members, item]);
+            updateData("choose", [...choose, item]);
           } else {
             updateData(
-              "members",
-              [...members].filter((dt) => dt.user.id !== item.user.id)
+              "choose",
+              [...choose].filter((dt) => dt.id !== item.id)
             );
           }
           setText("");
@@ -44,15 +46,13 @@ const ItemNewChat = forwardRef(
       >
         <div className="w-auto">
           <img
-            src={item.user.avatar}
+            src={item.avatar}
             className="w-12 h-12 p-1 object-cover rounded-full"
             alt=""
             srcSet=""
           />
         </div>
-        <div className="w-8/12 px-3 py-3 dark:text-white">
-          {`${item.user.name}`}
-        </div>
+        <div className="w-8/12 px-3 py-3 dark:text-white">{`${item.name}`}</div>
         <div className="w-2/12 py-3 text-center"></div>
       </div>
     );
@@ -62,12 +62,16 @@ const ItemNewChat = forwardRef(
 export default function NewChat() {
   //
   const {
-    state: { members },
+    state: { choose },
     updateData,
   } = useContext(ItemChatContext);
+  const {
+    common: { friends },
+    user,
+  } = useSelector<RootState, RootState>((state) => state);
   const refText = useRef();
   const [loading, setLoading] = useState(false);
-  const [text, setText] = useState("11");
+  const [text, setText] = useState("");
   useEffect(() => {
     //
     let timeOut: ReturnType<typeof setTimeout>;
@@ -84,27 +88,36 @@ export default function NewChat() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text]);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const result = await getMessageMain(user?.id, choose[0].id);
+      updateData("messages", result?.messages);
+      setLoading(false);
+    };
+    if (choose.length === 1) fetchData();
+  }, [choose]);
   //
   return (
     <div className="w-full flex-1 p-1 relative">
       <div className="w-full h-full flex flex-col">
-        <div className="w-full py-1 items-start border-b-2 border-solid flex border-gray-200 dark:border-dark-third">
-          <div className="w-2/12 pl-2 font-bold py-2 dark:text-white">To :</div>
-          <div className="w-10/12 flex">
+        <div className="w-full py-1 items-start border-b-2 border-solid flex gap-3 border-gray-200 dark:border-dark-third">
+          <div className="pl-2 font-semibold py-2 dark:text-white">To :</div>
+          <div className="flex-1 flex">
             <div className="w-auto flex flex-wrap">
-              {members.map((item) => (
+              {choose.map((item) => (
                 <div
                   key={item?.id}
                   aria-hidden
                   onClick={() =>
                     updateData(
-                      "members",
-                      [...members].filter((dt) => dt.user.id !== item.user.id)
+                      "choose",
+                      [...choose].filter((dt) => dt.id !== item.id)
                     )
                   }
-                  className="mr-2 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
+                  className="mr-1 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
                 >
-                  {`${item.user.name}`}
+                  {`${item.name}`}
                   <span className="ml-1 text-xm">&times;</span>
                 </div>
               ))}
@@ -122,23 +135,28 @@ export default function NewChat() {
         </div>
         {loading && (
           <div className="w-full p-3 flex items-center justify-center">
-            <i className="fas fa-circle-notch fa-spin text-4xl text-organce"></i>
+            <i className="fas fa-circle-notch fa-spin text-2xl text-blue-500"></i>
           </div>
         )}
-        {!loading && text ? (
+        {!loading && text && (
           <div className="w-full flex-1 p-1 wrapper-content-right overflow-y-auto overflow-x-hidden">
-            {members.map((item) => (
-              <ItemNewChat
-                key={item?.id}
-                item={item}
-                ref={refText}
-                setText={setText}
-              />
-            ))}
+            {friends
+              .filter(
+                (item) =>
+                  item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1 &&
+                  choose.findIndex((child) => child.id === item.id) === -1
+              )
+              .map((item) => (
+                <ItemNewChat
+                  key={item?.id}
+                  item={item}
+                  ref={refText}
+                  setText={setText}
+                />
+              ))}
           </div>
-        ) : (
-          <MainContentMessage />
         )}
+        {!loading && choose.length === 1 && <MainContentMessage />}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { AppContext, AppProvider } from "../AppContext";
 import { Group } from "@/interfaces/Group";
 import { Message } from "@/interfaces/Message";
 import { Member } from "@/interfaces/Member";
+import { User } from "@/interfaces/User";
 
 export type ItemChatContextProps = {
   group?: Group;
@@ -12,16 +13,20 @@ export type ItemChatContextProps = {
   loading?: boolean;
   showSetting?: boolean;
   mini?: boolean;
+  choose?: User[];
+  loader?: string[];
 };
 
-const initialState = {
+const initialState: ItemChatContextProps = {
   group: null,
   isNew: false,
   loading: true,
   messages: [],
   members: [],
   showSetting: false,
-  mini: false,
+  mini: true,
+  choose: [],
+  loader: [],
 };
 
 export const ItemChatContext = AppContext<ItemChatContextProps>(initialState);

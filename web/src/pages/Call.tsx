@@ -10,14 +10,10 @@ function Call() {
 
   useEffect(() => {
     async function fetch() {
-      try {
-        audio.play();
-        setTimeout(() => {
-          window.close();
-        }, 20000);
-      } catch (error) {
-        console.log(error);
-      }
+      audio.play();
+      setTimeout(() => {
+        window.close();
+      }, 20000);
     }
     fetch();
     return () => {

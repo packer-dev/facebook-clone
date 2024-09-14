@@ -4,6 +4,7 @@ import headers from "./headers";
 import userChat from "./userChat";
 import posts from "./posts";
 import { configureStore } from "@reduxjs/toolkit";
+import common from "./common";
 
 const myReducer = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const myReducer = configureStore({
     headers: headers.reducer,
     userChat: userChat.reducer,
     posts: posts.reducer,
+    common: common.reducer,
   },
 });
 

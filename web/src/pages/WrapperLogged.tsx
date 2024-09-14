@@ -5,7 +5,7 @@ import ItemChat from "@/components/ItemChat";
 import ItemChatMinize from "@/components/ItemChatMinize";
 import WrapperPage from "./WrapperPage";
 import { AppDispatch, RootState } from "@/reducers";
-import { updateData } from "@/reducers/userChat";
+import { updateDataUserChat } from "@/reducers/userChat";
 import { generateUUID } from "@/utils";
 import { Group } from "@/interfaces/Group";
 
@@ -45,19 +45,12 @@ const WrapperLogged = ({
                 <div
                   onClick={() => {
                     const newData: Group = {
-                      id: generateUUID(),
+                      id: "new",
                       is_new: true,
-                      members: [
-                        {
-                          id: generateUUID(),
-                          user,
-                          is_owner: true,
-                          nickname: "",
-                        },
-                      ],
+                      members: [],
                     };
                     dispatch(
-                      updateData({
+                      updateDataUserChat({
                         key: "zoom",
                         value: [...userChat.zoom, newData],
                       })

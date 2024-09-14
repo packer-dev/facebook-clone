@@ -5,6 +5,8 @@ import { PAGE_VIEW_POST } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
 import { RootState } from "@/reducers";
+import { getMediaByUserId } from "@/apis/postAPIs";
+import { ImageVideoProps } from "../ImageVideoList";
 
 export default function ImageVideoUser() {
   //
@@ -13,18 +15,14 @@ export default function ImageVideoUser() {
     state: { userProfile },
   } = useContext(UserProfileContext);
   const navigation = useNavigate();
-  const [imageVideos, setImageVideos] = useState([]);
+  const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   useEffect(() => {
     //
-    let unmounted = false;
-    const fetch = async () => {
-      if (unmounted) return;
-      setImageVideos([]);
+    const fetchData = async () => {
+      const result = await getMediaByUserId(userProfile?.id, 1);
+      setImageVideos(result?.list || []);
     };
-    fetch();
-    return () => {
-      unmounted = true;
-    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile, setImageVideos, headers]);
   //
@@ -41,30 +39,29 @@ export default function ImageVideoUser() {
           Xem tất cả
         </div>
       </div>
-      <div className="w-full pt-4 pl-0.5 flex flex-wrap">
+      <div className="w-full pt-4 grid grid-cols-3 gap-1">
         {imageVideos.map((imageVideo) => (
           <div
             aria-hidden
             onClick={() => {
-              navigation(
-                PAGE_VIEW_POST + `/${imageVideo.postImageVideoPost.id}`
-              );
+              navigation(PAGE_VIEW_POST + `/${imageVideo.post_id}`);
             }}
-            className="fr-us cursor-pointer"
-            key={imageVideo.id}
+            className="relative cursor-pointer"
+            style={{ paddingTop: "100%" }}
+            key={imageVideo.media.id}
           >
-            {StringUtils.checkImageOrVideoToString(imageVideo.src) ===
+            {StringUtils.checkImageOrVideoToString(imageVideo.media.url) ===
             "image" ? (
               <img
-                className="object-cover rounded-lg"
-                src={imageVideo.src}
+                className="object-cover rounded-lg absolute top-0 left-0 right-0 bottom-0 w-full h-full"
+                src={imageVideo.media.url}
                 alt=""
               />
             ) : (
               <div className=" relative">
                 <video
                   className="object-cover rounded-lg"
-                  src={imageVideo.src}
+                  src={imageVideo.media.url}
                 />
                 <div className="fr-us__front bg-black bg-opacity-50 flex items-center justify-center text-2xl">
                   <span className="fas fa-play text-white"></span>

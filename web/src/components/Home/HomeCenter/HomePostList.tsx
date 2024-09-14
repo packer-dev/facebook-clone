@@ -6,35 +6,24 @@ import { AppDispatch, RootState } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { updateDataPostList } from "@/reducers/posts";
 import { PostDTO } from "@/interfaces/Post";
+import { updateDataCommon } from "@/reducers/common";
 
 export default forwardRef(function HomePostList() {
   //
   const {
     user,
     headers,
-    posts: { list },
+    common: { homePosts },
   } = useSelector<RootState, RootState>((state) => state);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     //
     const fetch = async () => {
-      dispatch(
-        updateDataPostList({
-          key: "list",
-          value: [],
-        })
-      );
       const result = await getPostByIdUser(user.id, "false");
       dispatch(
-        updateDataPostList({
-          key: "list",
+        updateDataCommon({
+          key: "homePosts",
           value: result?.list || [],
-        })
-      );
-      dispatch(
-        updateDataPostList({
-          key: "add",
-          value: true,
         })
       );
     };
@@ -44,7 +33,7 @@ export default forwardRef(function HomePostList() {
   //
   return (
     <>
-      {list?.map((postDetail) => (
+      {homePosts?.map((postDetail) => (
         <ItemPost
           postDetail={postDetail}
           key={postDetail.post.id}
@@ -53,7 +42,7 @@ export default forwardRef(function HomePostList() {
           }}
         />
       ))}
-      {!list.length && (
+      {!homePosts.length && (
         <>
           <LoadingPost />
           <LoadingPost />

@@ -1,38 +1,48 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userChatsAction from "@/actions/userChat/index";
-import { RootState } from "@/reducers";
+import { AppDispatch, RootState } from "@/reducers";
+import { Group } from "@/interfaces/Group";
+import Avatar from "../Avatar";
+import GroupAvatar from "../GroupAvatar";
 
-export default function ItemChatMinize(props) {
+export default function ItemChatMinize({ item }: { item: Group }) {
   //
   const {
+    user,
     userChat: { minize, zoom },
   } = useSelector<RootState, RootState>((state) => state);
-  const dispatch = useDispatch();
-  const { item } = props;
+  const dispatch = useDispatch<AppDispatch>();
+  const handleClick = () => {
+    dispatch(
+      userChatsAction.updateData(
+        "zoom",
+        zoom.length > 0 ? [item].concat(zoom[zoom.length - 1]) : [item]
+      )
+    );
+    dispatch(
+      userChatsAction.updateData(
+        "minize",
+        [...minize].filter((data) => data.id !== item.id)
+      )
+    );
+  };
   //
   return (
     <div className="scroll-user w-14 h-14 relative my-3">
-      <img
-        aria-hidden
-        onClick={() => {
-          dispatch(
-            userChatsAction.updateData(
-              "zoom",
-              zoom.length > 0 ? [item].concat(zoom[zoom.length - 1]) : [item]
-            )
-          );
-          dispatch(
-            userChatsAction.updateData(
-              "minize",
-              [...minize].filter((data) => data.id !== item.id)
-            )
-          );
-        }}
-        className="shadow-2xl w-14 h-14 shadow-lv1 rounded-full mx-auto object-cover"
-        src={item.avatar}
-        alt=""
-      />
+      <div onClick={handleClick}>
+        {item.multiple ? (
+          <GroupAvatar group={item} size={14} />
+        ) : (
+          <Avatar
+            uri={
+              item.members.find((item) => item.user.id !== user.id)?.user.avatar
+            }
+            size={14}
+            online={false}
+          />
+        )}
+      </div>
       <span
         aria-hidden
         onClick={() => {

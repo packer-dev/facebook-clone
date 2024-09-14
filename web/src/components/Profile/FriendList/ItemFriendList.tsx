@@ -11,7 +11,7 @@ export default function ItemFriendList({ item }: { item: FriendProfileDTO }) {
       className="relative flex p-2 border-2 border-solid dark:border-dark-second  
         border-gray-200 rounded-lg item__friend__list w-full cursor-pointer"
     >
-      <div className="w-1/4">
+      <div className="">
         <img
           aria-hidden
           onClick={() => navigation(PAGE_PROFILE + `/${item.user.id}`)}
@@ -20,19 +20,19 @@ export default function ItemFriendList({ item }: { item: FriendProfileDTO }) {
           alt=""
         />
       </div>
-      <div className="w-5/12 flex pl-4">
+      <div className="flex-1 flex pl-4">
         <div className="flex flex-wrap items-center">
           <p
             aria-hidden
             onClick={() => navigation(PAGE_PROFILE + `/${item.user.id}`)}
           >
-            <span>{`${item.user.name}`}</span>
+            <span className="font-semibold opacity-80">{`${item.user.name}`}</span>
             <br></br>
           </p>
         </div>
       </div>
       <div className="w-1/3  pt-2 text-right">
-        <ButtonComponent className="my-6 px-3 py-2 bg-gray-300 rounded-lg font-semibold">
+        <ButtonComponent className="my-6 px-3 py-2 opacity-80 bg-gray-300 rounded-lg font-semibold">
           Friends
         </ButtonComponent>
       </div>

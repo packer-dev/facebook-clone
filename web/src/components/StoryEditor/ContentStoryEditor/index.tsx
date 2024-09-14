@@ -18,7 +18,7 @@ const ContentTextEdit = () => {
     <div
       ref={refContent}
       className="text-xl text-gray-100 break-all content-story-text w-80 min-h-8 absolute contentedittable__story  
-                    top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -transtate-y-1/2 -translate-x-1/2"
+      top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -transtate-y-1/2 -translate-x-1/2"
       spellCheck={false}
       style={{ color: color ? color.color : "white" }}
     ></div>
@@ -33,20 +33,15 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
   //
   return (
     <div
-      className="w-11/12 top-1 mx-auto rounded-2xl mt-6 dark:bg-dark-main bg-white relative 
-                        border-2 border-solid border-gray-200 dark:border-dark-third"
-      style={{ height: 630 }}
+      className="w-11/12 flex-1 flex flex-col top-1 mx-auto rounded-2xldark:bg-dark-main bg-white relative 
+      border-2 border-solid border-gray-200 dark:border-dark-third"
     >
-      <div
-        className="w-97per text-center relative bg-black rounded-2xl"
-        style={{ height: 625 }}
-      >
+      <div className="w-97per text-center flex-1 relative bg-black">
         <div
           ref={ref}
           id="outer"
-          className="w-1/2 relative left-1/2 rounded-lg bg-gray-300 -translate-y-1/2 
-                                dark:bg-dark-third justify-center flex top-1/2 items-center transform -translate-x-1/2"
-          style={{ height: 612 }}
+          className="w-1/2 absolute left-1/2 rounded-lg bg-gray-300
+          dark:bg-dark-third justify-center flex top-0 bottom-0 items-center transform -translate-x-1/2"
         >
           <div
             className="w-full h-full absolute top-0 left-0 bg-black bg-opacity-50"
@@ -61,10 +56,10 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
           </div>
           <img
             id="myImage"
-            className="w-full rounded-lg"
-            style={
-              data?.name ? { maxHeight: 612 } : { maxHeight: 612, height: 612 }
-            }
+            className="w-full rounded-lg h-full"
+            // style={
+            //   data?.name ? { maxHeight: 612 } : { maxHeight: 612, height: 612 }
+            // }
             src={data?.name ? URL.createObjectURL(data) : imageAsset}
             alt=""
           />
@@ -91,7 +86,7 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
       </div>
       <canvas
         id="myCanvas"
-        className=" justify-center flex items-center"
+        className="hidden justify-center items-center"
         width="345"
         height="612"
       ></canvas>

@@ -7,6 +7,9 @@ import sound from "@/assets/sound/sound.mp3";
 import { ItemChatContext, ItemChatProvider } from "@/contexts/ItemChatContext";
 import { Group } from "@/interfaces/Group";
 import { getGroupById } from "@/apis/groupAPIs";
+import { getMessageMain } from "@/apis/messageAPIs";
+import { useSelector } from "react-redux";
+import { RootState } from "@/reducers";
 
 export type ItemChatProps = {
   group?: Group;
@@ -19,6 +22,7 @@ const ItemChat = ({ group }: ItemChatProps) => {
     updateData,
   } = useContext(ItemChatContext);
   const ref = useRef<HTMLAudioElement>();
+  const { user } = useSelector<RootState, RootState>((state) => state);
   useEffect(() => {
     updateData("loading", true);
     updateData("group", group);
@@ -27,11 +31,22 @@ const ItemChat = ({ group }: ItemChatProps) => {
       const result = await getGroupById(group.id);
       if (result) {
         updateData("messages", result.messages || []);
+        updateData("group", result.group || group);
       }
       updateData("loading", false);
     };
     if (group?.id && !group.is_new) fetchData();
     else updateData("loading", false);
+  }, [group]);
+  useEffect(() => {
+    const fetchData = async () => {
+      updateData("loading", true);
+      const result = await getMessageMain(user?.id, group?.members[0].user.id);
+      updateData("messages", result.messages || []);
+      updateData("group", result.group || group);
+      updateData("loading", false);
+    };
+    if (group?.id === group?.members[0]?.user.id) fetchData();
   }, [group]);
   if (!group) return <></>;
   //

@@ -1,7 +1,12 @@
 import * as React from "react";
 import ContentMessage from "./ContentMessage";
+import { Message } from "@/interfaces/Message";
+import { Group } from "@/interfaces/Group";
 
-export default function ItemMessageRight(props: any) {
+export default function ItemMessageRight(props: {
+  item: Message;
+  groupMessage: Group;
+}) {
   //
   const { item, groupMessage } = props;
   //
@@ -11,7 +16,7 @@ export default function ItemMessageRight(props: any) {
         className="mess-user-r1 pl-2 flex mr-4 relative z-20"
         style={{ width: "inherit" }}
       >
-        {item.typeMessage !== 0 ? (
+        {item.content.type !== 0 ? (
           <div className="ml-auto">
             <ContentMessage
               margin="ml-auto"

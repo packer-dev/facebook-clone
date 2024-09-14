@@ -46,14 +46,14 @@ export default function HeaderLoggedRight(props) {
           className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 
             hover:bg-gray-200 round-avatar dark:hover:bg-dark-third lg:mx-0"
         >
-          <div className="w-1/3 hidden lg:block lg:w-full lg:pt-1 xl:w-auto xl:mr-2">
+          <div className="hidden lg:block lg:w-full xl:w-auto">
             <img
               className="w-8 h-8 rounded-full object-cover"
               src={user.avatar}
               alt=""
             />
           </div>
-          <div className="w-2/3 hidden whitespace-nowrap dark:text-white pt-1 text-center xl:block xl:w-auto lg:pt-2">
+          <div className="flex-1 hidden whitespace-nowrap dark:text-white pt-1 text-center xl:block xl:w-auto lg:pt-2">
             {user.name}
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function HeaderLoggedRight(props) {
             aria-hidden
             onClick={async () => {
               setToggle(!toggle);
-              document.body.className = !toggle ? "opacity-10 dark" : "";
+              document.body.className = !toggle ? "dark" : "";
             }}
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"

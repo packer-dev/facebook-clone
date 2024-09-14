@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
-import { RootState } from "@/reducers";
+import { AppDispatch, RootState } from "@/reducers";
+import { updateDataPostList } from "@/reducers/posts";
+import { getPostByIdUser } from "@/apis/postAPIs";
 
 export default function PostProfileList() {
   //
@@ -13,37 +14,35 @@ export default function PostProfileList() {
     user,
   } = useSelector<RootState, RootState>((state) => state);
   const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
   useEffect(() => {
     //
-    let unmounted = false;
-    const fetch = async () => {
-      dispatch({
-        type: "UPDATE_DATA_POST_LIST",
-        key: "list",
-        value: [],
-      });
-      const result = { data: [] };
-      if (unmounted) return;
-      dispatch({
-        type: "UPDATE_DATA_POST_LIST",
-        key: "list",
-        value: result.data,
-      });
-      dispatch({
-        type: "UPDATE_DATA_POST_LIST",
-        key: "add",
-        value: userProfile.id === user.id,
-      });
+    const fetchData = async () => {
+      dispatch(
+        updateDataPostList({
+          key: "list",
+          value: [],
+        })
+      );
+      const result = await getPostByIdUser(userProfile?.id, "true");
+      dispatch(
+        updateDataPostList({
+          key: "list",
+          value: result?.list || [],
+        })
+      );
+      dispatch(
+        updateDataPostList({
+          key: "add",
+          value: userProfile.id === user.id,
+        })
+      );
       setLoading(false);
     };
-    fetch();
-    return () => {
-      unmounted = true;
-    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile.id]);
   //

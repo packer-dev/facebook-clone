@@ -39,8 +39,7 @@ function SendImageVideo(props) {
         <div
           className={`${
             mini ? "w-16 h-16 " : "w-20 h-20 "
-          } rounded-lg text-center flex justify-center  
-                    mr-2 bg-gray-300 flex-shrink-0 dark:bg-dark-third`}
+          } rounded-lg text-center flex justify-center mr-2 bg-gray-300 flex-shrink-0 dark:bg-dark-third`}
         >
           <input
             onChange={onChange}

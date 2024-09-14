@@ -1,8 +1,7 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import LoadingChildren from "./LoadingChildren";
-import { RootState } from "@/reducers";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 
 type WrapperContentChildProfileProps<T> = {
   getResultAPI?: () => Promise<any>;
@@ -18,7 +17,9 @@ const WrapperContentChildProfile = <T,>({
   children,
 }: WrapperContentChildProfileProps<T>) => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const {
+    state: { userProfile },
+  } = useContext(UserProfileContext);
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -39,7 +40,7 @@ const WrapperContentChildProfile = <T,>({
       clearTimeout(timeOut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, location.pathname]);
+  }, [userProfile, location.pathname]);
   return (
     <>
       <div className="py-2 px-4 mb-2 text-center border-b-2 border-solid border-main text-main">

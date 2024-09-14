@@ -13,8 +13,9 @@ export default function HeaderLoggedCenter() {
       <li
         aria-hidden
         onClick={() => navigation(PAGE_HOME)}
-        className={`${active === "/" ? "active" : ""} dark:hover:bg-dark-third 
-            cursor-pointer`}
+        className={`${
+          active === "/" ? "active" : ""
+        } dark:hover:bg-dark-third cursor-pointer`}
       >
         <svg
           viewBox="0 0 28 28"
@@ -30,8 +31,7 @@ export default function HeaderLoggedCenter() {
         onClick={() => navigation(PAGE_WATCH)}
         className={`${
           active === PAGE_WATCH ? "active" : ""
-        } dark:hover:bg-dark-third 
-            cursor-pointer`}
+        } dark:hover:bg-dark-third cursor-pointer`}
       >
         <svg
           viewBox="0 0 28 28"
@@ -45,8 +45,9 @@ export default function HeaderLoggedCenter() {
       <li
         aria-hidden
         onClick={() => navigation(2)}
-        className={`${active === "2" ? "active" : ""} dark:hover:bg-dark-third 
-            cursor-pointer`}
+        className={`${
+          active === "2" ? "active" : ""
+        } dark:hover:bg-dark-third cursor-pointer`}
       >
         <svg
           viewBox="0 0 28 28"
@@ -60,8 +61,9 @@ export default function HeaderLoggedCenter() {
       <li
         aria-hidden
         onClick={() => navigation(3)}
-        className={`${active === "3" ? "active" : ""} dark:hover:bg-dark-third 
-            cursor-pointer`}
+        className={`${
+          active === "3" ? "active" : ""
+        } dark:hover:bg-dark-third cursor-pointer`}
       >
         <svg
           viewBox="0 0 28 28"
@@ -75,8 +77,9 @@ export default function HeaderLoggedCenter() {
       <li
         aria-hidden
         onClick={() => navigation(4)}
-        className={`${active === "4" ? "active" : ""} dark:hover:bg-dark-third 
-            cursor-pointer`}
+        className={`${
+          active === "4" ? "active" : ""
+        } dark:hover:bg-dark-third cursor-pointer`}
       >
         <svg
           viewBox="0 0 28 28"

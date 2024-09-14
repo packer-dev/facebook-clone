@@ -113,7 +113,6 @@ const CreatePost = ({ route }: any) => {
         }
       })
       .catch((err) => {
-        console.log(err);
         updateData("loading", false);
       });
   };

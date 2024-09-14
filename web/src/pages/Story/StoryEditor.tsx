@@ -53,7 +53,7 @@ export default function StoryEditor({ mode }: any) {
       action=""
       method="post"
       id="formCreatePicture"
-      className="w-full flex"
+      className="w-full flex flex-row h-full"
     >
       <textarea
         name="dataURI"
@@ -63,13 +63,13 @@ export default function StoryEditor({ mode }: any) {
         className="hidden"
       />
       <StoryEditLeft />
-      <div className="w-2/4 bg-gray-200 dark:bg-dark-main story-right shadow-3xl">
+      <div className="w-2/4 bg-gray-200 dark:bg-dark-main story-right shadow-3xl h-full flex flex-col">
         <ContentStoryEditor ref={refImage} />
-        <div className="w-full my-6 pl-9">
+        <div className="w-full my-6 pl-9 flex-row flex">
           <span
             aria-hidden
             onClick={() => navigation(PAGE_CREATE_STORY)}
-            className="text-center font-bold w-48per mr-4 py-3 bg-gray-300 rounded-lg cursor-pointer"
+            className="text-center font-bold mr-4 py-3 flex-1 bg-gray-300 rounded-lg cursor-pointer"
           >
             Bỏ
           </span>
