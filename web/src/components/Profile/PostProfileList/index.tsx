@@ -21,6 +21,7 @@ export default function PostProfileList() {
   useEffect(() => {
     //
     const fetchData = async () => {
+      setLoading(true);
       dispatch(
         updateDataPostList({
           key: "list",
@@ -48,19 +49,19 @@ export default function PostProfileList() {
   //
   return (
     <div className="w-full my-2">
-      {list.length > 0 ? (
-        list.map((postDetail) => (
-          <ItemPost
-            key={postDetail.post.id}
-            postDetail={postDetail}
-            setPostDetails={(list) => {}}
-          />
-        ))
-      ) : (
-        <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
-          Không có bất kì bài viết nào.
-        </p>
-      )}
+      {list.length > 0
+        ? list.map((postDetail) => (
+            <ItemPost
+              key={postDetail.post.id}
+              postDetail={postDetail}
+              setPostDetails={(list) => {}}
+            />
+          ))
+        : !loading && (
+            <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
+              Không có bất kì bài viết nào.
+            </p>
+          )}
       {loading ? (
         <>
           <LoadingPost />

@@ -7,6 +7,7 @@ import { ItemChatContext } from "@/contexts/ItemChatContext";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
 import { updateDataUserChat } from "@/reducers/userChat";
+import { nameGroup } from "@/utils";
 
 const ItemHeaderContentMessageTop = (props: any) => {
   //
@@ -25,31 +26,37 @@ const ItemHeaderContentMessageTop = (props: any) => {
     </li>
   );
 };
-const ContentMessageTop = (props: any) => {
+const ContentMessageTop = () => {
   //
   const navigation = useNavigate();
   const {
-    state: { group, mini, showSetting, members },
+    state: { group, mini, showSetting, isNew, idItemChat, userParam },
     updateData,
   } = React.useContext(ItemChatContext);
   const dispatch = useDispatch<AppDispatch>();
   const {
     userChat: { minize, zoom },
     socket,
+    user,
   } = useSelector<RootState, RootState>((state) => state);
+  const member = group?.members?.find((item) => item.user.id !== user.id) || {
+    user: userParam,
+  };
   //
   return (
     <div
       className={`w-full ${mini ? "py-1" : " pt-3"} flex shadow items-center`}
     >
-      {!group.is_new ? (
+      {!isNew ? (
         <>
-          <div className={`w-2/3 ${mini ? "pl-1" : "pl-3"} flex items-center`}>
+          <div
+            className={`w-2/3 ${mini ? "pl-1" : "p-2 pt-0"} flex items-center`}
+          >
             <div
               aria-hidden
               onClick={() => updateData("showSetting", !showSetting)}
             >
-              {group.multiple ? (
+              {group?.multiple ? (
                 <GroupAvatar
                   group={group}
                   size={10}
@@ -57,24 +64,23 @@ const ContentMessageTop = (props: any) => {
                 />
               ) : (
                 <Avatar
-                  uri={members[0].user.avatar}
+                  uri={member?.user?.avatar}
                   size={9}
                   className="mx-auto relative"
                 />
               )}
             </div>
-            {
-              <div className="pl-3 flex flex-col">
-                <b className="dark:text-white inline-block whitespace-nowrap overflow-ellipsis overflow-hidden max-w-full pr-4">
-                  {members.length === 1 && !group.multiple
-                    ? `${members[0].user.name}`
-                    : group?.name}
-                </b>
-                <span className="text-gray-700 dark:text-gray-300 text-sm">
-                  Đang hoạt động
-                </span>
-              </div>
-            }
+            <div className="pl-3 flex flex-col">
+              <b
+                className={`dark:text-white inline-block whitespace-nowrap font-semibold overflow-ellipsis overflow-hidden 
+              max-w-full pr-4 ${mini ? "w-[150px]" : ""}`}
+              >
+                {group ? nameGroup(group, user) : member?.user?.name}
+              </b>
+              <span className="text-gray-700 dark:text-gray-300 text-sm">
+                Đang hoạt động
+              </span>
+            </div>
           </div>
           <div className="w-1/3 ml-auto">
             <ul className="ml-auto flex float-right pr-1.5">
@@ -86,7 +92,6 @@ const ContentMessageTop = (props: any) => {
                 mini={mini}
               >
                 <svg
-                  role="presentation"
                   height={`${mini ? "28px" : "32px"}`}
                   width={`${mini ? "28px" : "32px"}`}
                   viewBox="-5 -5 30 30"
@@ -99,7 +104,6 @@ const ContentMessageTop = (props: any) => {
               </ItemHeaderContentMessageTop>
               <ItemHeaderContentMessageTop mini={mini}>
                 <svg
-                  role="presentation"
                   height={`${mini ? "28px" : "32px"}`}
                   width={`${mini ? "28px" : "32px"}`}
                   viewBox="-5 -5 30 30"
@@ -121,8 +125,8 @@ const ContentMessageTop = (props: any) => {
                     mini={mini}
                     handleClick={() => {
                       if (zoom.length === 2) {
-                        const arrayFirst = [...zoom].filter(
-                          (data) => data.id !== group.id
+                        const arrayFirst: any = [...zoom].filter(
+                          (data) => data.id !== idItemChat
                         );
                         const arraySecond =
                           minize.length > 0 ? [minize[minize.length - 1]] : [];
@@ -154,7 +158,9 @@ const ContentMessageTop = (props: any) => {
                         dispatch(
                           updateDataUserChat({
                             key: "zoom",
-                            value: [...zoom].filter((dt) => dt.id !== group.id),
+                            value: [...zoom].filter(
+                              (dt) => dt.id !== idItemChat
+                            ),
                           })
                         );
                       }
@@ -179,7 +185,7 @@ const ContentMessageTop = (props: any) => {
                         updateDataUserChat({
                           key: "zoom",
                           value: [...zoom].filter(
-                            (data) => data.id !== group.id
+                            (data) => data.id !== idItemChat
                           ),
                         })
                       );
@@ -211,7 +217,6 @@ const ContentMessageTop = (props: any) => {
                 <ItemHeaderContentMessageTop mini={mini}>
                   <svg
                     fill={group?.data?.color || "gray"}
-                    role="presentation"
                     height={`${mini ? "24px" : "28px"}`}
                     name="icon"
                     width={`${mini ? "24px" : "28px"}`}
@@ -239,7 +244,7 @@ const ContentMessageTop = (props: any) => {
               dispatch(
                 updateDataUserChat({
                   key: "zoom",
-                  value: [...zoom].filter((data) => data.id !== group.id),
+                  value: [...zoom].filter((data) => data.id !== idItemChat),
                 })
               );
             }}

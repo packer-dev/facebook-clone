@@ -43,7 +43,7 @@ export default function HeaderLoggedRight(props) {
         <div
           aria-hidden
           onClick={() => navigation(PAGE_PROFILE + `/${user.id}`)}
-          className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 
+          className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 items-center 
             hover:bg-gray-200 round-avatar dark:hover:bg-dark-third lg:mx-0"
         >
           <div className="hidden lg:block lg:w-full xl:w-auto">
@@ -53,7 +53,7 @@ export default function HeaderLoggedRight(props) {
               alt=""
             />
           </div>
-          <div className="flex-1 hidden whitespace-nowrap dark:text-white pt-1 text-center xl:block xl:w-auto lg:pt-2">
+          <div className="flex-1 hidden whitespace-nowrap dark:text-white text-center xl:block xl:w-auto">
             {user.name}
           </div>
         </div>
@@ -112,7 +112,9 @@ export default function HeaderLoggedRight(props) {
           </li>
         </ul>
         <PopoverHeaderRightWrapper ref={refPopover} active={active}>
-          {active === 0 && <PopoverMessage />}
+          {active === 0 && (
+            <PopoverMessage closePopover={() => setActive(-1)} />
+          )}
           {active === 1 && <PopoverNotification />}
           {active === 2 && <PopoverSetting />}
         </PopoverHeaderRightWrapper>

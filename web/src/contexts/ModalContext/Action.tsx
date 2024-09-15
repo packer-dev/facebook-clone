@@ -91,16 +91,10 @@ export const openModalChangeEmojii = (
   };
 };
 
-export const openModalChangeNickName = (
-  users: User[],
-  groupMessage: Group,
-  setGroupMessage: Function
-) => {
+export const openModalChangeNickName = (groupMessage: Group) => {
   return {
     type: constants.OPEN_MODAL_CHANGE_NICK_NAME,
-    users,
     groupMessage,
-    setGroupMessage,
   };
 };
 

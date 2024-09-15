@@ -1,19 +1,15 @@
 import React, { useContext, useRef, useState } from "react";
 import * as functions from "@/functions";
 import ControlMessageMain from "./ControlMessageMain";
-// import { v4 } from "uuid";
-import { useSelector } from "react-redux";
-// import SendImageVideo from "./SendImageVideo/SendImageVideo";
-import { RootState } from "@/reducers";
+import SendImageVideo from "./SendImageVideo/SendImageVideo";
 import PopoverSticker from "@/components/Popovers/PopoverSticker";
 import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 
-export default function ControlMessage(props: any) {
+export default function ControlMessage() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
   const {
-    state: { members, group },
+    state: { members, group, isNew },
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
   const refPopover = useRef<HTMLDivElement>();
@@ -38,24 +34,15 @@ export default function ControlMessage(props: any) {
       }
     }
   };
-  const sendMessage = async () => {};
   //
   return (
     <div
       className={`w-full bg-white dark:bg-dark-second z-20 pt-2 pb-3 px-1 flex items-center 
         dark:border-dark-third border-t-2 border-solid border-gray-300 relative ${
-          group.is_new && !members.length ? "opacity-50" : ""
+          isNew && !members.length ? "opacity-50" : ""
         }`}
     >
-      {/* {Array.isArray(dataMessage.value)
-        ? dataMessage.value.length > 0 && (
-            <SendImageVideo
-              dataMessage={dataMessage}
-              setDataMessage={setDataMessage}
-              mini={mini}
-            />
-          )
-        : ""} */}
+      {members.length > 0 && <SendImageVideo />}
       <ControlMessageMain />
       <div className="w-9/12 relative">
         <div className="three-exten1 w-full relative">
@@ -68,9 +55,7 @@ export default function ControlMessage(props: any) {
             contentEditable={true}
             spellCheck={false}
             onKeyDown={(event) => {
-              if (event.keyCode === 13) {
-                event.preventDefault();
-              }
+              event.preventDefault();
             }}
             style={{ minHeight: "20px" }}
             onInput={(event) => ""}
@@ -115,7 +100,7 @@ export default function ControlMessage(props: any) {
           {group?.data?.emoji || "💕"}
         </span>
       </div>
-      {group && group.is_new && (
+      {isNew && (
         <div
           className="w-full absolute opacity-50 top-0 left-0 z-50"
           style={{ height: 66 }}

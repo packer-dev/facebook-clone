@@ -41,7 +41,7 @@ export default forwardRef(function ContentMessage(
         <ItemSticker
           ref={ref}
           groupMessage={groupMessage}
-          sticker={JSON.parse(item.content.text).value}
+          sticker={JSON.parse(item.content.text)}
           handleClick={() => ""}
         />
       );

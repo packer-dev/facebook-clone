@@ -3,12 +3,13 @@ import ContentMessage from "./ContentMessage";
 import { Message } from "@/interfaces/Message";
 import { Group } from "@/interfaces/Group";
 
-export default function ItemMessageRight(props: {
+type ItemMessageRightProps = {
   item: Message;
   groupMessage: Group;
-}) {
+};
+
+const ItemMessageRight = ({ item, groupMessage }: ItemMessageRightProps) => {
   //
-  const { item, groupMessage } = props;
   //
   return (
     <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end">
@@ -45,4 +46,5 @@ export default function ItemMessageRight(props: {
       </div>
     </div>
   );
-}
+};
+export default ItemMessageRight;

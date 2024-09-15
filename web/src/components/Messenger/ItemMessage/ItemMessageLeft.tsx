@@ -3,12 +3,13 @@ import ContentMessage from "./ContentMessage";
 import { Message } from "@/interfaces/Message";
 import { Group } from "@/interfaces/Group";
 
-export default function ItemMessageLeft(props: {
+type ItemMessageLeftProps = {
   item: Message;
-  groupMessage?: Group;
-}) {
+  groupMessage: Group;
+};
+
+const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
   //
-  const { item, groupMessage } = props;
   //
   return (
     <div className="mess-user z-0 chat-lefts w-full py-2 flex relative">
@@ -27,4 +28,6 @@ export default function ItemMessageLeft(props: {
       </div>
     </div>
   );
-}
+};
+
+export default ItemMessageLeft;

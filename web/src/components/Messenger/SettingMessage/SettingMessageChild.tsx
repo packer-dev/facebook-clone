@@ -1,27 +1,19 @@
 import React, { useContext } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_MESSENGER } from "@/constants/Config";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import { RootState } from "@/reducers";
+import { Group } from "@/interfaces/Group";
 
-export default function SettingMessageChild(props) {
+type SettingMessageChildProps = {
+  hide?: boolean;
+  group?: Group;
+};
+
+const SettingMessageChild = (props: SettingMessageChildProps) => {
   //
   const navigation = useNavigate();
-  const { socket, user } = useSelector<RootState, RootState>((state) => state);
-  const { hide, item, groupMessage, setGroupMessage } = props;
+  const { hide, group } = props;
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const handleChange = (key, value) => {
-    const dt = {
-      userMessage: user,
-      groupMessageMessage: {
-        ...groupMessage,
-        [key]: value,
-      },
-    };
-    socket.emit(`sendChangeBackground`, dt);
-    socket.emit(`sendChangeEmojii`, dt);
-  };
   //
   return (
     <li className="w-full py-1 ">
@@ -29,15 +21,9 @@ export default function SettingMessageChild(props) {
         {hide && (
           <li
             aria-hidden
-            onClick={() => {
-              navigation(
-                `${PAGE_MESSENGER}/${
-                  groupMessage ? groupMessage.queryGroupMessage : ""
-                }`
-              );
-            }}
+            onClick={() => navigation(`${PAGE_MESSENGER}/${group?.id}`)}
             className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
-                py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
+            py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justity-center w-8">
               <span className="bx bxl-messenger text-xm dark:text-white flex items-center"></span>
@@ -49,17 +35,11 @@ export default function SettingMessageChild(props) {
           aria-hidden
           onClick={() =>
             modalsDispatch(
-              modalsAction.openModalChangeColor(
-                groupMessage,
-                (groupMessage) => {
-                  setGroupMessage(groupMessage);
-                  handleChange("color", groupMessage.color);
-                }
-              )
+              modalsAction.openModalChangeColor(group, (group_) => {})
             )
           }
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
-                py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
+          py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justity-center w-8">
             <span className="fab fa-ussunnah text-xm dark:text-white flex items-center"></span>
@@ -70,13 +50,7 @@ export default function SettingMessageChild(props) {
           aria-hidden
           onClick={() =>
             modalsDispatch(
-              modalsAction.openModalChangeEmojii(
-                groupMessage,
-                (groupMessage) => {
-                  setGroupMessage(groupMessage);
-                  handleChange("emoji", groupMessage.emoji);
-                }
-              )
+              modalsAction.openModalChangeEmojii(group, (group_) => {})
             )
           }
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
@@ -84,24 +58,18 @@ export default function SettingMessageChild(props) {
         >
           <div className="flex justity-center w-8">
             <span className=" text-xm dark:text-white flex items-center">
-              {groupMessage.emoji}
+              {group?.data?.emoji || "🖐️"}
             </span>
           </div>
           <div className="flex items-center">Thay đổi biểu tượng cảm xúc</div>
         </li>
         <li
           aria-hidden
-          onClick={() =>
-            modalsDispatch(
-              modalsAction.openModalChangeNickName(
-                [item],
-                groupMessage,
-                setGroupMessage
-              )
-            )
-          }
+          onClick={() => {
+            modalsDispatch(modalsAction.openModalChangeNickName(group));
+          }}
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
-                    py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
+          py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justity-center w-8">
             <span className="fas fa-pen text-xm dark:text-white flex items-center"></span>
@@ -124,7 +92,7 @@ export default function SettingMessageChild(props) {
         {hide && (
           <li
             className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
-                py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
+            py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justity-center w-8">
               <span className="bx bxs-trash-alt text-xm dark:text-white flex items-center"></span>
@@ -135,4 +103,6 @@ export default function SettingMessageChild(props) {
       </ul>
     </li>
   );
-}
+};
+
+export default SettingMessageChild;

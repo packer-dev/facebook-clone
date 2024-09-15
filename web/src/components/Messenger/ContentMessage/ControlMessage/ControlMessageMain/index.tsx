@@ -4,7 +4,7 @@ import React, { memo, useContext } from "react";
 export default memo(function ControlMessageMain(props: any) {
   //
   const {
-    state: { group, messages, members },
+    state: { group },
   } = useContext(ItemChatContext);
   //
   return (

@@ -7,14 +7,15 @@ import { ItemChatContext } from "@/contexts/ItemChatContext";
 import GroupAvatar from "@/components/GroupAvatar";
 import Avatar from "@/components/Avatar";
 
-export default memo(function MainContentMessage(props: any) {
+export default memo(function MainContentMessage() {
   //
   const {
-    state: { messages, members, group },
+    state: { messages, members, idItemChat, group, userParam },
   } = useContext(ItemChatContext);
   const { user } = useSelector<RootState, RootState>((state) => state);
   const refContentMessage = useRef<HTMLDivElement>();
-  const member = members.find((item) => item.user.id !== user.id)?.user;
+  const member =
+    members.find((item) => item.user.id !== user.id)?.user || userParam;
   useEffect(() => {
     //
     if (refContentMessage.current) {
@@ -31,7 +32,7 @@ export default memo(function MainContentMessage(props: any) {
       style={{ scrollBehavior: "unset" }}
     >
       <div className="w-full">
-        {group.id !== "new" && !messages.length && !group.multiple && (
+        {idItemChat !== "new" && !messages.length && !group?.multiple && (
           <div className="w-full p-2 text-center">
             <Avatar
               className="relative mx-auto"
@@ -49,7 +50,7 @@ export default memo(function MainContentMessage(props: any) {
             </p>
           </div>
         )}
-        {group.id !== "new" && !messages.length && group.multiple && (
+        {idItemChat !== "new" && !messages.length && group?.multiple && (
           <div className="w-full p-2 text-center">
             <GroupAvatar group={group} size={16} className="relative mx-auto" />
             <p className="text-center text-gray-900 font-semibold dark:text-white">

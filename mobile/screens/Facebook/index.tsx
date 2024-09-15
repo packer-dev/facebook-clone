@@ -6,7 +6,7 @@ import { AppContext } from "@/contexts";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { postResponseModel } from "@/models";
 
-const Facebook = ({ route }: any) => {
+const Ensonet = ({ route }: any) => {
   //
   const {
     state: { user },

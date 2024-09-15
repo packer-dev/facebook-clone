@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/reducers";
 import { getFriendsByUserId } from "@/apis/userAPIs";
-import { updateDataUserChat } from "@/reducers/userChat";
+import { updateDataUserChat, ZoomUserChatProps } from "@/reducers/userChat";
 import { updateDataCommon } from "@/reducers/common";
-import { Group } from "@/interfaces/Group";
+import { generateUUID } from "@/utils";
 
 export default function UserActivity() {
   //
@@ -36,9 +36,10 @@ export default function UserActivity() {
       onClick={() => {
         const indexMinize = minize.findIndex((data) => item.id === data.id);
         const indexZoom = zoom.findIndex((data) => item.id === data.id);
-        const newData: Group = {
-          id: item.id,
-          members: [{ id: "", user: item }],
+        const newData: ZoomUserChatProps = {
+          id: generateUUID(),
+          user: item,
+          is_new: false,
         };
         if (indexZoom === -1 && indexMinize === -1) {
           if (zoom.length === 2) {

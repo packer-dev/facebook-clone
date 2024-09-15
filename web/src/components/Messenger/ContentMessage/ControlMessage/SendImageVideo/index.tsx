@@ -16,6 +16,7 @@ function ItemSendImageVideo(props) {
         alt=""
       />
       <span
+        aria-hidden
         onClick={() =>
           setDataMessage({
             ...dataMessage,

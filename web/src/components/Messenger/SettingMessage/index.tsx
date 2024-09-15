@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SettingMessageChild from "./SettingMessageChild";
-import { Group } from "@/interfaces/Group";
 import { useSelector } from "react-redux";
 import { RootState } from "@/reducers";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
+import { ItemChatContext } from "@/contexts/ItemChatContext";
+import { nameGroup } from "@/utils";
 
 const WrapperItemSetting = (props: any) => {
   //
@@ -39,23 +40,26 @@ const ItemSetting = (props: any) => {
   );
 };
 
-const SettingMessage = ({ groupMessage }: { groupMessage: Group }) => {
+const SettingMessage = () => {
   //
   const { user } = useSelector<RootState, RootState>((state) => state);
-  const member = groupMessage.members.find((item) => item.user.id !== user.id);
+  const {
+    state: { group },
+  } = useContext(ItemChatContext);
+  const member = group?.members.find((item) => item.user.id !== user.id);
   //
   return (
     <div className="w-1/3 hidden xl:block pr-2 wrapper-content-right shadow-xl h-full overflow-y-auto">
       <div className="w-full mt-2">
-        {groupMessage.members.length > 0 && groupMessage.multiple ? (
+        {group?.members?.length > 0 && group?.multiple ? (
           <>
             <GroupAvatar
-              group={groupMessage}
+              group={group}
               size={14}
               className="mt-8 mb-3 mx-auto"
             />
             <p className="font-semibold text-center dark:text-white">
-              {groupMessage.name || "My group"}
+              {nameGroup(group, user)}
             </p>
           </>
         ) : (
@@ -75,7 +79,7 @@ const SettingMessage = ({ groupMessage }: { groupMessage: Group }) => {
       </div>
       <ul className="w-full py-2">
         <WrapperItemSetting component={ItemSetting} name={`Custom chat`}>
-          <SettingMessageChild groupMessage={groupMessage} />
+          <SettingMessageChild hide={false} group={group} />
         </WrapperItemSetting>
         <WrapperItemSetting component={ItemSetting} name={`Shared file`} />
         <WrapperItemSetting

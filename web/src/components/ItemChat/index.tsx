@@ -5,17 +5,17 @@ import WrapperItemChat from "./WrapperItemChat";
 import NewChat from "./NewChat";
 import sound from "@/assets/sound/sound.mp3";
 import { ItemChatContext, ItemChatProvider } from "@/contexts/ItemChatContext";
-import { Group } from "@/interfaces/Group";
-import { getGroupById } from "@/apis/groupAPIs";
 import { getMessageMain } from "@/apis/messageAPIs";
 import { useSelector } from "react-redux";
 import { RootState } from "@/reducers";
+import { ZoomUserChatProps } from "@/reducers/userChat";
+import { getGroupById } from "@/apis/groupAPIs";
 
 export type ItemChatProps = {
-  group?: Group;
+  item?: ZoomUserChatProps;
 };
 
-const ItemChat = ({ group }: ItemChatProps) => {
+const ItemChat = ({ item }: ItemChatProps) => {
   //
   const {
     state: { showSetting },
@@ -23,53 +23,57 @@ const ItemChat = ({ group }: ItemChatProps) => {
   } = useContext(ItemChatContext);
   const ref = useRef<HTMLAudioElement>();
   const { user } = useSelector<RootState, RootState>((state) => state);
+
   useEffect(() => {
     updateData("loading", true);
-    updateData("group", group);
-    const fetchData = async () => {
-      updateData("members", group.members);
-      const result = await getGroupById(group.id);
-      if (result) {
+    updateData("isNew", item.is_new);
+    updateData("group", item.group);
+    updateData("userParam", item.user);
+    updateData("idItemChat", item.id);
+    if (item.user) {
+      const fetchDataUser = async () => {
+        const result = await getMessageMain(user?.id, item.user.id);
         updateData("messages", result.messages || []);
-        updateData("group", result.group || group);
-      }
-      updateData("loading", false);
-    };
-    if (group?.id && !group.is_new) fetchData();
-    else updateData("loading", false);
-  }, [group]);
-  useEffect(() => {
-    const fetchData = async () => {
-      updateData("loading", true);
-      const result = await getMessageMain(user?.id, group?.members[0].user.id);
-      updateData("messages", result.messages || []);
-      updateData("group", result.group || group);
-      updateData("loading", false);
-    };
-    if (group?.id === group?.members[0]?.user.id) fetchData();
-  }, [group]);
-  if (!group) return <></>;
+        updateData("group", result.group);
+        updateData("loading", false);
+      };
+      fetchDataUser();
+      return;
+    }
+
+    if (item.group) {
+      const fetchDataGroup = async () => {
+        const result = await getGroupById(item.group.id);
+        updateData("messages", result || []);
+        updateData("loading", false);
+      };
+      fetchDataGroup();
+      return;
+    }
+    updateData("loading", false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   //
   return (
     <WrapperItemChat>
       <audio ref={ref} muted src={sound} className="hidden" />
-      {!group.is_new ? <MainContentMessage /> : <NewChat />}
+      {!item.is_new ? <MainContentMessage /> : <NewChat />}
       {showSetting && (
         <ul
           className="w-72 absolute top-0 right-full bg-white dark:bg-dark-third border-2 border-solid 
           border-gray-300 dark:border-dark-second shadow-lv1 mr-0.5 rounded-lg z-50"
         >
-          <SettingMessageChild hide={true} />
+          <SettingMessageChild hide={true} group={item.group} />
         </ul>
       )}
     </WrapperItemChat>
   );
 };
 
-const ContainerWrapperItemChat = ({ group }: ItemChatProps) => {
+const ContainerWrapperItemChat = ({ item }: ItemChatProps) => {
   return (
     <ItemChatProvider>
-      <ItemChat group={group} />
+      <ItemChat item={item} />
     </ItemChatProvider>
   );
 };

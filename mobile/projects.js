@@ -78,7 +78,7 @@ const projects = [
   },
   {
     id: 2,
-    name: "Facebook Clone (Use ReactJS)",
+    name: "EnsonetClone (Use ReactJS)",
     description:
       "Register, login, restore account, edit and delete posts, stories, update personal information, send messages, express feelings",
     github: [

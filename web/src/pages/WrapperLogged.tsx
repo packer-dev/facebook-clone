@@ -5,9 +5,7 @@ import ItemChat from "@/components/ItemChat";
 import ItemChatMinize from "@/components/ItemChatMinize";
 import WrapperPage from "./WrapperPage";
 import { AppDispatch, RootState } from "@/reducers";
-import { updateDataUserChat } from "@/reducers/userChat";
-import { generateUUID } from "@/utils";
-import { Group } from "@/interfaces/Group";
+import { updateDataUserChat, ZoomUserChatProps } from "@/reducers/userChat";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -28,6 +26,7 @@ const WrapperLogged = ({
     (state) => state
   );
   const ref = React.useRef<HTMLAudioElement>(null);
+  console.log(userChat);
   //
   return (
     <WrapperPage>
@@ -44,10 +43,9 @@ const WrapperLogged = ({
                 ))}
                 <div
                   onClick={() => {
-                    const newData: Group = {
+                    const newData: ZoomUserChatProps = {
                       id: "new",
                       is_new: true,
-                      members: [],
                     };
                     dispatch(
                       updateDataUserChat({
@@ -69,7 +67,7 @@ const WrapperLogged = ({
           {userChat.zoom.length > 0 && (
             <div className="fixed bottom-0 flex right-20 z-40">
               {userChat.zoom.map((item) => (
-                <ItemChat key={item?.id} group={item} />
+                <ItemChat key={item.id} item={item} />
               ))}
             </div>
           )}

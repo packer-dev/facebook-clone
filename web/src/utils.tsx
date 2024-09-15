@@ -267,10 +267,33 @@ export const nameGroup = (group: Group, user: User | null) => {
   const isBigGroup = group?.multiple;
   if (isBigGroup) {
     return (
-      group?.name ?? group?.members?.map((item) => item?.user?.name).join(", ")
+      group?.name || group?.members?.map((item) => item?.user?.name).join(", ")
     );
   } else {
     return group?.members?.find((item) => item?.user?.id !== user?.id)?.user
       ?.name;
   }
+};
+
+export const lastMessage = (user: User, group: Group) => {
+  let content = "";
+  if (group?.last_message?.user?.id === user?.id) {
+    content = "You";
+  }
+  if (group?.last_message?.content?.type === 2) {
+    if (group?.last_message?.user?.id !== user?.id) {
+      content = group?.last_message?.user?.name?.split(" ")[0];
+    }
+    content += " sent a sticker.";
+  } else {
+    if (group?.last_message?.user?.id === user?.id) {
+      if (group?.last_message?.content?.type === 1) {
+        content += ":";
+      }
+    } else if (group?.last_message?.content?.type !== 1) {
+      content += group?.last_message?.user?.name?.split(" ")[0];
+    }
+    content += ` ${group?.last_message?.content?.text}`;
+  }
+  return content;
 };

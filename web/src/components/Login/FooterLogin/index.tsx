@@ -29,7 +29,7 @@ function FooterLogin(props) {
         <li className="text-xs px-2 py-1 text-gray-400">Đăng Kí</li>
         <li className="text-xs px-2 py-1 text-gray-400">Đăng Nhập</li>
         <li className="text-xs px-2 py-1 text-gray-400">Messager</li>
-        <li className="text-xs px-2 py-1 text-gray-400">Facebook Lite</li>
+        <li className="text-xs px-2 py-1 text-gray-400">EnsonetLite</li>
         <li className="text-xs px-2 py-1 text-gray-400">Watch</li>
         <li className="text-xs px-2 py-1 text-gray-400">Danh Bạ</li>
         <li className="text-xs px-2 py-1 text-gray-400">Trang</li>
@@ -38,7 +38,7 @@ function FooterLogin(props) {
         <li className="text-xs px-2 py-1 text-gray-400">Trò Chơi</li>
         <li className="text-xs px-2 py-1 text-gray-400">Vị Trí</li>
         <li className="text-xs px-2 py-1 text-gray-400">MarketPlace</li>
-        <li className="text-xs px-2 py-1 text-gray-400">Facebook Pay</li>
+        <li className="text-xs px-2 py-1 text-gray-400">EnsonetPay</li>
         <li className="text-xs px-2 py-1 text-gray-400">Nhóm</li>
         <li className="text-xs px-2 py-1 text-gray-400">Oculus</li>
         <li className="text-xs px-2 py-1 text-gray-400">Instagram</li>
@@ -54,7 +54,7 @@ function FooterLogin(props) {
         <li className="text-xs px-2 py-1 text-gray-400">Điều Khoản</li>
         <li className="text-xs px-2 py-1 text-gray-400">Trợ Giúp</li>
       </ul>
-      <p className="text-xs text-gray-500 mt-2">&nbsp;&nbsp;Facebook @2020</p>
+      <p className="text-xs text-gray-500 mt-2">&nbsp;&nbsp;Ensonet@2020</p>
       <br />
       <br />
     </div>

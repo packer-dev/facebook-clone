@@ -69,13 +69,7 @@ const AppReducer = (state, action) => {
     case constants.OPEN_MODAL_CHANGE_NICK_NAME:
       return {
         ...state,
-        data: (
-          <ModalChangeNickName
-            groupMessage={action.groupMessage}
-            users={action.users}
-            setGroupMessage={action.setGroupMessage}
-          />
-        ),
+        data: <ModalChangeNickName group={action.groupMessage} />,
       };
     case constants.OPEN_MODAL_DELETE_POST:
       return {

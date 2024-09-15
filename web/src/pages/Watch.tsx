@@ -9,24 +9,11 @@ import WrapperLogged from "./WrapperLogged";
 
 export default function Watch() {
   //
-  const images = [
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641207920/Avatars/1641207917807.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1644224603/Avatars/260347987_860340711422545_5819341585161953123_n_iagczo.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1644153514/Avatars/1644153513203.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641689086/Avatars/1641689084784.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1642577149/Avatars/1642577147030.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641723012/Avatars/1641723009621.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641341881/Avatars/1641341879260.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641780665/Avatars/1641780661442.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1641341853/Avatars/1641341850630.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1642584539/Avatars/1642584537675.jpg`,
-    `https://res.cloudinary.com/ensonet-dev/image/upload/v1644047439/Avatars/1644047430768.jpg`,
-  ];
-  const [postDetails, setPostDetails] = React.useState(null);
+  const [postDetails, setPostDetails] = React.useState([]);
   React.useEffect(() => {
     //
     const fetch = async () => {
-      setPostDetails(null);
+      setPostDetails([]);
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,12 +44,12 @@ export default function Watch() {
             </div>
           </div>
           <div className="w-auto md:w-full flex-1 overflow-y-auto absolute md:static -top-1.5 left-28">
-            <ListItemWatchLeft images={images} />
+            <ListItemWatchLeft images={Array(8).fill("")} />
           </div>
         </div>
         <div className="w-full md:w-2/3 lg:w-3/4 h-auto lg:h-full overflow-y-auto">
           <div className="xl:w-3/4 w-full md:w-11/12 mx-auto">
-            <WatchNewBest images={images} />
+            <WatchNewBest images={Array(8).fill("")} />
             <div className="w-full p-5">
               {postDetails ? (
                 postDetails.map((postDetail) => (

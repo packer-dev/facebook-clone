@@ -1,10 +1,16 @@
 import * as React from "react";
 import InputComponent from "../../InputComponent";
 import ItemMessageList from "./ItemMessageList";
+import { Group } from "@/interfaces/Group";
 
-export default function MessageList(props) {
+export type MessageListProps = {
+  groups: Group[];
+  mini?: boolean;
+  closePopover?: () => void;
+};
+
+const MessageList = ({ groups, mini, closePopover }: MessageListProps) => {
   //
-  const { allMessage, mini } = props;
   //
   return (
     <>
@@ -17,7 +23,7 @@ export default function MessageList(props) {
             <li className="w-9 h-9 flex ml-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center relative">
               <span className="fas fa-ellipsis-h flex items-center"></span>
             </li>
-            <li className="w-9 h-9 flex ml-2 bg-gray-200 dark:bg-dark-third rounded-fulldark:text-gray-300 cursor-pointer justify-center">
+            <li className="w-9 h-9 flex ml-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center">
               <span className="fas fa-video flex items-center"></span>
             </li>
             <li className="w-9 h-9 flex mx-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center">
@@ -38,14 +44,17 @@ export default function MessageList(props) {
         className="w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap justify-center "
         style={{ maxHeight: "calc(100% - 80px)" }}
       >
-        {allMessage.map((itemMessage) => (
+        {groups.map((group) => (
           <ItemMessageList
-            itemMessage={itemMessage}
-            key={itemMessage.groupMessage.id}
+            group={group}
+            key={group.id}
             mini={mini}
+            closePopover={closePopover}
           />
         ))}
       </div>
     </>
   );
-}
+};
+
+export default MessageList;

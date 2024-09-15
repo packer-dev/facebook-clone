@@ -2,30 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/reducers";
 import MessageList from "@/components/Messenger/MessageList";
+import { getListGroupByUserId } from "@/apis/groupAPIs";
+import { Group } from "@/interfaces/Group";
 
-export default function PopoverMessage() {
+const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
   //
   const { user } = useSelector<RootState, RootState>((state) => state);
-  const [allMessage, setAllMessage] = useState([]);
+  const [groups, setGroups] = useState<Group[]>([]);
   useEffect(() => {
     //
-    const fetch = async () => {
-      setAllMessage([]);
+    const fetchData = async () => {
+      const result = await getListGroupByUserId(user?.id);
+      setGroups(result);
     };
-    if (user) {
-      fetch();
-    }
-
+    if (user) fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   //
   return (
     <div className="w-full p-2 rounded-lg" style={{ height: 725 }}>
-      {allMessage ? (
-        <MessageList allMessage={allMessage} mini={true} />
-      ) : (
-        "loading"
-      )}
+      <MessageList groups={groups} mini={true} closePopover={closePopover} />
     </div>
   );
-}
+};
+
+export default PopoverMessage;

@@ -63,7 +63,7 @@ export default function ItemWatchChildren({
         />
       ) : (
         <img
-          src={data}
+          src={data || "https://picsum.photos/536/354"}
           alt=""
           className="w-11 h-11 rounded-full object-cover"
         />
@@ -71,7 +71,7 @@ export default function ItemWatchChildren({
       <div className={`${right ? "ml-3" : "ml-0 md:ml-3"}`}>
         <p className={`font-semibold text-sm dark:text-gray-300`}>{name}</p>
         {multiline && (
-          <div className="mt-0.5 text-main text-sm flex items-center items-center">
+          <div className="mt-0.5 text-main text-sm flex items-center">
             <span className="w-2 h-2 rounded-full mr-2 bg-main"></span>
             <span className={`text-sm`}>{multiline}</span>
           </div>

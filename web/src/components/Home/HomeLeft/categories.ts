@@ -103,7 +103,7 @@ const categories: ItemCategoryHomeProps[] = [
     id: 13,
     image:
       "https://res.cloudinary.com/ensonet-dev/image/upload/v1639967678/ImageHomeLeft/vWBUs7aYAiK_ynt9tw.png",
-    label: "Facebook Pay",
+    label: "EnsonetPay",
     link: null,
   },
   {

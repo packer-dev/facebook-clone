@@ -11,7 +11,7 @@ type GroupAvatarProps = {
 const GroupAvatar = ({
   size,
   group,
-  child,
+  child = 4,
   className = "",
 }: GroupAvatarProps) => {
   const bottom = (index: number) =>
@@ -25,12 +25,12 @@ const GroupAvatar = ({
           src={item?.user?.avatar || `https://picsum.photos/536/354`}
           className={`absolute w-${size - child} h-${
             size - child
-          } p-1 border-2 border-white rounded-full ${
+          } rounded-full object-cover ${
             index === 0 ? "top-0 left-0" : bottom(index)
           }`}
         />
       ))}
-      <span className="w-3.5 h-3.5 rounded-full bg-green-500 absolute bottom-0 right-0.5"></span>
+      <span className="w-2 h-2 rounded-full bg-green-500 absolute bottom-0 right-0.5"></span>
     </div>
   );
 };

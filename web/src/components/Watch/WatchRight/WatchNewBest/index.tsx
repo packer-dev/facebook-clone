@@ -6,12 +6,13 @@ import ItemWatchChildren from "../../ItemWatchChildren";
 export default function WatchNewBest({ images }) {
   //
   const refContainer = useRef<HTMLDivElement>();
-  const refScroll = useRef<any>(null);
+  const refScroll = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   useEffect(() => {
     //
-    refScroll.current.container.current.scrollLeft =
-      refContainer.current.offsetWidth * index;
+    if (!refScroll.current || !refContainer.current) return;
+
+    refScroll.current.scrollLeft = refContainer.current.offsetWidth * index;
     //
   }, [index, refScroll, refContainer]);
   //

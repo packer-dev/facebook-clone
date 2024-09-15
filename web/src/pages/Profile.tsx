@@ -44,14 +44,16 @@ const WrapperProfile = forwardRef(
     const refPath = useRef("");
     useEffect(() => {
       //
-
       let timeOut: any;
       const fetchData = async () => {
         if (id !== refPath.current) {
           setLoading(true);
           const result = await getUserById(id);
           updateData("userProfile", result);
-          setLoading(false);
+          const timeOut = setTimeout(() => {
+            setLoading(false);
+            clearTimeout(timeOut);
+          }, 500);
         }
         refPath.current = id;
       };
@@ -63,7 +65,7 @@ const WrapperProfile = forwardRef(
     }, [location.pathname, ref, id, refPath]);
     useEffect(() => {
       ref.current?.scrollTo(0, 0);
-    }, [loading]);
+    }, [loading, ref]);
     //
     return !userProfile && !loading ? (
       <NotFound />

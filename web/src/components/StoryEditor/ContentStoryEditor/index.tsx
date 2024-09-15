@@ -56,7 +56,7 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
           </div>
           <img
             id="myImage"
-            className="w-full rounded-lg h-full"
+            className="w-full rounded-lg h-4/5 object-cover"
             // style={
             //   data?.name ? { maxHeight: 612 } : { maxHeight: 612, height: 612 }
             // }

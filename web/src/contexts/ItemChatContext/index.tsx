@@ -15,6 +15,9 @@ export type ItemChatContextProps = {
   mini?: boolean;
   choose?: User[];
   loader?: string[];
+  idItemChat?: string;
+  userParam?: User;
+  groups: Group[];
 };
 
 const initialState: ItemChatContextProps = {
@@ -27,6 +30,8 @@ const initialState: ItemChatContextProps = {
   mini: true,
   choose: [],
   loader: [],
+  userParam: null,
+  groups: [],
 };
 
 export const ItemChatContext = AppContext<ItemChatContextProps>(initialState);
