@@ -4,7 +4,7 @@ function AccountNotIsset(props) {
   return (
     <div className="w-full">
       <span className="text-55px font-semibold text-1877F2">
-        Ensonet <br />
+        Facebook <br />
       </span>
       <p className="text-2xl color-word font-semibold">
         Mạng Xã Hội Lớn Nhất Thế Giới
@@ -12,7 +12,7 @@ function AccountNotIsset(props) {
       <br />
       <br />
       <h2 className="xl:mb-32">
-        Ensonet giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của
+        Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của
         bạn.
       </h2>
     </div>

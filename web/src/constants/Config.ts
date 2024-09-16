@@ -8,7 +8,7 @@ export const API_URL = "http://localhost:8000/api/social-network/v1";
 //
 export const SERVER_NODE = "https://server-react-facebook.herokuapp.com";
 //
-export const NAME_APP = "Ensonet";
+export const NAME_APP = "Facebook";
 //
 export const PAGE_CALL = "/call";
 //

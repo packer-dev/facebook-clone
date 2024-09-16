@@ -6,12 +6,14 @@ type CommonDataProps = {
   friends: User[];
   homePosts: PostDTO[];
   profilePosts: PostDTO[];
+  pageCurrent?: string;
 };
 
 const initialState: CommonDataProps = {
   friends: [],
   homePosts: [],
   profilePosts: [],
+  pageCurrent: "",
 };
 
 const commonSlice = createSlice({

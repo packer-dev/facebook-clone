@@ -41,7 +41,9 @@ const MessageList = ({ groups, mini, closePopover }: MessageListProps) => {
         />
       </div>
       <div
-        className="w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap justify-center "
+        className={`w-full pt-3 wrapper-scrollbar overflow-y-auto my-1 flex flex-wrap justify-center ${
+          mini ? "" : "px-3"
+        }`}
         style={{ maxHeight: "calc(100% - 80px)" }}
       >
         {groups.map((group) => (

@@ -16,7 +16,7 @@ export default function HeaderSignedOut(props: any) {
         onClick={() => navigation(PAGE_LOGIN)}
         className=" pl-3 text-2xl font-bold text-main cursor-pointer"
       >
-        Ensonet
+        Facebook
         <br />
       </span>
       {!hideFormLogin && (

@@ -13,6 +13,9 @@ export interface Post {
   feel?: string;
   activity?: string;
   local?: string;
+  imageVideo?: string;
+  background?: string;
+  answerQuestion?: string;
 }
 
 export interface PostDTO {

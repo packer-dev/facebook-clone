@@ -2,7 +2,13 @@ import * as React from "react";
 import * as actions from "./Action";
 import AppReducer from "./AppReducer";
 
-const initialState = {
+export type ModalContextProps = {
+  loading: boolean;
+  data: any;
+  popover?: boolean;
+};
+
+const initialState: ModalContextProps = {
   loading: false,
   data: null,
   popover: true,

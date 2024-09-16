@@ -52,7 +52,7 @@ export default function HeaderLoggedLeft() {
                     setKeyword(data);
                   }}
                   type="text"
-                  placeholder="Tìm kiếm trên Ensonet"
+                  placeholder="Tìm kiếm trên Facebook"
                   className="w-56 outline-none bg-transparent hidden xl:inline-block dark:text-white"
                 />
               </div>
@@ -93,7 +93,7 @@ export default function HeaderLoggedLeft() {
           <InputComponent
             handleClick={() => setShow(true)}
             type="text"
-            placeholder="Tìm kiếm trên Ensonet"
+            placeholder="Tìm kiếm trên Facebook"
             className="outline-none bg-transparent hidden xl:inline-block dark:text-white"
           />
         </div>

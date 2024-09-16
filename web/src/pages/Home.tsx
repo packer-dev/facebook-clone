@@ -4,10 +4,12 @@ import HomeCenter from "@/components/Home/HomeCenter";
 import HomeRight from "@/components/Home/HomeRight";
 import useTitle from "@/hooks/useTitle";
 import WrapperLogged from "./WrapperLogged";
+import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 
 export default function Home() {
   //
   useTitle("Facebook");
+  useSetPageCurrent();
   //
   return (
     <WrapperLogged>

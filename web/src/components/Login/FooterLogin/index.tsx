@@ -54,7 +54,7 @@ function FooterLogin(props) {
         <li className="text-xs px-2 py-1 text-gray-400">Điều Khoản</li>
         <li className="text-xs px-2 py-1 text-gray-400">Trợ Giúp</li>
       </ul>
-      <p className="text-xs text-gray-500 mt-2">&nbsp;&nbsp;Ensonet@2020</p>
+      <p className="text-xs text-gray-500 mt-2">&nbsp;&nbsp;Facebook@2020</p>
       <br />
       <br />
     </div>

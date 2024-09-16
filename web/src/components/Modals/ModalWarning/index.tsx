@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 import { ModalContext } from "../../../contexts/ModalContext/ModalContext";
 import ButtonComponent from "../../ButtonComponent";
 import ModalWrapper from "../ModalWrapper";
 
 export default function ModalWarning({ title, handleEvent, button, content }) {
   //
-  const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const [loading, setLoading] = useState(false);
+  const {
+    modals: { loading },
+    modalsDispatch,
+    modalsAction,
+  } = useContext(ModalContext);
   //
   return (
     <ModalWrapper
@@ -28,10 +30,10 @@ export default function ModalWarning({ title, handleEvent, button, content }) {
             Huỷ
           </ButtonComponent>
           <ButtonComponent
-            loading={loading}
             disabled={loading}
             handleClick={() => {
-              handleEvent(() => setLoading(true));
+              modalsDispatch(modalsAction.loadingModal(true));
+              handleEvent();
             }}
             className="rounded-md px-10 py-2 font-semibold bg-main text-white"
           >

@@ -77,7 +77,7 @@ export default function ModalFavorite({ updateUserProfile }: any) {
                 style={{ height: 270, maxHeight: 270 }}
               >
                 <div className="w-full gap-1.5 flex flex-wrap">
-                  {[...content.list]
+                  {[...favorites]
                     .filter((dt) => {
                       let index = [...content.choose].findIndex(
                         (data) => data.id === dt.id

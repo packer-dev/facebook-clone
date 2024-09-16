@@ -24,6 +24,7 @@ const WrapperContentChildProfile = <T,>({
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     //
+    setData([]);
     let timeOut: ReturnType<typeof setTimeout>;
     const fetchData = async () => {
       const result = await getResultAPI();

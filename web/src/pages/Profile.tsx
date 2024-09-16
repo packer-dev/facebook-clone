@@ -22,6 +22,7 @@ import routes from "@/routes/profileRoutes";
 import NotFound from "./NotFound";
 import WrapperLogged from "./WrapperLogged";
 import { getUserById } from "@/apis/userAPIs";
+import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 
 type WrapperProfileProps = {
   id?: string;
@@ -36,7 +37,7 @@ const WrapperProfile = forwardRef(
     ref?: RefObject<HTMLDivElement>
   ) => {
     //
-    const location = useLocation();
+    const { location } = useSetPageCurrent();
     const {
       state: { userProfile },
       updateData,

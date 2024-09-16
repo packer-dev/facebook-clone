@@ -194,7 +194,9 @@ export const sendXmlHttpRequest = (
       }
     };
     xhr.open(method, endpoint);
-    xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    if (data.get("media_new")) {
+      xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    }
     xhr.send(data);
   });
 };

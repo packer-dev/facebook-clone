@@ -56,7 +56,7 @@ const CreatePost = ({ route }: any) => {
       inputRef.current.focus();
     }
   }, []);
-  const handePost = async () => {
+  const handlePost = async () => {
     Keyboard.dismiss();
     if (loading || !user) return;
     updateData("loading", true);
@@ -91,7 +91,7 @@ const CreatePost = ({ route }: any) => {
       )
     );
     if (oldMedia.length > 0) {
-      formData.append("media_new", JSON.stringify(oldMedia));
+      formData.append("media_old", JSON.stringify(oldMedia));
     }
     const result = post ? editPost(formData) : createPost(formData);
     result
@@ -184,7 +184,7 @@ const CreatePost = ({ route }: any) => {
               {post ? "Edit" : "Create"} post
             </Text>
             <Text
-              onPress={handePost}
+              onPress={handlePost}
               style={tailwind(
                 `font-bold text-${
                   value.length === 0 ? "gray-600" : "primary"

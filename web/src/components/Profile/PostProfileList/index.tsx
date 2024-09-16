@@ -4,14 +4,13 @@ import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
 import { AppDispatch, RootState } from "@/reducers";
-import { updateDataPostList } from "@/reducers/posts";
 import { getPostByIdUser } from "@/apis/postAPIs";
+import { updateDataCommon } from "@/reducers/common";
 
 export default function PostProfileList() {
   //
   const {
-    posts: { list },
-    user,
+    common: { profilePosts },
   } = useSelector<RootState, RootState>((state) => state);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -23,22 +22,16 @@ export default function PostProfileList() {
     const fetchData = async () => {
       setLoading(true);
       dispatch(
-        updateDataPostList({
-          key: "list",
+        updateDataCommon({
+          key: "profilePosts",
           value: [],
         })
       );
       const result = await getPostByIdUser(userProfile?.id, "true");
       dispatch(
-        updateDataPostList({
-          key: "list",
+        updateDataCommon({
+          key: "profilePosts",
           value: result?.list || [],
-        })
-      );
-      dispatch(
-        updateDataPostList({
-          key: "add",
-          value: userProfile.id === user.id,
         })
       );
       setLoading(false);
@@ -49,8 +42,8 @@ export default function PostProfileList() {
   //
   return (
     <div className="w-full my-2">
-      {list.length > 0
-        ? list.map((postDetail) => (
+      {profilePosts.length > 0
+        ? profilePosts.map((postDetail) => (
             <ItemPost
               key={postDetail.post.id}
               postDetail={postDetail}

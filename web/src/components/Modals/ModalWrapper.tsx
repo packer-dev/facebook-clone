@@ -1,23 +1,15 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { ModalContext } from "../../contexts/ModalContext/ModalContext";
+import React, { useContext, useRef } from "react";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import CloseModal from "../CloseModal";
 import useOutSideClick from "@/hooks/useOutSideClick";
 
 export default function ModalWrapper({ className, title, children }: any) {
   //
   const refContainer = useRef<HTMLDivElement>();
-  const refLoading = useRef<HTMLDivElement>();
-  const { modals } = useContext(ModalContext);
+  const {
+    modals: { loading },
+  } = useContext(ModalContext);
   useOutSideClick(refContainer);
-  useEffect(() => {
-    //
-    if (refLoading.current && refContainer.current) {
-      refLoading.current.style.height =
-        refContainer.current.offsetHeight + "px";
-      refLoading.current.style.width = refContainer.current.offsetWidth + "px";
-    }
-    //
-  }, [refContainer, refLoading, modals.loading]);
   //
   return (
     <div
@@ -31,20 +23,15 @@ export default function ModalWrapper({ className, title, children }: any) {
         </p>
         <CloseModal />
         {children}
+        {loading && (
+          <div
+            className={`absolute top-0 left-0 bg-white bg-opacity-50 z-30 
+            flex justify-center items-center bottom-0 right-0`}
+          >
+            <i className="fas fa-circle-notch fa-spin text-main text-2xl"></i>
+          </div>
+        )}
       </div>
-      {
-        <div
-          ref={refLoading}
-          className={
-            modals.loading
-              ? `absolute top-0 left-0 bg-white bg-opacity-50 z-30 
-            flex justify-center items-center`
-              : "hidden"
-          }
-        >
-          <i className="bx bx-shape-circle fa-spin text-main text-5xl"></i>
-        </div>
-      }
     </div>
   );
 }

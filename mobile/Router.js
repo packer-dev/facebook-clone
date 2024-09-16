@@ -11,7 +11,6 @@ import DetailChat from "./screens/DetailChat";
 import Pending from "./screens/Pending";
 import Story from "./screens/Story";
 import Animation from "./screens/Animation";
-import Ensonetfrom "./screens/Facebook/index";
 import Profile from "./screens/Facebook/Profile/index";
 import DetailProfile from "./screens/Facebook/DetailProfile/index";
 import Friends from "./screens/Facebook/Friends/index";

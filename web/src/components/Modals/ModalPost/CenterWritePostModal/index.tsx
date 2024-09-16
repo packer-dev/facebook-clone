@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import backgrounds from "@/config/backgrounds";
-import ContentAnswerQuestion from "../../ModalAnswerQuestionPost/ContentAnswerQuestion";
 import { useSelector } from "react-redux";
 import { RootState } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
 import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
 import useClickOutside from "@/hooks/useClick";
+import ContentAnswerQuestion from "../../ModalAnswerQuestionPost/ContentAnswerQuestion";
 
 export default function CenterWritePostModal(props: any) {
   //
@@ -55,7 +55,7 @@ export default function CenterWritePostModal(props: any) {
               }
             }}
             className="text-2xl w-full px-4 flex justify-center text-white font-bold absolute top-1/2 
-                        left-1/2 transform -translate-x-1/2 -translate-y-1/2 contentedit break-all text-center "
+            left-1/2 transform -translate-x-1/2 -translate-y-1/2 contentedit break-all text-center "
             spellCheck={false}
             contentEditable={true}
             // placeholder={`${user.lastName} ơi , bạn đang nghĩ gì đấy ?`}
@@ -147,7 +147,7 @@ export default function CenterWritePostModal(props: any) {
                     postsDispatch(postsAction.openModalChooseBackground())
                   }
                   className="w-9 h-9 bg-gray-300 rounded-lg flex items-center 
-                            justify-center cursor-pointer"
+                  justify-center cursor-pointer"
                 >
                   <span className="bx bxs-grid-alt text-2xl text-gray-800"></span>
                 </li>
@@ -174,7 +174,7 @@ export default function CenterWritePostModal(props: any) {
             {emojiShow && (
               <div
                 className={`absolute w-72 bg-white border-gray-200 border-solid border-2 rounded-lg 
-                        h-80 bottom-full mb-2 left-0`}
+                h-80 bottom-full mb-2 left-0`}
                 style={{ zIndex: 333, left: -150 }}
               >
                 <PopoverEmojii
@@ -207,7 +207,7 @@ export default function CenterWritePostModal(props: any) {
                 );
               }}
               className="w-7 h-7 rounded-full cursor-pointer hover:bg-gray-100 text-gray-600 items-center
-                            absolute -top-2 -right-2 bg-white flex justify-center border-gray-200 border-solid border text-xl"
+              absolute -top-2 -right-2 bg-white flex justify-center border-gray-200 border-solid border text-xl"
             >
               &times;
             </span>

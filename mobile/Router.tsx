@@ -10,7 +10,6 @@ import MessageList from "./screens/MessageList";
 import DetailChat from "./screens/DetailChat";
 import Pending from "./screens/Pending";
 import Story from "./screens/Story";
-import Ensonetfrom "./screens/Facebook/index";
 import Profile from "./screens/Facebook/Profile/index";
 import DetailProfile from "./screens/Facebook/DetailProfile/index";
 import Friends from "./screens/Facebook/Friends/index";
@@ -31,6 +30,7 @@ import Nickname from "./screens/Messenger/Nickname";
 import DetailImagePost from "./screens/Facebook/DetailImagePost";
 import RunningCall from "./screens/Messenger/RunningCall";
 import ReceiveCall from "./screens/Messenger/ReceiveCall";
+import Facebook from "./screens/Facebook";
 
 const Stack = createNativeStackNavigator();
 

@@ -45,7 +45,7 @@ export default memo(function MainContentMessage() {
               </span>
               <br />
               <span className="text-sm font-semibold dark:text-gray-300">
-                Các bạn hiện là bạn bè trên Ensonet
+                Các bạn hiện là bạn bè trên Facebook
               </span>
             </p>
           </div>
