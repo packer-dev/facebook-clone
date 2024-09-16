@@ -1,4 +1,5 @@
 import { ContentPost } from "./ContentPost";
+import { Feel } from "./Feel";
 import { Media } from "./Media";
 import { User } from "./User";
 
@@ -11,11 +12,18 @@ export interface Post {
   type?: number;
   tags?: User[];
   feel?: string;
+  activity?: string;
+  local?: string;
+  background?: string;
+  answer_question?: {
+    content: string;
+    value: string;
+  };
 }
 
 export interface PostDTO {
   post: Post;
   medias: Media[];
-  feel: string[];
+  feel: Feel[];
   comment: number;
 }

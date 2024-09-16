@@ -66,6 +66,10 @@ export const postModel = (obj: Post) => ({
   type: obj?.type ?? 0,
   tags: obj?.tags ?? [],
   feel: obj?.feel ?? "",
+  background: obj.background ?? "",
+  answer_question: obj.answer_question ?? "",
+  local: obj.local ?? "",
+  activity: obj.activity ?? "",
 });
 
 export const mediaModel = (obj: Media) => ({
@@ -79,7 +83,6 @@ export const mediaModel = (obj: Media) => ({
 export const feelModel = (obj: Feel) => ({
   id: obj?.id ?? "",
   user: userModel(obj?.user),
-  post: postModel(obj?.post),
   type: obj?.type ?? 0,
 });
 

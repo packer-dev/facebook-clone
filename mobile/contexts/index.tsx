@@ -1,5 +1,5 @@
 import * as React from "react";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import { Message } from "../interfaces/Message";
 import { User } from "../interfaces/User";
 import { Group } from "../interfaces/Group";
@@ -14,7 +14,7 @@ type Action = {
 export type ContextInitProps = {
   showKeyboard: boolean;
   messages: Message[];
-  socket: any;
+  socket: Socket;
   popup: any[];
   panel: {
     ui: any;
@@ -73,7 +73,7 @@ const init: ContextInitProps = {
 
 const AppContext = React.createContext<{
   state: ContextInitProps;
-  updateData: (key: string, value: any) => void;
+  updateData: (key: keyof ContextInitProps, value: any) => void;
 }>({
   state: init,
   updateData(key, value) {},
@@ -98,7 +98,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const value = React.useMemo(
     () => ({
       state: state,
-      updateData(key: string, value: any) {
+      updateData(key: keyof ContextInitProps, value: any) {
         dispatch({
           type: "UPDATE_DATA",
           key,

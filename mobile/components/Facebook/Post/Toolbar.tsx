@@ -8,11 +8,12 @@ import { AppContext } from "@/contexts";
 import { sendFeelPost } from "@/apis/postAPIs";
 import tailwind from "@/tailwind";
 import IconButton from "@/components/IconButton";
+import { Feel } from "@/interfaces/Feel";
 
 type ToolbarProps = {
   post: Post;
   medias: Media[];
-  feel: string[];
+  feel: Feel[];
   handleFeel?: Function;
   loading?: boolean;
 };
@@ -27,10 +28,11 @@ type ScreenList = NavigationProp<{
 const Toolbar = ({ post, medias, feel, handleFeel, loading }: ToolbarProps) => {
   //
   const {
-    state: { user, list_post },
+    state: { user, list_post, socket },
     updateData,
   } = React.useContext(AppContext);
   const navigation = useNavigation<ScreenList>();
+  const checkUser = (feel || []).find((item) => user?.id === item.user?.id);
   const handleLike = async () => {
     if (!user) return;
 
@@ -40,9 +42,11 @@ const Toolbar = ({ post, medias, feel, handleFeel, loading }: ToolbarProps) => {
       [...list_post].map((item) => {
         if (item?.post?.id === post?.id) {
           if (result) {
-            item.feel = [...item.feel, user.id];
+            item.feel = [...item.feel, result];
           } else {
-            item.feel = [...item.feel].filter((item) => item !== user.id);
+            item.feel = [...item.feel].filter(
+              (item) => item.id === checkUser?.id
+            );
           }
           return item;
         }
@@ -51,6 +55,13 @@ const Toolbar = ({ post, medias, feel, handleFeel, loading }: ToolbarProps) => {
       })
     );
     handleFeel?.(result);
+    socket.emit(
+      `feel-post.${post.id}`,
+      JSON.stringify({
+        sender: user.id,
+        feel: result,
+      })
+    );
   };
   //
   return loading ? (
@@ -71,7 +82,7 @@ const Toolbar = ({ post, medias, feel, handleFeel, loading }: ToolbarProps) => {
         iconSize={18}
         text="Love"
         changeColor
-        active={!!(feel || []).find((item) => user?.id === item)}
+        active={!!checkUser}
       />
       <IconButton
         onPress={() =>

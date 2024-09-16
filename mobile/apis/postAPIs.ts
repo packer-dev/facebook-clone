@@ -34,16 +34,28 @@ export const getPostById = async (postId: string) => {
   );
 };
 
-export const sendFeelPost = async (postId: string, userId: string) => {
-  return fetch(`${API_URL}/feel?post_id=${postId}&user_id=${userId}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-  }).then((res) => res.json());
+export const sendFeelPost = async (
+  postId: string,
+  userId: string,
+  type?: number
+) => {
+  return fetch(
+    `${API_URL}/feel?post_id=${postId}&user_id=${userId}&type=${type ?? 1}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    }
+  ).then((res) => res.json());
 };
 
-export const getMediaByUserId = async (userId: string, type: any, offset = 0, limit = 9) => {
+export const getMediaByUserId = async (
+  userId: string,
+  type: any,
+  offset = 0,
+  limit = 9
+) => {
   return fetch(
     `${API_URL}/post/media?user_id=${userId}&type=${type}&offset=${offset}&limit=${limit}`,
     {
