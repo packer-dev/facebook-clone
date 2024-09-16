@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default function WritePost({ view }: { view?: User }) {
+const WritePost = ({ view }: { view?: User }) => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   //
   return (
     <div
@@ -57,8 +57,9 @@ export default function WritePost({ view }: { view?: User }) {
           <label
             htmlFor="uploadFileS"
             className="w-1/2 md:w-1/3 xl:w-1/3 cursor-pointer text-center 
-                    dark:hover:bg-dark-third hover:bg-gray-100 rounded-lg"
+            dark:hover:bg-dark-third hover:bg-gray-100 rounded-lg"
           >
+            {" "}
             <input
               type="file"
               onChange={(event) => {
@@ -100,4 +101,6 @@ export default function WritePost({ view }: { view?: User }) {
       </div>
     </div>
   );
-}
+};
+
+export default WritePost;

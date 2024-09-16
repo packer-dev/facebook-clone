@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
-import { RootState } from "@/reducers";
+import { RootState, getHeaders } from "@/reducers";
 import { getMediaByUserId } from "@/apis/postAPIs";
 import { ImageVideoProps } from "../ImageVideoList";
 
 export default function ImageVideoUser() {
   //
-  const { headers } = useSelector<RootState, RootState>((state) => state);
+  const headers = useSelector<RootState, any>(getHeaders);
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
@@ -59,10 +59,14 @@ export default function ImageVideoUser() {
               />
             ) : (
               <div className=" relative">
-                <video
-                  className="object-cover rounded-lg"
-                  src={imageVideo.media.url}
-                />
+                <video className="object-cover rounded-lg" controls>
+                  <track
+                    default
+                    kind="captions"
+                    srcLang="en"
+                    src={imageVideo.media.url}
+                  />
+                </video>
                 <div className="fr-us__front bg-black bg-opacity-50 flex items-center justify-center text-2xl">
                   <span className="fas fa-play text-white"></span>
                 </div>

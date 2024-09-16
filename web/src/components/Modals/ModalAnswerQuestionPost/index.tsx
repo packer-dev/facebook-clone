@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import answerQuestion from "@/config/answerQuestion";
+import answer_question from "@/config/answerQuestion";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import ContentAnswerQuestion from "./ContentAnswerQuestion";
@@ -8,7 +8,7 @@ import ButtonComponent from "@/components/ButtonComponent";
 export default function ModalAnswerQuestionPost() {
   //
   const { postsDispatch, postsAction } = useContext(PostContext);
-  const [current, setCurrent] = useState(answerQuestion[0]);
+  const [current, setCurrent] = useState(answer_question[0]);
   const [input, setInput] = useState("");
   //
   return (
@@ -28,7 +28,7 @@ export default function ModalAnswerQuestionPost() {
         />
         <ButtonComponent
           handleClick={() => {
-            postsDispatch(postsAction.updateData("answerQuestion", current));
+            postsDispatch(postsAction.updateData("answer_question", current));
             postsDispatch(
               postsAction.updateData("contentAnswerQuestion", input)
             );

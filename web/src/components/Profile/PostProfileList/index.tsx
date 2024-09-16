@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
-import { AppDispatch, RootState } from "@/reducers";
+import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
-import { updateDataCommon } from "@/reducers/common";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
 export default function PostProfileList() {
   //
-  const {
-    common: { profilePosts },
-  } = useSelector<RootState, RootState>((state) => state);
+
+  const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -44,11 +43,7 @@ export default function PostProfileList() {
     <div className="w-full my-2">
       {profilePosts.length > 0
         ? profilePosts.map((postDetail) => (
-            <ItemPost
-              key={postDetail.post.id}
-              postDetail={postDetail}
-              setPostDetails={(list) => {}}
-            />
+            <ItemPost key={postDetail.post.id} postDetail={postDetail} />
           ))
         : !loading && (
             <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">

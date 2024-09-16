@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RootState } from "@/reducers";
+import { RootState, getHeaders, getUser } from "@/reducers";
 import ItemInviteFriend from "./ItemInviteFriend";
 import { getFriendUser } from "@/apis/userAPIs";
-import { FriendProfileDTO } from "@/interfaces/User";
+import { FriendProfileDTO, User } from "@/interfaces/User";
 
 export default function InviteFriend() {
   //
   const [list, setList] = useState<FriendProfileDTO[]>([]);
-  const { headers, user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
   useEffect(() => {
     //
     const fetch = async () => {

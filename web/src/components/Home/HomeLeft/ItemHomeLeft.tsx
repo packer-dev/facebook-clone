@@ -1,16 +1,13 @@
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ItemCategoryHomeProps } from "./categories";
+import { User } from "@/interfaces/User";
 
-export default function ItemHomeLeft({
-  image,
-  label,
-  link,
-}: ItemCategoryHomeProps) {
+const ItemHomeLeft = ({ image, label, link }: ItemCategoryHomeProps) => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   //
   return (
@@ -32,4 +29,6 @@ export default function ItemHomeLeft({
       <span className="flex items-center dark:text-white">{label}</span>
     </li>
   );
-}
+};
+
+export default ItemHomeLeft;

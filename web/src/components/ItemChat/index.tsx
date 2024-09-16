@@ -7,9 +7,10 @@ import sound from "@/assets/sound/sound.mp3";
 import { ItemChatContext, ItemChatProvider } from "@/contexts/ItemChatContext";
 import { getMessageMain } from "@/apis/messageAPIs";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { ZoomUserChatProps } from "@/reducers/userChat";
 import { getGroupById } from "@/apis/groupAPIs";
+import { User } from "@/interfaces/User";
 
 export type ItemChatProps = {
   item?: ZoomUserChatProps;
@@ -22,8 +23,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
     updateData,
   } = useContext(ItemChatContext);
   const ref = useRef<HTMLAudioElement>();
-  const { user } = useSelector<RootState, RootState>((state) => state);
-
+  const user = useSelector<RootState, User>(getUser);
   useEffect(() => {
     updateData("loading", true);
     updateData("isNew", item.is_new);

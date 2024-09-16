@@ -1,5 +1,4 @@
 import { Group } from "@/interfaces/Group";
-import { User } from "@/interfaces/User";
 import React, { ReactNode, createContext, useReducer } from "react";
 import AppReducer from "../AppReducer";
 import { Message } from "@/interfaces/Message";

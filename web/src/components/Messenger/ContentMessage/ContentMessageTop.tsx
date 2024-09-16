@@ -2,12 +2,13 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_CALL } from "@/constants/Config";
-import { AppDispatch, RootState } from "@/reducers";
+import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
-import { updateDataUserChat } from "@/reducers/userChat";
+import { UserChatReduxProps, updateDataUserChat } from "@/reducers/userChat";
 import { nameGroup } from "@/utils";
+import { User } from "@/interfaces/User";
 
 const ItemHeaderContentMessageTop = (props: any) => {
   //
@@ -34,11 +35,10 @@ const ContentMessageTop = () => {
     updateData,
   } = React.useContext(ItemChatContext);
   const dispatch = useDispatch<AppDispatch>();
-  const {
-    userChat: { minize, zoom },
-    socket,
-    user,
-  } = useSelector<RootState, RootState>((state) => state);
+  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+    getUserChat
+  );
+  const user = useSelector<RootState, User>(getUser);
   const member = group?.members?.find((item) => item.user.id !== user.id) || {
     user: userParam,
   };
@@ -87,7 +87,6 @@ const ContentMessageTop = () => {
               <ItemHeaderContentMessageTop
                 handleClick={() => {
                   navigation(PAGE_CALL);
-                  socket.emit(`callVideo`, group.id);
                 }}
                 mini={mini}
               >
@@ -236,42 +235,53 @@ const ContentMessageTop = () => {
           </div>
         </>
       ) : (
-        <div className="w-full flex items-center p-1.5 justify-between">
-          <span>Tin nhắn mới</span>
-          <ItemHeaderContentMessageTop
-            mini={mini}
-            handleClick={() => {
-              dispatch(
-                updateDataUserChat({
-                  key: "zoom",
-                  value: [...zoom].filter((data) => data.id !== idItemChat),
-                })
-              );
-            }}
-          >
-            <svg width="26px" height="26px" viewBox="-4 -4 24 24">
-              <line
-                x1="2"
-                x2="14"
-                y1="2"
-                y2="14"
-                strokeLinecap="round"
-                strokeWidth="2"
-                stroke={group?.data?.color || "gray"}
-              ></line>
-              <line
-                x1="2"
-                x2="14"
-                y1="14"
-                y2="2"
-                strokeLinecap="round"
-                strokeWidth="2"
-                stroke={group?.data?.color || "gray"}
-              ></line>
-            </svg>
-          </ItemHeaderContentMessageTop>
-        </div>
+        <NewContentMessageTop />
       )}
+    </div>
+  );
+};
+
+const NewContentMessageTop = () => {
+  const {
+    state: { group, mini, idItemChat },
+  } = React.useContext(ItemChatContext);
+  const dispatch = useDispatch<AppDispatch>();
+  const { zoom } = useSelector<RootState, UserChatReduxProps>(getUserChat);
+  return (
+    <div className="w-full flex items-center p-1.5 justify-between">
+      <span>Tin nhắn mới</span>
+      <ItemHeaderContentMessageTop
+        mini={mini}
+        handleClick={() => {
+          dispatch(
+            updateDataUserChat({
+              key: "zoom",
+              value: [...zoom].filter((data) => data.id !== idItemChat),
+            })
+          );
+        }}
+      >
+        <svg width="26px" height="26px" viewBox="-4 -4 24 24">
+          <line
+            x1="2"
+            x2="14"
+            y1="2"
+            y2="14"
+            strokeLinecap="round"
+            strokeWidth="2"
+            stroke={group?.data?.color || "gray"}
+          ></line>
+          <line
+            x1="2"
+            x2="14"
+            y1="14"
+            y2="2"
+            strokeLinecap="round"
+            strokeWidth="2"
+            stroke={group?.data?.color || "gray"}
+          ></line>
+        </svg>
+      </ItemHeaderContentMessageTop>
     </div>
   );
 };

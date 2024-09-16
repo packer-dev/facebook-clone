@@ -2,17 +2,18 @@ import React, { memo, useContext, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import ItemMessageLeft from "../ItemMessage/ItemMessageLeft";
 import ItemMessageRight from "../ItemMessage/ItemMessageRight";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import GroupAvatar from "@/components/GroupAvatar";
 import Avatar from "@/components/Avatar";
+import { User } from "@/interfaces/User";
 
 export default memo(function MainContentMessage() {
   //
   const {
     state: { messages, members, idItemChat, group, userParam },
   } = useContext(ItemChatContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const refContentMessage = useRef<HTMLDivElement>();
   const member =
     members.find((item) => item.user.id !== user.id)?.user || userParam;

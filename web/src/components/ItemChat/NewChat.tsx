@@ -8,9 +8,10 @@ import React, {
 import MainContentMessage from "../Messenger/ContentMessage/MainContentMessage";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getCommon, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { getMessageMain } from "@/apis/messageAPIs";
+import { CommonDataProps } from "@/reducers/common";
 
 const ItemNewChat = forwardRef(
   ({ item, setText }: { item: User; setText: Function }, ref: any) => {
@@ -65,10 +66,8 @@ export default function NewChat() {
     state: { choose },
     updateData,
   } = useContext(ItemChatContext);
-  const {
-    common: { friends },
-    user,
-  } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
   const refText = useRef();
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
@@ -96,6 +95,7 @@ export default function NewChat() {
       setLoading(false);
     };
     if (choose.length === 1) fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choose]);
   //
   return (

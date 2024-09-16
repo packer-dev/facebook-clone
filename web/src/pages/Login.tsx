@@ -10,12 +10,13 @@ import { PAGE_HOME } from "@/constants/Config";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import useTitle from "@/hooks/useTitle";
 import WrapperPage from "./WrapperPage";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 function Login() {
   //
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   React.useEffect(() => {
     //

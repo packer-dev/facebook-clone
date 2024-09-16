@@ -4,11 +4,12 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import InfoProfile from "./InfoProfile";
 import UpdateCoverImage from "./UpdateCoverImage";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default memo(function HeaderProfile() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { userProfile },
     updateData,

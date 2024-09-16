@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { ModalContext } from "../contexts/ModalContext/ModalContext";
 import { useNavigate } from "react-router-dom";
 import "moment/locale/vi";
-import { AppDispatch, RootState } from "@/reducers";
-import { PAGE_HOME, PAGE_LOGIN } from "@/constants/Config";
+import { AppDispatch, RootState, getUser } from "@/reducers";
+import { PAGE_LOGIN } from "@/constants/Config";
 import { getUserById } from "@/apis/userAPIs";
 import { login } from "@/reducers/user";
 import Logo from "@/components/Logo";
+import { User } from "@/interfaces/User";
 
 export default function WrapperPage(props) {
   //
   const { white } = props;
   const { modals, modalsDispatch, modalsAction } =
     React.useContext(ModalContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const dispatch = useDispatch<AppDispatch>();
   const ref = React.useRef<HTMLDivElement>(null);
   const [loading, setLoading] = React.useState(false);
@@ -41,7 +42,6 @@ export default function WrapperPage(props) {
           ref.current.classList.remove("dark");
         }
         dispatch(login(result));
-        // navigation(PAGE_HOME);
       }
       setLoading(false);
     };

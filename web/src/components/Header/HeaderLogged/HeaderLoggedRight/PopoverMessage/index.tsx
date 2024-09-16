@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import MessageList from "@/components/Messenger/MessageList";
 import { getListGroupByUserId } from "@/apis/groupAPIs";
 import { Group } from "@/interfaces/Group";
+import { User } from "@/interfaces/User";
 
 const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const [groups, setGroups] = useState<Group[]>([]);
   useEffect(() => {
     //

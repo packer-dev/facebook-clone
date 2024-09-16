@@ -6,7 +6,8 @@ import InformationMain from "./InformationMain";
 import DescriptionIntroduction from "./DescriptionIntroduction";
 import ItemFavorite from "@/components/Modals/Profile/ModalFavorite/ItemFavorite";
 import ButtonComponent from "@/components/ButtonComponent";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function Introduction() {
   //
@@ -15,7 +16,7 @@ export default function Introduction() {
     state: { userProfile },
     updateData,
   } = useContext(UserProfileContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const favorites = JSON.parse(userProfile.favorites || "{}");
   //
   return (

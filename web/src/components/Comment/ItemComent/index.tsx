@@ -4,7 +4,7 @@ import ContentComment from "./ContentComment";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import EditOrDeleteComment from "./EditOrDeleteComment";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 
 import Feels from "@/components/ItemPost/Feels";
 import { User } from "@/interfaces/User";
@@ -17,7 +17,7 @@ const ItemComment = ({
   level,
 }) => {
   //
-  const user = useSelector<RootState, User>((state) => state.user);
+  const user = useSelector<RootState, User>(getUser);
   const [feel, setFeel] = React.useState<any>(null);
   const refFeelComment = React.useRef<HTMLDivElement>(null);
   const refText = React.useRef<HTMLDivElement>(null);

@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import BackgroundStoryList from "../BackgroundStoryList";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function StoryEditLeft() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { mode, content },
     updateData,

@@ -2,19 +2,22 @@ import React, { forwardRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
-import { AppDispatch, RootState } from "@/reducers";
+import {
+  AppDispatch,
+  RootState,
+  getCommon,
+  getHeaders,
+  getUser,
+} from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
-import { updateDataPostList } from "@/reducers/posts";
-import { PostDTO } from "@/interfaces/Post";
-import { updateDataCommon } from "@/reducers/common";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { User } from "@/interfaces/User";
 
 export default forwardRef(function HomePostList() {
   //
-  const {
-    user,
-    headers,
-    common: { homePosts },
-  } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
+  const { homePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     //
@@ -34,13 +37,7 @@ export default forwardRef(function HomePostList() {
   return (
     <>
       {homePosts?.map((postDetail) => (
-        <ItemPost
-          postDetail={postDetail}
-          key={postDetail.post.id}
-          setPostDetails={(list: PostDTO[]) => {
-            dispatch(updateDataPostList({ key: "list", value: list }));
-          }}
-        />
+        <ItemPost postDetail={postDetail} key={postDetail.post.id} />
       ))}
       {!homePosts.length && (
         <>

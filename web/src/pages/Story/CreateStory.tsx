@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { PAGE_CREATE_STORY } from "../../constants/Config";
 import { StoryEditorContext } from "../../contexts/StoryEditorContext";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function CreateStory(props) {
   //
   const { mode } = props;
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   const { updateData } = useContext(StoryEditorContext);
   useEffect(() => {

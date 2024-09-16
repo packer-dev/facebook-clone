@@ -7,12 +7,13 @@ import RememberAccount from "../RememberAccount";
 import HomePostList from "./HomePostList";
 import MeetRom from "./MeetRom";
 import StoryList from "./StoryList";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 const HomeCenter = () => {
   //
   const navigation = useNavigate();
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const refWrapper = useRef<HTMLDivElement>();
   //
   return (

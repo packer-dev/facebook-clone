@@ -1,4 +1,4 @@
-const answerQuestion = [
+const answer_question = [
   {
     id: 0,
     data: "linear-gradient(135deg, rgb(237, 65, 165), rgb(23, 99, 207))",
@@ -33,4 +33,4 @@ const answerQuestion = [
   },
 ];
 
-export default answerQuestion;
+export default answer_question;

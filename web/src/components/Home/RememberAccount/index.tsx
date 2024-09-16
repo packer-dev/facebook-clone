@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import logo from "@/assets/images/logo.png";
 import save_account from "@/assets/images/save_account.png";
-import { RootState } from "@/reducers";
+import { RootState, getHeaders, getUser } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
+import { User } from "@/interfaces/User";
 
 export default function RememberAccount() {
   //
-  const { user, headers } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
   const [show, setShow] = useState(false);
   useEffect(() => {
     //

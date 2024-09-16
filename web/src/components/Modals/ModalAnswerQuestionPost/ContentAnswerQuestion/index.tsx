@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import answerQuestion from "../../../../config/answerQuestion";
-import { PostContext } from "../../../../contexts/PostContext/PostContext";
-import { RootState } from "@/reducers";
+import answer_question from "@/config/answerQuestion";
+import { PostContext } from "@/contexts/PostContext/PostContext";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function ContentAnswerQuestion(props) {
   //
   const { postsDispatch, postsAction } = useContext(PostContext);
   const refInput = useRef<HTMLInputElement>();
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const { edit, current, setCurrent, input, setInput, content } = props;
   const [show, setShow] = useState("Hi! Mình có góc hỏi đáp nè. Bạn hỏi đi...");
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function ContentAnswerQuestion(props) {
           onInput={(e) => {
             if (edit) {
               if (e.currentTarget.textContent.length >= 200) {
-                postsDispatch(postsAction.updateData("answerQuestion", null));
+                postsDispatch(postsAction.updateData("answer_question", null));
               } else {
                 setInput(e.currentTarget.textContent);
               }
@@ -75,7 +76,7 @@ export default function ContentAnswerQuestion(props) {
             />
           )}
           {show &&
-            answerQuestion.map((item) => (
+            answer_question.map((item) => (
               <li
                 aria-hidden
                 onClick={() => setCurrent(item)}

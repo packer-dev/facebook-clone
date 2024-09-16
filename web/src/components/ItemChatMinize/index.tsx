@@ -1,18 +1,23 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/reducers";
+import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
 import Avatar from "../Avatar";
 import GroupAvatar from "../GroupAvatar";
 import { Group } from "@/interfaces/Group";
 import { generateUUID } from "@/utils";
-import { updateDataUserChat, ZoomUserChatProps } from "@/reducers/userChat";
+import {
+  updateDataUserChat,
+  UserChatReduxProps,
+  ZoomUserChatProps,
+} from "@/reducers/userChat";
+import { User } from "@/interfaces/User";
 
 const ItemChatMinize = ({ item }: { item: Group }) => {
   //
-  const {
-    user,
-    userChat: { minize, zoom },
-  } = useSelector<RootState, RootState>((state) => state);
+  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+    getUserChat
+  );
+  const user = useSelector<RootState, User>(getUser);
   const dispatch = useDispatch<AppDispatch>();
   const handleClick = () => {
     const newZoom: ZoomUserChatProps[] = [

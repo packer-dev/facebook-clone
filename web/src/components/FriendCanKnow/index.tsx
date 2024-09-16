@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import { UserProfileContext } from "../../contexts/UserProfileContext";
 
 import ItemFriendCanKnow from "./ItemFriendCanKnow";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default memo(function FriendCanKnow() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);

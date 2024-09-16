@@ -1,13 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { PAGE_PROFILE } from "@/constants/Config";
 import * as usersAction from "@/actions/user/index";
+import { User } from "@/interfaces/User";
 
 export default function PopoverSetting() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   const dispatch = useDispatch();
   //

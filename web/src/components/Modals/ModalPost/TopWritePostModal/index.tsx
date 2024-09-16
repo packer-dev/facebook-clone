@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import InfoPostHeader from "./InfoPostHeader";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { PostContext } from "@/contexts/PostContext/PostContext";
+import { User } from "@/interfaces/User";
 
 export default function TopWritePostModal() {
   //
   const { posts } = useContext(PostContext);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   //
   return (
     <div className="w-full flex px-0 py-2">

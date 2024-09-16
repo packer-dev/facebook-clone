@@ -2,14 +2,13 @@ import React, { useContext, useState } from "react";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as userChatsAction from "@/actions/userChat/index";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getUserChat } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
+import { UserChatReduxProps } from "@/reducers/userChat";
 
 export default function ButtonRelationshipUser(props) {
   //
-  const {
-    userChat: { zoom },
-  } = useSelector<RootState, RootState>((state) => state);
+  const { zoom } = useSelector<RootState, UserChatReduxProps>(getUserChat);
   const [loading, setLoading] = useState(false);
   const {
     state: { userProfile },

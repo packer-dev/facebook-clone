@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ItemStory from "../ItemStory";
-import { RootState } from "@/reducers";
+import { RootState, getHeaders, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function StoryList() {
   //
-  const { headers, user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
   const [stories, setStories] = useState([]);
   useEffect(() => {
     //

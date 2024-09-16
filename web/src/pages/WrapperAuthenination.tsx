@@ -5,7 +5,8 @@ import HeaderSignedOut from "@/components/Header/HeaderSignedOut";
 import FooterLogin from "@/components/Login/FooterLogin";
 import { PAGE_HOME } from "@/constants/Config";
 import WrapperPage from "./WrapperPage";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 type WrapperAutheninationProps = {
   hideFormLogin?: boolean;
@@ -21,7 +22,7 @@ const WrapperAuthenination = ({
   children,
 }: WrapperAutheninationProps) => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   React.useEffect(() => {
     //

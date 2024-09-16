@@ -5,11 +5,12 @@ import allFeel from "@/config/feels";
 import { StoryContext } from "@/contexts/StoryContext";
 import InfoStory from "../InfoStory";
 import HeaderStoryView from "./HeaderStoryView";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 const ContentStory = () => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: {
       timeCurrent,
@@ -67,15 +68,17 @@ const ContentStory = () => {
   //
   return (
     <div
-      className="w-7/12 story-right bg-gray-400 dark:bg-dark-third mt-5 relative m-2 rounded-lg relative"
+      className="w-7/12 story-right bg-gray-400 dark:bg-dark-third mt-5 m-2 rounded-lg relative"
       style={{ height: "calc(100% - 90px)" }}
     >
-      <audio
-        src={JSON.parse(main.music).src}
-        ref={refAudio}
-        className="hidden"
-        autoPlay
-      />
+      <audio ref={refAudio} className="hidden" autoPlay>
+        <track
+          default
+          kind="captions"
+          srcLang="en"
+          src={JSON.parse(main.music).src}
+        />
+      </audio>
       <div className="w-full h-full flex items-center">
         <img
           src={main.src}
@@ -101,10 +104,10 @@ const ContentStory = () => {
             ></i>
           </div>
           <div className="flex gap-2 items-center ml-3">
-            {allFeel.map((feel, index) => (
+            {allFeel.map((feel) => (
               <img
                 src={feel.image}
-                key={index}
+                key={feel.image}
                 className="w-8 flex-shrink-0 flex h-8 rounded-full cursor-pointer"
                 alt=""
               />
@@ -112,45 +115,41 @@ const ContentStory = () => {
           </div>
         </ScrollContainer>
       )}
-      {current
-        ? current.groupStory
-          ? !show &&
-            user.id === current.groupStory.userGroupStory.id && (
-              <div
-                onClick={() => updateData("show", true)}
-                className="absolute -bottom-12 cursor-pointer left-2 p-2 z-50"
-              >
-                <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
-                  <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl"></i>
-                  <br></br>
-                  <span className="text-white font-semibold mt-2">
-                    4 người xem
-                  </span>
-                </div>
-                <div className="flex pl-2">
-                  <img
-                    src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
-                    alt=""
-                    className="w-7 h-7 rounded-full -ml-2 z-30 object-cover border-white border-2 
+      {current?.groupStory &&
+        !show &&
+        user.id === current.groupStory.userGroupStory.id && (
+          <div
+            aria-hidden
+            onClick={() => updateData("show", true)}
+            className="absolute -bottom-12 cursor-pointer left-2 p-2 z-50"
+          >
+            <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
+              <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl"></i>
+              <br></br>
+              <span className="text-white font-semibold mt-2">4 người xem</span>
+            </div>
+            <div className="flex pl-2">
+              <img
+                src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
+                alt=""
+                className="w-7 h-7 rounded-full -ml-2 z-30 object-cover border-white border-2 
                         border-solid"
-                  />
-                  <img
-                    src="http://res.cloudinary.com/tratahuong01/image/upload/v1638973763/Avatar/kxqbimjteg5ka9cbqh6y.jpg"
-                    alt=""
-                    className="w-7 h-7 rounded-full -ml-2 z-20 object-cover border-white border-2 
+              />
+              <img
+                src="http://res.cloudinary.com/tratahuong01/image/upload/v1638973763/Avatar/kxqbimjteg5ka9cbqh6y.jpg"
+                alt=""
+                className="w-7 h-7 rounded-full -ml-2 z-20 object-cover border-white border-2 
                         border-solid"
-                  />
-                  <img
-                    src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
-                    alt=""
-                    className="w-7 h-7 rounded-full -ml-2 z-10 object-cover border-white border-2 
+              />
+              <img
+                src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
+                alt=""
+                className="w-7 h-7 rounded-full -ml-2 z-10 object-cover border-white border-2 
                         border-solid"
-                  />
-                </div>
-              </div>
-            )
-          : ""
-        : ""}
+              />
+            </div>
+          </div>
+        )}
       <div
         className="w-1/4 bg-white flex p-1.5 absolute top-1/2 left-16 rounded-lg"
         style={{ transform: "rotate(-25deg)" }}

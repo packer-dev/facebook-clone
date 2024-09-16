@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import SettingMessageChild from "./SettingMessageChild";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { nameGroup } from "@/utils";
+import { User } from "@/interfaces/User";
 
 const WrapperItemSetting = (props: any) => {
   //
@@ -42,7 +43,7 @@ const ItemSetting = (props: any) => {
 
 const SettingMessage = () => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { group },
   } = useContext(ItemChatContext);

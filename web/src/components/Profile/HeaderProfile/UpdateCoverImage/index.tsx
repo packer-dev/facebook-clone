@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
+import { User } from "@/interfaces/User";
 
 export default function UpdateCoverImage(props) {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const [loading, setLoading] = useState(false);
   const { setCover, cover } = props;
   const handleUpdateCoverImage = async () => {

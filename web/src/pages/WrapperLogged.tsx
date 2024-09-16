@@ -4,8 +4,13 @@ import HeaderLogged from "@/components/Header/HeaderLogged";
 import ItemChat from "@/components/ItemChat";
 import ItemChatMinize from "@/components/ItemChatMinize";
 import WrapperPage from "./WrapperPage";
-import { AppDispatch, RootState } from "@/reducers";
-import { updateDataUserChat, ZoomUserChatProps } from "@/reducers/userChat";
+import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
+import {
+  updateDataUserChat,
+  UserChatReduxProps,
+  ZoomUserChatProps,
+} from "@/reducers/userChat";
+import { User } from "@/interfaces/User";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -22,11 +27,9 @@ const WrapperLogged = ({
 }: WrapperLoggedProps) => {
   //
   const dispatch = useDispatch<AppDispatch>();
-  const { user, userChat } = useSelector<RootState, RootState>(
-    (state) => state
-  );
+  const user = useSelector<RootState, User>(getUser);
+  const userChat = useSelector<RootState, UserChatReduxProps>(getUserChat);
   const ref = React.useRef<HTMLAudioElement>(null);
-  console.log(userChat);
   //
   return (
     <WrapperPage>

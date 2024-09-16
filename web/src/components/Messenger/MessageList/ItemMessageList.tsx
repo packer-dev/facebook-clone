@@ -2,14 +2,15 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { PAGE_MESSENGER } from "@/constants/Config";
 import moment from "moment";
-import { AppDispatch, RootState } from "@/reducers";
+import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
 import { Group } from "@/interfaces/Group";
 import { generateUUID, lastMessage } from "@/utils";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
 import { useDispatch, useSelector } from "react-redux";
-import { updateDataUserChat } from "@/reducers/userChat";
+import { UserChatReduxProps, updateDataUserChat } from "@/reducers/userChat";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
+import { User } from "@/interfaces/User";
 
 type ItemMessageListProps = {
   group: Group;
@@ -23,9 +24,8 @@ const ItemMessageList = ({
   closePopover,
 }: ItemMessageListProps) => {
   //
-  const { user, userChat } = useSelector<RootState, RootState>(
-    (state) => state
-  );
+  const user = useSelector<RootState, User>(getUser);
+  const userChat = useSelector<RootState, UserChatReduxProps>(getUserChat);
   const { updateData: updateDataItemChat } = React.useContext(ItemChatContext);
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigate();

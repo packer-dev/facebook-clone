@@ -5,8 +5,9 @@ import moment from "moment";
 import { PAGE_PROFILE } from "@/constants/Config";
 import PostTopRight from "./PostTopRight";
 import InfoPostHeader from "@/components/Modals/ModalPost/TopWritePostModal/InfoPostHeader";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { PostDTO } from "@/interfaces/Post";
+import { User } from "@/interfaces/User";
 
 type ItemPostTopProps = {
   postDetail: PostDTO;
@@ -14,7 +15,7 @@ type ItemPostTopProps = {
 
 const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const info = (() => {
     if (postDetail.post.type === 2) return `updated avatar.`;
     if (postDetail.post.type === 3) return "updated cover.";

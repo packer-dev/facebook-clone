@@ -2,8 +2,9 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import PreviewImageComment from "../PreviewImageComment";
 import { v4 } from "uuid";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import CategoryInputComment from "./CategoryInputComment";
+import { User } from "@/interfaces/User";
 
 type TypeCommentInputProps = {
   dataComment?: any;
@@ -23,7 +24,7 @@ const TypeCommentInput = ({
   commentDetail,
 }: TypeCommentInputProps) => {
   //
-  const { user, socket } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const refContent = React.useRef<HTMLDivElement>(null);
   const handleSendComment = async (dataComment) => {
     const id = v4();
@@ -119,7 +120,6 @@ const TypeCommentInput = ({
         setPostDetail(clone);
       }
     }
-    socket.emit(`sendCommentPost`, result.data);
   };
   //
   return (

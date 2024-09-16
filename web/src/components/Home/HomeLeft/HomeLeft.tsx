@@ -4,13 +4,14 @@ import categories from "./categories";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function HomeLeft() {
   //
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const [length, setLength] = useState(Math.floor(categories.length / 2) + 1);
   const iconName = (() => {
     if (length === categories.length) return "left";

@@ -12,24 +12,26 @@ import { generateUUID } from "@/utils";
 import { Post } from "@/interfaces/Post";
 import { postModel } from "@/models";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/reducers";
+import { AppDispatch, RootState, getCommon, getUser } from "@/reducers";
 import { createPost, editPost } from "@/apis/postAPIs";
-import { updateDataCommon } from "@/reducers/common";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { PAGE_PROFILE } from "@/constants/Config";
+import { User } from "@/interfaces/User";
 
-export default function ModalPost({ post }: { post?: Post }) {
+const ModalPost = ({ post }: { post?: Post }) => {
   //
-  const {
-    user,
-    common: { homePosts, pageCurrent, profilePosts },
-  } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const { homePosts, pageCurrent, profilePosts } = useSelector<
+    RootState,
+    CommonDataProps
+  >(getCommon);
   const {
     posts: {
       imageVideo,
       content: text,
       imageVideoUpload,
       activity,
-      answerQuestion,
+      answer_question,
       background,
       tags,
       feel,
@@ -61,6 +63,12 @@ export default function ModalPost({ post }: { post?: Post }) {
           : postModel({
               user,
               content,
+              background,
+              tags,
+              activity,
+              answer_question,
+              feel,
+              local,
             })
       )
     );
@@ -82,15 +90,13 @@ export default function ModalPost({ post }: { post?: Post }) {
               }),
             })
           );
-        } else {
-          if (pageCurrent.indexOf(PAGE_PROFILE) !== -1) {
-            dispatch(
-              updateDataCommon({
-                key: "profilePosts",
-                value: [res, ...profilePosts],
-              })
-            );
-          }
+        } else if (pageCurrent.indexOf(PAGE_PROFILE) !== -1) {
+          dispatch(
+            updateDataCommon({
+              key: "profilePosts",
+              value: [res, ...profilePosts],
+            })
+          );
         }
         modalsDispatch(modalsAction.closeModal());
       })
@@ -137,13 +143,15 @@ export default function ModalPost({ post }: { post?: Post }) {
               feel ||
               local ||
               background ||
-              answerQuestion
+              answer_question
             )
           }
         >
-          {post?.id ? "Sửa" : "Đăng"}
+          {post?.id ? "Edit" : "Add"}
         </ButtonComponent>
       </div>
     </ModalWrapper>
   );
-}
+};
+
+export default ModalPost;

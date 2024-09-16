@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_HOME, PAGE_LOGIN } from "@/constants/Config";
 import WrapperLogged from "./WrapperLogged";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import WrapperAuthenination from "./WrapperAuthenination";
 import ButtonComponent from "@/components/ButtonComponent";
+import { User } from "@/interfaces/User";
 
 const Component = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   if (!user)
     return (
       <WrapperAuthenination notFound={true}>{children}</WrapperAuthenination>
@@ -18,7 +19,7 @@ const Component = ({ children }: { children: React.ReactNode }) => {
 
 export default function NotFound() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
 
   return (

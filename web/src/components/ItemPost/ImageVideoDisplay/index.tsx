@@ -149,12 +149,10 @@ export default memo(function ImageVideoDisplay({
       ref={refContainer}
       className="w-full gap-1.5 flex flex-wrap relative"
       style={
-        imageVideoPostList.length > 0
-          ? imageVideoPostList.length === 1 &&
-            StringUtils.checkImageOrVideoToString(imageVideoPostList[0].url) ===
-              "video"
-            ? { height: height }
-            : {}
+        imageVideoPostList?.length === 1 &&
+        StringUtils.checkImageOrVideoToString(imageVideoPostList[0].url) ===
+          "video"
+          ? { height }
           : {}
       }
     >

@@ -6,11 +6,12 @@ import { PAGE_CREATE_STORY } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ButtonRelationshipUser from "./ButtonRelationshipUser";
 import ButtonComponent from "@/components/ButtonComponent";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function RelationshipUserStatus() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   const {
     state: { userProfile },

@@ -2,7 +2,7 @@ import { PostDTO } from "@/interfaces/Post";
 import { User } from "@/interfaces/User";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type CommonDataProps = {
+export type CommonDataProps = {
   friends: User[];
   homePosts: PostDTO[];
   profilePosts: PostDTO[];

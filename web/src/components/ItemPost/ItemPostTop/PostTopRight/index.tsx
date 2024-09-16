@@ -9,8 +9,8 @@ import { User } from "@/interfaces/User";
 import { Post } from "@/interfaces/Post";
 import { deletePost } from "@/apis/postAPIs";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/reducers";
-import { updateDataCommon } from "@/reducers/common";
+import { AppDispatch, RootState, getCommon } from "@/reducers";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
 type PostTopRightProps = {
   user: User;
@@ -20,9 +20,7 @@ type PostTopRightProps = {
 const PostTopRight = ({ user, post }: PostTopRightProps) => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const {
-    common: { profilePosts },
-  } = useSelector<RootState, RootState>((state) => state);
+  const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = async () => {
     await deletePost(post.id);

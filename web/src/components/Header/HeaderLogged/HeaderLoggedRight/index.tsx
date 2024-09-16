@@ -6,12 +6,13 @@ import PopoverHeaderRightWrapper from "./PopoverHeaderRightWrapper";
 import PopoverMessage from "./PopoverMessage";
 import PopoverNotification from "./PopoverNotification";
 import PopoverSetting from "./PopoverSetting";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function HeaderLoggedRight(props) {
   //
   const { hideMessage, hideImage } = props;
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const [toggle, setToggle] = React.useState(false);
   const [active, setActive] = useState(-1);
   const navigation = useNavigate();

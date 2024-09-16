@@ -15,6 +15,11 @@ const myReducer = configureStore({
     posts: posts.reducer,
     common: common.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 });
 
 // Get the type of our store variable
@@ -23,5 +28,12 @@ export type AppStore = typeof myReducer;
 export type RootState = ReturnType<AppStore["getState"]>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = AppStore["dispatch"];
+
+export const getUser = (state: RootState) => state.user;
+export const getUserChat = (state: RootState) => state.userChat;
+export const getCommon = (state: RootState) => state.common;
+export const getSocket = (state: RootState) => state.socket;
+export const getHeaders = (state: RootState) => state.headers;
+export const getPosts = (state: RootState) => state.posts;
 
 export default myReducer;

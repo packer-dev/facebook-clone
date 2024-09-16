@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
-import ButtonComponent from "../../ButtonComponent";
 import NotImageVideoPreview from "./NotImageVideoPreview";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ImageVideoPreview() {
   //

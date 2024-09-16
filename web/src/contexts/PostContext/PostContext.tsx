@@ -14,7 +14,7 @@ const initialState = {
   contentAnswerQuestion: "",
   component: <ModalPost />,
   modePost: 0,
-  answerQuestion: null,
+  answer_question: null,
   background: null,
   imageVideoUpload: false,
   usingBackground: null,

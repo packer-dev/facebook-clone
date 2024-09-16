@@ -4,11 +4,12 @@ import { UserProfileContext } from "@/contexts/UserProfileContext";
 import WritePost from "../../WritePost";
 import PostProfileList from "../PostProfileList";
 import ProfileLeft from "../ProfileLeft";
-import { RootState } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function MainProfile() {
   //
-  const { user } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { userProfile, isFriend },
   } = useContext(UserProfileContext);

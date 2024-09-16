@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ButtonComponent from "../../../ButtonComponent";
 import ScrollContainer from "react-indiana-drag-scroll";
-
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState, getHeaders, getUser } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 export default function MeetRom() {
   //
   const [users, setUsers] = useState([]);
-  const { user, headers } = useSelector<RootState, RootState>((state) => state);
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
   useEffect(() => {
     //
     const fetch = async () => {

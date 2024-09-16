@@ -1,19 +1,31 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/reducers";
+import {
+  AppDispatch,
+  RootState,
+  getCommon,
+  getHeaders,
+  getUser,
+  getUserChat,
+} from "@/reducers";
 import { getFriendsByUserId } from "@/apis/userAPIs";
-import { updateDataUserChat, ZoomUserChatProps } from "@/reducers/userChat";
-import { updateDataCommon } from "@/reducers/common";
+import {
+  updateDataUserChat,
+  UserChatReduxProps,
+  ZoomUserChatProps,
+} from "@/reducers/userChat";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { generateUUID } from "@/utils";
+import { User } from "@/interfaces/User";
 
 export default function UserActivity() {
   //
-  const {
-    user,
-    headers,
-    userChat: { minize, zoom },
-    common: { friends },
-  } = useSelector<RootState, RootState>((state) => state);
+  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+    getUserChat
+  );
+  const user = useSelector<RootState, User>(getUser);
+  const headers = useSelector<RootState, any>(getHeaders);
+  const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     //
