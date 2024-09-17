@@ -1,4 +1,7 @@
 import { API_URL } from "@/constants/Config";
+import { Group } from "@/interfaces/Group";
+import { Message } from "@/interfaces/Message";
+import { groupModel, messageModel } from "@/models";
 
 export const getMessageMain = async (userId: string, currentId: string) => {
   return fetch(
@@ -31,4 +34,26 @@ export const updateStatusMessage = async (groupId: string, userId: string) => {
       },
     }
   ).then((res) => res.json());
+};
+
+export const sendMessageAPI = async ({
+  group,
+  message,
+}: {
+  group: Group;
+  message: Message;
+}) => {
+  const body = {
+    group: groupModel(group),
+    message: messageModel(message),
+  };
+  return fetch(`${API_URL}/message/send`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+    method: "POST",
+  })
+    .then((res) => res.json())
+    .catch((err) => err);
 };

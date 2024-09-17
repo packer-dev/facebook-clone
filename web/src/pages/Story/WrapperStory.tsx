@@ -4,7 +4,7 @@ import WrapperLogged from "../WrapperLogged";
 import CreateStory from "./CreateStory";
 import StoryEditor from "./StoryEditor";
 
-export default function WrapperStory({ mode }: any) {
+const WrapperStory = ({ mode }: any) => {
   //
   //
   return (
@@ -20,4 +20,6 @@ export default function WrapperStory({ mode }: any) {
       </div>
     </WrapperLogged>
   );
-}
+};
+
+export default WrapperStory;

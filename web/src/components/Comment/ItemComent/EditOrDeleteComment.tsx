@@ -10,19 +10,12 @@ import {
 type EditOrDeleteCommentProps = {
   user: User;
   commentPost: any;
-  setPostDetail: Function;
   postDetail: any;
   level: any;
 };
 
 export default React.forwardRef(function EditOrDeleteComment(
-  {
-    user,
-    commentPost,
-    setPostDetail,
-    postDetail,
-    level,
-  }: EditOrDeleteCommentProps,
+  { user, commentPost, postDetail, level }: EditOrDeleteCommentProps,
   ref: any
 ) {
   //
@@ -30,31 +23,6 @@ export default React.forwardRef(function EditOrDeleteComment(
   const handleEvent = async (setData) => {
     if (typeof setData === "function") setData();
 
-    if (level === 1) {
-      setPostDetail({
-        ...postDetail,
-        commentDetailList: [...postDetail.commentDetailList].filter(
-          (dt) => dt.commentPostLevel1.commentPost.id !== commentPost.id
-        ),
-        commentLevel1Length: postDetail.commentLevel1Length - 1,
-        commentLength: postDetail.commentLength - 1,
-      });
-    } else {
-      let postDetailClone = { ...postDetail };
-      let index = postDetailClone.commentDetailList.findIndex(
-        (dt) => dt.commentPostLevel1.commentPost.id === commentPost.replyComment
-      );
-      if (index !== -1) {
-        postDetailClone.commentDetailList[index].commentPostLevel2List = [
-          ...postDetailClone.commentDetailList[index].commentPostLevel2List,
-        ].filter((dt) => dt.commentPost.id !== commentPost.id);
-        postDetailClone.commentDetailList[index].commentLevel2Length -= 1;
-        setPostDetail({
-          ...postDetailClone,
-          commentLength: postDetailClone.commentLength - 1,
-        });
-      }
-    }
     modalsDispatch(modalsAction.closeModal());
   };
   const refControl = React.useRef<HTMLDivElement>();
@@ -78,7 +46,7 @@ export default React.forwardRef(function EditOrDeleteComment(
           }}
           aria-hidden
           className="bx bx-edit-alt text-sm text-gray-800 cursor-pointer"
-        ></span>
+        />
         <span
           onClick={() => {
             modalsDispatch(
@@ -92,7 +60,7 @@ export default React.forwardRef(function EditOrDeleteComment(
           }}
           aria-hidden
           className="bx bx-trash-alt text-sm text-gray-800 cursor-pointer"
-        ></span>
+        />
       </div>
     );
   return <></>;

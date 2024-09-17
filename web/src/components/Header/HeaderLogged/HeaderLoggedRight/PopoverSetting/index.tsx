@@ -36,7 +36,7 @@ export default function PopoverSetting() {
         <span
           className="bx bx-error-alt text-2xl w-8 h-8 rounded-full flex justify-center items-center 
                 bg-gray-200 dark:bg-dark-third dark:text-white"
-        ></span>
+        />
         <div className="pl-3">
           <p className="font-semibold text-base dark:text-white">
             Đóng góp ý kiến cho Facebook
@@ -55,7 +55,7 @@ export default function PopoverSetting() {
         <span
           className="bx bx-log-out text-2xl w-8 h-8 rounded-full flex justify-center items-center 
                 bg-gray-200 dark:bg-dark-third dark:text-white"
-        ></span>
+        />
         <div className="pl-3">
           <p className="font-semibold text-base dark:text-white">Đăng xuất</p>
         </div>

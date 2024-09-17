@@ -17,8 +17,7 @@ function SendImageVideo(props) {
       style={{ bottom: "100%", maxWidth: mini ? 330 : 550 }}
     >
       <ScrollContainer
-        className="flex p-2 bg-gray-200 dark:bg-gray-third overflow-x-auto 
-                cursor-pointer list-none"
+        className="flex p-2 bg-gray-200 dark:bg-gray-third overflow-x-auto cursor-pointer list-none"
         style={{ maxWidth: mini ? 330 : 550 }}
       >
         {dataMessage?.value?.map((item, index) => (
@@ -46,7 +45,7 @@ function SendImageVideo(props) {
           />
           <label htmlFor="fileImageChatMainAdd" className="flex items-center">
             {" "}
-            <i className="fas fa-file-image text-2xl dark:text-white flex items-center"></i>
+            <i className="fas fa-file-image text-2xl dark:text-white flex items-center" />
           </label>
         </div>
       </ScrollContainer>

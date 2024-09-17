@@ -89,7 +89,7 @@ const ItemMessageList = ({
           </div>
         </div>
         {/* <div className="mess-edit top-4 right-8 text-center absolute rounded-full bg-gray-100 dark:bg-dark-second">
-          <i className="fas fa-ellipsis-h edit-mess dark:text-gray-300"></i>
+          <i className="fas fa-ellipsis-h edit-mess dark:text-gray-300"/>
         </div> */}
       </div>
     </div>

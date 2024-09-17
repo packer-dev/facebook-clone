@@ -1,6 +1,8 @@
 import { Group } from "@/interfaces/Group";
 import * as constants from "./Constant";
 import { User } from "@/interfaces/User";
+import { Post } from "@/interfaces/Post";
+import { Media } from "@/interfaces/Media";
 
 export const openModalRegister = () => {
   return {
@@ -34,18 +36,20 @@ export const openModalLogin = (loginFast?: boolean) => {
   };
 };
 
-export const openModalPost = (
-  id?: string,
-  feel?: any,
-  imageVideo?: any,
-  view?: any
-) => {
+export const openModalPost = ({
+  post,
+  medias,
+  files,
+}: {
+  post?: Post;
+  medias?: Media[];
+  files?: FileList;
+}) => {
   return {
     type: constants.OPEN_MODAL_POST,
-    id,
-    feel,
-    imageVideo,
-    view,
+    post,
+    medias,
+    files,
   };
 };
 

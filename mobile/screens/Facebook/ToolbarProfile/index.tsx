@@ -76,7 +76,7 @@ const ToolbarProfile = ({ route }: any) => {
             <View style={tailwind(`flex-row gap-2 items-center`)}>
               <Text style={tailwind(`font-semibold`)}>{visit?.name}</Text>
             </View>
-            <View></View>
+            <View />
           </View>
           {toolbars
             .filter((item) => (user?.id === visit?.id ? item.isOwer : true))
@@ -93,7 +93,7 @@ const ToolbarProfile = ({ route }: any) => {
               </TouchableOpacity>
             ))}
         </View>
-        <View style={tailwind(`flex-1 bg-gray-300`)}></View>
+        <View style={tailwind(`flex-1 bg-gray-300`)} />
       </View>
     </Container>
   );

@@ -15,11 +15,10 @@ import {
 } from "@expo/vector-icons";
 import { dataFakeGroup, dataFakeMessage } from "../utils";
 import BoardSticker from "./Commons/BoardSticker";
-import { User } from "@/interfaces/User";
 import { AppContext } from "@/contexts";
 import { sendMessageAPI } from "@/api";
 import tailwind from "@/tailwind";
-
+import { User } from "@/interfaces/User";
 const width = Dimensions.get("window").width - 16;
 
 type ToolbarProps = {

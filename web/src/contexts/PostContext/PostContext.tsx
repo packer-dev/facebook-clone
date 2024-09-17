@@ -2,23 +2,59 @@ import * as React from "react";
 import AppReducer from "./AppReducer";
 import * as actions from "./Action";
 import ModalPost from "@/components/Modals/ModalPost";
+import {
+  Activity,
+  AnswerQuestion,
+  Background,
+  FeelPost,
+  Local,
+  Post,
+} from "@/interfaces/Post";
+import { Media } from "@/interfaces/Media";
+import { User } from "@/interfaces/User";
 
-const initialState = {
-  id: null,
-  tags: [],
-  local: null,
-  feel: null,
-  activity: null,
+export type PostContextProps = {
+  post: Post;
+  content: string;
+  imageVideo: {
+    old: Media[];
+    new: FileList;
+    length: number;
+  };
+  component: any;
+  modePost: number;
+  imageVideoUpload: false;
+  usingBackground: any;
+  edit: any;
+  background: Background | null;
+  tags: User[];
+  activity: Activity | null;
+  answer_question: AnswerQuestion | null;
+  feel: FeelPost | null;
+  local: Local | null;
+  fileList: File[] | [];
+};
+
+const initialState: PostContextProps = {
+  post: null,
   content: "",
-  imageVideo: [],
-  contentAnswerQuestion: "",
+  imageVideo: {
+    old: [],
+    new: null,
+    length: 0,
+  },
   component: <ModalPost />,
   modePost: 0,
-  answer_question: null,
-  background: null,
   imageVideoUpload: false,
   usingBackground: null,
   edit: null,
+  activity: null,
+  answer_question: null,
+  background: null,
+  feel: null,
+  local: null,
+  tags: [],
+  fileList: null,
 };
 
 export const PostContext = React.createContext({

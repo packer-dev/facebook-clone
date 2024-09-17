@@ -6,15 +6,16 @@ const ItemActivityPost = (props) => {
   const { item, setActivity } = props;
   return (
     <div
+      aria-hidden
       onClick={() => setActivity(item)}
       className="w-full p-2 flex items-center dark:hover:bg-dark-third rounded-lg cursor-pointer 
-                    relative hover:bg-gray-200"
+      relative hover:bg-gray-200"
     >
       <div className="w-10 h-10 mr-4 flex justify-center items-center bg-gray-100 rounded-full dark:bg-dark-third">
         <span className="text-xl">{item.data}</span>
       </div>
       <p className="dark:text-white">{item.label}</p>
-      <span className="bx bx-chevron-right text-2xl dark:text-white absolute top-4 right-6"></span>
+      <span className="bx bx-chevron-right text-2xl dark:text-white absolute top-4 right-6" />
     </div>
   );
 };
@@ -26,6 +27,7 @@ const ItemActivityChildPost = (props) => {
   //
   return (
     <div
+      aria-hidden
       onClick={() => {
         postsDispatch(
           postsAction.updateData("activity", {
@@ -39,18 +41,14 @@ const ItemActivityChildPost = (props) => {
       }}
       className={`tac-user-clone pl-4 flex items-center dark:hover:bg-dark-third rounded-lg cursor-pointer 
         relative ${
-          posts.activity
-            ? posts.activity.id !== item.id
-              ? "hover:bg-gray-200"
-              : "bg-gray-200"
-            : "hover:bg-gray-200"
+          posts?.activity?.id !== item.id ? "hover:bg-gray-200" : "bg-gray-200"
         }`}
     >
       <div className="w-10 h-10 mr-4 flex justify-center items-center bg-gray-100 rounded-full dark:bg-dark-third">
         <span className="text-xl">{item.data}</span>
       </div>
       <p className="dark:text-white">{item.label}</p>
-      <span className="absolute top-4 right-6"></span>
+      <span className="absolute top-4 right-6" />
     </div>
   );
 };

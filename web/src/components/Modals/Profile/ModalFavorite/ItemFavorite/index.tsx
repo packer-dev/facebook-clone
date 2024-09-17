@@ -36,7 +36,7 @@ export default forwardRef(function ItemFavorite(
       <span className="mx-2 text-gray-600 dark:text-gray-300 font-semibold">
         {item.name}
       </span>
-      {choose && <span className="bx bx-x text-xl"></span>}
+      {choose && <span className="bx bx-x text-xl" />}
     </div>
   );
 });

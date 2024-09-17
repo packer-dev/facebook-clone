@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { PostContext } from "@/contexts/PostContext/PostContext";
-import ImageVideoPreview from "../../ItemPost/ImageVideoPreview";
 import ModalWrapper from "../ModalWrapper";
 import BottomWritePostModal from "./BottomWritePostModal";
 import CenterWritePostModal from "./CenterWritePostModal";
@@ -9,7 +8,6 @@ import TopWritePostModal from "./TopWritePostModal";
 import ButtonComponent from "@/components/ButtonComponent";
 import { ContentPost } from "@/interfaces/ContentPost";
 import { generateUUID } from "@/utils";
-import { Post } from "@/interfaces/Post";
 import { postModel } from "@/models";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, getCommon, getUser } from "@/reducers";
@@ -17,8 +15,9 @@ import { createPost, editPost } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
+import MediaDisplay from "@/components/MediaDisplay";
 
-const ModalPost = ({ post }: { post?: Post }) => {
+const ModalPost = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const { homePosts, pageCurrent, profilePosts } = useSelector<
@@ -30,10 +29,11 @@ const ModalPost = ({ post }: { post?: Post }) => {
       imageVideo,
       content: text,
       imageVideoUpload,
-      activity,
-      answer_question,
+      post,
       background,
       tags,
+      activity,
+      answer_question,
       feel,
       local,
     },
@@ -45,9 +45,9 @@ const ModalPost = ({ post }: { post?: Post }) => {
     modalsDispatch(modalsAction.loadingModal(true));
     const formData = new FormData();
 
-    if (imageVideo.length > 0) {
-      for (let i = 0; i < imageVideo.length || 0; i++) {
-        formData.append("media_new", imageVideo[i]);
+    if (imageVideo.new.length > 0) {
+      for (let i = 0; i < imageVideo.new.length || 0; i++) {
+        formData.append("media_new", imageVideo.new[i]);
       }
     }
     const content: ContentPost = {
@@ -58,7 +58,7 @@ const ModalPost = ({ post }: { post?: Post }) => {
     formData.append(
       "post",
       JSON.stringify(
-        post
+        post?.id
           ? postModel({ ...post, content: { ...post?.content, text } })
           : postModel({
               user,
@@ -72,8 +72,8 @@ const ModalPost = ({ post }: { post?: Post }) => {
             })
       )
     );
-    if (imageVideo.length > 0) {
-      formData.append("media_new", JSON.stringify(imageVideo));
+    if (imageVideo.old.length > 0) {
+      formData.append("media_old", JSON.stringify(imageVideo.old));
     }
     const result = post ? editPost(formData) : createPost(formData);
     result
@@ -123,7 +123,11 @@ const ModalPost = ({ post }: { post?: Post }) => {
           setEmojiShow={setEmojiShow}
           emojiShow={emojiShow}
         />
-        {imageVideoUpload && <ImageVideoPreview />}
+        {imageVideoUpload && (
+          <MediaDisplay
+            medias={[...imageVideo.old, ...Array.from(imageVideo.new)]}
+          />
+        )}
       </div>
       <div className="w-full px-2">
         <BottomWritePostModal />

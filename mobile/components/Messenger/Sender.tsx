@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 import moment from "moment";
 import { Message } from "@/interfaces/Message";
 import tailwind from "@/tailwind";
-import Animation from "../Commons/Animation";
+import MessageContent from "./MessageContent";
 
 type SenderProps = {
   message?: Message;
@@ -39,15 +39,7 @@ const Sender = ({ message, lastMessage }: SenderProps) => {
                   } p-3 rounded-lg`
                 )}
               >
-                {message?.content?.type === 1 ? (
-                  <Text style={tailwind(`text-gray-900`)}>
-                    {message?.content?.text}
-                  </Text>
-                ) : (
-                  <Animation
-                    sticker={JSON.parse(message?.content?.text ?? "")}
-                  />
-                )}
+                <MessageContent message={message} type="sender" />
               </View>
             </View>
           </View>

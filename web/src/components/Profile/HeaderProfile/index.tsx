@@ -51,7 +51,7 @@ export default memo(function HeaderProfile() {
                   ref={refLoadingCover}
                   className="w-full h-60 lg:h-96 absolute top-0 left-0 z-20 bg-opacity-50 bg-black hidden justify-center items-center"
                 >
-                  <i className="fas fa-spinner fa-pulse text-5xl text-main"></i>
+                  <i className="fas fa-spinner fa-pulse text-5xl text-main" />
                 </div>
                 <div className="z-40 p-1.5 bg-gray-50 absolute text-center rounded-lg bottom-3 right-10 md:right-3">
                   <input
@@ -65,9 +65,9 @@ export default memo(function HeaderProfile() {
                     }}
                   />
                   <label htmlFor="changeCover" className="flex items-center">
-                    <i className="fas fa-camera text-2xl md:pl-1"></i>
+                    <i className="fas fa-camera text-2xl md:pl-1" />
                     <span className="hidden lg:inline pt-1 lg:ml-2 text-sm font-semibold">
-                      Chỉnh sửa ảnh bìa
+                      Edit cover
                     </span>
                   </label>
                 </div>
@@ -87,6 +87,7 @@ export default memo(function HeaderProfile() {
                   items-center rounded-full shadow-lv1 border-2 border-solid border-gray-300"
                 >
                   <label htmlFor="changeAvatar">
+                    {" "}
                     <input
                       name="fileAvatar"
                       id="changeAvatar"
@@ -105,7 +106,7 @@ export default memo(function HeaderProfile() {
                       accept="image"
                       className="hidden"
                     />
-                    <i className="fas fa-camera"></i>
+                    <i className="fas fa-camera" />
                   </label>
                 </div>
               )}

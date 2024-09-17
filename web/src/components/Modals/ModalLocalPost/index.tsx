@@ -38,10 +38,10 @@ export default function ModalLocalPost() {
                         } `}
           >
             <div className=" w-12 h-12 flex justify-center items-center mr-3 bg-gray-300 rounded-full dark:bg-dark-main">
-              <i className="fas fa-map-marker-alt text-red-500 text-2xl "></i>
+              <i className="fas fa-map-marker-alt text-red-500 text-2xl " />
             </div>
             <p className="dark:text-white flex items-center">{local?.name}</p>
-            <span className="absolute top-4 right-6"></span>
+            <span className="absolute top-4 right-6" />
           </div>
         ))}
       </div>

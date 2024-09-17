@@ -38,7 +38,7 @@ export default function ButtonRelationshipUser(props) {
               ? "bx bx-shape-circle fa-spin text-main"
               : `${props.icon} dark:text-white`
           } text-xl mr-1`}
-        ></i>
+        />
         {props.label}
       </ButtonComponent>
       {props.show && (
@@ -50,8 +50,8 @@ export default function ButtonRelationshipUser(props) {
           }}
           className="flex items-center h-10 px-2 bg-main rounded-lg mr-2 text-white font-semibold text-sm"
         >
-          <i className="bx bxl-messenger text-xl dark:text-white mr-1"></i>
-          <span>Nhắn tin</span>
+          <i className="bx bxl-messenger text-xl dark:text-white mr-1" />
+          <span>Message</span>
         </ButtonComponent>
       )}
     </>

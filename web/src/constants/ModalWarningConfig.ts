@@ -1,22 +1,22 @@
 /* Delete post */
 //
-export const TITLE_MODAL_DELETE_POST = "Xoá bài viết?";
+export const TITLE_MODAL_DELETE_POST = "Delete post?";
 //
 export const CONTENT_MODAL_DELETE_POST =
-  "Bài viết của bạn sẽ được xoá khỏi trang cá nhân của bạn. " +
-  "Bạn bè và bạn sẽ không thấy bài viết xuất hiện trên facebook nữa.";
+  "Your post will be removed from your profile. " +
+  "Neither your friends nor you will see the post on Facebook anymore.";
 //
-export const NAME_BUTTON_MODAL_DELETE_POST = "Xoá bài viết";
+export const NAME_BUTTON_MODAL_DELETE_POST = "Delete post";
 //
 /* Delete post */
 
 /* Delete comment */
 //
-export const TITLE_MODAL_DELETE_COMMENT = "Xóa bình luận?";
+export const TITLE_MODAL_DELETE_COMMENT = "Delete comment?";
 //
 export const CONTENT_MODAL_DELETE_COMMENT =
-  "Bạn có chắc chắn muốn xóa bình luận này không?";
+  "Are you sure you want to delete this comment?";
 //
-export const NAME_BUTTON_MODAL_DELETE_COMMENT = "Xóa";
+export const NAME_BUTTON_MODAL_DELETE_COMMENT = "Delete";
 //
 /* Delete comment */

@@ -1,12 +1,11 @@
 import * as React from "react";
 
-function EndFormLogin(props) {
+const EndFormLogin = () => {
   return (
     <div className="w-full text-center py-6 px-3 text-black">
-      <b>Tạo Trang</b>&nbsp;dành cho người nổi tiếng, nhãn hiệu hoặc doanh
-      nghiệp.
+      <b>Create a Page</b>&nbsp;for celebrities, brands, or businesses.
     </div>
   );
-}
+};
 
 export default EndFormLogin;

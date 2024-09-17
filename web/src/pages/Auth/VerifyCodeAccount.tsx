@@ -48,7 +48,7 @@ export default function VerifyCodeAccount(props) {
           </div>
         </div>
       </div>
-      <hr></hr>
+      <hr />
       <div className="w-full py-3 mt-1 flex justify-between items-center">
         <Link to="" className="text-main text-sm ml-5">
           Bạn chưa có mã?

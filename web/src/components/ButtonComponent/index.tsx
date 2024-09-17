@@ -52,7 +52,7 @@ const ButtonComponent = ({
       disabled={disabled}
     >
       {loading ? (
-        <span className="text-white bx bx-shape-circle fa-spin"></span>
+        <span className="text-white bx bx-shape-circle fa-spin" />
       ) : (
         children
       )}

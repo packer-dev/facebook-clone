@@ -1,13 +1,27 @@
 import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
 import PopoverSticker from "@/components/Popovers/PopoverSticker";
 import PopoversWrapper from "@/components/Popovers/PopoversWrapper";
+import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { placeCaretAtEnd } from "@/functions";
-import React, { forwardRef, useRef, useState } from "react";
+import React, {
+  RefObject,
+  forwardRef,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { v4 } from "uuid";
 
-export default forwardRef(function CategoryInputComment(props: any, ref: any) {
+export default forwardRef(function CategoryInputComment(
+  props: { handleSendComment: Function },
+  ref: RefObject<HTMLDivElement>
+) {
   //
-  const { dataComment, setDataComment, handleSendComment } = props;
+  const {
+    state: { dataComment },
+    updateData,
+  } = useContext(ItemPostContext);
+  const { handleSendComment } = props;
   const id = v4();
   let count = 0;
   const [type, setType] = useState(0);
@@ -42,7 +56,7 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
             className=" w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
             flex items-center justify-center -ml-1.5"
           >
-            <i className="far fa-smile dark:text-white text-gray-600"></i>
+            <i className="far fa-smile dark:text-white text-gray-600" />
           </li>
           {dataComment.type !== 1 && (
             <>
@@ -52,18 +66,15 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
               >
                 <label htmlFor={id}>
                   {" "}
-                  <i className="fas fa-camera dark:text-white text-gray-600"></i>
+                  <i className="fas fa-camera dark:text-white text-gray-600" />
                 </label>
                 <input
                   name="fileImage"
                   className="hidden"
                   onChange={(event) => {
                     if (event.target.files.length > 0) {
-                      setDataComment({
-                        ...dataComment,
-                        value: event.target.files[0],
-                        type: 1,
-                      });
+                      updateData("file", event.target.files[0]);
+                      updateData("dataComment", { ...dataComment, type: 3 });
                     }
                   }}
                   type="file"
@@ -76,7 +87,7 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
                 className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
                 flex items-center justify-center -ml-1.5"
               >
-                <i className="fas fa-radiation dark:text-white text-gray-600"></i>
+                <i className="fas fa-radiation dark:text-white text-gray-600" />
               </li>
               <li
                 aria-hidden
@@ -84,7 +95,7 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
                 className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
                 flex items-center justify-center -ml-1.5"
               >
-                <i className="far fa-sticky-note dark:text-white text-gray-600"></i>
+                <i className="far fa-sticky-note dark:text-white text-gray-600" />
               </li>
             </>
           )}
@@ -95,18 +106,19 @@ export default forwardRef(function CategoryInputComment(props: any, ref: any) {
           <PopoverSticker
             handleClick={(item: any) => {
               count = 0;
-              handleSendComment({ ...dataComment, type: 2, value: item });
+              handleSendComment(JSON.stringify(item), 2);
               refPopover.current.style.display = "none";
             }}
           />
         ) : (
           <PopoverEmojii
-            handleClick={(item) => {
-              setDataComment({
+            handleClick={(item: string) => {
+              updateData("dataComment", {
                 ...dataComment,
-                content: dataComment.content + item,
+                content: dataComment.text + item,
+                type: 1,
               });
-              ref.current.innerText = dataComment.content + item;
+              ref.current.innerText = dataComment.text + item;
               placeCaretAtEnd(ref.current);
             }}
           />

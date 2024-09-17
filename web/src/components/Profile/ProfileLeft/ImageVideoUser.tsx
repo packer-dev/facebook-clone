@@ -31,12 +31,12 @@ export default function ImageVideoUser() {
       <div className="w-full flex">
         <div className="w-full mt-2.5 mr-2.5">
           <p className="font-bold dark:text-white">
-            Ảnh/Video
+            Image/Video
             <br />
           </p>
         </div>
         <div className="w-full text-right mt-2.5 mr-2.5 text-main">
-          Xem tất cả
+          View all
         </div>
       </div>
       <div className="w-full pt-4 grid grid-cols-3 gap-1">
@@ -68,7 +68,7 @@ export default function ImageVideoUser() {
                   />
                 </video>
                 <div className="fr-us__front bg-black bg-opacity-50 flex items-center justify-center text-2xl">
-                  <span className="fas fa-play text-white"></span>
+                  <span className="fas fa-play text-white" />
                 </div>
               </div>
             )}

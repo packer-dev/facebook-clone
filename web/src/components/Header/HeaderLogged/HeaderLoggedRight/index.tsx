@@ -70,8 +70,8 @@ export default function HeaderLoggedRight(props) {
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
           >
-            <i className="bx bx-plus text-xl hidden"></i>
-            <i className="bx bxs-moon text-2xl"></i>
+            <i className="bx bx-plus text-xl hidden" />
+            <i className="bx bxs-moon text-2xl" />
           </li>
           {!hideMessage && (
             <li
@@ -80,7 +80,7 @@ export default function HeaderLoggedRight(props) {
               className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
               dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
             >
-              <i className="bx bxl-messenger text-2xl"></i>
+              <i className="bx bxl-messenger text-2xl" />
               <span
                 className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
               bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
@@ -95,7 +95,7 @@ export default function HeaderLoggedRight(props) {
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
           >
-            <i className="bx bx-bell text-xl"></i>
+            <i className="bx bx-bell text-xl" />
             <span
               className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
             bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
@@ -109,7 +109,7 @@ export default function HeaderLoggedRight(props) {
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 dark:bg-dark-third dark:text-white 
             text-center rounded-full flex justify-center items-center"
           >
-            <i className="bx bx-chevron-down text-2xl"></i>
+            <i className="bx bx-chevron-down text-2xl" />
           </li>
         </ul>
         <PopoverHeaderRightWrapper ref={refPopover} active={active}>

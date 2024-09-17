@@ -2,13 +2,17 @@ import moment from "moment";
 import React, { useContext } from "react";
 import { StoryContext } from "@/contexts/StoryContext";
 
-export default function ViewStoryLeft(props) {
+type ViewStoryLeftProps = {
+  fullScreen?: boolean;
+  setFullScreen?: Function;
+};
+
+const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
   //
   const {
     state: { current, main, storyList },
     updateData,
   } = useContext(StoryContext);
-  const { fullScreen, setFullScreen } = props;
   //
   return (
     <>
@@ -23,21 +27,19 @@ export default function ViewStoryLeft(props) {
         <div
           aria-hidden
           onClick={() => setFullScreen(!fullScreen)}
-          className={`text-2xl w-10 h-10 rounded-full bg-gray-200 
-                cursor-pointer ${
-                  fullScreen
-                    ? "fixed top-20 left-3 z-50"
-                    : "absolute top-0.5 -right-1"
-                } hover:bg-gray-300
-                 flex justify-center items-center dark:bg-dark-main dark:text-white dark:hover:bg-dark-third`}
+          className={`text-2xl w-10 h-10 rounded-full bg-gray-200 cursor-pointer ${
+            fullScreen
+              ? "fixed top-20 left-3 z-50"
+              : "absolute top-0.5 -right-1"
+          } hover:bg-gray-300 flex justify-center items-center dark:bg-dark-main dark:text-white dark:hover:bg-dark-third`}
         >
-          <i className={`bx bx-${fullScreen ? "exit-" : ""}fullscreen`}></i>
+          <i className={`bx bx-${fullScreen ? "exit-" : ""}fullscreen`} />
         </div>
       </div>
       <p className="font-semibold my-2 dark:text-white">Tin của bạn</p>
       <div className="cursor-pointer w-full flex p-2">
         <div className="w-2/12">
-          <i className="fas fa-plus p-5 text-main bg-gray-100 rounded-full"></i>
+          <i className="fas fa-plus p-5 text-main bg-gray-100 rounded-full" />
         </div>
         <div className="w-10/12 pl-3">
           <p className="font-semibold pb-1 dark:text-white">Tạo tin</p>
@@ -78,7 +80,7 @@ export default function ViewStoryLeft(props) {
             <div className="w-3/4">
               <p className="font-semibold pt-2 dark:text-white">{`${story.groupStory.userGroupStory.firstName} ${story.groupStory.userGroupStory.lastName}`}</p>
               <p className="color-word text-sm">
-                <span className="text-blue-400"></span>
+                <span className="text-blue-400" />
                 <span className="font0-bold text-sm">
                   {moment(story.groupStory.timeCreated).fromNow()}
                 </span>
@@ -89,4 +91,6 @@ export default function ViewStoryLeft(props) {
       <hr className="p-2 my-3"></hr>
     </>
   );
-}
+};
+
+export default ViewStoryLeft;

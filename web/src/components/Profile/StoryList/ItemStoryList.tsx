@@ -20,13 +20,14 @@ export default function ItemStoryList(props: any) {
         <i
           className="fas fa-circle text-xm px-2"
           style={{ color: " #1876F2", fontSize: 12 }}
-        ></i>
+        />
       </span>
       <span
         className="views-story absolute text-black"
         style={{ display: "none", bottom: 10, left: 24 }}
       >
-        <i className="fas fa-eye"></i>&nbsp;&nbsp;1
+        <i className="fas fa-eye" />
+        <span>&nbsp;&nbsp;1</span>
       </span>
     </div>
   );

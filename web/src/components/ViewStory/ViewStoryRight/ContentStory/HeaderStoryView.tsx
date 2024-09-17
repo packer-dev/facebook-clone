@@ -29,7 +29,7 @@ function HeaderStoryView(props) {
                     item.id === main.id ? 100 * (timeCurrent / 10) : 0
                   }%`,
                 }}
-              ></div>
+              />
             </li>
           ))}
         </ul>
@@ -75,13 +75,13 @@ function HeaderStoryView(props) {
                 className={`text-white text-2xl ${
                   isPlaying ? "far fa-stop-circle" : "bx bx-play"
                 }`}
-              ></i>
+              />
             </li>
             <li className=" py-2 px-2 cursor-pointer">
-              <i className="fas fa-volume-up text-white text-2xl"></i>
+              <i className="fas fa-volume-up text-white text-2xl" />
             </li>
             <li className="py-2 px-2 cursor-pointer">
-              <i className="fas fa-ellipsis-h text-white text-2xl"></i>
+              <i className="fas fa-ellipsis-h text-white text-2xl" />
             </li>
             <div
               className="w-80 right-2 top-12 absolute bg-gray-200 border-2 dark:bg-dark-third dark:text-white font-bold border-solid 
@@ -93,7 +93,7 @@ function HeaderStoryView(props) {
                             hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
                 >
                   <div className="flex items-center">
-                    <i className="far fa-trash-alt text-2xl mr-3"></i>
+                    <i className="far fa-trash-alt text-2xl mr-3" />
                     <span> Xóa ảnh</span>
                   </div>
                 </li>
@@ -102,7 +102,7 @@ function HeaderStoryView(props) {
                                 hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
                 >
                   <div className="flex items-center">
-                    <i className="fas fa-exclamation-triangle text-2xl mr-3"></i>
+                    <i className="fas fa-exclamation-triangle text-2xl mr-3" />
                     <span> Đã xảy ra lỗi</span>
                   </div>
                 </li>

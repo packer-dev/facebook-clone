@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function AccountNotIsset(props) {
+const AccountNotIsset = () => {
   return (
     <div className="w-full">
       <span className="text-55px font-semibold text-1877F2">
@@ -17,6 +17,6 @@ function AccountNotIsset(props) {
       </h2>
     </div>
   );
-}
+};
 
 export default AccountNotIsset;

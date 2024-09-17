@@ -1,3 +1,3 @@
-const colorList = []
+const colorList = [];
 
 export default colorList;

@@ -101,7 +101,7 @@ const ContentStory = () => {
             <i
               className="far fa-paper-plane cursor-pointer absolute right-4 top-0.5 text-2xl 
                     text-gray-200"
-            ></i>
+            />
           </div>
           <div className="flex gap-2 items-center ml-3">
             {allFeel.map((feel) => (
@@ -124,7 +124,7 @@ const ContentStory = () => {
             className="absolute -bottom-12 cursor-pointer left-2 p-2 z-50"
           >
             <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
-              <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl"></i>
+              <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl" />
               <br></br>
               <span className="text-white font-semibold mt-2">4 người xem</span>
             </div>

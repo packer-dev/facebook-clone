@@ -36,7 +36,7 @@ export default function Introduction() {
           className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
             dark:bg-dark-second dark:text-white rounded-lg"
         >
-          Chỉnh sửa chi tiết
+          Edit detail
         </ButtonComponent>
       )}
       {favorites.length > 0 && (

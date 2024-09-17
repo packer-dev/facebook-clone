@@ -31,7 +31,7 @@ export default function PopoverNotification() {
           className="w-6 h-6 rounded-full cursor-pointer hover:bg-gray-200 hover:bg-dark-third 
                 bx bx-dots-horizontal-rounded text-2xl text-gray-600 dark:text-gray-300 flex justify-center 
                 items-center dark:hover:bg-dark-main dark:hover:text-white"
-        ></span>
+        />
       </div>
       <ul className="flex mb-2 gap-2 items-center">
         <li>

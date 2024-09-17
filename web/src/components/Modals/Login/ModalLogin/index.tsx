@@ -17,7 +17,7 @@ const ModalLogin = ({ loginFast }: ModalLoginProps) => {
       rounded-lg sm:w-11/12  lg:w-4/5 xl:w-30%`}
     >
       <h1 className="-pt-1 pb-0.5 text-2xl my-3 text-center">Login ensonet</h1>
-      <hr></hr>
+      <hr />
       <FormLogin remember={true} loginFast={loginFast} />
     </ModalWrapper>
   );

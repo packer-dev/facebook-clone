@@ -47,7 +47,6 @@ function ItemAccount(props: any) {
       if (unmounted) return;
       if (result.data.users) {
         const tokenParse = result.data.token;
-        // const tokenParse = jwt_decode(result.data.token);
         if (tokenParse.exp > Math.floor(new Date().getTime() / 1000)) {
           if (result.data.users) {
             localStorage.setItem("user", result.data.token.exp.toString());
@@ -127,7 +126,7 @@ function ItemAccount(props: any) {
         ref={refLoading}
         style={{ display: loading ? "flex" : "none" }}
       >
-        <i className="fas fa-circle-notch text-xl text-gray-500 mx-9 fa-spin"></i>
+        <i className="fas fa-circle-notch text-xl text-gray-500 mx-9 fa-spin" />
       </div>
     </div>
   );

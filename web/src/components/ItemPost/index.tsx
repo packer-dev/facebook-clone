@@ -1,10 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import TypeCommentInput from "../Comment/TypeCommentInput";
 import ItemPostTop from "./ItemPostTop/ItemPostTop";
 import ContentPost from "./ContentPost";
 import LoadingPost from "./LoadingPost";
 import { PostDTO } from "@/interfaces/Post";
 import FooterItemPost from "./FooterItemPost";
+import { ItemPostProvider } from "@/contexts/ItemPostContext";
 
 type ItemPostProps = {
   postDetail: PostDTO;
@@ -13,11 +14,6 @@ type ItemPostProps = {
 };
 const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
   //
-  const [dataComment, setDataComment] = useState({
-    value: null,
-    content: "",
-    type: 0,
-  });
   //
   return postDetail ? (
     <div
@@ -39,15 +35,19 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
       <div className="w-full mb-4 mx-0">
         <FooterItemPost postDetail={postDetail} />
       </div>
-      <TypeCommentInput
-        dataComment={dataComment}
-        setDataComment={setDataComment}
-        postDetail={postDetail}
-      />
+      <TypeCommentInput />
     </div>
   ) : (
     <LoadingPost />
   );
 };
 
-export default memo(ItemPost);
+const ItemPostWrapper = (props: ItemPostProps) => {
+  return (
+    <ItemPostProvider>
+      <ItemPost {...props} />
+    </ItemPostProvider>
+  );
+};
+
+export default memo(ItemPostWrapper);

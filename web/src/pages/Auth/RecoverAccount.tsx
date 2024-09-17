@@ -74,7 +74,7 @@ export default function RecoverAccount(props) {
               </div>
             </div>
           </div>
-          <hr></hr>
+          <hr />
           <div className="w-full py-3 mt-1 flex justify-end items-center">
             <div className="">
               <ButtonComponent
@@ -98,7 +98,7 @@ export default function RecoverAccount(props) {
         </>
       ) : (
         <div className="w-full h-80 flex items-center justify-center">
-          <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin"></i>
+          <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin" />
         </div>
       )}
     </WrapperAuthenination>

@@ -21,13 +21,13 @@ const MessageList = ({ groups, mini, closePopover }: MessageListProps) => {
         <div className="w-1/2 my-2 ml-auto hidden xl:block">
           <ul className="ml-auto flex float-right">
             <li className="w-9 h-9 flex ml-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center relative">
-              <span className="fas fa-ellipsis-h flex items-center"></span>
+              <span className="fas fa-ellipsis-h flex items-center" />
             </li>
             <li className="w-9 h-9 flex ml-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center">
-              <span className="fas fa-video flex items-center"></span>
+              <span className="fas fa-video flex items-center" />
             </li>
             <li className="w-9 h-9 flex mx-2 bg-gray-200 dark:bg-dark-third rounded-full dark:text-gray-300 cursor-pointer justify-center">
-              <span className="far fa-edit flex items-center"></span>
+              <span className="far fa-edit flex items-center" />
             </li>
           </ul>
         </div>

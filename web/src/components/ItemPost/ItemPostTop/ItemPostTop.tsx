@@ -21,12 +21,12 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
     if (postDetail.post.type === 3) return "updated cover.";
     return (
       <InfoPostHeader
-        post={postDetail.post}
         user={postDetail.post.user}
+        activity={postDetail.post.activity}
+        feel={postDetail.post.feel}
+        local={postDetail.post.local}
         tagList={[]}
         hideName={true}
-        tagMain={true}
-        itemPost={true}
       />
     );
   })();
@@ -41,7 +41,7 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
             src={postDetail.post.user.avatar}
           />
         </Link>
-        <span className="w-3 h-3 rounded-full absolute bottom-0 right-0 bg-green-500"></span>
+        <span className="w-3 h-3 rounded-full absolute bottom-0 right-0 bg-green-500" />
       </div>
       <div
         className="relative ml-3 pl-3 lg:-ml-1"
@@ -66,13 +66,17 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
               </li>
               <li className="">
                 <span>·</span>
-                <i className="cursor-pointer ml-1 text-sm fas fa-globe-europe"></i>
+                <i className="cursor-pointer ml-1 text-sm fas fa-globe-europe" />
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <PostTopRight user={user} post={postDetail.post} />
+      <PostTopRight
+        user={user}
+        post={postDetail.post}
+        medias={postDetail.medias}
+      />
     </div>
   );
 };

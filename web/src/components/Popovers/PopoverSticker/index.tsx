@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import stickers from "@/config/stickers";
 import ItemSticker from "./ItemSticker";
 
-export default function PopoverSticker(props) {
+const PopoverSticker = ({ handleClick }: { handleClick: Function }) => {
   //
-  const { handleClick } = props;
   const generalListSticker = () => {
     let list = [];
     stickers.forEach((element) => {
@@ -32,7 +31,7 @@ export default function PopoverSticker(props) {
               <div
                 className={`w-10 h-10 max-w-10 max-h-10 overflow-hidden animation__sticker bg-size:${item.col}:${item.row} relative`}
                 style={{ backgroundImage: `url('${item.src}')` }}
-              ></div>
+              />
             </li>
           );
         })}
@@ -45,10 +44,7 @@ export default function PopoverSticker(props) {
           placeholder="Tìm kiếm"
         />
       </div>
-      <div
-        className="w-full h-60 overflow-y-auto flex flex-wrap wrapper-content-right px-2"
-        style={{ maxHeight: "300px" }}
-      >
+      <div className="w-full h-60 overflow-y-auto flex flex-wrap wrapper-content-right px-2 m-h-[300px]">
         {[...stickers]
           .filter((item) => item.group === categoryItem)
           .map((item, index) => (
@@ -61,4 +57,6 @@ export default function PopoverSticker(props) {
       </div>
     </>
   );
-}
+};
+
+export default PopoverSticker;

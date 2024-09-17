@@ -6,6 +6,7 @@ export default function ItemColor(props) {
 
   return (
     <li
+      aria-hidden
       onClick={() => setColor(item)}
       className={`p-2 rounded-full relative cursor-pointer flex justify-center items-center ${
         color === item
@@ -16,7 +17,7 @@ export default function ItemColor(props) {
       <div
         className="mx-auto rounded-full "
         style={{ backgroundColor: item, width: 60, height: 60 }}
-      ></div>
+      />
     </li>
   );
 }

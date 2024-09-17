@@ -11,13 +11,15 @@ import { deletePost } from "@/apis/postAPIs";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { Media } from "@/interfaces/Media";
 
 type PostTopRightProps = {
   user: User;
   post: Post;
+  medias: Media[];
 };
 
-const PostTopRight = ({ user, post }: PostTopRightProps) => {
+const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
@@ -40,11 +42,11 @@ const PostTopRight = ({ user, post }: PostTopRightProps) => {
       <span
         aria-hidden
         onClick={() => {
-          modalsDispatch(modalsAction.openModalPost(post.id, null, null, null));
+          modalsDispatch(modalsAction.openModalPost({ post, medias }));
         }}
         className="bx bx-edit-alt absolute top-0 right-8 text-xl text-gray-800 hover:text-main 
-            cursor-pointer dark:text-gray-300"
-      ></span>
+        cursor-pointer dark:text-gray-300"
+      />
       {/* )} */}
       <span
         aria-hidden
@@ -60,10 +62,10 @@ const PostTopRight = ({ user, post }: PostTopRightProps) => {
         }}
         className="bx bx-trash-alt absolute top-0 right-1 text-xl text-gray-800 hover:text-main
             cursor-pointer dark:text-gray-300"
-      ></span>
+      />
     </>
   ) : (
-    ""
+    <></>
   );
 };
 

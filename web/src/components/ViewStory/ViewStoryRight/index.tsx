@@ -51,21 +51,19 @@ export default function ViewStoryRight(props) {
 
         updateData("current", storyList[storyList.length - 1]);
       }
+    } else if (indexRun - 1 >= 0) {
+      updateData("indexRun", indexRun - 1);
+      updateData("main", storyList[indexStory].storyList[indexRun - 1]);
     } else {
-      if (indexRun - 1 >= 0) {
-        updateData("indexRun", indexRun - 1);
-        updateData("main", storyList[indexStory].storyList[indexRun - 1]);
-      } else {
-        updateData("indexStory", indexStory - 1);
-        updateData("indexRun", storyList[indexStory - 1].storyList.length - 1);
-        updateData(
-          "main",
-          storyList[indexStory - 1].storyList[
-            storyList[indexStory - 1].storyList.length - 1
-          ]
-        );
-        updateData("current", storyList[indexStory - 1]);
-      }
+      updateData("indexStory", indexStory - 1);
+      updateData("indexRun", storyList[indexStory - 1].storyList.length - 1);
+      updateData(
+        "main",
+        storyList[indexStory - 1].storyList[
+          storyList[indexStory - 1].storyList.length - 1
+        ]
+      );
+      updateData("current", storyList[indexStory - 1]);
     }
   };
   //
@@ -83,7 +81,7 @@ export default function ViewStoryRight(props) {
           } px-5 mx-auto h-full relative top-2 left-20 flex`}
         >
           {indexStory === 0 && indexRun === 0 ? (
-            <div className="w-1/12 pr-4"></div>
+            <div className="w-1/12 pr-4" />
           ) : (
             <div
               aria-hidden
@@ -93,13 +91,13 @@ export default function ViewStoryRight(props) {
               <i
                 className="fas fa-chevron-left cursor-pointer text-gray-500 px-5 py-3 bg-gray-300 rounded-full 
                             hover:text-black hover:bg-white text-xl "
-              ></i>
+              />
             </div>
           )}
           {current && main && <ContentStory />}
           {indexStory === storyList.length - 1 &&
           indexRun === storyList[storyList.length - 1].storyList.length - 1 ? (
-            <div className="w-1/12 pl-4"></div>
+            <div className="w-1/12 pl-4" />
           ) : (
             <div
               aria-hidden
@@ -109,7 +107,7 @@ export default function ViewStoryRight(props) {
               <i
                 className="fas fa-chevron-right cursor-pointer text-gray-500 px-5 py-3 bg-gray-300 rounded-full 
                             hover:text-black hover:bg-white text-xl "
-              ></i>
+              />
             </div>
           )}
         </div>

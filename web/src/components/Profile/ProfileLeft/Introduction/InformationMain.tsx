@@ -10,7 +10,7 @@ export default function InformationMain({ userProfile }) {
       {description.work && (
         <li className="w-full pb-3">
           <p className="dark:text-gray-300">
-            <i className="fas fa-briefcase text-gray-600 text-xl dark:text-gray-300 mr-1"></i>
+            <i className="fas fa-briefcase text-gray-600 text-xl dark:text-gray-300 mr-1" />
             <span>Làm việc tại</span>
             <span className="ml-1 dark:text-gray-300">{description.work}</span>
           </p>
@@ -19,7 +19,7 @@ export default function InformationMain({ userProfile }) {
       {description.study && (
         <li className="w-full pb-3">
           <p className="dark:text-gray-300">
-            <i className="fas fa-graduation-cap text-gray-600 dark:text-gray-300 text-xl mr-1"></i>
+            <i className="fas fa-graduation-cap text-gray-600 dark:text-gray-300 text-xl mr-1" />
             <span>Học tại</span>
             <span className="dark:text-gray-300 ml-1">{description.study}</span>
           </p>
@@ -28,7 +28,7 @@ export default function InformationMain({ userProfile }) {
       {description.live && (
         <li className="w-full pb-3">
           <p className="dark:text-gray-300">
-            <i className="fas fa-home text-gray-600 dark:text-gray-300 text-xl mr-1"></i>
+            <i className="fas fa-home text-gray-600 dark:text-gray-300 text-xl mr-1" />
             <span>Sống tại</span>
             <span className="dark:text-gray-300 ml-1">{description.live}</span>
           </p>
@@ -37,7 +37,7 @@ export default function InformationMain({ userProfile }) {
       {description.from && (
         <li className="w-full pb-3">
           <p className="dark:text-gray-300">
-            <i className="fas fa-map-marker-alt text-gray-600 dark:text-gray-300 text-xl mr-1"></i>
+            <i className="fas fa-map-marker-alt text-gray-600 dark:text-gray-300 text-xl mr-1" />
             <span>Đến từ</span>
             <span className="dark:text-gray-300 ml-1">{description.from}</span>
           </p>
@@ -46,14 +46,14 @@ export default function InformationMain({ userProfile }) {
       {description.status && (
         <li className="w-full pb-3">
           <p className="dark:text-gray-300">
-            <i className="fas fa-heart text-gray-600 dark:text-gray-300 mr-1 text-xl"></i>
+            <i className="fas fa-heart text-gray-600 dark:text-gray-300 mr-1 text-xl" />
             {description.status}
           </p>
         </li>
       )}
       <li className="w-full pb-3">
         <p className="dark:text-gray-300">
-          <i className="fas fa-clock text-gray-600 text-xl dark:text-gray-300 mr-1"></i>
+          <i className="fas fa-clock text-gray-600 text-xl dark:text-gray-300 mr-1" />
           Đã tham gia tháng{" "}
           {moment(userProfile.timeCreated).month() + 1 > 12
             ? "01"

@@ -11,7 +11,6 @@ type MoreThanCommentProps = {
 };
 
 const MoreThanComment = ({
-  setPostDetail,
   postDetail,
   index,
   setIndex,
@@ -33,13 +32,7 @@ const MoreThanComment = ({
         clone.commentDetailList[pos].commentPostLevel2List = [
           ...clone.commentDetailList[pos].commentPostLevel2List,
         ].concat([]);
-        setPostDetail({ ...clone });
       }
-    } else {
-      setPostDetail({
-        ...postDetail,
-        commentDetailList: [...postDetail.commentDetailList].concat([]),
-      });
     }
     setLoading(false);
   };
@@ -50,7 +43,7 @@ const MoreThanComment = ({
       className="py-1 text-sm font-semibold text-gray-500 cursor-pointer"
     >
       {loading ? (
-        <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin"></i>
+        <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin" />
       ) : (
         "View more"
       )}

@@ -64,7 +64,7 @@ const Profile = () => {
             />
             <Text style={tailwind(`font-semibold`)}>{user?.name}</Text>
           </View>
-          <View></View>
+          <View />
         </View>
       </TouchableOpacity>
       <TouchableOpacity

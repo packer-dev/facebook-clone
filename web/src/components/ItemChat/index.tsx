@@ -11,6 +11,7 @@ import { RootState, getUser } from "@/reducers";
 import { ZoomUserChatProps } from "@/reducers/userChat";
 import { getGroupById } from "@/apis/groupAPIs";
 import { User } from "@/interfaces/User";
+import useListeningMessage from "@/hooks/realtime/useListeningMessage";
 
 export type ItemChatProps = {
   item?: ZoomUserChatProps;
@@ -53,6 +54,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
     updateData("loading", false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useListeningMessage(item?.group?.id);
   //
   return (
     <WrapperItemChat>

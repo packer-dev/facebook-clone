@@ -21,8 +21,8 @@ export default function UpdateCoverImage(props) {
   return (
     <div className="w-full p-4 flex bg-black bg-opacity-50 fixed top-16 z-50 justify-between items-center">
       <p className="text-white flex items-center text-sm">
-        <i className="bx bx-globe text-2xl mr-2"></i>Ảnh bìa của bạn hiển thị
-        công khai.
+        <i className="bx bx-globe text-2xl mr-2" />
+        <span>Ảnh bìa của bạn hiển thị công khai.</span>
       </p>
       <div className="flex items-center gap-2">
         <ButtonComponent
@@ -37,7 +37,7 @@ export default function UpdateCoverImage(props) {
           className=" rounded-md md:px-10 md:py-2 p-1.5 font-semibold bg-main text-white"
         >
           {loading ? (
-            <i className="bx bx-shape-circle fa-spin"></i>
+            <i className="bx bx-shape-circle fa-spin" />
           ) : (
             "Lưu thay đổi"
           )}

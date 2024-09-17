@@ -54,6 +54,6 @@ export default function InviteFriend() {
       )}
     </>
   ) : (
-    <div></div>
+    <div />
   );
 }

@@ -16,26 +16,26 @@ export default function TypeNewPassword() {
     <WrapperAuthenination title="Chọn mật khẩu mới" hideFormLogin={true}>
       <div className="w-full my-2 p-2 px-5">
         <p>
-          Tạo mật khẩu mới có tối thiểu 6 ký tự. Mật khẩu mạnh là mật khẩu được
-          kết hợp từ các ký tự, số và dấu câu.
+          Create a new password that is at least 6 characters long. A strong
+          password is a combination of letters, numbers, and punctuation.
         </p>
         <div className="w-full flex my-2 items-center">
           <InputComponent
             type="password"
             handleChange={(data) => setPasswordNew(data)}
-            placeholder="Nhập mật khẩu mới..."
+            placeholder="New password..."
             className="w-full p-3 rounded-md border-2"
           />
         </div>
       </div>
-      <hr></hr>
+      <hr />
       <div className="w-full py-3 mt-1 flex justify-end items-center">
         <div className="">
           <ButtonComponent
             link={PAGE_LOGIN}
             className="px-4 font-semibold mr-3 py-2 rounded-lg bg-gray-300 text-gray-800"
           >
-            Huy
+            Cancel
           </ButtonComponent>
           <ButtonComponent
             disabled={passwordNew.length < 6}
@@ -46,7 +46,7 @@ export default function TypeNewPassword() {
             loading={loading}
             className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
           >
-            Tiếp tục
+            Next
           </ButtonComponent>
         </div>
       </div>

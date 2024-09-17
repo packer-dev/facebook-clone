@@ -97,8 +97,9 @@ export default function Profile() {
         >
           <div
             ref={refContainer}
-            className="w-full h-screen pl-0.5 md:pl-0 overflow-y-auto overflow-x-hidden"
-            style={{ display: loading ? "none" : "block" }}
+            className={`w-full h-screen pl-0.5 md:pl-0 overflow-y-auto overflow-x-hidden ${
+              loading ? "none" : ""
+            }`}
           >
             <div className="w-full bg-white dark:bg-dark-second">
               <HeaderProfile />

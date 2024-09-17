@@ -1,7 +1,7 @@
 import { Member } from "@/interfaces/Member";
 import React, { useState } from "react";
 
-export default function ItemNickName(props: { item: Member }) {
+const ItemNickName = (props: { item: Member }) => {
   //
   const { item } = props;
   const [show, setShow] = useState(false);
@@ -30,13 +30,14 @@ export default function ItemNickName(props: { item: Member }) {
         </p>
         <input
           type="text"
-          className={`w-full p-1.5 mt-1 border-2 border-solid border-blue-500 rounded-xl 
-                    bg-gray-100 dark:bg-dark-third dark:text-white flex justify-center items-center 
-                    ${show === true ? "" : "hidden"}`}
+          className={`w-full p-1.5 mt-1 border-2 border-solid border-blue-500 rounded-xl bg-gray-100 
+          dark:bg-dark-third dark:text-white flex justify-center items-center ${
+            show === true ? "" : "hidden"
+          }`}
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
           onKeyUp={(e) => {
-            if (e.keyCode === 13) {
+            if (e.key === "Enter") {
               setShow(false);
             }
           }}
@@ -46,14 +47,18 @@ export default function ItemNickName(props: { item: Member }) {
         <i
           aria-hidden
           onClick={() => setShow(true)}
-          className={`fas fa-pen-nib cursor-pointer dark:text-white 
-                    ml-5 text-xl flex items-center ${!show ? "" : "hidden"}`}
-        ></i>
+          className={`fas fa-pen-nib cursor-pointer dark:text-white ml-5 text-xl flex items-center ${
+            !show ? "" : "hidden"
+          }`}
+        />
         <i
-          className={`fas fa-check cursor-pointer dark:text-white ml-5 text-xl flex items-center 
-                    ${show ? "" : "hidden"}`}
-        ></i>
+          className={`fas fa-check cursor-pointer dark:text-white ml-5 text-xl flex items-center ${
+            show ? "" : "hidden"
+          }`}
+        />
       </div>
     </div>
   );
-}
+};
+
+export default ItemNickName;

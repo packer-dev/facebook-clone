@@ -3,7 +3,7 @@ import { Entypo, AntDesign } from "@expo/vector-icons";
 import moment from "moment";
 import { Message } from "@/interfaces/Message";
 import tailwind from "@/tailwind";
-import Animation from "../Commons/Animation";
+import MessageContent from "./MessageContent";
 
 type CurrentUserProps = {
   message?: Message;
@@ -29,21 +29,7 @@ const CurrentUser = ({ message, lastMessage }: CurrentUserProps) => {
             `ml-auto w-10/12 flex-row gap-2 justify-end items-end`
           )}
         >
-          {message?.content?.type === 1 ? (
-            <View
-              style={tailwind(
-                `ml-auto ${
-                  message?.content?.type === 1 ? "bg-primary" : ""
-                } p-3 rounded-lg`
-              )}
-            >
-              <Text style={tailwind(`text-white`)}>
-                {message.content?.text}
-              </Text>
-            </View>
-          ) : (
-            <Animation sticker={JSON.parse(message?.content?.text ?? "")} />
-          )}
+          <MessageContent message={message} type="current" />
           {message?.loading ? (
             <Entypo
               name="circle"

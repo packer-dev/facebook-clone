@@ -36,7 +36,7 @@ const ItemSetting = (props: any) => {
         className={`fas fa-chevron-${
           props.show ? "down" : "right"
         } float-right absolute right-5 top-3.5`}
-      ></i>
+      />
     </>
   );
 };

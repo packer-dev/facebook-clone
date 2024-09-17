@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
-import emojii from "../../../config/emojii";
+import emojii from "@/config/emojii";
 
-export default function PopoverEmojii(props: any) {
+export default function PopoverEmojii({
+  handleClick,
+}: {
+  handleClick: Function;
+}) {
   //
-  const { handleClick } = props;
   const listCategoryFun = () => {
     let listCategory = [];
     emojii.forEach((element) => {
@@ -23,7 +26,7 @@ export default function PopoverEmojii(props: any) {
   const [categoryActive, setCategoryActive] = useState(
     listCategory[0].category
   );
-  const showCategoryAll = listCategory.map((item, index) => {
+  const showCategoryAll = listCategory.map((item) => {
     return (
       <li
         aria-hidden
@@ -40,7 +43,7 @@ export default function PopoverEmojii(props: any) {
       </li>
     );
   });
-  const getEmojiiByCategory = (category) => {
+  const getEmojiiByCategory = (category: string) => {
     let listEmojii = [];
     emojii.forEach((element) => {
       if (element.category === category) listEmojii.push(element.emoji);
@@ -56,7 +59,7 @@ export default function PopoverEmojii(props: any) {
         </ScrollContainer>
       </div>
       <div className="w-full pl-1 flex flex-wrap items-end flex-1 gap-0.5 overflow-y-auto">
-        {getEmojiiByCategory(categoryActive).map((item, index) => {
+        {getEmojiiByCategory(categoryActive).map((item) => {
           return (
             <div
               aria-hidden

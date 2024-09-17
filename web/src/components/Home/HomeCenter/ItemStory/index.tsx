@@ -52,7 +52,7 @@ export default function ItemStory(props: any) {
             nearLast || "flex"
           }`}
         >
-          <i className="bx bx-right-arrow-alt text-2xl dark:text-white"></i>
+          <i className="bx bx-right-arrow-alt text-2xl dark:text-white" />
         </div>
       )}
     </div>

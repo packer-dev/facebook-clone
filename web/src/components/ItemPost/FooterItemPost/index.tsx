@@ -120,8 +120,8 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
                 </>
               ) : (
                 <>
-                  <span className="bx bx-like text-xl"></span>
-                  <span className=" font-semibold ml-2">Thích</span>
+                  <span className="bx bx-like text-xl" />
+                  <span className=" font-semibold ml-2">Like</span>
                 </>
               )}
             </div>
@@ -132,7 +132,7 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
           className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-200 w-1/3 font-semibold 
           h-12 text-sm cursor-pointer justify-center items-center flex"
         >
-          <i className="fas fa-comment-alt dark:text-gray-300"></i> &nbsp;
+          <i className="fas fa-comment-alt dark:text-gray-300" /> &nbsp;
           <span>Bình Luận</span>
         </li>
         <ButtonShare />

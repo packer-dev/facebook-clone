@@ -43,7 +43,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
             }
           }}
           spellCheck={false}
-        ></div>
+        />
         <p className="mt-1 text-right text-gray-500 text-sm">{`Còn ${
           70 - description?.introduction?.length
         } ký tự`}</p>
@@ -55,7 +55,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
             }}
             className={`px-4 py-1.5 rounded-lg bg-gray-300`}
           >
-            Huỷ
+            Cancel
           </ButtonComponent>
           <ButtonComponent
             handleClick={async () => {
@@ -67,7 +67,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
             }
             className={`px-4 py-1.5 ml-3 rounded-lg bg-main text-white`}
           >
-            Lưu
+            Save
           </ButtonComponent>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
               className="w-full p-2 text-sm bg-gray-200 hover:bg-gray-300 font-semibold 
               rounded-lg dark:bg-dark-second dark:text-white"
             >
-              Chỉnh sửa tiểu sử
+              Edit bio
             </ButtonComponent>
           )}
         </>
@@ -94,7 +94,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
         className="w-full absolute top-0 left-0 items-center justify-center bg-white dark:bg-dark-second bg-opacity-50 z-10"
         style={{ display: loading ? "flex" : "none" }}
       >
-        <i className="fas fa-spinner fa-spin text-2xl"></i>
+        <i className="fas fa-spinner fa-spin text-2xl" />
       </div>
     </div>
   );

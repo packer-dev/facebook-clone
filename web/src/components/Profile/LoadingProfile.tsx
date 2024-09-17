@@ -13,11 +13,11 @@ export default function LoadingProfile() {
                     dark:border-dark-main border-gray-300 bg-dark-second mx-auto relative 
                     linear-background dark:linear-background "
             style={{ top: "60%" }}
-          ></div>
+          />
         </div>
         <div className="w-full pt-12 pb-7">
-          <div className="w-52 h-5 rounded-lg mx-auto linear-background dark:linear-background"></div>
-          <div className="w-28 h-3 my-2 rounded-lg mx-auto linear-background dark:linear-background"></div>
+          <div className="w-52 h-5 rounded-lg mx-auto linear-background dark:linear-background" />
+          <div className="w-28 h-3 my-2 rounded-lg mx-auto linear-background dark:linear-background" />
         </div>
         <div className="w-full pb-5">
           <ul className="w-1/2 flex">

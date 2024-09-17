@@ -1,35 +1,30 @@
+import { Activity, FeelPost, Local } from "@/interfaces/Post";
 import { User } from "@/interfaces/User";
 import * as React from "react";
 
 type InfoPostHeaderProps = {
   user?: User;
-  post?: any;
-  tagList?: any[];
+  tagList?: User[];
+  feel?: FeelPost;
+  activity?: Activity;
+  local?: Local;
   hideName?: boolean;
-  tagMain?: any;
-  itemPost?: any;
 };
 
 const InfoPostHeader = ({
   user,
-  post,
   tagList,
   hideName,
-  tagMain,
-  itemPost,
+  feel,
+  activity,
+  local,
 }: InfoPostHeaderProps) => {
   //
-  const checkNull = (data: any) => {
-    return itemPost ? (data ? JSON.parse(data) : null) : data;
-  };
-  const feel = checkNull(post?.feel);
-  const activity = checkNull(post?.activity);
-  const local = checkNull(post?.local);
   //
   return (
     <>
       {!hideName && (
-        <span className="font-semibold mr-2">{`${user.name}`}</span>
+        <span className="font-semibold mr-2">{`${user?.name}`}</span>
       )}
       {feel && (
         <span id="feelCur">
@@ -42,21 +37,17 @@ const InfoPostHeader = ({
           {activity.label.toLowerCase()}{" "}
         </span>
       )}
-      {tagList.length > 0 && (
+      {tagList?.length > 0 && (
         <span id="tag">
           cùng với{" "}
-          <span className="font-semibold">
-            {tagMain
-              ? `${tagList[0].userTagPost.firstName} ${tagList[0].userTagPost.lastName}`
-              : `${tagList[0].firstName} ${tagList[0].lastName}`}
-          </span>
-          {tagList.length > 1 && (
+          <span className="font-semibold">{`${tagList[0]?.name}`}</span>
+          {tagList?.length > 1 && (
             <>
               {" "}
               và
               {` `}
               <span className="font-semibold">
-                {tagList.length - 1} người khác{" "}
+                {tagList?.length - 1} người khác{" "}
               </span>
             </>
           )}

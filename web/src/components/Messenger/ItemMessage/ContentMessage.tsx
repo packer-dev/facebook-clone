@@ -13,7 +13,7 @@ export type ContentMessageProps = {
 
 export default forwardRef(function ContentMessage(
   props: ContentMessageProps,
-  ref: any
+  ref: React.RefObject<any>
 ) {
   //
   const { item, margin, left, groupMessage } = props;
@@ -27,15 +27,6 @@ export default forwardRef(function ContentMessage(
           left={left}
         />
       );
-    case 3:
-      return (
-        <img
-          ref={ref}
-          src={JSON.parse(item.content.text).value}
-          alt={``}
-          className="w-80 h-56 rounded-lg object-cover"
-        />
-      );
     case 2:
       return (
         <ItemSticker
@@ -43,6 +34,15 @@ export default forwardRef(function ContentMessage(
           groupMessage={groupMessage}
           sticker={JSON.parse(item.content.text)}
           handleClick={() => ""}
+        />
+      );
+    case 3:
+      return (
+        <img
+          ref={ref}
+          src={JSON.parse(item.content.text).value}
+          alt=""
+          className="w-80 h-56 rounded-lg object-cover"
         />
       );
     default:

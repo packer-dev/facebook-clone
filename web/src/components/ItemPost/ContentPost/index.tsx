@@ -10,16 +10,16 @@ export default memo(function ContentPost({
   postDetail: PostDTO;
 }) {
   switch (postDetail.post.type) {
-    case 0:
+    case 1:
       return (
         <NormalPost
           imageVideoPostList={postDetail.medias}
           post={postDetail.post}
         />
       );
-    case 1:
-      return <AvatarPost postDetail={postDetail} />;
     case 2:
+      return <AvatarPost postDetail={postDetail} />;
+    case 3:
       return <CoverPost postDetail={postDetail} />;
     default:
       return <></>;

@@ -7,6 +7,10 @@ import WrapperLogged from "./WrapperLogged";
 import * as StringUtils from "@/utils/StringUtils";
 import { getPostById } from "@/apis/postAPIs";
 import { PostDTO } from "@/interfaces/Post";
+import ItemMedia from "@/components/MediaDisplay/ItemMedia";
+import ItemCommentPostMain from "@/components/Comment/ItemCommentPostMain";
+import { getCommentByPost } from "@/apis/commentAPIs";
+import { CommentDTO } from "@/interfaces/Comment";
 
 export default function ViewPost() {
   //
@@ -15,21 +19,24 @@ export default function ViewPost() {
   const [fullscreen, setFullscreen] = useState(false);
   const [index, setIndex] = useState(-1);
   const [scale, setScale] = useState(75);
+  const [comments, setComments] = useState<CommentDTO[]>([]);
   useEffect(() => {
     //
-    let unmounted = false;
-    const fetch = async () => {
+    const fetchData = async () => {
       const result = await getPostById(id);
-      if (unmounted) return;
       setPostDetail(result);
       setIndex(0);
     };
-    fetch();
-    return () => {
-      unmounted = true;
-    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getCommentByPost(postDetail.post.id);
+      setComments(result?.list || []);
+    };
+    if (postDetail) fetchData();
+  }, [postDetail]);
   //
   return (
     <WrapperLogged hideHeader={true} hideChat={true} hideMessage={true}>
@@ -62,7 +69,9 @@ export default function ViewPost() {
                   }}
                 />
               ) : (
-                <video
+                <ItemMedia<HTMLVideoElement>
+                  type="video"
+                  single
                   src={postDetail?.medias[index].url}
                   className="w-11/12 object-cover"
                   style={{
@@ -82,12 +91,19 @@ export default function ViewPost() {
             <HeaderLoggedRight hideImage={true} />
           </div>
           <div className="pt-16 w-full h-full scrollbar-css overflow-y-auto">
-            <hr></hr>
+            <hr />
             <ItemPost
               hideContent={true}
               postDetail={postDetail}
               margin={false}
             />
+            {comments.map((comment) => (
+              <ItemCommentPostMain
+                key={comment.item.id}
+                postDetail={postDetail}
+                commentDetail={comment}
+              />
+            ))}
           </div>
         </div>
       </div>

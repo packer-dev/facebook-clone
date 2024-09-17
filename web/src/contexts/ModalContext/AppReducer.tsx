@@ -26,13 +26,7 @@ const AppReducer = (state, action) => {
     case constants.OPEN_MODAL_POST:
       return {
         ...state,
-        data: (
-          <ModalWrapperPost
-            id={action.id}
-            feel={action.feel}
-            imageVideo={action.imageVideo}
-          />
-        ),
+        data: <ModalWrapperPost {...action} />,
       };
     case constants.OPEN_MODAL_PREVIEW_AVATAR:
       return {

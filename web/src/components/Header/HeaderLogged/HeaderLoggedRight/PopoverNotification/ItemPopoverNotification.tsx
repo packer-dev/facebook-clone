@@ -29,7 +29,7 @@ export default function ItemPopoverNotification(props: any) {
         <p className="text-sm mt-1">3 ngày trước</p>
       </div>
       {!isRead && (
-        <span className="w-3.5 h-3.5 rounded-full bg-main absolute top-1/2 transform -translate-y-1/2 right-3.5"></span>
+        <span className="w-3.5 h-3.5 rounded-full bg-main absolute top-1/2 transform -translate-y-1/2 right-3.5" />
       )}
     </div>
   );

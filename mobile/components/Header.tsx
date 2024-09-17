@@ -102,9 +102,7 @@ const Header = ({ friend }: HeaderProps) => {
                 : obj?.name}
             </Text>
             <View style={tailwind(`flex-row gap-2 items-center`)}>
-              <View
-                style={tailwind(`w-2 h-2 rounded-full bg-green-500`)}
-              ></View>
+              <View style={tailwind(`w-2 h-2 rounded-full bg-green-500`)} />
               <Text>Online</Text>
             </View>
           </View>

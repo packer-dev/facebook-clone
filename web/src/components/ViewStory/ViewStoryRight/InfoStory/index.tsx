@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StoryContext } from "@/contexts/StoryContext";
 
-export default function InfoStory(props) {
+export default function InfoStory(props: any) {
   //
   const { setShow } = props;
   const {
@@ -15,7 +15,7 @@ export default function InfoStory(props) {
       style={{ height: "86.5%" }}
     >
       <p className="dark:text-white font-bold py-4 w-full relative">
-        Chi tiết về tin
+        <span>Chi tiết về tin</span>
         <span
           aria-hidden
           onClick={() => setShow(false)}
@@ -24,7 +24,7 @@ export default function InfoStory(props) {
           &times;
         </span>
       </p>
-      <ul className="flex overflow-x-hidden" style={{ maxWidth: 368 }}>
+      <ul className="flex overflow-x-hidden max-w-[368px]">
         {current.storyList.map((item, index) => (
           <li
             aria-hidden
@@ -33,8 +33,7 @@ export default function InfoStory(props) {
               updateData("main", current.storyList[index]);
             }}
             key={item?.id}
-            className="mr-2 cursor-pointer flex-shrink-0 flex items-center justify-center "
-            style={{ width: 120, height: 160 }}
+            className="mr-2 cursor-pointer flex-shrink-0 flex items-center justify-center w-[120px] h-40"
           >
             <img
               className={`${
@@ -45,11 +44,11 @@ export default function InfoStory(props) {
             />
           </li>
         ))}
-        <li className="cursor-pointer flex-shrink-0 " style={{ width: 120 }}>
+        <li className="cursor-pointer flex-shrink-0 w-[120px]">
           <div className="w-32 h-40 p-2">
             <div className="w-full dark:bg-dark-third bg-gray-100 h-36 py-8">
               <div className=" dark:bg-dark-main bg-gray-300 w-10 h-10 rounded-full mx-auto text-center cursor-pointer pt-1">
-                <i className="bx bx-plus text-2xl dark:text-white"></i>
+                <i className="bx bx-plus text-2xl dark:text-white" />
               </div>
               <p className="text-center font-bold dark:text-white py-3">
                 Tạo tin
@@ -59,12 +58,9 @@ export default function InfoStory(props) {
         </li>
       </ul>
       <hr className="my-3 dark:bg-dark-second" />
-      <div
-        className="w-full my-2 wrapper-scrollbar overflow-y-auto"
-        style={{ maxHeight: 460 }}
-      >
+      <div className="w-full my-2 wrapper-scrollbar overflow-y-auto max-h-[460px]">
         <p className="font-bold text-gray-800 dark:text-white">
-          <i className="fas fa-eye mr-2"></i>
+          <i className="fas fa-eye mr-2" />
           <span>Chưa có người xem</span>
         </p>
         <p className="font-semibold text-sm text-gray-600 dark:text-white px-2 text-xm py-2">

@@ -1,125 +1,53 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import PreviewImageComment from "../PreviewImageComment";
-import { v4 } from "uuid";
 import { RootState, getUser } from "@/reducers";
 import CategoryInputComment from "./CategoryInputComment";
 import { User } from "@/interfaces/User";
+import { Comment, CommentDTO } from "@/interfaces/Comment";
+import { generateUUID, getCurrentDateTime } from "@/utils";
+import { ItemPostContext } from "@/contexts/ItemPostContext";
+import { sendComment } from "@/apis/commentAPIs";
 
-type TypeCommentInputProps = {
-  dataComment?: any;
-  setDataComment?: Function;
-  postDetail?: any;
-  setPostDetail?: any;
-  reply?: any;
-  commentDetail?: any;
-};
-
-const TypeCommentInput = ({
-  dataComment,
-  setDataComment,
-  postDetail,
-  setPostDetail,
-  reply,
-  commentDetail,
-}: TypeCommentInputProps) => {
+const TypeCommentInput = () => {
   //
+  const {
+    state: { comments, postDetail, dataComment, file },
+    updateData,
+  } = React.useContext(ItemPostContext);
   const user = useSelector<RootState, User>(getUser);
   const refContent = React.useRef<HTMLDivElement>(null);
-  const handleSendComment = async (dataComment) => {
-    const id = v4();
-    const { value, content, type } = dataComment;
-    refContent.current.innerText = "";
-    const object = {
-      id: null,
-      userCommentPost: user,
-      postCommentPost: postDetail.post,
-      content: content,
-      dataComment: JSON.stringify(dataComment),
-      typeComment: type,
-      timeCreated: null,
-      replyComment: reply
-        ? commentDetail.commentPostLevel1.commentPost.id
-        : null,
+  const handleSendComment = async (val: any, type = 1) => {
+    if (!user) return;
+
+    let comment: Comment = {
+      id: "",
+      user,
+      content: {
+        id: generateUUID(),
+        text: type === 1 ? refContent.current?.innerText : val,
+        type: type,
+      },
+      time_created: getCurrentDateTime(),
+      last_time_update: getCurrentDateTime(),
+      level: type,
+      parent: "",
+      loading: true,
     };
-    setDataComment({ value: null, content: "", type: 0 });
-    if (!reply) {
-      setPostDetail({
-        ...postDetail,
-        commentDetailList: [
-          {
-            commentPostLevel1: {
-              commentPost: { ...object, id: id },
-              feelCommentList: [],
-              loading: true,
-            },
-            commentPostLevel2List: [],
-          },
-        ].concat([...postDetail.commentDetailList]),
-      });
-    } else {
-      const index = postDetail.commentDetailList.findIndex(
-        (data) =>
-          data.commentPostLevel1.commentPost.id ===
-          commentDetail.commentPostLevel1.commentPost.id
-      );
-      if (index !== -1)
-        postDetail.commentDetailList[index].commentPostLevel2List = [
-          {
-            commentPost: { ...object, id: id },
-            feelCommentList: [],
-            loading: true,
-          },
-        ].concat([
-          ...postDetail.commentDetailList[index].commentPostLevel2List,
-        ]);
-    }
-    if (type === 1) {
-      const formData = new FormData();
-      formData.append("multipartFile", value);
-      formData.append("id", new Date().getTime().toString());
-      formData.append("publicId", "Comments/");
-      formData.append("typeFile", "image");
-    }
-    const result = { data: null };
-    if (!reply) {
-      setPostDetail({
-        ...postDetail,
-        commentDetailList: [
-          {
-            commentPostLevel1: {
-              commentPost: result.data,
-              feelCommentList: [],
-            },
-            commentPostLevel2List: [],
-          },
-        ].concat(
-          [...postDetail.commentDetailList].filter(
-            (data) => data.commentPostLevel1.commentPost.id !== id
-          )
-        ),
-      });
-    } else {
-      const index = postDetail.commentDetailList.findIndex(
-        (data) =>
-          data.commentPostLevel1.commentPost.id ===
-          commentDetail.commentPostLevel1.commentPost.id
-      );
-      if (index !== -1) {
-        let clone = { ...postDetail };
-        clone.commentDetailList[index].commentPostLevel2List = [
-          {
-            commentPost: result.data,
-            feelCommentList: [],
-          },
-        ].concat(
-          [...clone.commentDetailList[index].commentPostLevel2List].filter(
-            (data) => data.commentPost.id !== id
-          )
-        );
-        setPostDetail(clone);
-      }
-    }
+    let newComments: CommentDTO[] = [{ item: comment, child: [] }, ...comments];
+    updateData("comments", newComments);
+    delete comment.loading;
+    const formData = new FormData();
+    formData.append("comment", JSON.stringify(comment));
+    formData.append("post_id", postDetail.post.id);
+    comment = await sendComment(formData);
+    updateData(
+      "comments",
+      [...newComments].map((item) => {
+        if (item.item.id === comment.id) return { item: comment, child: [] };
+        return item;
+      })
+    );
   };
   //
   return (
@@ -138,7 +66,7 @@ const TypeCommentInput = ({
             aria-hidden
             ref={refContent}
             onInput={(event) => {
-              setDataComment({
+              updateData("dataComment", {
                 ...dataComment,
                 content: event.currentTarget.textContent,
               });
@@ -152,21 +80,14 @@ const TypeCommentInput = ({
             className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-thirddark:text-white py-3 "
             style={{ minHeight: 30, width: "96%" }}
             contentEditable={true}
-          ></div>
+          />
         </div>
         <CategoryInputComment
-          setDataComment={setDataComment as any}
-          dataComment={dataComment}
           handleSendComment={handleSendComment}
           ref={refContent}
         />
       </div>
-      {dataComment?.value?.name && (
-        <PreviewImageComment
-          dataComment={dataComment}
-          setDataComment={setDataComment}
-        />
-      )}
+      {file && <PreviewImageComment />}
     </>
   );
 };

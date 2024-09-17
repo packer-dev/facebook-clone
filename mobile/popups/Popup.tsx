@@ -35,7 +35,7 @@ const Popup = ({
             zIndex: 89,
           },
         ]}
-      ></View>
+      />
       <Animatable.View
         animation="fadeInUp"
         duration={200}

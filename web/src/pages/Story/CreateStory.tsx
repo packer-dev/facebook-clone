@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { PAGE_CREATE_STORY } from "../../constants/Config";
-import { StoryEditorContext } from "../../contexts/StoryEditorContext";
+import { PAGE_CREATE_STORY } from "@/constants/Config";
+import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
@@ -19,13 +19,10 @@ export default function CreateStory(props) {
   }, [mode]);
   //
   return (
-    <div
-      className="w-full flex z-10 bg-gray-100 dark:bg-dark-main lg:w-full lg:mx-auto xl:w-full"
-      style={{ height: "calc(100%)" }}
-    >
+    <div className="w-full flex z-10 bg-gray-100 dark:bg-dark-main lg:w-full lg:mx-auto xl:w-full h-full">
       <div className="w-1/4 p-4 shadow-lv1 h-full">
         <p className="w-full flex py-6">
-          <span className="font-bold text-xl dark:text-white">Tin Của Bạn</span>
+          <span className="font-bold text-xl dark:text-white">Your story</span>
         </p>
         <div className="w-full flex pb-3">
           <img
@@ -56,6 +53,7 @@ export default function CreateStory(props) {
               id="createStoryImage"
             />
             <label className="w-full h-80" htmlFor="createStoryImage">
+              {" "}
               <div
                 className="w-full h-80 rounded-lg shadow-lv1 bg-cover "
                 style={{
@@ -69,10 +67,10 @@ export default function CreateStory(props) {
                   <i
                     className="far fa-file-image shadow-md dark:bg-dark-third dark:text-white 
                     bg-white text-2xl rounded-full px-4 py-2.5 shadow-lv1"
-                  ></i>
+                  />
                   <br />
                   <p className="text-center text-white font-bold p-2">
-                    Tạo tin ảnh
+                    Create image story
                   </p>
                 </div>
               </div>
@@ -96,10 +94,10 @@ export default function CreateStory(props) {
               <i
                 className="fas fa-font shadow-md bg-white dark:bg-dark-third dark:text-white text-2xl 
                 rounded-full px-4 py-2.5"
-              ></i>
+              />
               <br />
               <p className="text-center text-white font-bold p-2">
-                Tạo tin dạng văn bản
+                Create text story
               </p>
             </div>
           </div>

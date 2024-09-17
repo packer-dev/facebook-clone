@@ -21,8 +21,7 @@ export default function ModalTagPost() {
     <ModalWrapperChildPost title="Gắn thẻ bạn bè">
       <div className="w-full my-2 px-2 flex items-center">
         <InputComponent
-          className="dark:text-white font-bold w-10/12 p-2.5 pl-4 bg-transparent dark:bg-dark-third rounded-3xl 
-                border border-solid border-gray-300"
+          className="dark:text-white font-bold w-10/12 p-2.5 pl-4 bg-transparent dark:bg-dark-third rounded-3xl border border-solid border-gray-300"
           search={true}
           type="text"
           placeholder="Tìm kiếm bạn bè"
@@ -45,12 +44,12 @@ export default function ModalTagPost() {
           </p>
           <div className="w-full mx-auto p-2 border-2 border-solid border-gray-300 rounded-lg">
             <div className="w-auto gap-2 flex flex-wrap max-h-32 overflow-y-auto">
-              {posts.tags.map((tag, index) => (
+              {posts.tags.map((tag) => (
                 <div
                   key={tag.id}
                   className="my-1 break-all text-sm w-auto rounded-md cursor-pointer p-1.5 bg-blue-100 text-blue-500 font-bold"
                 >
-                  {`${tag.firstName} ${tag.lastName}`}
+                  {`${tag.name}`}
                   <span
                     aria-hidden
                     onClick={() => {
@@ -113,7 +112,7 @@ export default function ModalTagPost() {
               (item) => item.id === user.userUserRelationShip.id
             ) !== -1 && (
               <span className="absolute top-1/2 transform -translate-y-1/2 right-8">
-                <i className="fas fa-check text-green-400 text-xl"></i>
+                <i className="fas fa-check text-green-400 text-xl" />
               </span>
             )}
           </div>

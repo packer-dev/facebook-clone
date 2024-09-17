@@ -117,7 +117,7 @@ const ItemAudio = ({ refAudio, item }: any) => {
           className={`${
             current ? "fas fa-stop-circle" : "fas fa-play-circle"
           } text-xl`}
-        ></i>
+        />
       </div>
     </li>
   );

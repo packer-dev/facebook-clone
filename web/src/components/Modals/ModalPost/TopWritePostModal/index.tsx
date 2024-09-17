@@ -7,7 +7,9 @@ import { User } from "@/interfaces/User";
 
 export default function TopWritePostModal() {
   //
-  const { posts } = useContext(PostContext);
+  const {
+    posts: { activity, feel, tags, local },
+  } = useContext(PostContext);
   const user = useSelector<RootState, User>(getUser);
   //
   return (
@@ -19,13 +21,19 @@ export default function TopWritePostModal() {
       />
       <div className=" pl-2 " style={{ width: "calc(100% - 70px)" }}>
         <p className="pt-0.5 dark:text-white">
-          <InfoPostHeader user={user} post={posts} tagList={[]} />
+          <InfoPostHeader
+            user={user}
+            activity={activity}
+            feel={feel}
+            local={local}
+            tagList={tags}
+          />
         </p>
         <div className="py-0 px-1 mt-0.5 w-28 bg-gray-300 dark:bg-dark-third rounded-full">
           <div className="flex gap-1 py-1.5 justify-center text-xs relative cursor-pointer items-center">
-            <i className="fas fa-globe-europe dark:text-white"></i>
+            <i className="fas fa-globe-europe dark:text-white" />
             <b className="dark:text-white">&nbsp;Công Khai&nbsp;&nbsp;</b>
-            <i className="fas fa-sort-down -mt-0.5 dark:text-white"></i>
+            <i className="fas fa-sort-down -mt-0.5 dark:text-white" />
           </div>
         </div>
       </div>

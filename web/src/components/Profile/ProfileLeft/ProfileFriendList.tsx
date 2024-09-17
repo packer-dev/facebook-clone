@@ -26,13 +26,11 @@ export default function ProfileFriendList() {
       <div className="w-full flex">
         <div className="w-1/2">
           <p className="dark:text-white font-bold pt-2">
-            Bạn bè <br />
+            Friends <br />
           </p>
-          <span className="color-word">{friends.length} người bạn</span>
+          <span className="color-word">{friends.length} friends</span>
         </div>
-        <div className="w-1/2 mt-2.5 pr-2.5 text-right text-main">
-          Xem tất cả
-        </div>
+        <div className="w-1/2 mt-2.5 pr-2.5 text-right text-main">View all</div>
       </div>
       <div className="w-full pt-4 grid grid-cols-3 gap-1">
         {friends.map((friend) => (

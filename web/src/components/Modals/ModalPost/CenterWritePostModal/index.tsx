@@ -193,8 +193,8 @@ export default function CenterWritePostModal(props: any) {
           <div className="w-full relative">
             <ContentAnswerQuestion
               current={posts.answer_question}
-              content={posts.contentAnswerQuestion}
-              input={posts.contentAnswerQuestion}
+              content={posts.answer_question?.content}
+              input={posts.answer_question?.content}
             />
             <span
               aria-hidden

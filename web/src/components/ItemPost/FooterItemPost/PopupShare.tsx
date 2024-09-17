@@ -5,32 +5,32 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
   const categories = [
     {
       icon: "bx bx-share",
-      name: "Chia sẽ ngay (Công khai)",
+      name: "Share Now (Public)",
       handleClick: () => "",
     },
     {
       icon: "bx bx-share",
-      name: "Chia sẽ ngay (Bạn bè)",
+      name: "Share Now (Friends)",
       handleClick: () => "",
     },
     {
       icon: "bx bx-share",
-      name: "Chia sẽ ngay (Chỉ mình tôi)",
+      name: "Share Now (Only Me)",
       handleClick: () => "",
     },
     {
       icon: "fas fa-user-edit",
-      name: "Chia sẽ lên bản tin",
+      name: "Share to News Feed",
       handleClick: () => "",
     },
     {
       icon: "bx bx-copy",
-      name: "Sao chép liên kết",
+      name: "Copy Link",
       handleClick: () => "",
     },
     {
       icon: "bx bxl-messenger",
-      name: "Gửi qua messenger",
+      name: "Send via Messenger",
       handleClick: () => "",
     },
   ];
@@ -44,12 +44,11 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
       <ul className="w-full">
         {categories.map((category, index) => (
           <li
-            key={index}
-            onClick={() => {}}
-            className="w-full flex p-2 cursor-pointer dark:text-white dark:hover:bg-dark-third 
-                    hover:bg-gray-200"
+            aria-hidden
+            key={category.name}
+            className="w-full flex p-2 cursor-pointer dark:text-white dark:hover:bg-dark-third hover:bg-gray-200"
           >
-            <i className={`text-2xl pr-2 ${category.icon}`}></i>
+            <i className={`text-2xl pr-2 ${category.icon}`} />
             {category.name}
           </li>
         ))}
@@ -57,4 +56,5 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
     </div>
   );
 });
+
 export default PopupShare;

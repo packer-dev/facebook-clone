@@ -82,18 +82,18 @@ export default function StoryEditor({ mode }: any) {
             {loading ? (
               <i className="bx bx-shape-circle fa-spin text-main text-5xl">:</i>
             ) : (
-              "Chia sẻ lên tin"
+              "Share story"
             )}
           </ButtonComponent>
         </div>
       </div>
       <div className="w-1/4 p-4 pt-0 border-t-2 border-solid border-gray-300 shadow-md dark:border-dark-third">
         <p className="w-full flex py-6">
-          <span className="font-bold text-xl dark:text-white">Màu chữ</span>
+          <span className="font-bold text-xl dark:text-white">Color text</span>
         </p>
         <ColorTextList />
         <p className="w-full flex py-6">
-          <span className="font-bold text-xl dark:text-white">Âm nhạc</span>
+          <span className="font-bold text-xl dark:text-white">Sound</span>
         </p>
         <AudioList />
       </div>

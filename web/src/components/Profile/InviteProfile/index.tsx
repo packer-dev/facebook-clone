@@ -1,5 +1,5 @@
+import ButtonComponent from "@/components/ButtonComponent";
 import * as React from "react";
-import ButtonComponent from "../../ButtonComponent";
 
 export default function InviteProfile() {
   return (

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import ImageVideoDisplay from "../ImageVideoDisplay";
 import { Media } from "@/interfaces/Media";
 import { Post } from "@/interfaces/Post";
+import MediaDisplay from "@/components/MediaDisplay";
 
 export type NormalPostProps = {
   imageVideoPostList: Media[];
@@ -25,7 +25,7 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
       </div>
     </div>
   ) : (
-    <ImageVideoDisplay imageVideoPostList={imageVideoPostList} post={post} />
+    <MediaDisplay medias={imageVideoPostList} post={post} />
   );
 
   return (
@@ -46,7 +46,7 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
                 className="w-full h-full rounded-full object-cover shadow-lv1 mx-auto shadow-lg"
               />
               <span className="py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rouned-full bg-red-600 text-white font-semibold">
-                {`H&D`}
+                {`A&Q`}
               </span>
             </div>
             <div className="w-full px-4 mt-4">

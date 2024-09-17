@@ -19,14 +19,14 @@ function CallAgain(props) {
           } w-12 h-12 rounded-full text-2xl flex bg-opacity-80 z-10
             items-center justify-center cursor-pointer text-gray-300 `}
           style={{ backgroundColor: "#00a400" }}
-        ></span>
+        />
       </div>
       <div className="w-12 h-12 relative mx-2.5 ">
         <span
           className={`fas fa-times w-12 h-12 rounded-full text-2xl flex bg-opacity-80 z-10
         items-center justify-center cursor-pointer text-gray-300`}
           style={{ backgroundColor: "#3A3B3C" }}
-        ></span>
+        />
       </div>
     </div>
   );

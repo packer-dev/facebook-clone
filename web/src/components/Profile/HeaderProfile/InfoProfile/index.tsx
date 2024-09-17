@@ -13,13 +13,13 @@ export default function InfoProfile() {
       <p className="font-semibold text-4xl py-1 dark:text-white flex items-center">
         {`${userProfile.name}`}
         <span className="ml-3 bg-blue-500 rounded-full text-sm font-bold text-white w-4 h-4 flex">
-          <i className="bx bx-check flex justiy-center items-center "></i>
+          <i className="bx bx-check flex justiy-center items-center " />
         </span>
       </p>
       <p className="text-gray-600 dark:text-gray-300 items-center pl-1 pb-1 flex">
-        <span>1.870 bạn bè</span>
+        <span>1.870 friends</span>
         <span className="mx-1">•</span>
-        <span></span>
+        <span />
       </p>
       <div className="w-full flex flex-col md:flex-row justify-between items-center">
         <div className="flex pl-2 my-1 w-full md:w-auto">

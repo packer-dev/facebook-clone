@@ -78,7 +78,7 @@ const ItemChatMinize = ({ item }: { item: Group }) => {
       >
         &times;
       </span>
-      <span className="w-3.5 h-3.5 rounded-full border-2 border-solid  border-white absolute bottom-0 -right-1 bg-green-500"></span>
+      <span className="w-3.5 h-3.5 rounded-full border-2 border-solid  border-white absolute bottom-0 -right-1 bg-green-500" />
     </div>
   );
 };

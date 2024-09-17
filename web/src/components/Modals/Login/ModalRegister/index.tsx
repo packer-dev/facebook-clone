@@ -58,9 +58,9 @@ function ModalRegister() {
   };
   return (
     <ModalWrapper
-      className={`wrapper-scrollbar p-2 w-11/12 fixed top-1/2 left-1/2 transform 
+      className="wrapper-scrollbar p-2 w-11/12 fixed top-1/2 left-1/2 transform 
       -translate-x-1/2 -translate-y-1/2 opacity-100 bg-white z-50 border border-solid 
-      border-gray-200 shadow-lv1 rounded-lg sm:w-11/12  lg:w-4/5 xl:w-30%`}
+      border-gray-200 shadow-lv1 rounded-lg sm:w-11/12  lg:w-4/5 xl:w-30%`"
     >
       <h1 className="-pt-1 pb-0.5 text-3xl font-bold">Register</h1>
       <p className="pb-2.5 text-sm pt-0.5 text-gray-600">Fast and easy</p>
@@ -73,7 +73,7 @@ function ModalRegister() {
               error={errors["name"]}
               type="text"
               name="name"
-              className={`w-full p-2 border my-1 `}
+              className="w-full p-2 border my-1"
               placeholder="Fullname"
             />
           </div>
@@ -88,7 +88,7 @@ function ModalRegister() {
               setErrorsIsset(false);
               setEmailAgain(REGEX_EMAIL.test(value));
             }}
-            className={`p-2 border my-1`}
+            className="p-2 border my-1"
             placeholder="Email"
           />
         </div>
@@ -104,7 +104,7 @@ function ModalRegister() {
               error={errors["emailAgain"]}
               type="text"
               name="emailAgain"
-              className={`p-2 border my-1`}
+              className="p-2 border my-1"
               placeholder="Email again"
             />
           </div>
@@ -115,7 +115,7 @@ function ModalRegister() {
             error={errors["password"]}
             type="password"
             name="password"
-            className={`p-2 border my-1 `}
+            className="p-2 border my-1"
             placeholder="Password"
           />
         </div>
@@ -132,9 +132,7 @@ function ModalRegister() {
         <div className="form_5 text-center p-4">
           <button
             type="submit"
-            className="text-xl w-1/2 p-2 font-bold border rounded-lg 
-              text-white cursor-pointer bg-green-500"
-            style={{ backgroundColor: "#00a400" }}
+            className="text-xl w-1/2 p-2 font-bold border rounded-lg text-white cursor-pointer bg-[#00a400]"
           >
             Register
           </button>

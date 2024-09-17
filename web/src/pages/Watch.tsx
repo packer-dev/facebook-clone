@@ -3,7 +3,7 @@ import * as React from "react";
 import InputComponent from "@/components/InputComponent";
 import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
-import ListItemWatchLeft from "@/components/Watch/WatchLeft/ListItemWatchLeft";
+import ListItemWatchLeft from "@/components/Watch/WatchLeft";
 import WatchNewBest from "@/components/Watch/WatchRight/WatchNewBest";
 import WrapperLogged from "./WrapperLogged";
 
@@ -32,7 +32,7 @@ export default function Watch() {
               <span
                 className="fas fa-cog w-10 h-10 rounded-full bg-gray-200 dark:bg-dark-third 
                             md:flex items-center hidden justify-center text-xl hover:bg-gray-300 dark:hover:bg-dark-second"
-              ></span>
+              />
             </div>
             <div className="md:flex hidden w-full ">
               <InputComponent

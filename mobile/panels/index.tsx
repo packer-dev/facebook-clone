@@ -31,7 +31,7 @@ const Panel = ({
     <View
       style={{ ...styles.container, ...tailwind(`border-t border-gray-300`) }}
     >
-      <View style={styles.button}></View>
+      <View style={styles.button} />
       {name && <Text style={styles.title}>{name}</Text>}
       {children}
     </View>
@@ -54,7 +54,7 @@ const Panel = ({
           backgroundColor ? { backgroundColor } : { backgroundColor: "#fff" },
         ]}
       >
-        <View style={styles.button}></View>
+        <View style={styles.button} />
         {name && <Text style={styles.title}>{name}</Text>}
         <View style={tailwind(`py-3`)}>{children}</View>
       </Animated.View>

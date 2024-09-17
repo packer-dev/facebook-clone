@@ -19,7 +19,7 @@ const ItemNotifyRight = ({
         <span
           className={`bx bxs-${icon} w-9 h-9 flex items-center justify-center bg-gray-500 text-xl 
           rounded-full`}
-        ></span>
+        />
       </div>
       <div className="flex items-center pl-3">
         {type} connected: Stereo Mix (IDT High Definition Audio CODEC)

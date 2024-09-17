@@ -33,7 +33,7 @@ const Header = ({
       </TouchableOpacity>
       <Text style={tailwind(`font-bold text-lg text-gray-700`)}>{title}</Text>
       {hiddenSearch ? (
-        <View></View>
+        <View />
       ) : (
         <TouchableOpacity
           onPress={() => (handle ? handle() : navigation.goBack())}

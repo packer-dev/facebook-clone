@@ -41,7 +41,7 @@ export default function ItemFriendCanKnow(props: any) {
             className="w-full justify-center p-0.5 my-2 rounded-md text-main bg-blue-100 
                 flex items-center hover:bg-blue-200 font-semibold"
           >
-            <i className="bx bx-user-plus text-2xl mr-1"></i> Thêm bạn bè
+            <i className="bx bx-user-plus text-2xl mr-1" /> Thêm bạn bè
           </ButtonComponent>
         </div>
         <div

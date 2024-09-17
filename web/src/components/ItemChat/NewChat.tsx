@@ -54,7 +54,7 @@ const ItemNewChat = forwardRef(
           />
         </div>
         <div className="w-8/12 px-3 py-3 dark:text-white">{`${item.name}`}</div>
-        <div className="w-2/12 py-3 text-center"></div>
+        <div className="w-2/12 py-3 text-center" />
       </div>
     );
   }
@@ -135,7 +135,7 @@ export default function NewChat() {
         </div>
         {loading && (
           <div className="w-full p-3 flex items-center justify-center">
-            <i className="fas fa-circle-notch fa-spin text-2xl text-blue-500"></i>
+            <i className="fas fa-circle-notch fa-spin text-2xl text-blue-500" />
           </div>
         )}
         {!loading && text && (

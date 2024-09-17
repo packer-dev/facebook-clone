@@ -4,7 +4,7 @@ import { FriendProfileDTO } from "@/interfaces/User";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ItemFriendList({ item }: { item: FriendProfileDTO }) {
+const ItemFriendList = ({ item }: { item: FriendProfileDTO }) => {
   const navigation = useNavigate();
   return (
     <div
@@ -38,4 +38,6 @@ export default function ItemFriendList({ item }: { item: FriendProfileDTO }) {
       </div>
     </div>
   );
-}
+};
+
+export default ItemFriendList;

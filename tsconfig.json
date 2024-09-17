@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["shared/*"],
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "jsx": "react",
+    "moduleResolution": "node"
+  },
+  "include": ["web/src", "mobile", "shared"]
+}

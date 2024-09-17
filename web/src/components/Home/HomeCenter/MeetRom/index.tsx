@@ -30,7 +30,7 @@ export default function MeetRom() {
         <i
           className="bx bxs-video-plus text-2xl mr-3"
           style={{ color: "#AB4CB3" }}
-        ></i>
+        />
         <span>Tạo phòng hop mặt</span>
       </ButtonComponent>
       <ScrollContainer className="overflow-x-auto w-1/2 lg:w-auto">
@@ -45,7 +45,7 @@ export default function MeetRom() {
                 alt=""
                 className="w-full h-full rounded-full object-cover"
               />
-              <span className="w-3 h-3 rounded-full absolute bottom-0 right-0 bg-green-500"></span>
+              <span className="w-3 h-3 rounded-full absolute bottom-0 right-0 bg-green-500" />
             </li>
           ))}
         </ul>

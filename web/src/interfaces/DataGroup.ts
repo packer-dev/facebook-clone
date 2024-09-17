@@ -1,4 +1,4 @@
 export interface DataGroup {
-    color: string;
-    emoji: string;
+  color: string;
+  emoji: string;
 }

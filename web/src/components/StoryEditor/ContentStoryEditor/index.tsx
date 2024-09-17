@@ -21,7 +21,7 @@ const ContentTextEdit = () => {
       top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -transtate-y-1/2 -translate-x-1/2"
       spellCheck={false}
       style={{ color: color ? color.color : "white" }}
-    ></div>
+    />
   );
 };
 

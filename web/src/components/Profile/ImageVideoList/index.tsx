@@ -19,7 +19,7 @@ const ImageVideoList = ({ image }: { image?: boolean }) => {
   const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   return (
     <WrapperContentChildProfile<ImageVideoProps>
-      label={image ? "Ảnh" : "Video"}
+      label={image ? "Image" : "Video"}
       setData={setImageVideos}
       getResultAPI={() => getMediaByUserId(userProfile?.id, 1)}
     >

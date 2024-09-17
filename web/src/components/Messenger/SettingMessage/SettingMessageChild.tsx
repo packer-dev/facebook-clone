@@ -26,7 +26,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justity-center w-8">
-              <span className="bx bxl-messenger text-xm dark:text-white flex items-center"></span>
+              <span className="bx bxl-messenger text-xm dark:text-white flex items-center" />
             </div>
             <div className="flex items-center">Mở trong messenger</div>
           </li>
@@ -42,7 +42,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justity-center w-8">
-            <span className="fab fa-ussunnah text-xm dark:text-white flex items-center"></span>
+            <span className="fab fa-ussunnah text-xm dark:text-white flex items-center" />
           </div>
           <div className="flex items-center">Đổi chủ đề</div>
         </li>
@@ -72,7 +72,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justity-center w-8">
-            <span className="fas fa-pen text-xm dark:text-white flex items-center"></span>
+            <span className="fas fa-pen text-xm dark:text-white flex items-center" />
           </div>
           <div className="flex items-center">Chỉnh sửa biệt danh</div>
         </li>
@@ -82,7 +82,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
                 py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justity-center w-8">
-              <span className="fas fa-search text-xm dark:text-white flex items-center"></span>
+              <span className="fas fa-search text-xm dark:text-white flex items-center" />
             </div>
             <div className="flex items-center">
               Tìm kiếm trong cuộc trò chuyện
@@ -95,7 +95,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justity-center w-8">
-              <span className="bx bxs-trash-alt text-xm dark:text-white flex items-center"></span>
+              <span className="bx bxs-trash-alt text-xm dark:text-white flex items-center" />
             </div>
             <div className="flex items-center">Xoá cuộc trò chuyện</div>
           </li>

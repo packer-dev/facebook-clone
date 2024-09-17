@@ -108,7 +108,7 @@ const Header = ({
             }
           >
             {loading ? (
-              <View style={tailwind(`w-40 h-2 rounded-lg bg-gray-200`)}></View>
+              <View style={tailwind(`w-40 h-2 rounded-lg bg-gray-200`)} />
             ) : (
               <Text>
                 <Text style={tailwind(`font-semibold`)}>
@@ -120,7 +120,7 @@ const Header = ({
           </TouchableOpacity>
           <View style={tailwind(`flex-row items-center gap-3`)}>
             {loading ? (
-              <View style={tailwind(`w-20 h-2 rounded-lg bg-gray-200`)}></View>
+              <View style={tailwind(`w-20 h-2 rounded-lg bg-gray-200`)} />
             ) : (
               <Text style={tailwind(`text-gray-600 text-sm`)}>
                 {moment(post?.time_created).fromNow()}.

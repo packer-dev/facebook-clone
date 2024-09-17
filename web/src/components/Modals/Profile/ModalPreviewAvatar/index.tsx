@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ModalWrapper from "../../ModalWrapper";
-import ButtonComponent from "../../../ButtonComponent";
-import { ModalContext } from "../../../../contexts/ModalContext/ModalContext";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function ModalPreviewAvatar(props) {
   const { image } = props;
@@ -29,7 +29,7 @@ export default function ModalPreviewAvatar(props) {
           style={{ maxHeight: 450, minHeight: 320 }}
         >
           <img
-            src={image && image.name && URL.createObjectURL(image)}
+            src={image?.name && URL.createObjectURL(image)}
             alt=""
             className="h-full"
             // crop={crop} onChange={newCrop => setCrop(newCrop)} circularCrop
@@ -43,7 +43,7 @@ export default function ModalPreviewAvatar(props) {
         </div>
       </div>
       <div className="flex items-center justify-around w-3/4 mx-auto gap-1">
-        <span className="bx bx-minus text-2xl"></span>
+        <span className="bx bx-minus text-2xl" />
         <input
           type={"range"}
           min={0}
@@ -52,11 +52,11 @@ export default function ModalPreviewAvatar(props) {
           value={0}
           onChange={(e) => ""}
         />
-        <span className="bx bx-plus text-2xl"></span>
+        <span className="bx bx-plus text-2xl" />
       </div>
       <p className="text-gray-600 py-2 pl-5 border-b-2 border-solid border-gray-200 font-semibold flex items-center">
-        <i className="bx bx-globe text-2xl mr-2"></i>Ảnh bìa của bạn hiển thị
-        công khai.
+        <i className="bx bx-globe text-2xl mr-2" />
+        <span>Ảnh bìa của bạn hiển thị công khai.</span>
       </p>
       <div className="w-full py-2 mt-2 flex items-center px-4 justify-end ">
         <div className="flex items-center gap-2">

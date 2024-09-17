@@ -20,7 +20,7 @@ function FooterLogin(props) {
             className="w-5 h-5 flex justify-center items-center border-1 mt-2
           border-solid border-gray-600 cursor-pointer transform -translate-y-0.5"
           >
-            <i className="bx bx-plus text-xs"></i>
+            <i className="bx bx-plus text-xs" />
           </button>
         </li>
       </ul>

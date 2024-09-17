@@ -97,9 +97,7 @@ const ItemGroup = ({ handleClick, group, loading }: ItemGroupProps) => {
           {loading ? "" : nameGroup}
         </Text>
         {loading ? (
-          <Text
-            style={tailwind("w-3/4 bg-gray-300 h-3 rounded-full mt-3")}
-          ></Text>
+          <Text style={tailwind("w-3/4 bg-gray-300 h-3 rounded-full mt-3")} />
         ) : (
           <Text
             style={tailwind(

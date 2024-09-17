@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { RefObject, forwardRef, useState } from "react";
 
 type InputComponentProps = {
   register?: any;
@@ -32,11 +32,10 @@ export default forwardRef(function InputComponent(
     handleChange,
     disabled,
     label = "",
-    value = "",
     width = "",
     handleClick,
   }: InputComponentProps,
-  ref: any
+  ref: RefObject<HTMLInputElement>
 ) {
   //
   const [show, setShow] = useState(false);
@@ -49,11 +48,7 @@ export default forwardRef(function InputComponent(
         <div className={`${wrapper} ${width || "w-full"} relative`}>
           <input
             ref={ref}
-            onClick={() => {
-              if (typeof handleClick === "function") {
-                handleClick();
-              }
-            }}
+            onClick={() => handleClick?.()}
             type={show || search ? "text" : "password"}
             placeholder={placeholder}
             className={`${width || "w-full"} ${className} ${borderValidation} 
@@ -78,37 +73,30 @@ export default forwardRef(function InputComponent(
               onClick={() => setShow(!show)}
               className={`bx bx-${
                 show ? "show" : "hide"
-              } text-xl text-gray-700 absolute 
-                    top-1/2 transform -translate-y-1/2 z-30 right-2 cursor-pointer`}
-            ></span>
+              } text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 right-2 cursor-pointer`}
+            />
           )}
           {search && (
             <span
-              className={`bx bx-search text-xl text-gray-700 absolute 
-                    top-1/2 transform -translate-y-1/2 z-30 left-3 cursor-pointer dark:text-white`}
-            ></span>
+              className={`bx bx-search text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 left-3 cursor-pointer dark:text-white`}
+            />
           )}
         </div>
       ) : (
         <input
-          onClick={() => {
-            if (typeof handleClick === "function") {
-              handleClick();
-            }
-          }}
+          onClick={() => handleClick?.()}
           type={type}
           ref={ref}
           placeholder={placeholder}
           className={`${
             width || "w-full"
           } ${className} ${borderValidation} focus:border-blue-600 
-                border-solid focus:shadow-sm rounded-sm border-gray-200 dark:border-dark-third`}
+          border-solid focus:shadow-sm rounded-sm border-gray-200 dark:border-dark-third`}
           {...Field}
           spellCheck={false}
           onChange={(event) => {
-            if (typeof handleChange === "function")
-              handleChange(event.target.value);
-            if (typeof register === "function") register(name).onChange(event);
+            handleChange?.(event.target.value);
+            register?.(name).onChange(event);
           }}
           name={name}
           disabled={disabled}

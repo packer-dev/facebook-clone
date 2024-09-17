@@ -34,7 +34,7 @@ export default function ForgetAccount() {
           </p>
         )}
       </div>
-      <hr></hr>
+      <hr />
       <div className="w-full py-3 mt-1 flex justify-end items-center">
         <ButtonComponent
           handleClick={() => {

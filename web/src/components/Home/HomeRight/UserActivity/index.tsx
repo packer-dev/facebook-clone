@@ -87,7 +87,7 @@ export default function UserActivity() {
           src={item.avatar}
           alt=""
         />
-        <span className="w-2.5 h-2.5 rounded-full absolute bottom-0 right-0 bg-green-500"></span>
+        <span className="w-2.5 h-2.5 rounded-full absolute bottom-0 right-0 bg-green-500" />
       </div>
       <p className="font-semibold ml-3 dark:text-white">{`${item.name}`}</p>
     </div>

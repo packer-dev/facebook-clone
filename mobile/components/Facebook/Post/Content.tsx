@@ -28,7 +28,7 @@ const Content = ({
       {loading && (
         <View
           style={tailwind(`w-40 h-2 rounded-lg bg-gray-200 rounded-lg ml-3`)}
-        ></View>
+        />
       )}
       {loading && <View style={tailwind(`h-80 bg-gray-200 rounded-lg`)} />}
       {!loading && (
@@ -93,7 +93,7 @@ const Content = ({
               />
             </View>
           ) : (
-            <View></View>
+            <View />
           )}
           {comment ? (
             <View style={tailwind(`flex-row items-center`)}>
@@ -103,7 +103,7 @@ const Content = ({
               <Text style={tailwind(`text-gray-700`)}>Comments</Text>
             </View>
           ) : (
-            <View></View>
+            <View />
           )}
         </View>
       )}

@@ -23,7 +23,7 @@ export default function ButtonViewPostTop(props) {
           handleClick={() => navigation(-1)}
           className="text-white text-4xl "
         >
-          <i className="bx bx-x"></i>
+          <i className="bx bx-x" />
         </ButtonComponent>
         <div className="w-12 h-12 rounded-full">
           <Logo />
@@ -37,7 +37,7 @@ export default function ButtonViewPostTop(props) {
               className="absolute item__flex top-1/2 transform -translate-y-1/2 mx-2 w-12 h-12 
                 rounded-full bg-gray-200 bx bx-chevron-left text-4xl flex justify-center items-center hover:bg-gray-300 
                 left-0 cursor-pointer z-50"
-            ></ButtonComponent>
+            />
           )}
 
           {index !== length - 1 && length !== 0 && (
@@ -46,7 +46,7 @@ export default function ButtonViewPostTop(props) {
               className="absolute top-1/2 item__flex transform -translate-y-1/2 mx-2 w-12 h-12 rounded-full 
                 bg-gray-200 bx bx-chevron-right text-4xl flex justify-center items-center hover:bg-gray-300 
                 right-0 cursor-pointer z-50"
-            ></ButtonComponent>
+            />
           )}
         </>
       )}
@@ -58,7 +58,7 @@ export default function ButtonViewPostTop(props) {
             setScale(scale + 20);
           }}
           className="bx bx-zoom-in cursor-pointer"
-        ></i>
+        />
         <i
           aria-hidden
           onClick={() => {
@@ -66,12 +66,12 @@ export default function ButtonViewPostTop(props) {
             setScale(scale - 20);
           }}
           className="bx bx-zoom-out cursor-pointer"
-        ></i>
+        />
         <i
           aria-hidden
           onClick={() => setFullscreen(!fullscreen)}
           className="bx bx-fullscreen  cursor-pointer"
-        ></i>
+        />
       </div>
     </>
   );

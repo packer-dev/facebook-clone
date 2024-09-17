@@ -17,16 +17,17 @@ type FormLoginProps = {
   loginFast?: User;
 };
 
-const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
-  //
+const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
   const [error, setError] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const [rememberAccount, setRememberAccount] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+
   const validationObject = {
     password: Yup.string().required("Password is required."),
   };
+
   const validationSchema = Yup.object().shape(
     !loginFast
       ? {
@@ -35,6 +36,7 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
         }
       : validationObject
   );
+
   const {
     handleSubmit,
     register,
@@ -42,6 +44,7 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
   const handleLogin = (data: FormLoginData) => {
     setLoading(true);
     dispatch(
@@ -50,7 +53,7 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
         callback: (result) => {
           if (result) {
             dispatch(login(result));
-            navigation(PAGE_HOME);
+            navigate(PAGE_HOME);
             setLoading(false);
             localStorage.setItem("user", result?.id);
             return;
@@ -60,6 +63,7 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
       })
     );
   };
+
   return (
     <form
       className="w-full bg-white p-2.5"
@@ -80,9 +84,9 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
         <InputComponent
           type="text"
           name="email"
-          placeholder="Email Hoặc Số Điện Thoại"
+          placeholder="Email Or Phone Number"
           className={`border rounded-md p-3 my-2 ${
-            errors["email"] ? "border-red-500 text-red-500" : "border-gray-200 "
+            errors["email"] ? "border-red-500 text-red-500" : "border-gray-200"
           }`}
           register={register}
           error={errors["email"]}
@@ -91,9 +95,9 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
       <InputComponent
         type="password"
         name="password"
-        placeholder="Mật Khẩu"
+        placeholder="Password"
         className={`border rounded-md p-3 my-2 ${
-          errors["email"] ? "border-red-500 text-red-500" : "border-gray-200 "
+          errors["password"] ? "border-red-500 text-red-500" : "border-gray-200"
         }`}
         register={register}
         error={errors["password"]}
@@ -113,7 +117,7 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
             }}
             className="transform scale-130 mr-2"
           />
-          <span>Nhớ tài khoản</span>
+          <span>Remember Account</span>
         </div>
       )}
       <ButtonComponent
@@ -122,10 +126,10 @@ const FormLogin = ({ remember, loginFast }: FormLoginProps) => {
         className="mx-auto w-full p-3 my-2.5 border-none rounded-md bg-main text-sm text-white font-semibold"
         type="submit"
       >
-        Đăng Nhập
+        Login
       </ButtonComponent>
       <p className="text-main bg-white py-4 cursor-pointer text-center">
-        <Link to={PAGE_FORGET_ACCOUNT}>Quên Tài khoản</Link>
+        <Link to={PAGE_FORGET_ACCOUNT}>Forgot Account</Link>
       </p>
     </form>
   );

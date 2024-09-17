@@ -62,7 +62,7 @@ export default function HomeLeft() {
                     ? "fas fa-circle-notch fa-spin text-sm"
                     : `bx bx-chevron-${iconName}  text-2xl`
                 } transform rotate-90`}
-              ></span>
+              />
             </div>
             <span className="text-sm flex text-gray-900 ml-2 items-center font-semibold dark:text-white">
               {length === categories.length ? "Thu gọn" : "Xem thêm"}

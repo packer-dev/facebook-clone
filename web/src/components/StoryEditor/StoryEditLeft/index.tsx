@@ -39,20 +39,20 @@ export default function StoryEditLeft() {
       <div className="w-full pt-4 pb-2">
         <textarea
           className="outline-none w-full h-48 font-bold resize-none border-2 
-                border-solid border-gray-200 dark:bg-dark-second overflow-hidden my-2 p-2 
-                rounded-lg place-type dark:border-dark-third shadow-xl dark:text-white"
-          placeholder="Bắt đầu nhập"
+          border-solid border-gray-200 dark:bg-dark-second overflow-hidden my-2 p-2 
+          rounded-lg place-type dark:border-dark-third shadow-xl dark:text-white"
+          placeholder="Start type"
           onChange={(event) => updateData("content", event.target.value)}
           defaultValue={content}
-        ></textarea>
+        />
       </div>
       <div
         className="w-full mb-4 px-2 flex relative cursor-pointer border-2 border-solid 
-            border-gray-300 dark:border-dark-third shadow-lg rounded-lg"
+        border-gray-300 dark:border-dark-third shadow-lg rounded-lg"
       >
-        <i className="bx bx-font-family dark:text-white text-xl py-2"></i>
-        <div className=" p-2.5 relative dark:text-white">GỌN GÀNG</div>
-        <i className="fas fa-caret-down absolute top-4 right-4 dark:text-white"></i>
+        <i className="bx bx-font-family dark:text-white text-xl py-2" />
+        <div className=" p-2.5 relative dark:text-white">SUCCINCT</div>
+        <i className="fas fa-caret-down absolute top-4 right-4 dark:text-white" />
       </div>
       {mode === 0 && <BackgroundStoryList />}
     </div>

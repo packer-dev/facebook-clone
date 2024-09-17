@@ -9,13 +9,7 @@ import { RootState, getUser } from "@/reducers";
 import Feels from "@/components/ItemPost/Feels";
 import { User } from "@/interfaces/User";
 
-const ItemComment = ({
-  commentPost,
-  setReply,
-  setPostDetail,
-  postDetail,
-  level,
-}) => {
+const ItemComment = ({ commentPost, setReply, postDetail, level }) => {
   //
   const user = useSelector<RootState, User>(getUser);
   const [feel, setFeel] = React.useState<any>(null);
@@ -85,7 +79,7 @@ const ItemComment = ({
               )}
             </>
           ) : (
-            <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin"></i>
+            <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin" />
           )}
         </div>
         {!commentPost.loading && (
@@ -158,7 +152,6 @@ const ItemComment = ({
           commentPost={commentPost.commentPost}
           level={level}
           ref={refText}
-          setPostDetail={setPostDetail}
           postDetail={postDetail}
         />
       </div>

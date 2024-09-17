@@ -42,7 +42,7 @@ const WrapperAuthenination = ({
           <div className="w-full bg-gray-200 flex justify-center items-center h-[450px]">
             <div className="lg:w-2/5 xl:w-1/3 w-11/12 mx-auto border border-solid border-gray-300 bg-white rounded-lg pt-4 pb-1">
               <p className="text-xl pl-5 font-bold mb-3">{title}</p>
-              <hr></hr>
+              <hr />
               {children}
             </div>
           </div>

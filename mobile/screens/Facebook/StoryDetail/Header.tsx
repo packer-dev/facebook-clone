@@ -34,7 +34,7 @@ const Header = ({ loading }: { loading?: boolean }) => {
                 width: width / 2,
               },
             ]}
-          ></View>
+          />
         )}
       </View>
       {!loading && (

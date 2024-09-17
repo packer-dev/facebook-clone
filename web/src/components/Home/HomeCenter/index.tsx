@@ -29,20 +29,16 @@ const HomeCenter = () => {
           className="flex-shrink-0 w-1/4 md:w-1/6 px-1 pl-0 relative text-center h-44 cursor-pointer"
         >
           <img
-            className="w-full rounded-t-lg object-cover"
-            style={{ height: 125 }}
+            className="w-full rounded-t-lg object-cover h-[125px]"
             src={user.avatar}
             alt=""
           />
-          <div
-            className="w-full rounded-b-lg bg-white dark:bg-dark-second relative"
-            style={{ height: 50 }}
-          >
+          <div className="w-full rounded-b-lg bg-white dark:bg-dark-second relative h-[50px]">
             <div
               className="w-11 h-11 rounded-full border-4 border-solid border-white dark:border-dark-second 
               absolute dark:bg-dark-second bottom-0 pt-1 bg-main left-1/2 transform -translate-x-1/2 -top-5 -mr-2 "
             >
-              <i className="fas fa-plus pt-1.5 text-white"></i>
+              <i className="fas fa-plus pt-1.5 text-white" />
             </div>
             <p className="text-center text-sm font-bold pt-6 pb-0 dark:text-white">
               Create story

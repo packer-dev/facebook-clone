@@ -42,7 +42,7 @@ export default function HeaderLoggedLeft() {
               onClick={() => setShow(false)}
               className="w-11 h-11 rounded-full text-center items-center pt-1 mt-1 cursor-pointer ml-1 "
             >
-              <i className="bx bxs-left-arrow-alt text-3xl dark:text-gray-300"></i>
+              <i className="bx bxs-left-arrow-alt text-3xl dark:text-gray-300" />
             </div>
             <div className="mt-1 pl-1">
               <div className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
@@ -62,22 +62,19 @@ export default function HeaderLoggedLeft() {
           <div className="w-full">
             <div className="w-full py-1">
               <div className="w-full cursor-pointer">
-                {loading ? (
+                {loading && (
                   <div className="w-full flex items-center justify-center h-12">
-                    <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin"></i>
+                    <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin" />
                   </div>
-                ) : list ? (
-                  list.length > 0 ? (
-                    list.map((item) => (
-                      <ItemHeaderLoggedLeft item={item} key={item.id} />
-                    ))
-                  ) : (
-                    <p className="my-2 text-sm text-center">
-                      Không tìm thấy kết quả phù hợp.
-                    </p>
-                  )
+                )}
+                {!loading && list?.length ? (
+                  list.map((item) => (
+                    <ItemHeaderLoggedLeft item={item} key={item.id} />
+                  ))
                 ) : (
-                  ""
+                  <p className="my-2 text-sm text-center">
+                    Không tìm thấy kết quả phù hợp.
+                  </p>
                 )}
               </div>
             </div>
@@ -89,7 +86,7 @@ export default function HeaderLoggedLeft() {
       </div>
       <div className="mt-1 pl-4">
         <div className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
-          <i className="bx bx-search text-gray-500 text-xl xl:mr-2 dark:text-dark-txt"></i>
+          <i className="bx bx-search text-gray-500 text-xl xl:mr-2 dark:text-dark-txt" />
           <InputComponent
             handleClick={() => setShow(true)}
             type="text"

@@ -53,7 +53,7 @@ export default function ContentAnswerQuestion(props) {
           spellCheck={false}
           contentEditable={edit}
           // placeholder={edit ? "Hi! Mình có góc hỏi đáp nè. Bạn hỏi đi..." : ""}
-        ></div>
+        />
       </div>
       {edit && (
         <ul className="gap-1.5 w-full absolute bottom-2 px-6 flex items-center">
@@ -64,7 +64,7 @@ export default function ContentAnswerQuestion(props) {
               className="w-9 h-9 bg-gray-300 rounded-lg flex items-center 
                     justify-center cursor-pointer"
             >
-              <span className="bx bx-chevron-left text-2xl text-gray-800"></span>
+              <span className="bx bx-chevron-left text-2xl text-gray-800" />
             </li>
           ) : (
             <img

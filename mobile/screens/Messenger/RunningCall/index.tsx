@@ -31,7 +31,7 @@ const RunningCall = ({ route }: any) => {
           {isAccept && (
             <>
               <LocalStream />
-              <View style={tailwind(`flex-1`)}></View>
+              <View style={tailwind(`flex-1`)} />
             </>
           )}
 

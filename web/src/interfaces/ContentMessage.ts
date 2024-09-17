@@ -1,5 +1,5 @@
 export interface ContentMessage {
-    id: string;
-    text: string;
-    type: number; // 1. Normal # 2.Sticker # 3.Image/Video
+  id: string;
+  text: string;
+  type: number; // 1. Normal # 2.Sticker # 3.Image/Video
 }

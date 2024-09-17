@@ -62,7 +62,7 @@ const WrapperLogged = ({
                    dark:text-white w-12 h-12 border-2 border-solid border-gray-200 dark:border-dark-third flex 
                   items-center justify-center "
                 >
-                  <i className="bx bx-plus text-2xl"></i>
+                  <i className="bx bx-plus text-2xl" />
                 </div>
               </div>
             </div>
