@@ -12,7 +12,7 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
   //
   const content: any = post.background ? (
     <div
-      className="w-full relative h-80 bg-cover"
+      className="w-full relative h-80 bg-cover rounded-lg"
       style={{
         [post.background.key]: post.background.value,
       }}
@@ -27,15 +27,14 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
   ) : (
     <MediaDisplay medias={imageVideoPostList} post={post} />
   );
-
   return (
     <div className="w-full">
       {post.answer_question ? (
         <div
-          className={`w-2/3 mx-auto flex justify-center items-center rounded-xl relative`}
+          className={`w-full mx-auto flex justify-center items-center rounded-lg relative`}
           style={{
             height: 550,
-            backgroundImage: post.answer_question.value,
+            backgroundImage: post.answer_question.content,
           }}
         >
           <div className="">
@@ -57,7 +56,7 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
                     : "text-3xl"
                 } w-full flex justify-center text-white font-semibold break-all text-center`}
               >
-                {post.answer_question.content}
+                {post.answer_question.value}
               </div>
             </div>
           </div>

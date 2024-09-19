@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import emojii from "@/config/emojii";
 
-export default function PopoverEmojii({
-  handleClick,
-}: {
-  handleClick: Function;
-}) {
+const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
   //
   const listCategoryFun = () => {
     let listCategory = [];
@@ -37,7 +33,7 @@ export default function PopoverEmojii({
                 ? " bg-gray-300 dark:bg-dark-third"
                 : " hover:bg-gray-300 dark:hover:bg-dark-third"
             }`}
-        key={item?.id}
+        key={item?.emoji}
       >
         {item.thumnail}
       </li>
@@ -69,7 +65,7 @@ export default function PopoverEmojii({
                   ? "hover:bg-gray-300 dark:hover:bg-dark-third"
                   : "bg-gray-300 dark:bg-dark-third"
               }`}
-              key={item?.id}
+              key={item?.emoji}
             >
               {item}
             </div>
@@ -78,4 +74,6 @@ export default function PopoverEmojii({
       </div>
     </div>
   );
-}
+};
+
+export default PopoverEmojii;

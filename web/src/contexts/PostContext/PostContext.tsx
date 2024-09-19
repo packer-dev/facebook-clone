@@ -8,13 +8,12 @@ import {
   Background,
   FeelPost,
   Local,
-  Post,
 } from "@/interfaces/Post";
 import { Media } from "@/interfaces/Media";
 import { User } from "@/interfaces/User";
 
 export type PostContextProps = {
-  post: Post;
+  id: string;
   content: string;
   imageVideo: {
     old: Media[];
@@ -36,7 +35,7 @@ export type PostContextProps = {
 };
 
 const initialState: PostContextProps = {
-  post: null,
+  id: "",
   content: "",
   imageVideo: {
     old: [],

@@ -13,7 +13,7 @@ export default function HeaderLogged(props: any) {
         dark:border-dark-third shadow-lv1"
       id="header"
     >
-      <div className="w-full flex px-2 my-1 items-center">
+      <div className="w-full flex px-2 my-1 items-center just">
         <HeaderLoggedLeft />
         <div className="w-1/2 hidden md:block md:w-1/2 lg:w-1/2">
           <div className="mx-auto wrapper w-4/5">

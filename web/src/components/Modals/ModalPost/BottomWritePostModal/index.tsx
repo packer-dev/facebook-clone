@@ -42,7 +42,7 @@ export default function BottomWritePostModal() {
           aria-hidden
           onClick={() => postsDispatch(postsAction.openModalTag())}
           className={`cursor-pointer flex w-10 h-10 mx-1 rounded-full ${
-            posts.tags.length > 0 ? "bg-blue-100" : " "
+            posts?.tags?.length > 0 ? "bg-blue-100" : " "
           } hover:bg-gray-200 dark:hover:bg-dark-third justify-center`}
         >
           <i className="fas fa-user-tag text-2xl text-blue-500 flex items-center" />

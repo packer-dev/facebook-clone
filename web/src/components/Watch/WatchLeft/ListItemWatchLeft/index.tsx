@@ -26,7 +26,6 @@ export default function ListItemWatchLeft({ images }) {
           <ItemWatchChildren
             name={"Video mới nhất"}
             image={"icon"}
-            className="bg-blue-400 text-white"
             data="far fa-play"
           />
           {images.map((item) => (

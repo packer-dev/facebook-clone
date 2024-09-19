@@ -22,7 +22,7 @@ export default function ControlMessage() {
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
   const refPopover = useRef<HTMLDivElement>();
-  const [type, setType] = useState();
+  const [type, setType] = useState(-1);
   let count = 0;
   const handleClick = (type, event) => {
     setType(type);
@@ -46,8 +46,11 @@ export default function ControlMessage() {
   const handleSend = async (data?: any) => {
     const message = dataFakeMessage({
       user,
-      type: data ? 2 : 1,
-      text: data || refContent.current.innerText,
+      type: typeof data === "object" ? 2 : 1,
+      text:
+        typeof data === "object"
+          ? JSON.stringify(data)
+          : refContent.current.innerText,
     });
     let temp = [...messages, message];
     updateDataItemChat("messages", [...temp]);
@@ -60,6 +63,7 @@ export default function ControlMessage() {
     });
     try {
       if (!newGroup) return;
+      refContent.current.innerText = "";
 
       const result = await sendMessageAPI({
         message,
@@ -97,30 +101,33 @@ export default function ControlMessage() {
     <div
       className={`w-full bg-white dark:bg-dark-second z-20 pt-2 pb-3 px-1 flex items-center 
         dark:border-dark-third border-t-2 border-solid border-gray-300 relative ${
-          isNew && !members.length ? "opacity-50" : ""
+          isNew && !members?.length ? "opacity-50" : ""
         }`}
     >
-      {files.length > 0 && <SendImageVideo />}
-      <ControlMessageMain />
+      {files?.length > 0 && <SendImageVideo />}
+      <ControlMessageMain
+        handleClick={(event, type) => handleClick(type, event)}
+      />
       <div className="w-9/12 relative">
         <div className="three-exten1 w-full relative">
           <div
             aria-hidden
             ref={refContent}
             className="place-input-type border-none dark:text-white bg-gray-200 dark:bg-dark-third rounded-full 
-                    pl-2 outline-none py-2 break-all w-full"
-            // placeholder="Aa"
+            pl-2 outline-none py-2 break-all w-full"
             contentEditable={true}
             spellCheck={false}
             onKeyDown={(event) => {
-              event.preventDefault();
+              if (event.key === "Enter") {
+                event.preventDefault();
+                handleSend(refContent.current?.innerText || "");
+              }
             }}
             style={{ minHeight: "20px" }}
-            onInput={(event) => ""}
           />
           <div
             aria-hidden
-            onClick={(event) => handleClick(1, event)}
+            onClick={(event) => handleClick(0, event)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 flex cursor-pointer z-50"
           >
             <i className="fas fa-smile dark:text-white text-gray-600 text-2xl" />
@@ -128,19 +135,20 @@ export default function ControlMessage() {
           <div
             ref={refPopover}
             className="absolute hidden bottom-full bg-white border-2 border-solid border-gray-200 shadow-lv1 
-            right-0 rounded-lg w-72"
-            style={{ height: 360 }}
+            right-0 rounded-lg w-72 h-80"
           >
-            {type === 1 ? (
+            {type === 0 && (
               <PopoverEmojii
                 handleClick={(item) => {
                   refContent.current.innerText += item;
                   functions.placeCaretAtEnd(refContent.current);
                 }}
               />
-            ) : (
+            )}
+            {type === 1 && (
               <PopoverSticker
                 handleClick={(item) => {
+                  handleSend(item);
                   refPopover.current.style.display = "none";
                   count = 0;
                 }}
@@ -152,7 +160,7 @@ export default function ControlMessage() {
       <div className="w-12 zoom flex jusitfy-center">
         <span
           aria-hidden
-          onClick={handleSend}
+          onClick={() => handleSend("💕")}
           className="cursor-pointer zoom text-xl flex items-center"
         >
           {group?.data?.emoji || "💕"}

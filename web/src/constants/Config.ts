@@ -3,8 +3,7 @@ export const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 //eslint-disable-next-line
 export const REGEX_PHONE = /^(\+91-|\+91|0)?\d{10}$/;
 //
-export const API_URL =
-  "https://api-packer-ui.onrender.com/api/social-network/v1";
+export const API_URL = "http://localhost:8000/api/social-network/v1";
 //
 export const SERVER_NODE = "https://server-react-facebook.herokuapp.com";
 //

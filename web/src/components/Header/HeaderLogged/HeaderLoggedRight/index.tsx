@@ -44,8 +44,8 @@ export default function HeaderLoggedRight(props) {
         <div
           aria-hidden
           onClick={() => navigation(PAGE_PROFILE + `/${user.id}`)}
-          className="w-1/2 flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 items-center cursor-pointer 
-            hover:bg-gray-200 round-avatar dark:hover:bg-dark-third lg:mx-0"
+          className="flex py-0.875 px-2.5 mx-2 mt-1 mb-1.5 p-1.5 items-center cursor-pointer 
+            hover:bg-gray-200 round-avatar dark:hover:bg-dark-third lg:mx-0 gap-2"
         >
           <div className="hidden lg:block lg:w-full xl:w-auto">
             <img
@@ -59,7 +59,7 @@ export default function HeaderLoggedRight(props) {
           </div>
         </div>
       )}
-      <div className="w-full pt-2 pb-2 pr-3 sm:w-full relative">
+      <div className="pt-2 pb-2 flex-1 relative">
         <ul className="flex float-right">
           <li
             aria-hidden

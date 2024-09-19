@@ -10,6 +10,7 @@ export default memo(function ContentPost({
   postDetail: PostDTO;
 }) {
   switch (postDetail.post.type) {
+    case 0:
     case 1:
       return (
         <NormalPost

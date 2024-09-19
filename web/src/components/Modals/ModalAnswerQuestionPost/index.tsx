@@ -4,12 +4,13 @@ import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import ContentAnswerQuestion from "./ContentAnswerQuestion";
 import ButtonComponent from "@/components/ButtonComponent";
+import { generateUUID } from "@/utils";
 
 export default function ModalAnswerQuestionPost() {
   //
   const { postsDispatch, postsAction } = useContext(PostContext);
   const [current, setCurrent] = useState(answer_question[0]);
-  const [input, setInput] = useState("");
+  const [value, setValue] = useState("");
   //
   return (
     <ModalWrapperChildPost
@@ -23,20 +24,23 @@ export default function ModalAnswerQuestionPost() {
           edit={true}
           setCurrent={setCurrent}
           current={current}
-          input={input}
-          setInput={setInput}
+          value={value}
+          setValue={setValue}
         />
         <ButtonComponent
           handleClick={() => {
-            postsDispatch(postsAction.updateData("answer_question", current));
             postsDispatch(
-              postsAction.updateData("contentAnswerQuestion", input)
+              postsAction.updateData("answer_question", {
+                id: generateUUID(),
+                content: current,
+                value,
+              })
             );
             postsDispatch(postsAction.returnModalPost());
           }}
           className="w-full font-bold p-2 mt-4 rounded-lg bg-gray-200 hover:bg-gray-300"
         >
-          Tiếp
+          Next
         </ButtonComponent>
       </div>
     </ModalWrapperChildPost>

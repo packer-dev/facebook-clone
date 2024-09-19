@@ -15,7 +15,7 @@ const MediaDisplay = ({ medias = [], post }: MediaDisplayProps) => {
   const rowBottom = medias.slice(2, 5);
   const navigation = useNavigate();
   return (
-    <div className="w-[400px]">
+    <div className="w-full">
       <div className={`grid grid-cols-${rowTop.length} gap-1 mb-1`}>
         {rowTop.map((item, index) => {
           const path = "url" in item ? item.url : item.name;

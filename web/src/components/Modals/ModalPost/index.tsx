@@ -29,7 +29,7 @@ const ModalPost = () => {
       imageVideo,
       content: text,
       imageVideoUpload,
-      post,
+      id,
       background,
       tags,
       activity,
@@ -38,6 +38,7 @@ const ModalPost = () => {
       local,
     },
   } = useContext(PostContext);
+
   const dispatch = useDispatch<AppDispatch>();
   const [emojiShow, setEmojiShow] = useState(false);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
@@ -45,9 +46,9 @@ const ModalPost = () => {
     modalsDispatch(modalsAction.loadingModal(true));
     const formData = new FormData();
 
-    if (imageVideo.new.length > 0) {
+    if (imageVideo?.new?.length > 0) {
       for (let i = 0; i < imageVideo.new.length || 0; i++) {
-        formData.append("media_new", imageVideo.new[i]);
+        formData.append("media_new[]", imageVideo.new[i]);
       }
     }
     const content: ContentPost = {
@@ -58,32 +59,31 @@ const ModalPost = () => {
     formData.append(
       "post",
       JSON.stringify(
-        post?.id
-          ? postModel({ ...post, content: { ...post?.content, text } })
-          : postModel({
-              user,
-              content,
-              background,
-              tags,
-              activity,
-              answer_question,
-              feel,
-              local,
-            })
+        postModel({
+          id,
+          user,
+          content,
+          background,
+          tags,
+          activity,
+          answer_question,
+          feel,
+          local,
+        })
       )
     );
-    if (imageVideo.old.length > 0) {
+    if (imageVideo?.old?.length > 0) {
       formData.append("media_old", JSON.stringify(imageVideo.old));
     }
-    const result = post ? editPost(formData) : createPost(formData);
+    const result = id ? editPost(formData) : createPost(formData);
     result
       .then((res) => {
-        if (post) {
+        if (id) {
           dispatch(
             updateDataCommon({
               key: "homePosts",
               value: [...homePosts].map((item) => {
-                if (item?.post?.id === post?.id) {
+                if (item?.post?.id === id) {
                   return { ...item, post: res };
                 }
                 return item;
@@ -110,7 +110,7 @@ const ModalPost = () => {
       className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
       z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
       sshadow-lv1 dark:border-dark-third dark:bg-dark-third"
-      title={`${post?.id ? "Edit" : "Create"} post`}
+      title={`${id ? "Edit" : "Create"} post`}
     >
       <TopWritePostModal />
       <div
@@ -125,7 +125,7 @@ const ModalPost = () => {
         />
         {imageVideoUpload && (
           <MediaDisplay
-            medias={[...imageVideo.old, ...Array.from(imageVideo.new)]}
+            medias={[...imageVideo.old, ...Array.from(imageVideo.new || [])]}
           />
         )}
       </div>
@@ -142,8 +142,8 @@ const ModalPost = () => {
             !(
               text ||
               activity ||
-              imageVideo.length > 0 ||
-              tags.length > 0 ||
+              imageVideo?.length > 0 ||
+              tags?.length > 0 ||
               feel ||
               local ||
               background ||
@@ -151,7 +151,7 @@ const ModalPost = () => {
             )
           }
         >
-          {post?.id ? "Edit" : "Add"}
+          {id ? "Edit" : "Add"}
         </ButtonComponent>
       </div>
     </ModalWrapper>

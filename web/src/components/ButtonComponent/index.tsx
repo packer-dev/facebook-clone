@@ -43,7 +43,7 @@ const ButtonComponent = ({
       type={type}
       onClick={() => {
         if (typeof handleClick === "function" && !disabled) {
-          handleClick();
+          handleClick?.();
         }
       }}
       className={`${className} border-solid cursor-pointer ${

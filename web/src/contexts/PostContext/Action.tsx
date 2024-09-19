@@ -1,6 +1,10 @@
 import * as constants from "./Constant";
+import { PostContextProps } from "./PostContext";
 
-export const updateData = (key: string, value: any) => {
+export const updateData = (
+  key: keyof PostContextProps | string,
+  value: any
+) => {
   return {
     type: constants.UPDATE_DATA,
     key,

@@ -71,7 +71,7 @@ const WritePost = ({ view }: { view?: User }) => {
               multiple
               className="hidden"
             />
-            <div className="py-2 w-full flex items-center justify-center  rounded-lg">
+            <div className="py-2 w-full flex items-center justify-center rounded-lg">
               <span className="fas fa-image mr-1 text-2xl text-[#41B35D]" />
               <span>Ảnh / video</span>
             </div>

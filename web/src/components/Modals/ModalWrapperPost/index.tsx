@@ -9,20 +9,18 @@ export type ModalWrapperPostProps = {
   files?: FileList;
 };
 
-export default function ModalWrapperPost(props: ModalWrapperPostProps) {
-  //
+const ModalWrapperPost = (props: ModalWrapperPostProps) => {
   //
   return (
     <PostProvider>
       <ContainerModalPost {...props} />
     </PostProvider>
   );
-}
+};
 
-const ContainerModalPost = ({ post, medias }: ModalWrapperPostProps) => {
+const ContainerModalPost = ({ post, medias, files }: ModalWrapperPostProps) => {
   const { posts, postsDispatch, postsAction } = React.useContext(PostContext);
   React.useEffect(() => {
-    if (!post) return;
     const props = [
       "id",
       "activity",
@@ -31,6 +29,17 @@ const ContainerModalPost = ({ post, medias }: ModalWrapperPostProps) => {
       "tags",
       "local",
     ];
+    if (files?.length > 0) {
+      postsDispatch(postsAction.updateData("imageVideoUpload", true));
+      postsDispatch(
+        postsAction.updateData("imageVideo", {
+          ...posts.imageVideo,
+          new: files,
+        })
+      );
+    }
+    if (!post) return;
+    postsDispatch(postsAction.updateData("content", post?.content?.text));
     postsDispatch(postsAction.updateData("content", post?.content?.text));
     postsDispatch(postsAction.updateData("imageVideo", medias || []));
     props.forEach((item) => {
@@ -40,3 +49,5 @@ const ContainerModalPost = ({ post, medias }: ModalWrapperPostProps) => {
   }, []);
   return posts.component;
 };
+
+export default ModalWrapperPost;

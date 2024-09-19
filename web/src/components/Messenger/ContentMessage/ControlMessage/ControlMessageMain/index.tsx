@@ -72,6 +72,7 @@ export default memo(function ControlMessageMain({
           </li>
         </label>
         <li
+          onClick={(event) => handleClick(event, 1)}
           aria-hidden
           className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full dark:hover:bg-dark-third"
         >
