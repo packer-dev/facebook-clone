@@ -1,12 +1,22 @@
 from firebase_admin import db
 from utils import new_value, update_item, upload_media_db, get_info_user
 import uuid
-from social_network.models import PostPayload
+from social_network.models import (
+    PostPayload,
+    Background,
+    Activity,
+    Local,
+    AnswerQuestion,
+    Feel,
+    Post,
+    ContentPost,
+    User,
+)
 import os
 from social_network.services.CommonServices import delete_media
 from social_network.services.AuthServices import get_friend_main
 from datetime import datetime
-from concurrent import futures
+import json
 
 
 def update_user_post(users, post):
@@ -261,3 +271,94 @@ async def get_media(user_id, type, limit=9, offset=0):
         "list": response[offset : limit * (1 if offset == 0 else offset)],
         "total": len(response),
     }
+
+
+def model_post(post: Post):
+    post = json.loads(post)
+
+    content = ContentPost(
+        id=post["content"]["id"],
+        text=post["content"]["text"],
+        data=post["content"]["data"] if "data" in post["content"] else "",
+        type=post["content"]["type"],
+    )
+
+    background = (
+        None
+        if post["background"] is None
+        else Background(
+            id=post.get("background", "").get("id"),
+            value=post.get("background", "").get("value"),
+            key=post.get("background", "").get("key"),
+            type=post.get("background", "").get("type"),
+        )
+    )
+
+    activity = (
+        None
+        if post["activity"] is None
+        else Activity(
+            id=post.get("activity", "").get("id"),
+            data=post.get("activity", "").get("data"),
+            label=post.get("activity", "").get("label"),
+            name=post.get("activity", "").get("name"),
+            idActivity=post.get("activity", "").get("idActivity"),
+        )
+    )
+
+    feel = (
+        None
+        if post["feel"] is None
+        else Feel(
+            id=post.get("feel", "").get("id"),
+            data=post.get("feel", "").get("data"),
+            label=post.get("feel", "").get("label"),
+        )
+    )
+
+    answer_question = (
+        None
+        if post["answer_question"] is None
+        else AnswerQuestion(
+            id=post.get("answer_question", "").get("id"),
+            content=post.get("answer_question", "").get("content"),
+            value=post.get("answer_question", "").get("value"),
+        )
+    )
+
+    local = (
+        None
+        if post["local"] is None
+        else Local(
+            id=post.get("local", "").get("id"), name=post.get("local", "").get("name")
+        )
+    )
+
+    user = User(
+        id=post["user"]["id"],
+        name=post["user"]["name"],
+        email=post["user"]["email"],
+        password=post["user"]["password"],
+        avatar=post["user"]["avatar"],
+        cover=post["user"]["cover"],
+        last_time_active=post["user"]["last_time_active"],
+        time_created=post["user"]["time_created"],
+        bio=post["user"]["bio"],
+    )
+
+    post = Post(
+        id=post["id"],
+        user=user,
+        content=content,
+        time_created=post["time_created"],
+        last_time_update=post["last_time_update"],
+        type=post["type"],
+        tags=post["tags"],
+        feel=feel,
+        background=background,
+        answer_question=answer_question,
+        local=local,
+        activity=activity,
+    )
+
+    return post
