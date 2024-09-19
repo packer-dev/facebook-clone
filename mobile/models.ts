@@ -64,12 +64,12 @@ export const postModel = (obj: Post) => ({
   time_created: obj?.time_created ?? getCurrentDateTime(),
   last_time_update: obj?.last_time_update ?? "",
   type: obj?.type ?? 0,
-  tags: obj?.tags ?? [],
-  feel: obj?.feel ?? "",
-  background: obj.background ?? "",
-  answer_question: obj.answer_question ?? "",
-  local: obj.local ?? "",
-  activity: obj.activity ?? "",
+  tags: obj?.tags,
+  feel: obj?.feel,
+  background: obj.background,
+  answer_question: obj.answer_question,
+  local: obj.local,
+  activity: obj.activity,
 });
 
 export const mediaModel = (obj: Media) => ({

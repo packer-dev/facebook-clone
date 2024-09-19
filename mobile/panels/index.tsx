@@ -32,7 +32,7 @@ const Panel = ({
       style={{ ...styles.container, ...tailwind(`border-t border-gray-300`) }}
     >
       <View style={styles.button} />
-      {name && <Text style={styles.title}>{name}</Text>}
+      {!!name && <Text style={styles.title}>{name}</Text>}
       {children}
     </View>
   ) : (
@@ -55,7 +55,7 @@ const Panel = ({
         ]}
       >
         <View style={styles.button} />
-        {name && <Text style={styles.title}>{name}</Text>}
+        {!!name && <Text style={styles.title}>{name}</Text>}
         <View style={tailwind(`py-3`)}>{children}</View>
       </Animated.View>
     </View>

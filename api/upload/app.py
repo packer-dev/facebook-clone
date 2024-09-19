@@ -17,5 +17,10 @@ async def upload_media_cloudinary(file_contents: bytes, folder: str):
     return result
 
 
+async def upload_base64_cloudinary(base64: str, folder: str):
+    result = uploader.upload(base64, folder=folder, resource_type="image")
+    return result
+
+
 async def delete_media_cloudinary(folder: str):
     return api.delete_resources(folder)

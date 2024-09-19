@@ -1,5 +1,5 @@
-import { API_URL } from "@shared/config";
-import { User } from "@shared/interfaces/User";
+import { API_URL } from "../config";
+import { User } from "../interfaces/User";
 
 export const getUserById = async (userId: string) => {
   return fetch(`${API_URL}/user/id?user_id=${userId}`).then((res) =>

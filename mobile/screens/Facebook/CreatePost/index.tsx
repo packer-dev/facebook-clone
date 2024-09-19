@@ -10,16 +10,7 @@ import {
   StatusBar,
   Keyboard,
 } from "react-native";
-import {
-  AntDesign,
-  Entypo,
-  Feather,
-  FontAwesome6,
-  FontAwesome,
-  EvilIcons,
-  Ionicons,
-} from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import useKeyboard from "@/hooks/useKeyboard";
 import { Post } from "@/interfaces/Post";
@@ -31,7 +22,8 @@ import { createPost, editPost } from "@/apis/postAPIs";
 import tailwind from "@/tailwind";
 import Avatar from "@/components/Avatar";
 import MediaDisplay from "@/components/Facebook/MediaDisplay";
-import Panel from "@/panels";
+import FooterCreatePost from "./FooterCreatePost";
+import BackgroundContent from "@/components/Facebook/Post/Content/BackgroundContent";
 
 type ScreenList = NavigationProp<{
   Facebook: undefined;
@@ -48,7 +40,7 @@ const CreatePost = ({ route }: any) => {
   const [oldMedia, setOldMedia] = React.useState([]);
   const navigation = useNavigation<ScreenList>();
   const {
-    state: { user, loading, showKeyboard, list_post },
+    state: { user, loading, showKeyboard, list_post, post: postContext },
     updateData,
   } = React.useContext(AppContext);
   React.useEffect(() => {
@@ -116,19 +108,7 @@ const CreatePost = ({ route }: any) => {
         updateData("loading", false);
       });
   };
-  const pickImage = async () => {
-    let result;
-    if (Platform.OS !== "web") {
-      result = await ImagePicker.launchImageLibraryAsync({
-        allowsMultipleSelection: true,
-      });
-    }
-    if (!result?.canceled && result?.assets) {
-      navigation.navigate("CreatePost", {
-        assets: result.assets,
-      });
-    }
-  };
+
   React.useEffect(() => {
     if (route?.params?.asset) {
       setMedias([...medias, route?.params?.asset]);
@@ -223,58 +203,20 @@ const CreatePost = ({ route }: any) => {
                 value={value}
                 onChangeText={setValue}
               />
-              {fullMedia.length > 0 && (
+              {fullMedia?.length > 0 && !postContext?.background && (
                 <MediaDisplay medias={fullMedia} width={width} />
+              )}
+              {postContext?.background && (
+                <BackgroundContent
+                  background={postContext.background}
+                  content={value}
+                />
               )}
             </ScrollView>
           </View>
         </SafeAreaView>
       </View>
-      <Panel hideOverlay>
-        <View style={tailwind(`px-3 pt-6 -mb-3 flex-row justify-between`)}>
-          <TouchableOpacity onPress={pickImage} style={tailwind(`mx-auto`)}>
-            <Feather
-              name="image"
-              size={24}
-              style={tailwind(`text-green-600`)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={tailwind(`mx-auto`)}>
-            <FontAwesome6
-              name="user-pen"
-              size={24}
-              style={tailwind(`text-blue-600`)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={tailwind(`mx-auto`)}>
-            <FontAwesome
-              name="smile-o"
-              size={24}
-              style={tailwind(`text-yellow-600`)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Camera")}
-            style={tailwind(`mx-auto`)}
-          >
-            <EvilIcons
-              name="camera"
-              size={32}
-              style={tailwind(`text-indigo-600`)}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={tailwind(`mx-auto`)}>
-            <Entypo name="video" size={24} style={tailwind(`text-pink-600`)} />
-          </TouchableOpacity>
-          <TouchableOpacity style={tailwind(`mx-auto`)}>
-            <Ionicons
-              name="text"
-              size={24}
-              style={tailwind(`text-green-600`)}
-            />
-          </TouchableOpacity>
-        </View>
-      </Panel>
+      <FooterCreatePost />
     </View>
   );
 };

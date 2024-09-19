@@ -1,6 +1,6 @@
-import { API_URL } from "@shared/config";
-import { Group } from "@shared/interfaces/Group";
-import { groupModel } from "@shared/models";
+import { API_URL } from "../config";
+import { Group } from "../interfaces/Group";
+import { groupModel } from "../models";
 
 export const getGroupById = async (groupId: string) => {
   return fetch(`${API_URL}/group/id?group_id=${groupId}`).then((res) =>

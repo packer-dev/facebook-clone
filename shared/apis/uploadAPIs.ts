@@ -1,4 +1,4 @@
-import { API_URL } from "@shared/config";
+import { API_URL } from "../config";
 
 export const uploadMedia = async (formData: any) => {
   return fetch(`${API_URL}/upload/media`, {

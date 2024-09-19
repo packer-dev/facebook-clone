@@ -3,7 +3,14 @@ import io, { Socket } from "socket.io-client";
 import { Message } from "../interfaces/Message";
 import { User } from "../interfaces/User";
 import { Group } from "../interfaces/Group";
-import { PostDTO } from "../interfaces/Post";
+import {
+  Activity,
+  AnswerQuestion,
+  Background,
+  FeelPost,
+  Local,
+  PostDTO,
+} from "../interfaces/Post";
 
 type Action = {
   key: string;
@@ -39,6 +46,13 @@ export type ContextInitProps = {
     status: boolean;
     groupId: string;
   };
+  post: {
+    activity: Activity | null;
+    background: Background | null;
+    answer_question: AnswerQuestion | null;
+    local: Local | null;
+    feel: FeelPost | null;
+  };
 };
 
 const init: ContextInitProps = {
@@ -68,6 +82,13 @@ const init: ContextInitProps = {
   isCalling: {
     status: false,
     groupId: "",
+  },
+  post: {
+    activity: null,
+    answer_question: null,
+    background: null,
+    feel: null,
+    local: null,
   },
 };
 

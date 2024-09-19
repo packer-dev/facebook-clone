@@ -1,7 +1,7 @@
-import { Group } from "@shared/interfaces/Group";
 import { API_URL } from "../config";
-import { Message } from "@shared/interfaces/Message";
-import { groupModel, messageModel } from "@shared/models";
+import { Group } from "../interfaces/Group";
+import { Message } from "../interfaces/Message";
+import { groupModel, messageModel } from "../models";
 
 export const getMessageMain = async (userId: string, currentId: string) => {
   return fetch(

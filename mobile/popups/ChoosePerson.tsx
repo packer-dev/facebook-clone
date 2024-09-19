@@ -7,6 +7,7 @@ import { User } from "@/interfaces/User";
 import tailwind from "@/tailwind";
 import Search from "@/screens/MessageList/Search";
 import Avatar from "@/components/Avatar";
+import ItemChoosePerson from "./ItemChoosePerson";
 const ChoosePerson = ({
   index,
   payload,
@@ -51,28 +52,12 @@ const ChoosePerson = ({
               : true
           )
           .map((friend) => (
-            <View
-              key={friend.id}
-              style={tailwind(`flex-row gap-4 items-center`)}
-            >
-              <View style={tailwind(`flex-1 flex-row gap-4 items-center`)}>
-                <Avatar size={14} uri={friend?.avatar} />
-                <Text style={tailwind(`font-semibold`)}>{friend.name}</Text>
-              </View>
-              <BouncyCheckbox
-                isChecked={!!selected.find((item) => item.id === friend.id)}
-                onPress={(isChecked) => {
-                  if (isChecked) {
-                    setSelected([...selected, friend]);
-                  } else {
-                    setSelected(
-                      [...selected].filter((item) => item.id !== friend.id)
-                    );
-                  }
-                }}
-                style={tailwind(`w-7 h-7 rounded-sm`)}
-              />
-            </View>
+            <ItemChoosePerson
+              key={friend?.id}
+              friend={friend}
+              selected={selected}
+              setSelected={setSelected}
+            />
           ))}
       </View>
     </Popup>

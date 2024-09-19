@@ -14,6 +14,7 @@ import Watch from "@/pages/Watch";
 import Messenger from "@/pages/Messenger";
 import ViewPost from "@/pages/ViewPost";
 import NotFound from "@/pages/NotFound";
+import Editor from "@/pages/Editor";
 
 const routes = [
   {
@@ -105,6 +106,10 @@ const routes = [
     path: Config.PAGE_VIEW_POST + "/:id",
     exact: true,
     element: <ViewPost />,
+  },
+  {
+    path: "/editor",
+    element: <Editor />,
   },
   {
     path: "*",

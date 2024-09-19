@@ -1,4 +1,3 @@
-
 const shadow = {
   shadowColor: "#ccc",
   shadowOffset: {
@@ -7649,31 +7648,31 @@ const css = {
     flexShrink: 1,
   },
   "font-hairline": {
-    fontWeight: "100",
+    fontWeight: 100,
   },
   "font-thin": {
-    fontWeight: "200",
+    fontWeight: 200,
   },
   "font-light": {
-    fontWeight: "300",
+    fontWeight: 300,
   },
   "font-normal": {
-    fontWeight: "400",
+    fontWeight: 400,
   },
   "font-medium": {
-    fontWeight: "500",
+    fontWeight: 500,
   },
   "font-semibold": {
-    fontWeight: "600",
+    fontWeight: 600,
   },
   "font-bold": {
-    fontWeight: "700",
+    fontWeight: 700,
   },
   "font-extrabold": {
-    fontWeight: "800",
+    fontWeight: 800,
   },
   "font-black": {
-    fontWeight: "900",
+    fontWeight: 900,
   },
   "m-0": {
     margin: 0,

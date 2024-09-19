@@ -1,15 +1,15 @@
-import { sendXmlHttpRequest } from "@shared/utils";
-import { API_URL } from "mobile/config";
+import { API_URL } from "../config";
+import { sendXmlHttpRequest } from "../utils";
 
 export const createPost = async (formData: any) => {
   return sendXmlHttpRequest(`${API_URL}/post`, formData, "POST").then(
-    (res) => res
+    (res: any) => res
   );
 };
 
 export const editPost = async (formData: any) => {
   return sendXmlHttpRequest(`${API_URL}/post`, formData, "PUT").then(
-    (res) => res
+    (res: any) => res
   );
 };
 
