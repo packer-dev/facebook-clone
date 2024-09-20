@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import ItemHeaderLoggedLeft from "./ItemHeaderLoggedLeft";
 import InputComponent from "@/components/InputComponent";
 import Logo from "@/components/Logo";
+import { User } from "@/interfaces/User";
 
 export default function HeaderLoggedLeft() {
   //
   const [show, setShow] = useState(false);
-  const [list, setList] = useState(null);
+  const [list, setList] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
   useEffect(() => {
     //
-    let timeOut;
+    let timeOut: ReturnType<typeof setTimeout>;
     if (keyword.length > 0) {
       timeOut = setTimeout(async () => {
         const result = { data: [] };
@@ -34,25 +35,27 @@ export default function HeaderLoggedLeft() {
       {show && (
         <div
           className="w-11/12 dark:bg-dark-second bg-gray-100 absolute -top-1 -left-3 flex z-30
-            flex-wrap shadow-lg"
+          flex-wrap shadow-lg"
         >
           <div className="w-full h-16 flex">
             <div
               aria-hidden
               onClick={() => setShow(false)}
-              className="w-11 h-11 rounded-full text-center items-center pt-1 mt-1 cursor-pointer ml-1 "
-            >
-              <i className="bx bxs-left-arrow-alt text-3xl dark:text-gray-300" />
-            </div>
+              className="w-11 h-11 rounded-full text-center items-center pt-1 mt-1 cursor-pointer ml-1 
+              bx bxs-left-arrow-alt text-3xl dark:text-gray-300"
+            />
             <div className="mt-1 pl-1">
-              <div className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
+              <div
+                className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full 
+                flex items-center justify-center cursor-pointer"
+              >
                 <InputComponent
                   handleChange={(data: any) => {
                     setLoading(true);
                     setKeyword(data);
                   }}
                   type="text"
-                  placeholder="Tìm kiếm trên Facebook"
+                  placeholder="Search on Facebook"
                   className="w-56 outline-none bg-transparent hidden xl:inline-block dark:text-white"
                 />
               </div>
@@ -73,7 +76,7 @@ export default function HeaderLoggedLeft() {
                   ))
                 ) : (
                   <p className="my-2 text-sm text-center">
-                    Không tìm thấy kết quả phù hợp.
+                    No matching results found.
                   </p>
                 )}
               </div>
@@ -90,7 +93,7 @@ export default function HeaderLoggedLeft() {
           <InputComponent
             handleClick={() => setShow(true)}
             type="text"
-            placeholder="Tìm kiếm trên Facebook"
+            placeholder="Search on facebook"
             className="outline-none bg-transparent hidden xl:inline-block dark:text-white"
           />
         </div>

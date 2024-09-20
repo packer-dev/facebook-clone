@@ -36,6 +36,7 @@ const ContentAnswerQuestion = ({
       }
       setValue?.("Hi! I have a Q&A corner. Ask away...");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refInput, edit]);
   //
   return (
@@ -76,10 +77,9 @@ const ContentAnswerQuestion = ({
             <li
               aria-hidden
               onClick={() => setShow("")}
-              className="w-9 h-9 bg-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
-            >
-              <span className="bx bx-chevron-left text-2xl text-gray-800" />
-            </li>
+              className="w-9 h-9 bg-gray-300 rounded-lg flex items-center justify-center cursor-pointer 
+              bx bx-chevron-left text-2xl text-gray-800"
+            />
           ) : (
             <img
               aria-hidden

@@ -6,7 +6,7 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import * as usersAction from "@/actions/user/index";
 import { User } from "@/interfaces/User";
 
-export default function PopoverSetting() {
+const PopoverSetting = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
@@ -27,7 +27,7 @@ export default function PopoverSetting() {
         <div className="pl-3">
           <p className="font-semibold text-base dark:text-white">{`${user.name}`}</p>
           <p className="text-sm dark:text-gray-300 opacity-60">
-            Xem trang cá nhân của bạn
+            View your profile
           </p>
         </div>
       </div>
@@ -35,14 +35,14 @@ export default function PopoverSetting() {
       <div className="p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-third flex w-full items-center">
         <span
           className="bx bx-error-alt text-2xl w-8 h-8 rounded-full flex justify-center items-center 
-                bg-gray-200 dark:bg-dark-third dark:text-white"
+          bg-gray-200 dark:bg-dark-third dark:text-white"
         />
         <div className="pl-3">
           <p className="font-semibold text-base dark:text-white">
-            Đóng góp ý kiến cho Facebook
+            Contribute your opinion to Facebook
           </p>
           <p className="text-xs dark:text-gray-300 opacity-60">
-            Đóng góp cải thiện phiên bản facebook mới
+            Contribute to improve the new facebook version
           </p>
         </div>
       </div>
@@ -54,12 +54,14 @@ export default function PopoverSetting() {
       >
         <span
           className="bx bx-log-out text-2xl w-8 h-8 rounded-full flex justify-center items-center 
-                bg-gray-200 dark:bg-dark-third dark:text-white"
+          bg-gray-200 dark:bg-dark-third dark:text-white"
         />
         <div className="pl-3">
-          <p className="font-semibold text-base dark:text-white">Đăng xuất</p>
+          <p className="font-semibold text-base dark:text-white">Logout</p>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default PopoverSetting;

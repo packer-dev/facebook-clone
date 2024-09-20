@@ -21,7 +21,7 @@ const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
   }, [user]);
   //
   return (
-    <div className="w-full p-2 rounded-lg" style={{ height: 725 }}>
+    <div className="w-full p-2 rounded-lg h-[725px]">
       <MessageList groups={groups} mini={true} closePopover={closePopover} />
     </div>
   );

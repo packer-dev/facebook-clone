@@ -6,7 +6,7 @@ import { PAGE_LOGIN } from "@/constants/Config";
 import WrapperAuthenination from "../WrapperAuthenination";
 import useAuthenication from "@/hooks/useAuthenication";
 
-export default function VerifyCodeAccount(props) {
+const VerifyCodeAccount = (props) => {
   //
   const { verifyAccountNew } = props;
   const [code, setCode] = React.useState("");
@@ -16,15 +16,13 @@ export default function VerifyCodeAccount(props) {
   //
   return (
     <WrapperAuthenination
-      title={
-        verifyAccountNew ? "Xác thực tài khoản" : "Đặt lại mật khẩu của bạn"
-      }
+      title={verifyAccountNew ? "Account Verification" : "Reset Your Password"}
       hideFormLogin={true}
     >
       <div className="w-full my-2 p-2 pl-5">
         <p>
-          Vui lòng kiểm tra thiết bị cua của bạn để xem tin nhắn văn bản có mã.
-          Mã của bạn có 8 ký tự.
+          Please check your device to see the text message with the code. Your
+          code has 8 characters.
         </p>
         <div className="w-full flex my-2 items-center">
           <div className="w-1/2">
@@ -35,7 +33,7 @@ export default function VerifyCodeAccount(props) {
               }}
               type="text"
               value={code}
-              placeholder="Nhập mã"
+              placeholder="Enter code"
               className="w-full p-3 rounded-md border-2"
             />
             {error && (
@@ -43,7 +41,7 @@ export default function VerifyCodeAccount(props) {
             )}
           </div>
           <div className="ml-5">
-            <p>Chúng tôi đã gửi cho bạn mã đến:</p>
+            <p>We have sent you the code to:</p>
             <p className="text-sm mt-1">{token}</p>
           </div>
         </div>
@@ -51,28 +49,30 @@ export default function VerifyCodeAccount(props) {
       <hr />
       <div className="w-full py-3 mt-1 flex justify-between items-center">
         <Link to="" className="text-main text-sm ml-5">
-          Bạn chưa có mã?
+          Don't have a code?
         </Link>
         <div className="">
           <ButtonComponent
             link={PAGE_LOGIN}
             className="px-4 font-semibold mr-3 py-2.5 rounded-lg bg-gray-300 text-gray-800"
           >
-            Huỷ
+            Cancel
           </ButtonComponent>
           <ButtonComponent
             loading={loading}
             disabled={loading}
             handleClick={async () => {
               setLoading(true);
-              if (code === "") setError("Mã xác nhận không được trống !!");
+              if (code === "") setError("Verification code cannot be empty!!");
             }}
             className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
           >
-            Tiếp tục
+            Continue
           </ButtonComponent>
         </div>
       </div>
     </WrapperAuthenination>
   );
-}
+};
+
+export default VerifyCodeAccount;

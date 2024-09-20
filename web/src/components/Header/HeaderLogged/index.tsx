@@ -3,14 +3,13 @@ import HeaderLoggedCenter from "./HeaderLoggedCenter";
 import HeaderLoggedLeft from "./HeaderLoggedLeft";
 import HeaderLoggedRight from "./HeaderLoggedRight";
 
-export default function HeaderLogged(props: any) {
+const HeaderLogged = ({ hideMessage }: { hideMessage?: boolean }) => {
   //
-  const { hideMessage } = props;
   //
   return (
     <div
       className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second border-b-2 border-solid border-gray-200 
-        dark:border-dark-third shadow-lv1"
+      dark:border-dark-third shadow-lv1"
       id="header"
     >
       <div className="w-full flex px-2 my-1 items-center just">
@@ -24,4 +23,6 @@ export default function HeaderLogged(props: any) {
       </div>
     </div>
   );
-}
+};
+
+export default HeaderLogged;

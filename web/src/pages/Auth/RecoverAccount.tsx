@@ -4,7 +4,7 @@ import { PAGE_LOGIN } from "@/constants/Config";
 import useAuthenication from "@/hooks/useAuthenication";
 import WrapperAuthenination from "../WrapperAuthenination";
 
-export default function RecoverAccount(props) {
+const RecoverAccount = (props) => {
   //
   const { verify } = props;
   const { token, user } = useAuthenication(true);
@@ -14,16 +14,15 @@ export default function RecoverAccount(props) {
   return (
     <WrapperAuthenination
       hideFormLogin={true}
-      title={verify ? "Xác nhận tài khoản của bạn" : "Đặt lại mật khẩu của bạn"}
+      title={verify ? "Confirm your account" : "Reset your password"}
     >
       {user && token ? (
         <>
           <div className="w-full my-2 p-2 flex">
             <div className="w-2/3 pl-4">
               <p className="mb-2">
-                Bạn muốn nhận mã để{" "}
-                {verify ? "xác nhận tài khoản" : "đặt lại mật khẩu"} bằng cách
-                nào?
+                How would you like to receive the code to{" "}
+                {verify ? "confirm your account" : "reset your password"}?
               </p>
               {user.email && (
                 <div className="flex mb-3 p-2 hover:bg-gray-100 items-center">
@@ -35,7 +34,7 @@ export default function RecoverAccount(props) {
                     value={"email"}
                   />
                   <div>
-                    <p>Gửi mã qua email</p>
+                    <p>Send code via email</p>
                     <p className="text-xs text-gray-600 font-semibold mt-1">
                       {user.email}
                     </p>
@@ -52,7 +51,7 @@ export default function RecoverAccount(props) {
                     value={"phone"}
                   />
                   <div>
-                    <p>Gửi mã qua SMS</p>
+                    <p>Send code via SMS</p>
                     <p className="text-xs text-gray-600 font-semibold mt-1">
                       {user.email}
                     </p>
@@ -69,7 +68,7 @@ export default function RecoverAccount(props) {
                 />
                 <p className="w-full text-center mt-1">{`${user.name}`}</p>
                 <p className="w-full text-center text-xs mt-0.5 text-gray-600">
-                  Người dùng facebook
+                  Facebook user
                 </p>
               </div>
             </div>
@@ -81,7 +80,7 @@ export default function RecoverAccount(props) {
                 link={PAGE_LOGIN}
                 className="px-4 font-semibold mr-3 py-2.5 rounded-lg bg-gray-300 text-gray-800"
               >
-                Huy
+                Cancel
               </ButtonComponent>
               <ButtonComponent
                 handleClick={async () => {
@@ -91,7 +90,7 @@ export default function RecoverAccount(props) {
                 loading={loading}
                 className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
               >
-                Tiếp tục
+                Continue
               </ButtonComponent>
             </div>
           </div>
@@ -103,4 +102,6 @@ export default function RecoverAccount(props) {
       )}
     </WrapperAuthenination>
   );
-}
+};
+
+export default RecoverAccount;

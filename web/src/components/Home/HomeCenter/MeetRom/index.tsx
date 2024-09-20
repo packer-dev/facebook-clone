@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ButtonComponent from "../../../ButtonComponent";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useSelector } from "react-redux";
 import { RootState, getHeaders, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
+import ButtonComponent from "@/components/ButtonComponent";
 
 export default function MeetRom() {
   //
@@ -27,14 +27,11 @@ export default function MeetRom() {
             border-gray-200 py-1.5 px-5 hover:bg-gray-100 font-semibold dark:hover:bg-dark-second 
             flex items-center justify-center dark:border-gray-300 w-1/2 lg:w-auto"
       >
-        <i
-          className="bx bxs-video-plus text-2xl mr-3"
-          style={{ color: "#AB4CB3" }}
-        />
+        <i className="bx bxs-video-plus text-2xl mr-3 text-[#AB4CB3]" />
         <span>Tạo phòng hop mặt</span>
       </ButtonComponent>
       <ScrollContainer className="overflow-x-auto w-1/2 lg:w-auto">
-        <ul className="mx-4 flex gap-3 ">
+        <ul className="mx-4 flex gap-3">
           {users.map((user) => (
             <li
               key={user.id}

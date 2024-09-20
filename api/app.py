@@ -18,7 +18,10 @@ app = FastAPI()
 
 cred = credentials.Certificate("./packer-ui-firebase.json")
 firebase_admin.initialize_app(
-    cred, {"databaseURL": "https://packer-ui-default-rtdb.firebaseio.com/"}
+    cred,
+    {
+        "databaseURL": "https://api-firebase-830a2-default-rtdb.asia-southeast1.firebasedatabase.app"
+    },
 )
 
 origins = ["*"]

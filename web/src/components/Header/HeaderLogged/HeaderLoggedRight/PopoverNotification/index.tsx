@@ -12,7 +12,7 @@ const NotFoundNotification = () => {
         className="my-2 mx-auto w-40 object-cover"
       />
       <p className="text-center font-semibold my-1">
-        Bạn không có thông báo nào
+        You have no notifications.
       </p>
     </div>
   );
@@ -26,11 +26,11 @@ export default function PopoverNotification() {
   return (
     <div className="w-full p-2 rounded-lg">
       <div className="w-full flex items-center justify-between py-2">
-        <p className="text-xl font-semibold dark:text-white">Thông báo</p>
+        <p className="text-xl font-semibold dark:text-white">Notifications</p>
         <span
           className="w-6 h-6 rounded-full cursor-pointer hover:bg-gray-200 hover:bg-dark-third 
-                bx bx-dots-horizontal-rounded text-2xl text-gray-600 dark:text-gray-300 flex justify-center 
-                items-center dark:hover:bg-dark-main dark:hover:text-white"
+          bx bx-dots-horizontal-rounded text-2xl text-gray-600 dark:text-gray-300 flex justify-center 
+          items-center dark:hover:bg-dark-main dark:hover:text-white"
         />
       </div>
       <ul className="flex mb-2 gap-2 items-center">
@@ -44,7 +44,7 @@ export default function PopoverNotification() {
               active === 0 ? "bg-blue-100 text-main" : "bg-gray-300"
             } font-semibold`}
           >
-            Tất cả
+            All
           </ButtonComponent>
         </li>
         <li>
@@ -57,20 +57,17 @@ export default function PopoverNotification() {
               active === 1 ? "bg-blue-100 text-main" : "bg-gray-200"
             } font-semibold`}
           >
-            Chưa đọc
+            Unread
           </ButtonComponent>
         </li>
       </ul>
       <div className="w-full flex items-center justify-between py-1">
-        <p className="font-semibold dark:text-gray-300">Mới</p>
-        <Link to={""} className="text-main">
-          Xem tất cả
+        <p className="font-semibold dark:text-gray-300">New</p>
+        <Link to="" className="text-main">
+          View all
         </Link>
       </div>
-      <div
-        className="w-full overflow-y-auto overflow-x-hidden dark:text-white"
-        style={{ maxHeight: 600 }}
-      >
+      <div className="w-full overflow-y-auto overflow-x-hidden dark:text-white max-h-[600px]">
         {notifies.length > 0 ? (
           notifies.map((notify) => (
             <ItemPopoverNotification

@@ -1,14 +1,12 @@
 import * as React from "react";
 
-const ItemNotifyRight = ({
-  type,
-  show,
-  icon,
-}: {
+type ItemNotifyRightProps = {
   show?: boolean;
   type: string;
   icon: string;
-}) => {
+};
+
+const ItemNotifyRight = ({ type, show, icon }: ItemNotifyRightProps) => {
   return (
     <div
       className={`w-full flex p-3 bg-opacity-80 rounded-lg mb-1.5 ${

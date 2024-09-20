@@ -21,12 +21,11 @@ export default function ItemStory(props: any) {
     >
       <div
         className="h-44 rounded-xl overflow-hidden relative cursor-pointer flex-shrink-0 
-            bg-black border-2 border-solid border-gray-200 dark:border-dark-third shadow-lv1"
+        bg-black border-2 border-solid border-gray-200 dark:border-dark-third shadow-lv1"
       >
         <div className="relative h-full group cursor-pointer">
           <img
-            className="group-hover:transform group-hover:scale-110 transition-all duration-700 
-                        h-full w-full object-cover "
+            className="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full object-cover "
             src={storyList.length > 0 ? storyList[0].src : ""}
             alt=""
           />

@@ -16,15 +16,10 @@ export default memo(function FriendCanKnow() {
   const [show, setShow] = useState(true);
   useEffect(() => {
     //
-    let unmounted = false;
-    const fetch = async () => {
-      if (unmounted) return;
+    const fetchData = async () => {
       setUsers([]);
     };
-    fetch();
-    return () => {
-      unmounted = true;
-    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile, user]);
   //
@@ -38,7 +33,7 @@ export default memo(function FriendCanKnow() {
             className="text-main font-semibold text-sm cursor-pointer"
             onClick={() => setShow(!show)}
           >
-            {show ? "Ẩn" : "Hiện"}
+            {show ? "Hide" : "Show"}
           </span>
         </div>
         {show && (

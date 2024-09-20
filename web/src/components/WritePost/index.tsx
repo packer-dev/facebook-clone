@@ -32,8 +32,8 @@ const WritePost = ({ view }: { view?: User }) => {
             type="text"
             placeholder={
               view
-                ? `Viết gì đó cho ${view.name}`
-                : view.id === user.id && `${user.name} ơi bạn đang nghĩ gì đó ?`
+                ? `Write anything to ${view.name}`
+                : view.id === user.id && `${user.name}, what do you think?`
             }
           />
         </div>
@@ -46,7 +46,7 @@ const WritePost = ({ view }: { view?: User }) => {
             py-2 text-center dark:hover:bg-dark-third hover:bg-gray-100 rounded-lg"
           >
             <span className="fas fa-video mr-1 text-2xl text-[#E73E5A]" />
-            <span>Video Trực Tiếp</span>
+            <span>Video stream</span>
           </li>
           <label
             htmlFor="uploadFileS"
@@ -73,7 +73,7 @@ const WritePost = ({ view }: { view?: User }) => {
             />
             <div className="py-2 w-full flex items-center justify-center rounded-lg">
               <span className="fas fa-image mr-1 text-2xl text-[#41B35D]" />
-              <span>Ảnh / video</span>
+              <span>Image / video</span>
             </div>
           </label>
           <li
@@ -83,7 +83,7 @@ const WritePost = ({ view }: { view?: User }) => {
            xl:flex items-center justify-center rounded-lg "
           >
             <span className="fas fa-smile mr-1 text-2xl text-[#EAB027]" />
-            <span>Cảm Xúc/Hoạt Động</span>
+            <span>Feel / Activity</span>
           </li>
         </ul>
       </div>

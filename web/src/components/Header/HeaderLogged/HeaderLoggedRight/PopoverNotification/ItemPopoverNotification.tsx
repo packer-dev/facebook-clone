@@ -1,13 +1,10 @@
 import * as React from "react";
 
-export default function ItemPopoverNotification(props: any) {
-  //
-  const { isRead } = props;
-  //
+const ItemPopoverNotification = ({ isRead }: { isRead?: boolean }) => {
   return (
     <div
-      className={`my-1 w-full px-1 py-1.5 cursor-pointer flex rounded-sm hover:bg-gray-100 
-        dark:hover:bg-dark-third relative`}
+      className="my-1 w-full px-1 py-1.5 cursor-pointer flex rounded-sm hover:bg-gray-100 
+        dark:hover:bg-dark-third relative"
     >
       <div className="w-16 h-16 relative mt-0.5">
         <img
@@ -24,13 +21,15 @@ export default function ItemPopoverNotification(props: any) {
       <div className="pl-3 opacity-60 w-2/3">
         <p className="text-tiny ">
           <span className="font-semibold text-base">Tiến Linh </span>
-          <span>đã bày tỏ cảm xúc về bài viết của bạn.</span>
+          <span>reacted to your post.</span>
         </p>
-        <p className="text-sm mt-1">3 ngày trước</p>
+        <p className="text-sm mt-1">3 days ago</p>
       </div>
       {!isRead && (
         <span className="w-3.5 h-3.5 rounded-full bg-main absolute top-1/2 transform -translate-y-1/2 right-3.5" />
       )}
     </div>
   );
-}
+};
+
+export default ItemPopoverNotification;

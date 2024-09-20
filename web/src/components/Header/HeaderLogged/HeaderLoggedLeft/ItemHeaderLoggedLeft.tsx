@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { PAGE_PROFILE } from "../../../../constants/Config";
+import { PAGE_PROFILE } from "@/constants/Config";
+import { User } from "@/interfaces/User";
 
-export default function ItemHeaderLoggedLeft(props: any) {
+const ItemHeaderLoggedLeft = ({ item }: { item: User }) => {
   //
   const navigation = useNavigate();
-  const { item } = props;
   //
   return (
     <ul
@@ -21,8 +21,10 @@ export default function ItemHeaderLoggedLeft(props: any) {
         />
       </li>
       <li className="pl-3 items-center font-bold dark:text-white py-2.5">
-        {`${item.firstName} ${item.lastName}`}
+        {`${item.name}`}
       </li>
     </ul>
   );
-}
+};
+
+export default ItemHeaderLoggedLeft;
