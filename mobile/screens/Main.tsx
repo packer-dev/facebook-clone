@@ -17,7 +17,7 @@ const Main = ({ route: { params } }: any) => {
   } = React.useContext(AppContext);
   const refScroll = React.useRef<ScrollView>(null);
   useListeningMessage(groupCurrent?.id ?? "");
-  const { keyboardHeight, width } = useKeyboard();
+  const { keyboardHeight, width, height } = useKeyboard();
   React.useEffect(() => {
     const fetchData = async () => {
       if (!user || !groupCurrent) return;
@@ -57,9 +57,12 @@ const Main = ({ route: { params } }: any) => {
   }, [messages]);
   return (
     <SafeAreaView
-      style={{
-        ...tailwind(`p-3 flex-col flex-1`),
-      }}
+      style={[
+        tailwind(`p-3 flex-col bg-white`),
+        {
+          height,
+        },
+      ]}
     >
       <Header friend={params?.friend} />
       <ScrollView

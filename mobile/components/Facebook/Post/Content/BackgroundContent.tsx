@@ -1,6 +1,6 @@
 import { Background } from "@/interfaces/Post";
 import tailwind from "@/tailwind";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import { Image } from "react-native-animatable";
 
 const BackgroundContent = ({
@@ -29,7 +29,7 @@ const BackgroundContent = ({
         style={tailwind(`text-2xl w-full px-4 flex justify-center text-white font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2
         -translate-y-1/2 break-all text-center z-20`)}
       >
-        {content}
+        <Text>{content}</Text>
       </View>
     </View>
   );

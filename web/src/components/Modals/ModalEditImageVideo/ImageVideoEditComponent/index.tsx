@@ -1,13 +1,50 @@
-import React from "react";
+import { PostContext } from "@/contexts/PostContext/PostContext";
+import { Media } from "@/interfaces/Media";
+import React, { useContext } from "react";
 
-export default function ImageVideoEditComponent(props) {
+type ImageVideoEditComponentProps = {
+  component: any;
+  element: Media | File;
+  src: string;
+  style: any;
+};
+
+const ImageVideoEditComponent = ({
+  component,
+  src,
+  element,
+  style,
+}: ImageVideoEditComponentProps) => {
   //
-  const { component, src, style } = props;
+  const {
+    posts: { imageVideo },
+    postsAction,
+    postsDispatch,
+  } = useContext(PostContext);
   //
   return (
     <div className="">
       <div className=" relative mb-3">
         <span
+          aria-hidden
+          onClick={() => {
+            let result: any;
+            if ("url" in element) {
+              result = [...imageVideo.old].filter(
+                (item) => item.id !== element.id
+              );
+            } else {
+              result = [...Array.from(imageVideo.new || [])].filter(
+                (item) => item.name !== element.name
+              );
+            }
+            postsDispatch(
+              postsAction.updateData("imageVideo", {
+                ...imageVideo,
+                ["url" in element ? "old" : "new"]: result,
+              })
+            );
+          }}
           className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 cursor-pointer absolute top-1 right-1  
         text-gray-700 hover:text-gray-800 font-bold bx bx-x text-xl flex justify-center items-center z-20"
         />
@@ -36,4 +73,6 @@ export default function ImageVideoEditComponent(props) {
       </div>
     </div>
   );
-}
+};
+
+export default ImageVideoEditComponent;

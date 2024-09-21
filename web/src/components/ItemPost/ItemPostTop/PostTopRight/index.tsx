@@ -38,16 +38,16 @@ const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
   //
   return user?.id === post.user.id ? (
     <>
-      {/* {post.type === 2 && ( */}
-      <span
-        aria-hidden
-        onClick={() => {
-          modalsDispatch(modalsAction.openModalPost({ post, medias }));
-        }}
-        className="bx bx-edit-alt absolute top-0 right-8 text-xl text-gray-800 hover:text-main 
+      {post.type === 1 && (
+        <span
+          aria-hidden
+          onClick={() => {
+            modalsDispatch(modalsAction.openModalPost({ post, medias }));
+          }}
+          className="bx bx-edit-alt absolute top-0 right-8 text-xl text-gray-800 hover:text-main 
         cursor-pointer dark:text-gray-300"
-      />
-      {/* )} */}
+        />
+      )}
       <span
         aria-hidden
         onClick={() => {

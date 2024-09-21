@@ -60,16 +60,11 @@ export const updatePopover = (status: boolean) => {
   };
 };
 
-export const openModalPreviewAvatar = (
-  image: any,
-  userProfile: User,
-  uploadData: Function
-) => {
+export const openModalPreviewAvatar = (image: File, user: User) => {
   return {
     type: constants.OPEN_MODAL_PREVIEW_AVATAR,
     image,
-    userProfile,
-    uploadData,
+    user,
   };
 };
 

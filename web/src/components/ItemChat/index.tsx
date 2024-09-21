@@ -20,7 +20,7 @@ export type ItemChatProps = {
 const ItemChat = ({ item }: ItemChatProps) => {
   //
   const {
-    state: { showSetting },
+    state: { showSetting, group },
     updateData,
   } = useContext(ItemChatContext);
   const ref = useRef<HTMLAudioElement>();
@@ -45,6 +45,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
     if (item.group) {
       const fetchDataGroup = async () => {
         const result = await getGroupById(item.group.id);
+        updateData("group", item.group);
         updateData("messages", result || []);
         updateData("loading", false);
       };
@@ -54,7 +55,8 @@ const ItemChat = ({ item }: ItemChatProps) => {
     updateData("loading", false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useListeningMessage(item?.group?.id);
+
+  useListeningMessage(group?.id);
   //
   return (
     <WrapperItemChat>

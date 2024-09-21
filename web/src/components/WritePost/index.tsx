@@ -57,13 +57,12 @@ const WritePost = ({ view }: { view?: User }) => {
             <input
               type="file"
               onChange={(event) => {
-                if (event.target.files.length > 0) {
+                if (event.target.files.length > 0)
                   modalsDispatch(
                     modalsAction.openModalPost({
                       files: event.target.files,
                     })
                   );
-                }
               }}
               id="uploadFileS"
               name="files[]"
@@ -79,8 +78,8 @@ const WritePost = ({ view }: { view?: User }) => {
           <li
             onClick={() => modalsDispatch(modalsAction.openModalPost({}))}
             aria-hidden="true"
-            className="w-1/3 md:w-1/3 xl:w-1/3 md:block hidden cursor-pointer py-2 text-center dark:hover:bg-dark-third hover:bg-gray-100 
-           xl:flex items-center justify-center rounded-lg "
+            className="w-1/3 md:w-1/3 xl:w-1/3 md:flex hidden cursor-pointer py-2 text-center dark:hover:bg-dark-third hover:bg-gray-100 
+           xl:flex items-center justify-center rounded-lg"
           >
             <span className="fas fa-smile mr-1 text-2xl text-[#EAB027]" />
             <span>Feel / Activity</span>

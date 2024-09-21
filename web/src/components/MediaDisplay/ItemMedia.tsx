@@ -38,7 +38,7 @@ const ItemMedia = <T,>({
     <div
       aria-hidden
       onClick={() => handle?.()}
-      className="relative"
+      className="relative cursor-pointer"
       style={{
         paddingTop: mode === "square" ? "100%" : "50%",
       }}

@@ -28,23 +28,23 @@ const ContainerModalPost = ({ post, medias, files }: ModalWrapperPostProps) => {
       "background",
       "tags",
       "local",
+      "time_created",
     ];
-    if (files?.length > 0) {
+    if (files?.length > 0 || medias) {
       postsDispatch(postsAction.updateData("imageVideoUpload", true));
-      postsDispatch(
-        postsAction.updateData("imageVideo", {
-          ...posts.imageVideo,
-          new: files,
-        })
-      );
     }
-    if (!post) return;
+    postsDispatch(
+      postsAction.updateData("imageVideo", {
+        ...posts.imageVideo,
+        new: files || null,
+        old: medias || [],
+      })
+    );
     postsDispatch(postsAction.updateData("content", post?.content?.text));
-    postsDispatch(postsAction.updateData("content", post?.content?.text));
-    postsDispatch(postsAction.updateData("imageVideo", medias || []));
-    props.forEach((item) => {
-      postsDispatch(postsAction.updateData(item, post[item]));
-    });
+    post &&
+      props.forEach((item) => {
+        postsDispatch(postsAction.updateData(item, post[item]));
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return posts.component;

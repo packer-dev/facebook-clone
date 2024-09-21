@@ -31,14 +31,7 @@ const AppReducer = (state, action) => {
     case constants.OPEN_MODAL_PREVIEW_AVATAR:
       return {
         ...state,
-        data: (
-          <ModalPreviewAvatar
-            image={action.image}
-            userProfile={action.userProfile}
-            userProfilesDispatch={action.userProfilesDispatch}
-            userProfilesAction={action.userProfilesAction}
-          />
-        ),
+        data: <ModalPreviewAvatar image={action.image} user={action.user} />,
       };
     case constants.OPEN_MODAL_CHANGE_COLOR:
       return {

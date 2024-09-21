@@ -9,7 +9,7 @@ from social_network.models import (
     ContentPost,
 )
 from firebase_admin import db
-from utils import md5, find_index, find_by_id, new_value
+from utils import md5, find_index, find_by_id, new_value, get_info_user
 import uuid
 from datetime import datetime
 from social_network.services.CommonServices import upload_media, delete_media
@@ -254,6 +254,11 @@ async def relationship_request(relationship_payload: RelationshipPayload):
     return True
 
 
+def update_user_post(users, post):
+    post["user"] = get_info_user(users, post["user"]["id"])
+    return post
+
+
 async def upload_media_profile_user(folder, file, is_cover, user_id):
     ref = db.reference("social-network")
 
@@ -282,11 +287,15 @@ async def upload_media_profile_user(folder, file, is_cover, user_id):
             id=str(uuid.uuid4()),
             user=users[index],
             content=content,
-            feel="",
             last_time_update=str(datetime.now()),
             time_created=str(datetime.now()),
             tags=[],
-            type=(2 if is_cover == "True" else 3),
+            type=(3 if is_cover == "True" else 2),
+            feel=None,
+            background=None,
+            activity=None,
+            local=None,
+            answer_question=None,
         )
         posts.append(post.model_dump())
 
@@ -302,7 +311,15 @@ async def upload_media_profile_user(folder, file, is_cover, user_id):
         ref.child("medias").child("posts").child(post.id).set([media.model_dump()])
         ref.child("users").set(users)
         ref.child("posts").set(posts)
-        return {"url": result["url"]}
+        return {
+            "url": result["url"],
+            "data_post": {
+                "post": update_user_post(users, post.model_dump()),
+                "medias": [media.model_dump()],
+                "feel": [],
+                "comment": [],
+            },
+        }
     return {"url": ""}
 
 
@@ -394,3 +411,14 @@ async def get_friend_main(user_id: str, status: int = 3):
     if status == 1:
         return await get_request_friend_user(user_id, True)
     return []
+
+
+async def search_user(search: str, limit: int = 10, offset: int = 0):
+    ref = db.reference("social-network")
+
+    users = new_value(ref.child("users").get(), [])
+    new_list = []
+    users = [user for user in users if (user["name"]).lower().index(search.lower())]
+    users = users[offset : limit * (1 if offset == 0 else offset)]
+
+    return users

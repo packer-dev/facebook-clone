@@ -112,6 +112,7 @@ async def create_post(post_payload: PostPayload):
 async def edit_post(post_payload: PostPayload):
     ref = db.reference("social-network")
 
+    users = ref.child("users").get()
     post = post_payload.post.model_dump()
     media_new = post_payload.media_new
     media_old = [child.model_dump() for child in post_payload.media_old]
@@ -145,13 +146,19 @@ async def edit_post(post_payload: PostPayload):
     ref.child("medias").child("posts").child(post["id"]).set(media_list)
     ref.child("posts").set(posts)
 
-    return post
+    return {
+        "post": update_user_post(users, post),
+        "medias": media_list,
+        "feel": [],
+        "comment": [],
+    }
 
 
 async def delete_post(post_id: str):
     ref = db.reference("social-network")
 
     posts = new_value(ref.child("posts").get(), [])
+    users = new_value(ref.child("users").get(), [])
     media_post = new_value(ref.child("medias").child("posts").child(post_id).get(), [])
     media_comment = new_value(
         ref.child("medias").child("comments").child(post_id).get(), []

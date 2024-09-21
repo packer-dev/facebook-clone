@@ -48,7 +48,7 @@ const AnswerQuestionContent = ({
               } w-full flex justify-center text-white font-semibold break-all text-center`
             )}
           >
-            {answerQuestion?.value}
+            <Text>{answerQuestion?.value}</Text>
           </View>
         </View>
       </View>

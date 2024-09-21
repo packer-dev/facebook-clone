@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import backgrounds from "../../../config/backgrounds";
-import { PostContext } from "../../../contexts/PostContext/PostContext";
+import backgrounds from "@/config/backgrounds";
+import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 
 const GroupChooseBackground = (props) => {
@@ -14,6 +14,7 @@ const GroupChooseBackground = (props) => {
       <ul className="w-full flex gap-2 flex-wrap">
         {list.map((item) => (
           <li
+            aria-hidden
             key={item.id}
             onClick={() => {
               postsDispatch(postsAction.updateData("background", item));
@@ -22,7 +23,7 @@ const GroupChooseBackground = (props) => {
             }}
             className="w-20 h-20 bg-contain cursor-pointer rounded-lg"
             style={{ [item.key]: item.value }}
-          ></li>
+          />
         ))}
       </ul>
     </div>

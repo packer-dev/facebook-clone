@@ -200,7 +200,7 @@ export default function CenterWritePostModal(props: any) {
               onClick={() => {
                 postsDispatch(postsAction.updateData("answer_question", null));
                 postsDispatch(
-                  postsAction.updateData("contentAnswerQuestion", "")
+                  postsAction.updateData("imageVideoUpload", false)
                 );
               }}
               className="w-7 h-7 rounded-full cursor-pointer hover:bg-gray-100 text-gray-600 items-center

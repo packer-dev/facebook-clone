@@ -3,6 +3,7 @@ import ItemHeaderLoggedLeft from "./ItemHeaderLoggedLeft";
 import InputComponent from "@/components/InputComponent";
 import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
+import { searchUser } from "@/apis/userAPIs";
 
 export default function HeaderLoggedLeft() {
   //
@@ -15,7 +16,8 @@ export default function HeaderLoggedLeft() {
     let timeOut: ReturnType<typeof setTimeout>;
     if (keyword.length > 0) {
       timeOut = setTimeout(async () => {
-        const result = { data: [] };
+        const result = await searchUser(keyword, 0, 6);
+
         if (result.data.length > 0) setList(result.data);
         else setList(null);
         setLoading(false);
@@ -42,7 +44,7 @@ export default function HeaderLoggedLeft() {
               aria-hidden
               onClick={() => setShow(false)}
               className="w-11 h-11 rounded-full text-center items-center pt-1 mt-1 cursor-pointer ml-1 
-              bx bxs-left-arrow-alt text-3xl dark:text-gray-300"
+              bx bxs-chevron-left text-3xl dark:text-gray-300"
             />
             <div className="mt-1 pl-1">
               <div
@@ -66,16 +68,16 @@ export default function HeaderLoggedLeft() {
             <div className="w-full py-1">
               <div className="w-full cursor-pointer">
                 {loading && (
-                  <div className="w-full flex items-center justify-center h-12">
+                  <div className="w-full flex items-center justify-center pb-5 pt-5">
                     <i className="fas fa-circle-notch text-2xl text-gray-500 mx-9 fa-spin" />
                   </div>
                 )}
-                {!loading && list?.length ? (
-                  list.map((item) => (
+                {!loading &&
+                  list?.map((item) => (
                     <ItemHeaderLoggedLeft item={item} key={item.id} />
-                  ))
-                ) : (
-                  <p className="my-2 text-sm text-center">
+                  ))}
+                {!loading && (
+                  <p className="my-2 pb-5 text-sm text-center">
                     No matching results found.
                   </p>
                 )}

@@ -98,7 +98,7 @@ class Activity(BaseModel):
     data: str
     label: str
     name: str
-    idActivity: int
+    idActivity: str
 
 
 class Feel(BaseModel):

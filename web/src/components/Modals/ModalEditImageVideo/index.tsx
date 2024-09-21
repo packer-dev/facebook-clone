@@ -27,7 +27,7 @@ export default function ModalEditImageVideo() {
   useEffect(() => {
     const combineImageVideo = [
       ...Array.from(posts.imageVideo.old),
-      ...Array.from(posts.imageVideo.new),
+      ...Array.from(posts.imageVideo.new || []),
     ];
     const result = combineImageVideo.map((element, index) => {
       let extension = "";
@@ -46,8 +46,8 @@ export default function ModalEditImageVideo() {
       return (
         <ImageVideoEditComponent
           key={"url" in element ? element.url : element.name}
-          index={index}
           src={"url" in element ? element.url : URL.createObjectURL(element)}
+          element={element}
           style={{
             width:
               length === 1 || length === 2
@@ -66,7 +66,6 @@ export default function ModalEditImageVideo() {
               type={type}
             />
           }
-          file={element}
         />
       );
     });
@@ -88,7 +87,8 @@ export default function ModalEditImageVideo() {
           className="w-full h-full flex flex-wrap gap-1 max-h-full overflow-x-hidden overflow-y-auto"
           style={{ maxHeight: length > 4 ? "80vh" : 650 }}
         >
-          {posts.imageVideo.length > 0 ? (
+          {[...posts.imageVideo.old, ...Array.from(posts.imageVideo.new || [])]
+            .length > 0 ? (
             data
           ) : (
             <div className="w-full h-60 flex justify-center items-center">
@@ -117,7 +117,7 @@ export default function ModalEditImageVideo() {
                   postsAction.updateData("imageVideo", {
                     ...posts.imageVideo,
                     new: [
-                      ...Array.from(posts.imageVideo.new),
+                      ...Array.from(posts.imageVideo.new || []),
                       ...Array.from(event.target.files),
                     ],
                   })

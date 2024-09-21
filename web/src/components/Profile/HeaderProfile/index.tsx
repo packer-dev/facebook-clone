@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
@@ -14,13 +14,14 @@ export default memo(function HeaderProfile() {
     state: { userProfile },
     updateData,
   } = useContext(UserProfileContext);
+  const [loadingCover, setLoadingCover] = useState(false);
   const [cover, setCover] = useState<string | File>(userProfile.cover);
-  const refLoadingCover = useRef();
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   useEffect(() => {
-    setCover(userProfile.cover);
+    setCover(user.cover);
+    updateData("userProfile", user);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile, setCover]);
+  }, [user, setCover]);
   //
   return (
     <>
@@ -28,8 +29,8 @@ export default memo(function HeaderProfile() {
         <UpdateCoverImage
           setCover={setCover}
           cover={cover}
-          user={userProfile}
-          refLoadingCover={refLoadingCover}
+          loadingCover={loadingCover}
+          setLoadingCover={setLoadingCover}
         />
       )}
       <div className="dark:bg-dark-second pt-10 w-full md:w-4/5 lg:w-3/4 md:mx-auto xl:w-63%">
@@ -47,13 +48,12 @@ export default memo(function HeaderProfile() {
             />
             {user.id === userProfile.id && (
               <>
-                <div
-                  ref={refLoadingCover}
-                  className="w-full h-60 lg:h-96 absolute top-0 left-0 z-20 bg-opacity-50 bg-black hidden justify-center items-center"
-                >
-                  <i className="fas fa-spinner fa-pulse text-5xl text-main" />
-                </div>
-                <div className="z-40 p-1.5 bg-gray-50 absolute text-center rounded-lg bottom-3 right-10 md:right-3">
+                {loadingCover && (
+                  <div className="w-full h-60 lg:h-96 absolute top-0 left-0 z-20 bg-opacity-50 bg-white flex justify-center items-center">
+                    <i className="fas fa-spinner fa-pulse text-5xl text-main" />
+                  </div>
+                )}
+                <div className="z-10 p-1.5 bg-gray-50 absolute text-center rounded-lg bottom-3 right-10 md:right-3">
                   <input
                     type={"file"}
                     className="hidden"
@@ -74,7 +74,7 @@ export default memo(function HeaderProfile() {
               </>
             )}
           </div>
-          <div className="w-full relative z-10 flex pb-2 border-b-6 border-solid border-gray-200">
+          <div className="w-full relative z-30 flex pb-2 border-b-6 border-solid border-gray-200">
             <div className="-mt-9 relative w-[180px] h-[180px]">
               <img
                 className="w-full h-full rounded-full border-4 border-solid border-white object-cover"
@@ -96,8 +96,7 @@ export default memo(function HeaderProfile() {
                           modalsDispatch(
                             modalsAction.openModalPreviewAvatar(
                               event.target.files[0],
-                              userProfile,
-                              updateData
+                              userProfile
                             )
                           );
                         }

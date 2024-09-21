@@ -4,34 +4,34 @@ import { Media } from "./Media";
 import { User } from "./User";
 
 export interface Background {
-  id: number;
+  id: string;
   value: string;
   key: string;
   type: number;
 }
 
 export interface Activity {
-  id: number;
+  id: string;
   data: string;
   label: string;
   name: string;
-  idActivity: number;
+  idActivity: string;
 }
 
 export interface FeelPost {
-  id: number;
+  id: string;
   data: string;
   label: string;
 }
 
 export interface AnswerQuestion {
-  id: number;
+  id: string;
   content: string;
   value: string;
 }
 
 export interface Local {
-  id: number;
+  id: string;
   name: string;
 }
 

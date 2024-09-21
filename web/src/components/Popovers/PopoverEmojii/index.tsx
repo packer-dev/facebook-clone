@@ -55,17 +55,17 @@ const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
         </ScrollContainer>
       </div>
       <div className="w-full pl-1 flex flex-wrap items-end flex-1 gap-0.5 overflow-y-auto">
-        {getEmojiiByCategory(categoryActive).map((item) => {
+        {getEmojiiByCategory(categoryActive).map((item, index) => {
           return (
             <div
               aria-hidden
-              onClick={() => handleClick(item)}
+              onClick={() => handleClick?.(item)}
               className={`w-9 h-9 flex justify-center text-2xl cursor-pointer items-center ${
                 item !== "icon"
                   ? "hover:bg-gray-300 dark:hover:bg-dark-third"
                   : "bg-gray-300 dark:bg-dark-third"
               }`}
-              key={item?.emoji}
+              key={item + index}
             >
               {item}
             </div>

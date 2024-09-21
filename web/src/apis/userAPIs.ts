@@ -77,10 +77,17 @@ export const getFriendUser = async (userId: string, status: any) => {
 
 export const updateProfileUser = async (formData: any) => {
   return fetch(`${API_URL}/upload-profile`, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
     body: formData,
     method: "POST",
   }).then((res) => res.json());
+};
+
+export const searchUser = async (
+  search: string = "",
+  offset: number = 0,
+  limit: number = 10
+) => {
+  return fetch(
+    `${API_URL}/user/search?search=${search}&offset=${offset}&limit=${limit}`
+  ).then((res) => res.json());
 };

@@ -11,9 +11,10 @@ from social_network.services.AuthServices import (
     upload_media_profile_user,
     relationship_check,
     get_friend_main,
+    search_user,
 )
 from fastapi import Form, UploadFile, File
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(prefix="/api/social-network/v1")
 
@@ -73,3 +74,8 @@ async def upload_media_profile_user_api(
     return await upload_media_profile_user(
         folder=folder, file=file, is_cover=is_cover, user_id=user_id
     )
+
+
+@router.get("/user/search")
+async def search_user_api(search: str, limit: Optional[int], offset: Optional[int]):
+    return await search_user(search=search, limit=limit, offset=offset)

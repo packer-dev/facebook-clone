@@ -20,10 +20,9 @@ import MediaDisplay from "@/components/MediaDisplay";
 const ModalPost = () => {
   //
   const user = useSelector<RootState, User>(getUser);
-  const { homePosts, pageCurrent, profilePosts } = useSelector<
-    RootState,
-    CommonDataProps
-  >(getCommon);
+  const { pageCurrent, profilePosts } = useSelector<RootState, CommonDataProps>(
+    getCommon
+  );
   const {
     posts: {
       imageVideo,
@@ -36,6 +35,7 @@ const ModalPost = () => {
       answer_question,
       feel,
       local,
+      time_created,
     },
   } = useContext(PostContext);
 
@@ -45,10 +45,9 @@ const ModalPost = () => {
   const handlePost = async () => {
     modalsDispatch(modalsAction.loadingModal(true));
     const formData = new FormData();
-
     if (imageVideo?.new?.length > 0) {
       for (let i = 0; i < imageVideo.new.length || 0; i++) {
-        formData.append("media_new[]", imageVideo.new[i]);
+        formData.append("media_new", imageVideo.new[i]);
       }
     }
     const content: ContentPost = {
@@ -69,6 +68,7 @@ const ModalPost = () => {
           answer_question,
           feel,
           local,
+          time_created,
         })
       )
     );
@@ -81,11 +81,9 @@ const ModalPost = () => {
         if (id) {
           dispatch(
             updateDataCommon({
-              key: "homePosts",
-              value: [...homePosts].map((item) => {
-                if (item?.post?.id === id) {
-                  return { ...item, post: res };
-                }
+              key: "profilePosts",
+              value: [...profilePosts].map((item) => {
+                if (item?.post?.id === id) return res;
                 return item;
               }),
             })
@@ -125,6 +123,7 @@ const ModalPost = () => {
         />
         {imageVideoUpload && (
           <MediaDisplay
+            edit
             medias={[...imageVideo.old, ...Array.from(imageVideo.new || [])]}
           />
         )}

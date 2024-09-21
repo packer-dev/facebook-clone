@@ -1,10 +1,10 @@
-import { absoluteFull, shadow, css, primary } from './styled';
+import { absoluteFull, shadow, css, primary } from "./styled";
 
-const tailwind = (className: string) => {
+const tailwind = (className: string): Object => {
   let styledCustom: any = { absoluteFull, shadow, ...css, ...primary };
   let styles = {};
-  if (!className) return;
-  const items = className.split(' ');
+  if (!className) return {};
+  const items = className.split(" ");
   items.forEach((item) => {
     styles = { ...styles, ...(styledCustom[item] || {}) };
   });

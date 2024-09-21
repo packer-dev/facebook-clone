@@ -7,7 +7,7 @@ const useListeningMessage = (groupId: string) => {
     state: { user, socket, messages, groups },
     updateData,
   } = React.useContext(AppContext);
-  const { playSound } = useSound(1);
+  const { playSound } = useSound();
   const listenChat = (data: any) => {
     data = JSON.parse(data);
     if (user?.id === data?.message?.user?.id) return;

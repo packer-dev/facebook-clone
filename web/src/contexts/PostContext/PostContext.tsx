@@ -1,7 +1,6 @@
 import * as React from "react";
 import AppReducer from "./AppReducer";
 import * as actions from "./Action";
-import ModalPost from "@/components/Modals/ModalPost";
 import {
   Activity,
   AnswerQuestion,
@@ -11,6 +10,7 @@ import {
 } from "@/interfaces/Post";
 import { Media } from "@/interfaces/Media";
 import { User } from "@/interfaces/User";
+import ModalPost from "@/components/Modals/ModalPost";
 
 export type PostContextProps = {
   id: string;
@@ -32,6 +32,7 @@ export type PostContextProps = {
   feel: FeelPost | null;
   local: Local | null;
   fileList: File[] | [];
+  time_created: string;
 };
 
 const initialState: PostContextProps = {
@@ -54,6 +55,7 @@ const initialState: PostContextProps = {
   local: null,
   tags: [],
   fileList: null,
+  time_created: "",
 };
 
 export const PostContext = React.createContext({

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Audio } from "expo-av";
 
-const useSound = (index: number) => {
+const useSound = (index?: number) => {
   const [sound, setSound] = useState<any>();
   const messageNotice = require("../assets/audio.mp3");
   const storyNotice = require("../assets/nhac-chuong-trend-ve-la-co-to-quoc-tikttok.mp3");
