@@ -351,6 +351,9 @@ def model_post(post: Post):
         last_time_active=post["user"]["last_time_active"],
         time_created=post["user"]["time_created"],
         bio=post["user"]["bio"],
+        favorites=post["user"]["favorites"],
+        is_dark=post["user"]["is_dark"],
+        description=post["user"]["description"],
     )
 
     post = Post(

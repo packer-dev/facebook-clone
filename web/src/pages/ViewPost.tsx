@@ -63,7 +63,7 @@ export default function ViewPost() {
                 <img
                   src={postDetail?.medias[index].url}
                   alt=""
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   style={{
                     transform: `scale(${scale / 100})`,
                   }}
@@ -73,7 +73,7 @@ export default function ViewPost() {
                   type="video"
                   single
                   src={postDetail?.medias[index].url}
-                  className="w-11/12 object-cover"
+                  className="w-11/12 object-cover h-11/12"
                   style={{
                     transform: `scale(${scale / 100})`,
                   }}

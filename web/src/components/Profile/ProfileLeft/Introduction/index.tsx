@@ -17,20 +17,21 @@ export default function Introduction() {
     updateData,
   } = useContext(UserProfileContext);
   const user = useSelector<RootState, User>(getUser);
-  const favorites = JSON.parse(userProfile.favorites || "{}");
+  const favorites = JSON.parse(userProfile.favorites || "[]");
   //
   return (
     <>
-      <p className="font-bold text-xl py-2 dark:text-white">Giới thiệu</p>
-      <DescriptionIntroduction user={user} userProfile={userProfile} />
+      <p className="font-bold text-xl py-2 dark:text-white">Introduction</p>
+      <DescriptionIntroduction />
       <InformationMain userProfile={userProfile} />
       {user.id === userProfile.id && (
         <ButtonComponent
           handleClick={() => {
             modalsDispatch(
-              modalsAction.openModalEditInformation((data) => {
-                updateData("userProfile", data);
-              })
+              modalsAction.openModalEditInformation(
+                (user) => updateData("userProfile", user),
+                userProfile
+              )
             );
           }}
           className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
@@ -50,9 +51,10 @@ export default function Introduction() {
         <ButtonComponent
           handleClick={() => {
             modalsDispatch(
-              modalsAction.openModalFavorite((data) => {
-                updateData("userProfile", data);
-              })
+              modalsAction.openModalFavorite(
+                (data) => updateData("userProfile", data),
+                userProfile
+              )
             );
           }}
           className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 

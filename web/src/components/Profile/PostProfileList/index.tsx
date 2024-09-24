@@ -37,7 +37,7 @@ export default function PostProfileList() {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile.id]);
+  }, [userProfile]);
   //
   return (
     <div className="w-full my-2">

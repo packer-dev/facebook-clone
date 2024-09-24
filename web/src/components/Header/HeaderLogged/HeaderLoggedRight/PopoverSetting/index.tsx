@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState, getUser } from "@/reducers";
+import { AppDispatch, RootState, getUser } from "@/reducers";
 import { PAGE_PROFILE } from "@/constants/Config";
-import * as usersAction from "@/actions/user/index";
 import { User } from "@/interfaces/User";
+import { logout } from "@/reducers/user";
 
 const PopoverSetting = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   //
   return (
     <div className="w-full p-2 rounded-lg">
@@ -49,7 +49,7 @@ const PopoverSetting = () => {
       <hr className="border-gray-300 my-1.5 dark:border-dark-third" />
       <div
         aria-hidden
-        onClick={() => dispatch(usersAction.logoutUser())}
+        onClick={() => dispatch(logout())}
         className="p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-third flex w-full items-center"
       >
         <span

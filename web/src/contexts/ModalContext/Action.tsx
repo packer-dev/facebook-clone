@@ -112,16 +112,24 @@ export const openModalDeletePost = (
   };
 };
 
-export const openModalFavorite = (updateUserProfile: any) => {
+export const openModalFavorite = (
+  updateUserProfile: (user: User) => void,
+  userProfile: User
+) => {
   return {
     type: constants.OPEN_MODAL_FAVORITE,
     updateUserProfile,
+    userProfile,
   };
 };
 
-export const openModalEditInformation = (updateUserProfile: any) => {
+export const openModalEditInformation = (
+  updateUserProfile: (user: User) => void,
+  userProfile: User
+) => {
   return {
     type: constants.OPEN_MODAL_EDIT_INFORMATION,
     updateUserProfile,
+    userProfile,
   };
 };

@@ -12,14 +12,12 @@ export default memo(function HeaderProfile() {
   const user = useSelector<RootState, User>(getUser);
   const {
     state: { userProfile },
-    updateData,
   } = useContext(UserProfileContext);
   const [loadingCover, setLoadingCover] = useState(false);
   const [cover, setCover] = useState<string | File>(userProfile.cover);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   useEffect(() => {
-    setCover(user.cover);
-    updateData("userProfile", user);
+    setCover(userProfile.cover);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, setCover]);
   //

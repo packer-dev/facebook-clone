@@ -25,6 +25,9 @@ def user_response(user: dict) -> dict:
             "last_time_active": user.get("last_time_active"),
             "time_created": user.get("time_created"),
             "bio": user.get("bio"),
+            "favorites": user.get("favorites"),
+            "description": user.get("description"),
+            "is_dark": user.get("is_dark"),
         }
     )
 

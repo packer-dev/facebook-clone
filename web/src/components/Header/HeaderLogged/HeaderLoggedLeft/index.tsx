@@ -17,8 +17,7 @@ export default function HeaderLoggedLeft() {
     if (keyword.length > 0) {
       timeOut = setTimeout(async () => {
         const result = await searchUser(keyword, 0, 6);
-
-        if (result.data.length > 0) setList(result.data);
+        if (result.length > 0) setList(result);
         else setList(null);
         setLoading(false);
       }, 300);
@@ -76,7 +75,7 @@ export default function HeaderLoggedLeft() {
                   list?.map((item) => (
                     <ItemHeaderLoggedLeft item={item} key={item.id} />
                   ))}
-                {!loading && (
+                {!loading && !list && (
                   <p className="my-2 pb-5 text-sm text-center">
                     No matching results found.
                   </p>

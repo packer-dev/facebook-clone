@@ -58,6 +58,7 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
             localStorage.setItem("user", result?.id);
             return;
           }
+          setLoading(false);
           setError(true);
         },
       })

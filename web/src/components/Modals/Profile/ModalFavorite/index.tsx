@@ -5,13 +5,20 @@ import ModalWrapper from "../../ModalWrapper";
 import ItemFavorite from "./ItemFavorite";
 import InputComponent from "@/components/InputComponent";
 import ButtonComponent from "@/components/ButtonComponent";
+import { User } from "@/interfaces/User";
+import { updateUser } from "@/apis/userAPIs";
 
-export default function ModalFavorite({ updateUserProfile }: any) {
+const ModalFavorite = ({
+  updateUserProfile,
+  userProfile,
+}: {
+  updateUserProfile: (user: User) => void;
+  userProfile: User;
+}) => {
   //
   const [content, setContent] = useState({
-    // choose: JSON.parse(user.favorites),
-    choose: [],
-    list: [],
+    choose: JSON.parse(userProfile?.favorites || "[]"),
+    list: favorites,
     search: "",
   });
   const ref = useRef();
@@ -19,19 +26,19 @@ export default function ModalFavorite({ updateUserProfile }: any) {
   //
   return (
     <ModalWrapper
-      title={"Sở thích"}
+      title="Favorites"
       className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
         z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
         shadow-lv1 dark:border-dark-third dark:bg-dark-third px-3"
     >
-      <div className="w-full" style={{ height: 500 }}>
-        <div className="my-2 w-full ">
+      <div className="w-full h-[500px]">
+        <div className="my-2 w-full">
           <InputComponent
-            type={"text"}
-            search={true}
+            type="text"
+            search
             className={`p-2 w-full border-2 border-solid border-gray-200 rounded-full`}
             ref={ref}
-            placeholder={"Bạn làm gì để giải trí?"}
+            placeholder={"What do you do for fun?"}
             handleChange={(data) => {
               const get = favorites.filter(
                 (dt) => dt.name.toLowerCase().indexOf(data.toLowerCase()) !== -1
@@ -43,8 +50,8 @@ export default function ModalFavorite({ updateUserProfile }: any) {
         <hr />
         {content.choose.length > 0 && (
           <>
-            <p className="text-gray-500 darK:text-gray-300 py-2 font-semibold">
-              SỞ THÍCH ĐÃ CHỌN
+            <p className="text-gray-500 dark:text-gray-300 py-2 font-semibold">
+              SELECTED FAVORITES
             </p>
             <div
               className="p-2.5 h-24 max-h-24 overflow-y-auto w-full border-2 border-solid 
@@ -66,14 +73,13 @@ export default function ModalFavorite({ updateUserProfile }: any) {
           </>
         )}
         <div className="w-full" style={{ height: 300 }}>
-          {content.list.length > 0 && content.search.length > 0 && (
+          {content.list.length > 0 && (
             <>
               <p className="text-gray-500 dark:text-gray-300 pl-2.5 my-1 font-bold">
-                KẾT QUẢ CHO {`"${content.search}"`}
+                RESULTS FOR {`"${content.search}"`}
               </p>
               <div
-                className="p-2.5 overflow-y-auto w-full border-2 border-solid 
-                        border-gray-200 rounded-lg"
+                className="p-2.5 overflow-y-auto w-full border-2 border-solid border-gray-200 rounded-lg"
                 style={{ height: 270, maxHeight: 270 }}
               >
                 <div className="w-full gap-1.5 flex flex-wrap">
@@ -105,24 +111,29 @@ export default function ModalFavorite({ updateUserProfile }: any) {
         <ButtonComponent
           handleClick={() => modalsDispatch(modalsAction.closeModal())}
           type="button"
-          className="cursor-pointer border-none font-semibold text-white  
-                    rounded-lg p-2 mx-2 bg-gray-500"
+          className="cursor-pointer border-none font-semibold text-white rounded-lg p-2 mx-2 bg-gray-500"
         >
-          Hủy
+          Cancel
         </ButtonComponent>
         <ButtonComponent
           handleClick={async () => {
             modalsDispatch(modalsAction.loadingModal(true));
-
+            const newUser = {
+              ...userProfile,
+              favorites: JSON.stringify(content.choose),
+            };
+            await updateUser(newUser);
+            updateUserProfile(newUser);
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className={`cursor-pointer w-1/4 border-none font-semibold bg-main 
-                     text-white rounded-lg p-2 mx-2 `}
+          className="cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2"
         >
-          Lưu
+          Save
         </ButtonComponent>
       </div>
     </ModalWrapper>
   );
-}
+};
+
+export default ModalFavorite;

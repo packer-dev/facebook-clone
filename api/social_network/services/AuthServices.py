@@ -418,7 +418,10 @@ async def search_user(search: str, limit: int = 10, offset: int = 0):
 
     users = new_value(ref.child("users").get(), [])
     new_list = []
-    users = [user for user in users if (user["name"]).lower().index(search.lower())]
-    users = users[offset : limit * (1 if offset == 0 else offset)]
+    for user in users:
+        name = str(user["name"])
+        if search.lower() in name.lower():
+            new_list.append(user)
+    users = new_list[offset : limit * (1 if offset == 0 else offset)]
 
     return users

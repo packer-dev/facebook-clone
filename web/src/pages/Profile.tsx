@@ -47,15 +47,13 @@ const WrapperProfile = forwardRef(
       //
       let timeOut: any;
       const fetchData = async () => {
-        if (id !== refPath.current) {
-          setLoading(true);
-          const result = await getUserById(id);
+        setLoading(true);
+        const result = await getUserById(id);
+        const timeOut = setTimeout(() => {
           updateData("userProfile", result);
-          const timeOut = setTimeout(() => {
-            setLoading(false);
-            clearTimeout(timeOut);
-          }, 500);
-        }
+          setLoading(false);
+          clearTimeout(timeOut);
+        }, 500);
         refPath.current = id;
       };
       fetchData();
@@ -63,7 +61,7 @@ const WrapperProfile = forwardRef(
         clearTimeout(timeOut);
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location.pathname, ref, id, refPath]);
+    }, [location.pathname]);
     useEffect(() => {
       ref.current?.scrollTo(0, 0);
     }, [loading, ref]);

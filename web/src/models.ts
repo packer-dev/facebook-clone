@@ -23,6 +23,9 @@ export const userModel = (obj?: User | null) => ({
   last_time_active: obj?.last_time_active ?? getCurrentDateTime(),
   time_created: obj?.time_created ?? getCurrentDateTime(),
   bio: obj?.bio ?? "",
+  description: obj?.description || "{}",
+  favorites: obj?.favorites || "[]",
+  is_dark: obj?.is_dark || false,
 });
 
 export const memberModel = (obj: Member) => ({

@@ -1,21 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ButtonComponent from "@/components/ButtonComponent";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { updateUser } from "@/apis/userAPIs";
 
-export default function DescriptionIntroduction({ user, userProfile }) {
+export default function DescriptionIntroduction() {
   //
+  const {
+    state: { userProfile },
+    updateData: updateDataUserProfile,
+  } = useContext(UserProfileContext);
+  const user = useSelector<RootState, User>(getUser);
   const refContainer = useRef<HTMLDivElement>();
   const refDescription = useRef<HTMLDivElement>();
   const refAbsolute = useRef<HTMLDivElement>();
-  const [description, setDescription] = useState(
-    JSON.parse(userProfile.description || "{}")
-  );
+  const [description, setDescription] = useState(userProfile.bio || "");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   useEffect(() => {
     //
     if (refDescription.current) {
-      setDescription(JSON.parse(userProfile.description || "{}"));
-      refDescription.current.innerText = description.introduction;
+      setDescription(userProfile.bio);
+      refDescription.current.innerText = userProfile.bio;
       refDescription.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,36 +44,36 @@ export default function DescriptionIntroduction({ user, userProfile }) {
           suppressContentEditableWarning={true}
           onInput={(event) => {
             if (event.currentTarget.textContent.length <= 70) {
-              setDescription({
-                ...description,
-                introduction: event.currentTarget.textContent,
-              });
+              setDescription(event.currentTarget.textContent);
             }
           }}
           spellCheck={false}
         />
         <p className="mt-1 text-right text-gray-500 text-sm">{`Còn ${
-          70 - description?.introduction?.length
+          70 - description?.length || 0
         } ký tự`}</p>
         <div className="text-right w-full my-1 pb-2 ">
           <ButtonComponent
             handleClick={() => {
               setShow(false);
-              setDescription(JSON.parse(user.description));
+              setDescription(user.bio || "");
             }}
-            className={`px-4 py-1.5 rounded-lg bg-gray-300`}
+            className="px-4 py-1.5 rounded-lg bg-gray-300"
           >
             Cancel
           </ButtonComponent>
           <ButtonComponent
             handleClick={async () => {
               setLoading(true);
+              const newUser = { ...userProfile, bio: description };
+              await updateUser(newUser);
+              updateDataUserProfile("userProfile", newUser);
+              updateDataUserProfile("userProfile", newUser);
+              setLoading(false);
+              setShow(false);
             }}
-            disabled={
-              JSON.parse(user?.description || "{}")?.introduction ===
-              description?.introduction
-            }
-            className={`px-4 py-1.5 ml-3 rounded-lg bg-main text-white`}
+            disabled={user?.bio === description}
+            className="px-4 py-1.5 ml-3 rounded-lg bg-main text-white"
           >
             Save
           </ButtonComponent>
@@ -73,7 +81,7 @@ export default function DescriptionIntroduction({ user, userProfile }) {
       </div>
       {!show && (
         <>
-          <p className="mb-3 text-center">{description.introduction}</p>
+          <p className="mb-3 text-center">{description || ""}</p>
           {user.id === userProfile.id && (
             <ButtonComponent
               handleClick={() => {

@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/Config";
 import { User } from "../interfaces/User";
+import { userModel } from "@/models";
 
 export const getUserById = async (userId: string) => {
   return fetch(`${API_URL}/user/id?user_id=${userId}`).then((res) =>
@@ -29,7 +30,7 @@ export const updateUser = async (user: User) => {
       "content-type": "application/json",
     },
     method: "PUT",
-    body: JSON.stringify(user),
+    body: JSON.stringify(userModel(user)),
   }).then((res) => res.json());
 };
 

@@ -13,12 +13,15 @@ class User(BaseModel):
     id: str
     name: str
     email: str
-    password: str
+    password: Optional[str] = None
     avatar: str
     cover: str
     last_time_active: str
     time_created: str
     bio: str
+    description: Any
+    is_dark: bool
+    favorites: str
 
 
 class Member(BaseModel):

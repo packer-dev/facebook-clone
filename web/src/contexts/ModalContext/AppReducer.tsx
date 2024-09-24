@@ -73,13 +73,21 @@ const AppReducer = (state, action) => {
     case constants.OPEN_MODAL_FAVORITE:
       return {
         ...state,
-        data: <ModalFavorite updateUserProfile={action.updateUserProfile} />,
+        data: (
+          <ModalFavorite
+            updateUserProfile={action.updateUserProfile}
+            userProfile={action.userProfile}
+          />
+        ),
       };
     case constants.OPEN_MODAL_EDIT_INFORMATION:
       return {
         ...state,
         data: (
-          <ModalEditInformation updateUserProfile={action.updateUserProfile} />
+          <ModalEditInformation
+            updateUserProfile={action.updateUserProfile}
+            userProfile={action.userProfile}
+          />
         ),
       };
     default:
