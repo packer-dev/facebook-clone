@@ -1,6 +1,4 @@
 import { loginAPI, registerAPI } from "@/apis/userAPIs";
-import * as constants from "@/constants/UserConstant";
-import { User } from "@/interfaces/User";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export type FormLoginData = {
@@ -50,16 +48,3 @@ export const registerUserRequest = createAsyncThunk(
     }
   }
 );
-
-export const loginUser = (user?: User) => {
-  return {
-    type: constants.LOGIN,
-    user,
-  };
-};
-
-export const logoutUser = () => {
-  return {
-    type: constants.LOGOUT,
-  };
-};

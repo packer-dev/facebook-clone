@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { useDispatch } from "react-redux";
-import * as usersAction from "@/actions/user/index";
 
-function ItemAccount(props: any) {
+const ItemAccount = (props: any) => {
   //
   const { list, setList, item } = props;
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
@@ -50,7 +49,6 @@ function ItemAccount(props: any) {
         if (tokenParse.exp > Math.floor(new Date().getTime() / 1000)) {
           if (result.data.users) {
             localStorage.setItem("user", result.data.token.exp.toString());
-            dispatch(usersAction.loginUser(result.data.users));
             dispatch({
               type: "UPDATE_TOKEN",
               token: result.data.token,
@@ -130,6 +128,6 @@ function ItemAccount(props: any) {
       </div>
     </div>
   );
-}
+};
 
 export default ItemAccount;
