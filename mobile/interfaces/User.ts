@@ -8,6 +8,9 @@ export interface User {
   last_time_active: string;
   time_created: string;
   bio: string;
+  is_dark?: boolean;
+  favorites?: string;
+  description?: any;
 }
 
 export interface FriendProfileDTO {

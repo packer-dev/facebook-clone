@@ -1,4 +1,4 @@
-const emojii = [
+const emoji = [
   {
     emoji: "😀",
     description: "grinning face",
@@ -16131,4 +16131,4 @@ const emojii = [
   },
 ];
 
-export default emojii;
+export default emoji;

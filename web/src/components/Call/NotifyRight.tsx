@@ -11,7 +11,7 @@ const ItemNotifyRight = ({ type, show, icon }: ItemNotifyRightProps) => {
     <div
       className={`w-full flex p-3 bg-opacity-80 rounded-lg mb-1.5 ${
         show ? "hideFade" : ""
-      } bg-[#3A3B3C]`}
+      } bg-[#3A3B3C]`.trim()}
     >
       <div className="w-12 flex items-center justify-center">
         <span

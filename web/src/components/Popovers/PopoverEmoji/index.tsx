@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
-import emojii from "@/config/emojii";
+import emoji from "@/config/emoji";
 
-const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
+const PopoverEmoji = ({ handleClick }: { handleClick: Function }) => {
   //
   const listCategoryFun = () => {
     let listCategory = [];
-    emojii.forEach((element) => {
+    emoji.forEach((element) => {
       let index = listCategory.findIndex(
         (item) => element.category === item.category
       );
       if (index === -1)
         listCategory.push({
-          thumnail: element.emoji,
+          thumbnail: element.emoji,
           category: element.category,
         });
     });
@@ -35,16 +35,16 @@ const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
             }`}
         key={item?.emoji}
       >
-        {item.thumnail}
+        {item.thumbnail}
       </li>
     );
   });
-  const getEmojiiByCategory = (category: string) => {
-    let listEmojii = [];
-    emojii.forEach((element) => {
-      if (element.category === category) listEmojii.push(element.emoji);
+  const getEmojiByCategory = (category: string) => {
+    let listEmoji = [];
+    emoji.forEach((element) => {
+      if (element.category === category) listEmoji.push(element.emoji);
     });
-    return listEmojii;
+    return listEmoji;
   };
   //
   return (
@@ -55,7 +55,7 @@ const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
         </ScrollContainer>
       </div>
       <div className="w-full pl-1 flex flex-wrap items-end flex-1 gap-0.5 overflow-y-auto">
-        {getEmojiiByCategory(categoryActive).map((item, index) => {
+        {getEmojiByCategory(categoryActive).map((item, index) => {
           return (
             <div
               aria-hidden
@@ -76,4 +76,4 @@ const PopoverEmojii = ({ handleClick }: { handleClick: Function }) => {
   );
 };
 
-export default PopoverEmojii;
+export default PopoverEmoji;

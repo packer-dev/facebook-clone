@@ -50,7 +50,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           aria-hidden
           onClick={() =>
             modalsDispatch(
-              modalsAction.openModalChangeEmojii(group, (group_) => {})
+              modalsAction.openModalChangeEmoji(group, (group_) => {})
             )
           }
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 

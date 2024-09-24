@@ -11,7 +11,7 @@ export interface Background {
 }
 
 export interface Activity {
-  id: number;
+  id: string;
   data: string;
   label: string;
   name: string;

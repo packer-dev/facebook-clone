@@ -7,7 +7,7 @@ import { Socket } from "socket.io-client";
 
 const useListeningMessage = (groupId: string) => {
   const {
-    state: { messages, groups },
+    state: { messages, groups, group },
     updateData,
   } = React.useContext(ItemChatContext);
   const user = useSelector<RootState, User>(getUser);
@@ -15,16 +15,34 @@ const useListeningMessage = (groupId: string) => {
   const listenChat = (data: any) => {
     data = JSON.parse(data);
     if (user?.id === data?.message?.user?.id) return;
-    updateData("messages", [...messages, data?.message]);
-    updateData(
-      "groups",
-      [...groups].map((item) => {
-        if (item.id === groupId) {
-          return { ...item, last_message: data?.message };
-        }
-        return item;
-      })
-    );
+    switch (data.type) {
+      case "message":
+        updateData("messages", [...messages, data?.message]);
+        updateData(
+          "groups",
+          [...groups].map((item) => {
+            if (item.id === groupId) {
+              return { ...item, last_message: data?.message };
+            }
+            return item;
+          })
+        );
+        break;
+      case "color":
+        updateData("group", {
+          ...group,
+          data: { ...group.data, color: data?.color },
+        });
+        break;
+      case "emoji":
+        updateData("group", {
+          ...group,
+          data: { ...group.data, emoji: data?.emoji },
+        });
+        break;
+      default:
+        break;
+    }
   };
   React.useEffect(() => {
     if (socket && groupId) {

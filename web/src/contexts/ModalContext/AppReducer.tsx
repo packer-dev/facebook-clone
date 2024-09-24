@@ -4,7 +4,7 @@ import ModalLogin from "@/components/Modals/Login/ModalLogin";
 import ModalWrapperPost from "@/components/Modals/ModalWrapperPost";
 import ModalPreviewAvatar from "@/components/Modals/Profile/ModalPreviewAvatar";
 import ModalChangeColor from "@/components/Modals/Messages/ModalChangeColor";
-import ModalChangeEmojii from "@/components/Modals/Messages/ModalChangeEmojii";
+import ModalChangeEmojii from "@/components/Modals/Messages/ModalChangeEmoji";
 import ModalChangeNickName from "@/components/Modals/Messages/ModalChangeNickName";
 import ModalWarning from "@/components/Modals/ModalWarning";
 import ModalFavorite from "@/components/Modals/Profile/ModalFavorite";
@@ -38,8 +38,8 @@ const AppReducer = (state, action) => {
         ...state,
         data: (
           <ModalChangeColor
-            groupMessage={action.groupMessage}
-            setGroupMessage={action.setGroupMessage}
+            group={action.group}
+            updateGroup={action.updateGroup}
           />
         ),
       };
@@ -48,8 +48,8 @@ const AppReducer = (state, action) => {
         ...state,
         data: (
           <ModalChangeEmojii
-            groupMessage={action.groupMessage}
-            setGroupMessage={action.setGroupMessage}
+            group={action.group}
+            updateGroup={action.updateGroup}
           />
         ),
       };

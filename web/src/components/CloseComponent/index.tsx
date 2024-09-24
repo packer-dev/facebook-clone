@@ -20,7 +20,7 @@ const CloseComponent = ({
   return (
     <div
       aria-hidden
-      onClick={() => handleClick(data)}
+      onClick={() => handleClick?.(data)}
       className={` ${size ?? "text-xl"} ${
         className ?? " w-8 h-8 top-2 right-2"
       } rounded-full shadow-lv1 flex justify-center items-center cursor-pointer bg-gray-200 

@@ -1,16 +1,15 @@
 import { Member } from "@/interfaces/Member";
 import React, { useState } from "react";
 
-const ItemNickName = (props: { item: Member }) => {
+const ItemNickName = ({ item }: { item: Member }) => {
   //
-  const { item } = props;
   const [show, setShow] = useState(false);
   const [nickName, setNickName] = useState(
     item.nickname ? null : item.nickname
   );
   //
   return (
-    <div className="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third rounded-lg">
+    <div className="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third rounded-lg relative">
       <div className="">
         <img
           src={item.user.avatar}
@@ -25,7 +24,7 @@ const ItemNickName = (props: { item: Member }) => {
           </span>
           <br />
           <span className="w-full text-sm text-gray-700 dark:text-white py-0.5 flex items-center font-semibold">
-            {!nickName ? "Đặt biệt danh" : `${item.user.name}`}
+            {!nickName ? "Nickname" : `${item.user.name}`}
           </span>
         </p>
         <input

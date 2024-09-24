@@ -3,7 +3,7 @@ import * as functions from "@/functions";
 import ControlMessageMain from "./ControlMessageMain";
 import SendImageVideo from "./SendImageVideo/SendImageVideo";
 import PopoverSticker from "@/components/Popovers/PopoverSticker";
-import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
+import PopoverEmoji from "@/components/Popovers/PopoverEmoji";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { dataFakeGroup, dataFakeMessage } from "@/utils";
 import { useSelector } from "react-redux";
@@ -93,6 +93,7 @@ export default function ControlMessage() {
       socket.emit(`send-message`, {
         groupId: result?.group?.id,
         message: result?.message,
+        type: "message",
       });
     } catch (error) {}
   };
@@ -138,7 +139,7 @@ export default function ControlMessage() {
             right-0 rounded-lg w-72 h-80"
           >
             {type === 0 && (
-              <PopoverEmojii
+              <PopoverEmoji
                 handleClick={(item) => {
                   refContent.current.innerText += item;
                   functions.placeCaretAtEnd(refContent.current);

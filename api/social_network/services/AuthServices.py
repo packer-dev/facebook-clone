@@ -72,7 +72,8 @@ async def update_user_service(user: User):
     index = find_index(users, user.id)
     if index == -1:
         return None
-
+    password = users[index]["password"]
+    user.password = password
     users[index] = user.model_dump()
 
     ref.child("users").set(users)

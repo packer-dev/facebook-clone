@@ -10,6 +10,7 @@ export interface User {
   bio: string;
   is_dark?: boolean;
   favorites?: string;
+  description?: any;
 }
 
 export interface FriendProfileDTO {

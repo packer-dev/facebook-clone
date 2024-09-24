@@ -46,7 +46,7 @@ export default memo(function MainContentMessage() {
               </span>
               <br />
               <span className="text-sm font-semibold dark:text-gray-300">
-                Các bạn hiện là bạn bè trên Facebook
+                You are now friends on Facebook
               </span>
             </p>
           </div>
@@ -56,7 +56,7 @@ export default memo(function MainContentMessage() {
             <GroupAvatar group={group} size={16} className="relative mx-auto" />
             <p className="text-center text-gray-900 font-semibold dark:text-white">
               <span className="text-sm font-semibold dark:text-gray-300">
-                {`${user.name} đã tạo nhóm.`}
+                {`${user.name} created group.`}
               </span>
             </p>
           </div>

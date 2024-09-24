@@ -1,4 +1,4 @@
-import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
+import PopoverEmoji from "@/components/Popovers/PopoverEmoji";
 import PopoverSticker from "@/components/Popovers/PopoverSticker";
 import PopoversWrapper from "@/components/Popovers/PopoversWrapper";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
@@ -111,7 +111,7 @@ export default forwardRef(function CategoryInputComment(
             }}
           />
         ) : (
-          <PopoverEmojii
+          <PopoverEmoji
             handleClick={(item: string) => {
               updateData("dataComment", {
                 ...dataComment,

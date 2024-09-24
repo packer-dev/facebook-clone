@@ -69,17 +69,17 @@ export const openModalPreviewAvatar = (image: File, user: User) => {
 };
 
 export const openModalChangeColor = (
-  groupMessage: Group,
-  setGroupMessage: Function
+  group: Group,
+  updateGroup: (group: Group) => void
 ) => {
   return {
     type: constants.OPEN_MODAL_CHANGE_COLOR,
-    groupMessage,
-    setGroupMessage,
+    group,
+    updateGroup,
   };
 };
 
-export const openModalChangeEmojii = (
+export const openModalChangeEmoji = (
   groupMessage: Group,
   setGroupMessage: Function
 ) => {

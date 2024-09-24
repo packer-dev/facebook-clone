@@ -18,7 +18,7 @@ const Avatar = ({
   className = "",
 }: AvatarProps) => {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`.trim()}>
       {loading ? (
         <div
           className={`w-${size} h-${size} rounded-full mx-auto bg-gray-300`}

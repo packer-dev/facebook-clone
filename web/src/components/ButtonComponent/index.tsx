@@ -26,11 +26,7 @@ const ButtonComponent = ({
   const ref = React.useRef<any>();
   React.useEffect(() => {
     //
-    if (link) {
-      if (disabled) {
-        ref.current?.removeAttribute("href");
-      }
-    }
+    if (link && disabled) ref.current?.removeAttribute("href");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, disabled]);
   //
@@ -41,14 +37,10 @@ const ButtonComponent = ({
   ) : (
     <button
       type={type}
-      onClick={() => {
-        if (typeof handleClick === "function" && !disabled) {
-          handleClick?.();
-        }
-      }}
+      onClick={() => !disabled && handleClick?.()}
       className={`${className} border-solid cursor-pointer ${
         disabled ? "cursor-not-allowed bg-gray-500 text-gray-100" : bgColor
-      } `}
+      }`.trim()}
       disabled={disabled}
     >
       {loading ? (

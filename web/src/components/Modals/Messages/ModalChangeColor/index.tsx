@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
-import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import ModalWrapper from "../../ModalWrapper";
+import React, { useState } from "react";
 import ItemColor from "./ItemColor";
-import ButtonComponent from "@/components/ButtonComponent";
+import { Group } from "@/interfaces/Group";
+import ModalMessageWrapper from "../ModalMessageWrapper";
 
-export default function ModalChangeColor(props) {
+type ModalChangeColorProps = {
+  updateGroup: (group: Group) => void;
+  group: Group;
+};
+
+const ModalChangeColor = ({ updateGroup, group }: ModalChangeColorProps) => {
   //
-  const { setGroupMessage } = props;
-  const [color, setColor] = useState();
+  const [color, setColor] = useState(group?.data?.color);
   const colors = [
     "#006AD4",
     "#02B28D",
@@ -23,13 +26,16 @@ export default function ModalChangeColor(props) {
     "#EE046B",
     "#FF311E",
   ];
-  const { modalsDispatch, modalsAction } = useContext(ModalContext);
   //
   return (
-    <ModalWrapper
-      title="Màu"
+    <ModalMessageWrapper
+      title="Color"
       className="shadow-sm border border-solid border-gray-500 py-3 bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg 
-            sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform -translate-x-1/2 -translate-y-1/2"
+      sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform -translate-x-1/2 -translate-y-1/2"
+      group={group}
+      updateGroup={updateGroup}
+      type="color"
+      value={color}
     >
       <div className="w-full py-4 flex justify-center">
         <ul className="pl-2 flex flex-wrap">
@@ -43,31 +49,8 @@ export default function ModalChangeColor(props) {
           ))}
         </ul>
       </div>
-      <div className="text-right pt-3">
-        <ButtonComponent
-          handleClick={() => modalsDispatch(modalsAction.closeModal())}
-          type="button"
-          className="cursor-pointer w-1/5 border-none font-semibold text-blue-500 rounded-lg p-2 mx-2"
-        >
-          Hủy
-        </ButtonComponent>
-        <ButtonComponent
-          handleClick={async () => {
-            modalsDispatch(modalsAction.loadingModal(true));
-            const result = { data: null };
-            setGroupMessage(result.data);
-            modalsDispatch(modalsAction.closeModal());
-          }}
-          type="button"
-          className={`cursor-pointer w-1/4 border-none font-semibold 
-                     text-white rounded-lg p-2 mx-2 ${
-                       !color ? "bg-gray-500" : " bg-main"
-                     }`}
-          disabled={color}
-        >
-          Lưu
-        </ButtonComponent>
-      </div>
-    </ModalWrapper>
+    </ModalMessageWrapper>
   );
-}
+};
+
+export default ModalChangeColor;

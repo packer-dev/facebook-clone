@@ -78,7 +78,7 @@ const ContentMessageTop = () => {
                 {group ? nameGroup(group, user) : member?.user?.name}
               </b>
               <span className="text-gray-700 dark:text-gray-300 text-sm">
-                Đang hoạt động
+                Activity
               </span>
             </div>
           </div>

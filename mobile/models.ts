@@ -23,6 +23,9 @@ export const userModel = (obj?: User | null) => ({
   last_time_active: obj?.last_time_active ?? getCurrentDateTime(),
   time_created: obj?.time_created ?? getCurrentDateTime(),
   bio: obj?.bio ?? "",
+  description: obj?.description || "{}",
+  favorites: obj?.favorites || "[]",
+  is_dark: obj?.is_dark || false,
 });
 
 export const memberModel = (obj: Member) => ({
@@ -64,12 +67,12 @@ export const postModel = (obj: Post) => ({
   time_created: obj?.time_created ?? getCurrentDateTime(),
   last_time_update: obj?.last_time_update ?? "",
   type: obj?.type ?? 0,
-  tags: obj?.tags,
-  feel: obj?.feel,
-  background: obj.background,
-  answer_question: obj.answer_question,
-  local: obj.local,
-  activity: obj.activity,
+  tags: obj?.tags || [],
+  feel: obj?.feel || null,
+  background: obj.background || null,
+  answer_question: obj.answer_question || null,
+  local: obj.local || null,
+  activity: obj.activity || null,
 });
 
 export const mediaModel = (obj: Media) => ({

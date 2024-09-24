@@ -4,7 +4,7 @@ import backgrounds from "@/config/backgrounds";
 import { useSelector } from "react-redux";
 import { RootState, getUser } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
-import PopoverEmojii from "@/components/Popovers/PopoverEmojii";
+import PopoverEmojii from "@/components/Popovers/PopoverEmoji";
 import useClickOutside from "@/hooks/useClick";
 import ContentAnswerQuestion from "../../ModalAnswerQuestionPost/ContentAnswerQuestion";
 import { User } from "@/interfaces/User";
