@@ -7,13 +7,15 @@ import { Group } from "@/interfaces/Group";
 type SettingMessageChildProps = {
   hide?: boolean;
   group?: Group;
+  updateGroup?: (group: Group) => void;
 };
 
 const SettingMessageChild = (props: SettingMessageChildProps) => {
   //
   const navigation = useNavigate();
-  const { hide, group } = props;
+  const { hide, group, updateGroup } = props;
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
+
   //
   return (
     <li className="w-full py-1 ">
@@ -35,7 +37,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           aria-hidden
           onClick={() =>
             modalsDispatch(
-              modalsAction.openModalChangeColor(group, (group_) => {})
+              modalsAction.openModalChangeColor(group, updateGroup)
             )
           }
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
@@ -50,7 +52,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           aria-hidden
           onClick={() =>
             modalsDispatch(
-              modalsAction.openModalChangeEmoji(group, (group_) => {})
+              modalsAction.openModalChangeEmoji(group, updateGroup)
             )
           }
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 

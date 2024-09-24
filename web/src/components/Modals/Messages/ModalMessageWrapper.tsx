@@ -68,7 +68,7 @@ const ModalMessageWrapper = ({
           className={`cursor-pointer w-1/4 border-none font-semibold text-white rounded-lg p-2 mx-2 ${
             !value ? "bg-gray-500" : " bg-main"
           }`}
-          disabled={!!value}
+          disabled={!value}
         >
           Save
         </ButtonComponent>

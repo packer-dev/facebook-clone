@@ -80,13 +80,13 @@ export const openModalChangeColor = (
 };
 
 export const openModalChangeEmoji = (
-  groupMessage: Group,
-  setGroupMessage: Function
+  group: Group,
+  updateGroup: (group: Group) => void
 ) => {
   return {
     type: constants.OPEN_MODAL_CHANGE_EMOJI,
-    groupMessage,
-    setGroupMessage,
+    group,
+    updateGroup,
   };
 };
 

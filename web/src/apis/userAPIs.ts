@@ -8,12 +8,14 @@ export const getUserById = async (userId: string) => {
   );
 };
 
-export const registerAPI = async (param: any) =>
-  fetch(`${API_URL}/register`, {
+export const registerAPI = async (param: any) => {
+  console.log(JSON.stringify(userModel(param)));
+  return fetch(`${API_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(param),
+    body: JSON.stringify(userModel(param)),
   }).then((res) => res.json());
+};
 
 export const loginAPI = async (param: any) =>
   fetch(`${API_URL}/login`, {

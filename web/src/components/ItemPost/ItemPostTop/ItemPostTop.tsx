@@ -32,7 +32,7 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
   })();
   //
   return (
-    <div className="w-full flex mb-2 relative">
+    <div className="w-full flex flex-row gap-1.5 mb-2 relative">
       <div className="w-12 h-12 relative">
         <Link to={`${PAGE_PROFILE}/${postDetail.post.user.id}`}>
           <img
@@ -43,10 +43,7 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
         </Link>
         <span className="w-3 h-3 rounded-full absolute bottom-0 right-0 bg-green-500" />
       </div>
-      <div
-        className="relative ml-3 pl-3 lg:-ml-1"
-        style={{ width: "calc(100% - 56px)" }}
-      >
+      <div className="relative flex-1">
         <p className=" dark:text-white pr-5">
           <Link
             to={`${PAGE_PROFILE}/${postDetail.post.user.id}`}

@@ -27,11 +27,11 @@ export const updateInforGroupByGroup = async (formData: any) => {
 };
 
 export const updateGroupById = async (group: Group) => {
-  return fetch(`${API_URL}/group`, {
+  return fetch(`${API_URL}/group/update`, {
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(groupModel(group)),
-    method: "PUT",
+    method: "POST",
   }).then((res) => res.json());
 };

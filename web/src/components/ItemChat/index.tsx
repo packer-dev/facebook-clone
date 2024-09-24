@@ -67,7 +67,11 @@ const ItemChat = ({ item }: ItemChatProps) => {
           className="w-72 absolute top-0 right-full bg-white dark:bg-dark-third border-2 border-solid 
           border-gray-300 dark:border-dark-second shadow-lv1 mr-0.5 rounded-lg z-50"
         >
-          <SettingMessageChild hide={true} group={item.group} />
+          <SettingMessageChild
+            hide={true}
+            group={group}
+            updateGroup={(g) => updateData("group", g)}
+          />
         </ul>
       )}
     </WrapperItemChat>
