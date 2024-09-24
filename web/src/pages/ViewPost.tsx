@@ -12,7 +12,7 @@ import ItemCommentPostMain from "@/components/Comment/ItemCommentPostMain";
 import { getCommentByPost } from "@/apis/commentAPIs";
 import { CommentDTO } from "@/interfaces/Comment";
 
-export default function ViewPost() {
+const ViewPost = () => {
   //
   const { id } = useParams();
   const [postDetail, setPostDetail] = useState<PostDTO>(null);
@@ -109,4 +109,6 @@ export default function ViewPost() {
       </div>
     </WrapperLogged>
   );
-}
+};
+
+export default ViewPost;

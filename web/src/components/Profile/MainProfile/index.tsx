@@ -7,7 +7,7 @@ import ProfileLeft from "../ProfileLeft";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default function MainProfile() {
+const MainProfile = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const {
@@ -25,4 +25,6 @@ export default function MainProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default MainProfile;

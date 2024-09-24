@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import backgroundStory from "@/config/backgroundStory";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 
-export default function BackgroundStoryList() {
+const BackgroundStoryList = () => {
   //
   const {
     state: { data },
@@ -14,7 +14,7 @@ export default function BackgroundStoryList() {
       className="w-full pb-4 border-2 border-solid border-gray-200 rounded-lg h-[220px] max-h-[220px]
         wrapper-content-right overflow-y-auto dark:border-dark-third shadow-xl"
     >
-      <p className="font-bold text-xm p-2 dark:text-white">Phông nền</p>
+      <p className="font-bold text-xm p-2 dark:text-white">Background</p>
       <ul className="w-full pl-2 flex flex-wrap gap-1.5">
         {backgroundStory.map((item) => (
           <li
@@ -31,4 +31,6 @@ export default function BackgroundStoryList() {
       </ul>
     </div>
   );
-}
+};
+
+export default BackgroundStoryList;

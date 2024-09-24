@@ -7,9 +7,7 @@ import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
-export default function PostProfileList() {
-  //
-
+const PostProfileList = () => {
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -47,7 +45,7 @@ export default function PostProfileList() {
           ))
         : !loading && (
             <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
-              Không có bất kì bài viết nào.
+              There are no posts yet.
             </p>
           )}
       {loading ? (
@@ -60,4 +58,6 @@ export default function PostProfileList() {
       )}
     </div>
   );
-}
+};
+
+export default PostProfileList;

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderLogged from "@/components/Header/HeaderLogged";
 import ItemChat from "@/components/ItemChat";
-import ItemChatMinize from "@/components/ItemChatMinize";
 import WrapperPage from "./WrapperPage";
 import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
 import {
@@ -11,6 +10,7 @@ import {
   ZoomUserChatProps,
 } from "@/reducers/userChat";
 import { User } from "@/interfaces/User";
+import ItemChatMinimize from "@/components/ItemChatMinimize";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -41,8 +41,8 @@ const WrapperLogged = ({
           {!hideChat && (
             <div className="h-auto p-3 w-20">
               <div className="text-center cursor-pointer py-2 pl-2 pr-1.5 fixed right-3 bottom-4 z-30">
-                {userChat.minize.map((item, index) => (
-                  <ItemChatMinize item={item} key={item?.id} />
+                {userChat.minimize.map((item) => (
+                  <ItemChatMinimize item={item} key={item?.id} />
                 ))}
                 <div
                   onClick={() => {

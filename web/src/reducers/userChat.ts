@@ -10,12 +10,12 @@ export type ZoomUserChatProps = {
 };
 
 export type UserChatReduxProps = {
-  minize: Group[];
+  minimize: Group[];
   zoom: ZoomUserChatProps[];
 };
 
 const initialState: UserChatReduxProps = {
-  minize: [],
+  minimize: [],
   zoom: [],
 };
 

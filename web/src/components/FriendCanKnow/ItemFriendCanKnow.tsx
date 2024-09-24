@@ -59,7 +59,7 @@ const ItemFriendCanKnow = ({
             setUsers([...users].filter((dt) => dt.id !== item.id));
           }}
           className="w-8 h-8 rounded-full bg-black bg-opacity-50 text-white font-semibold flex justify-center 
-          items-center text-2xl cursor-pointer hover:bg-opactity-70 absolute top-2 right-2"
+          items-center text-2xl cursor-pointer hover:bg-opacity-70 absolute top-2 right-2"
         >
           &times;
         </div>

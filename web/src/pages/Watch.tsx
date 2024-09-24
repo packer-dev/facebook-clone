@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import InputComponent from "@/components/InputComponent";
 import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
@@ -22,24 +21,21 @@ export default function Watch() {
   return (
     <WrapperLogged>
       <div className="w-full h-screen pt-20 overflow-y-auto md:overflow-hidden flex flex-col md:flex-row">
-        <div
-          className="w-full md:w-1/3 lg:w-1/4 relative xl:w-1/5 flex 
-                flex-col h-auto lg:h-full px-5"
-        >
+        <div className="w-full md:w-1/3 lg:w-1/4 relative xl:w-1/5 flex flex-col h-auto lg:h-full px-5">
           <div className="w-full flex flex-col items-start">
             <div className="w-full dark:text-gray-300 flex items-center justify-between py-2">
               <span className="text-2xl font-bold">Watch</span>
               <span
-                className="fas fa-cog w-10 h-10 rounded-full bg-gray-200 dark:bg-dark-third 
-                            md:flex items-center hidden justify-center text-xl hover:bg-gray-300 dark:hover:bg-dark-second"
+                className="fas fa-cog w-10 h-10 rounded-full bg-gray-200 dark:bg-dark-third md:flex items-center
+                hidden justify-center text-xl hover:bg-gray-300 dark:hover:bg-dark-second"
               />
             </div>
             <div className="md:flex hidden w-full ">
               <InputComponent
                 type="text"
                 search={true}
-                placeholder="Tìm kiếm video..."
-                className={"p-2 bg-gray-200 dark:bg-dark-third rounded-full"}
+                placeholder="Search video..."
+                className="p-2 bg-gray-200 dark:bg-dark-third rounded-full"
               />
             </div>
           </div>

@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
-import * as userChatsAction from "@/actions/userChat/index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, getUserChat } from "@/reducers";
 import ButtonComponent from "@/components/ButtonComponent";
-import { UserChatReduxProps } from "@/reducers/userChat";
+import { updateDataUserChat, UserChatReduxProps } from "@/reducers/userChat";
 
 export default function ButtonRelationshipUser(props) {
   //
@@ -45,7 +44,7 @@ export default function ButtonRelationshipUser(props) {
         <ButtonComponent
           handleClick={() => {
             dispatch(
-              userChatsAction.updateData("zoom", [...zoom, userProfile])
+              updateDataUserChat({ key: "zoom", value: [...zoom, userProfile] })
             );
           }}
           className="flex items-center h-10 px-2 bg-main rounded-lg mr-2 text-white font-semibold text-sm"

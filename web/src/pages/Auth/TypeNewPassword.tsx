@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
-import WrapperAuthenination from "../WrapperAuthenination";
+import WrapperAuthentication from "../WrapperAuthentication";
 
 export default function TypeNewPassword() {
   //
@@ -13,7 +13,7 @@ export default function TypeNewPassword() {
   const navigation = useNavigate();
   //
   return (
-    <WrapperAuthenination title="Chọn mật khẩu mới" hideFormLogin={true}>
+    <WrapperAuthentication title="Chọn mật khẩu mới" hideFormLogin={true}>
       <div className="w-full my-2 p-2 px-5">
         <p>
           Create a new password that is at least 6 characters long. A strong
@@ -50,6 +50,6 @@ export default function TypeNewPassword() {
           </ButtonComponent>
         </div>
       </div>
-    </WrapperAuthenination>
+    </WrapperAuthentication>
   );
 }

@@ -41,13 +41,13 @@ const PopoverSticker = ({ handleClick }: { handleClick: Function }) => {
           type="text"
           className="w-full mx-auto dark:border-dark-second border-gray-200 border-solid border-2 my-1 px-2.5
            py-2 rounded-3xl dark:bg-dark-third "
-          placeholder="Tìm kiếm"
+          placeholder="Search"
         />
       </div>
       <div className="w-full h-60 overflow-y-auto flex flex-wrap wrapper-content-right px-2 m-h-[300px]">
         {[...stickers]
           .filter((item) => item.group === categoryItem)
-          .map((item, index) => (
+          .map((item) => (
             <ItemSticker
               sticker={item}
               key={item?.id}

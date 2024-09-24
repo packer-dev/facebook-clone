@@ -12,9 +12,9 @@ import {
 } from "@/reducers/userChat";
 import { User } from "@/interfaces/User";
 
-const ItemChatMinize = ({ item }: { item: Group }) => {
+const ItemChatMinimize = ({ item }: { item: Group }) => {
   //
-  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+  const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
   const user = useSelector<RootState, User>(getUser);
@@ -43,8 +43,8 @@ const ItemChatMinize = ({ item }: { item: Group }) => {
     );
     dispatch(
       updateDataUserChat({
-        key: "minize",
-        value: [...minize].filter((data) => data.id !== item.id),
+        key: "minimize",
+        value: [...minimize].filter((data) => data.id !== item.id),
       })
     );
   };
@@ -69,8 +69,8 @@ const ItemChatMinize = ({ item }: { item: Group }) => {
         onClick={() => {
           dispatch(
             updateDataUserChat({
-              key: "minize",
-              value: [...minize].filter((data) => data.id !== item.id),
+              key: "minimize",
+              value: [...minimize].filter((data) => data.id !== item.id),
             })
           );
         }}
@@ -83,4 +83,4 @@ const ItemChatMinize = ({ item }: { item: Group }) => {
   );
 };
 
-export default ItemChatMinize;
+export default ItemChatMinimize;

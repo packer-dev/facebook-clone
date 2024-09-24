@@ -35,7 +35,7 @@ const ContentMessageTop = () => {
     updateData,
   } = React.useContext(ItemChatContext);
   const dispatch = useDispatch<AppDispatch>();
-  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+  const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
   const user = useSelector<RootState, User>(getUser);
@@ -128,7 +128,9 @@ const ContentMessageTop = () => {
                           (data) => data.id !== idItemChat
                         );
                         const arraySecond =
-                          minize.length > 0 ? [minize[minize.length - 1]] : [];
+                          minimize.length > 0
+                            ? [minimize[minimize.length - 1]]
+                            : [];
                         dispatch(
                           updateDataUserChat({
                             key: "zoom",
@@ -137,12 +139,13 @@ const ContentMessageTop = () => {
                         );
                         dispatch(
                           updateDataUserChat({
-                            key: "minize",
+                            key: "minimize",
                             value:
-                              minize.length > 0
-                                ? [...minize].filter(
+                              minimize.length > 0
+                                ? [...minimize].filter(
                                     (data) =>
-                                      data.id !== minize[minize.length - 1].id
+                                      data.id !==
+                                      minimize[minimize.length - 1].id
                                   )
                                 : [group],
                           })
@@ -150,8 +153,8 @@ const ContentMessageTop = () => {
                       } else {
                         dispatch(
                           updateDataUserChat({
-                            key: "minize",
-                            value: [group].concat([...minize]),
+                            key: "minimize",
+                            value: [group].concat([...minimize]),
                           })
                         );
                         dispatch(

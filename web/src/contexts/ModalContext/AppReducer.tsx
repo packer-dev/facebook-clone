@@ -4,14 +4,15 @@ import ModalLogin from "@/components/Modals/Login/ModalLogin";
 import ModalWrapperPost from "@/components/Modals/ModalWrapperPost";
 import ModalPreviewAvatar from "@/components/Modals/Profile/ModalPreviewAvatar";
 import ModalChangeColor from "@/components/Modals/Messages/ModalChangeColor";
-import ModalChangeEmojii from "@/components/Modals/Messages/ModalChangeEmoji";
+import ModalChangeEmoji from "@/components/Modals/Messages/ModalChangeEmoji";
 import ModalChangeNickName from "@/components/Modals/Messages/ModalChangeNickName";
 import ModalWarning from "@/components/Modals/ModalWarning";
 import ModalFavorite from "@/components/Modals/Profile/ModalFavorite";
 import ModalEditInformation from "@/components/Modals/Profile/ModalEditInformation";
 import ModalRegister from "@/components/Modals/Login/ModalRegister";
+import { ModalContextProps } from "./ModalContext";
 
-const AppReducer = (state, action) => {
+const AppReducer = (state: ModalContextProps, action: any) => {
   switch (action.type) {
     case constants.OPEN_MODAL_REGISTER:
       return { ...state, data: <ModalRegister /> };
@@ -43,11 +44,11 @@ const AppReducer = (state, action) => {
           />
         ),
       };
-    case constants.OPEN_MODAL_CHANGE_EMOJII:
+    case constants.OPEN_MODAL_CHANGE_EMOJI:
       return {
         ...state,
         data: (
-          <ModalChangeEmojii
+          <ModalChangeEmoji
             group={action.group}
             updateGroup={action.updateGroup}
           />

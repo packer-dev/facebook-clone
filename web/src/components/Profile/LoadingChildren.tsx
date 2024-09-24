@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function LoadingChildren() {
+const LoadingChildren = () => {
   return (
     <div
       className="removeTimelinePicture w-full mx-auto bg-white dark:bg-dark-second px-2 
@@ -67,4 +67,6 @@ export default function LoadingChildren() {
       </div>
     </div>
   );
-}
+};
+
+export default LoadingChildren;

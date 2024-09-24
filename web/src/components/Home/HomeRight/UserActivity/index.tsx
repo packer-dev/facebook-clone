@@ -20,7 +20,7 @@ import { User } from "@/interfaces/User";
 
 export default function UserActivity() {
   //
-  const { minize, zoom } = useSelector<RootState, UserChatReduxProps>(
+  const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
   const user = useSelector<RootState, User>(getUser);
@@ -46,17 +46,20 @@ export default function UserActivity() {
     <div
       aria-hidden
       onClick={() => {
-        const indexMinize = minize.findIndex((data) => item.id === data.id);
+        const indexMinimize = minimize.findIndex((data) => item.id === data.id);
         const indexZoom = zoom.findIndex((data) => item.id === data.id);
         const newData: ZoomUserChatProps = {
           id: generateUUID(),
           user: item,
           is_new: false,
         };
-        if (indexZoom === -1 && indexMinize === -1) {
+        if (indexZoom === -1 && indexMinimize === -1) {
           if (zoom.length === 2) {
             dispatch(
-              updateDataUserChat({ key: "minize", value: [...minize, zoom[0]] })
+              updateDataUserChat({
+                key: "minimize",
+                value: [...minimize, zoom[0]],
+              })
             );
             let clone = [...zoom];
             clone[0] = newData;
@@ -66,14 +69,14 @@ export default function UserActivity() {
               updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
             );
           }
-        } else if (indexMinize !== -1 && zoom.length !== 2) {
+        } else if (indexMinimize !== -1 && zoom.length !== 2) {
           dispatch(
             updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
           );
           dispatch(
             updateDataUserChat({
-              key: "minize",
-              value: [...minize].filter((data) => data.id !== item.id),
+              key: "minimize",
+              value: [...minimize].filter((data) => data.id !== item.id),
             })
           );
         }

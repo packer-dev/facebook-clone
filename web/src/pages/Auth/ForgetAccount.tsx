@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN, PAGE_RECOVER_ACCOUNT } from "@/constants/Config";
-import WrapperAuthenination from "../WrapperAuthenination";
+import WrapperAuthentication from "../WrapperAuthentication";
 
 export default function ForgetAccount() {
   //
@@ -13,7 +13,7 @@ export default function ForgetAccount() {
   const [loading, setLoading] = useState(false);
   //
   return (
-    <WrapperAuthenination title="Tìm tài khoản của bạn">
+    <WrapperAuthentication title="Tìm tài khoản của bạn">
       <div className="w-full px-5 mb-3">
         <p className="py-3">
           Vui lòng nhập email hoặc số di động để tìm kiếm tài khoản của bạn.
@@ -63,6 +63,6 @@ export default function ForgetAccount() {
           Tìm kiếm
         </ButtonComponent>
       </div>
-    </WrapperAuthenination>
+    </WrapperAuthentication>
   );
 }

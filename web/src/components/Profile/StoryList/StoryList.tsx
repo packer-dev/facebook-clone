@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import WrapperContentChildProfile from "../WrapperContentChildProfile";
 import ItemStoryList from "./ItemStoryList";
 
-export default function StoryList() {
+const StoryList = () => {
   //
   const [stories, setStories] = useState([]);
   //
@@ -13,4 +13,6 @@ export default function StoryList() {
       ))}
     </WrapperContentChildProfile>
   );
-}
+};
+
+export default StoryList;

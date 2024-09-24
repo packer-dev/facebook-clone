@@ -20,9 +20,7 @@ function Login() {
   const navigation = useNavigate();
   React.useEffect(() => {
     //
-    if (user) {
-      navigation(PAGE_HOME);
-    }
+    if (user) navigation(PAGE_HOME);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   //

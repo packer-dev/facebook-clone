@@ -3,10 +3,11 @@ import ExtensionCall from "@/components/Call/ExtensionCall";
 import ItemExtensionCall from "@/components/Call/ExtensionCall/ItemExtensionCall";
 import InfoCalling from "@/components/Call/InfoCalling";
 import NotifyRight from "@/components/Call/NotifyRight";
+import messenger from "@/assets/sound/messenger.mp3";
 
-function Call() {
+const Call = () => {
   //
-  const audio = new Audio("../../../sound/messenger.mp3");
+  const audio = new Audio(messenger);
 
   useEffect(() => {
     async function fetch() {
@@ -29,7 +30,7 @@ function Call() {
         <ExtensionCall />
         <div className="absolute bottom-6 left-5">
           <ItemExtensionCall
-            icon={"bx bx-message-rounded"}
+            icon="bx bx-message-rounded"
             addClass="text-gray-300"
           />
         </div>
@@ -37,6 +38,6 @@ function Call() {
       </div>
     </div>
   );
-}
+};
 
 export default Call;

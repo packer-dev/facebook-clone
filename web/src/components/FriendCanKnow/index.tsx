@@ -27,7 +27,7 @@ export default memo(function FriendCanKnow() {
     users.length > 0 && (
       <div className="w-full px-2 py-0.5 shadow-lv1 bg-white dark:bg-dark-third dark:text-white rounded-lg relative">
         <div className="flex justify-between w-full py-1.5 items-center">
-          <p className="font-semibold">Những người bạn có thể biết</p>
+          <p className="font-semibold">People You May Know</p>
           <span
             aria-hidden
             className="text-main font-semibold text-sm cursor-pointer"

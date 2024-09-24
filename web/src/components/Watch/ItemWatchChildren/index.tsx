@@ -43,9 +43,7 @@ const ItemWatchChildren = ({
     <div
       aria-hidden
       onClick={() => {
-        if (typeof handleClick === "function") {
-          handleClick();
-        }
+        handleClick?.();
       }}
       className={`${
         right
@@ -54,7 +52,7 @@ const ItemWatchChildren = ({
       } my-0.5 items-center ${
         right ||
         `md:hover:bg-gray-200 md:bg-transparent bg-gray-200 dark:hover:bg-dark-third rounded-full md:rounded-lg`
-      } cursor-pointer ${right || index <= 1 ? "flex" : "hideen md:flex"}`}
+      } cursor-pointer ${right || index <= 1 ? "flex" : "hidden md:flex"}`}
     >
       {!image ? (
         <div

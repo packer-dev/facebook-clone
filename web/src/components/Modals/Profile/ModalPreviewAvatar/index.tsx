@@ -48,15 +48,11 @@ const ModalPreviewAvatar = ({ image, user }: ModalPreviewAvatarProps) => {
       title={"Update Profile Picture"}
     >
       <div className="w-full mx-auto my-5">
-        <div
-          className="mx-auto relative w-full flex justify-center"
-          style={{ maxHeight: 450, minHeight: 320 }}
-        >
+        <div className="mx-auto relative w-full flex justify-center max-h-[450px] min-h-[320px]">
           <img
             src={image?.name && URL.createObjectURL(image)}
             alt=""
             className="h-full"
-            // crop={crop} onChange={newCrop => setCrop(newCrop)} circularCrop
             style={{
               maxHeight: 450,
               minHeight: 320,

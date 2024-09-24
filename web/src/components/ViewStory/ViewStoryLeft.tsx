@@ -17,12 +17,14 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
   return (
     <>
       <div className="w-full relative ">
-        <span className="font-semibold text-2xl pb-4 dark:text-white">Tin</span>
+        <span className="font-semibold text-2xl pb-4 dark:text-white">
+          Story
+        </span>
         <br />
         <div className="flex items-center my-2 gap-2">
-          <span className="text-sm text-main">Kho lưu trữ</span>
+          <span className="text-sm text-main">Archive</span>
           <span className="text-sm text-main">·</span>
-          <span className="text-sm text-main">Cài đặt</span>
+          <span className="text-sm text-main">Setting</span>
         </div>
         <div
           aria-hidden
@@ -36,20 +38,20 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
           <i className={`bx bx-${fullScreen ? "exit-" : ""}fullscreen`} />
         </div>
       </div>
-      <p className="font-semibold my-2 dark:text-white">Tin của bạn</p>
+      <p className="font-semibold my-2 dark:text-white">Your story</p>
       <div className="cursor-pointer w-full flex p-2">
         <div className="w-2/12">
           <i className="fas fa-plus p-5 text-main bg-gray-100 rounded-full" />
         </div>
         <div className="w-10/12 pl-3">
-          <p className="font-semibold pb-1 dark:text-white">Tạo tin</p>
+          <p className="font-semibold pb-1 dark:text-white">Create story</p>
           <p className="text-sm text-gray-600 dark:text-gray-300">
-            Bạn có thể chia sẽ hoặc viết gì đó.
+            You can share or write something.
           </p>
         </div>
       </div>
       <hr className="my-2" />
-      <p className="font-semibold my-2 dark:text-white">Tất cả tin</p>
+      <p className="font-semibold my-2 dark:text-white">All story</p>
       {current &&
         main &&
         storyList.map((story, index) => (

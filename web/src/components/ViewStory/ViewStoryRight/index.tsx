@@ -90,7 +90,7 @@ export default function ViewStoryRight(props) {
             >
               <i
                 className="fas fa-chevron-left cursor-pointer text-gray-500 px-5 py-3 bg-gray-300 rounded-full 
-                            hover:text-black hover:bg-white text-xl "
+                hover:text-black hover:bg-white text-xl "
               />
             </div>
           )}
@@ -106,7 +106,7 @@ export default function ViewStoryRight(props) {
             >
               <i
                 className="fas fa-chevron-right cursor-pointer text-gray-500 px-5 py-3 bg-gray-300 rounded-full 
-                            hover:text-black hover:bg-white text-xl "
+                hover:text-black hover:bg-white text-xl "
               />
             </div>
           )}

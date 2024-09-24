@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import foregroundStory from "@/config/foregroundStory";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 
-export default function ColorTextList() {
+const ColorTextList = () => {
   //
   const {
     state: { color },
@@ -40,4 +40,5 @@ export default function ColorTextList() {
       </div>
     </div>
   );
-}
+};
+export default ColorTextList;

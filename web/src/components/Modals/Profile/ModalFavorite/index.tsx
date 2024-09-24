@@ -36,9 +36,9 @@ const ModalFavorite = ({
           <InputComponent
             type="text"
             search
-            className={`p-2 w-full border-2 border-solid border-gray-200 rounded-full`}
+            className="p-2 w-full border-2 border-solid border-gray-200 rounded-full"
             ref={ref}
-            placeholder={"What do you do for fun?"}
+            placeholder="What do you do for fun?"
             handleChange={(data) => {
               const get = favorites.filter(
                 (dt) => dt.name.toLowerCase().indexOf(data.toLowerCase()) !== -1

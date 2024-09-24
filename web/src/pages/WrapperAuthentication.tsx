@@ -8,19 +8,19 @@ import WrapperPage from "./WrapperPage";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-type WrapperAutheninationProps = {
+type WrapperAuthenticationProps = {
   hideFormLogin?: boolean;
   title?: string;
   notFound?: boolean;
   children?: React.ReactNode;
 };
 
-const WrapperAuthenination = ({
+const WrapperAuthentication = ({
   hideFormLogin,
   title,
   notFound,
   children,
-}: WrapperAutheninationProps) => {
+}: WrapperAuthenticationProps) => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
@@ -56,4 +56,4 @@ const WrapperAuthenination = ({
   );
 };
 
-export default WrapperAuthenination;
+export default WrapperAuthentication;

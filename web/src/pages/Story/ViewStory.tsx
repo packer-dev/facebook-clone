@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import WrapperLogged from "../WrapperLogged";
 import { StoryContext, StoryProvider } from "@/contexts/StoryContext";
 import ViewStoryLeft from "@/components/ViewStory/ViewStoryLeft";
 import ViewStoryRight from "@/components/ViewStory/ViewStoryRight";
 
-export default function ViewStory() {
+const ViewStory = () => {
   //
   const [fullScreen, setFullScreen] = useState(false);
   //
@@ -20,20 +20,19 @@ export default function ViewStory() {
       </div>
     </WrapperLogged>
   );
-}
+};
 
-const WrapperViewStory = (props) => {
+const WrapperViewStory = ({
+  fullScreen,
+  setFullScreen,
+}: {
+  fullScreen?: boolean;
+  setFullScreen: Function;
+}) => {
   //
-  const { fullScreen, setFullScreen } = props;
   const {
     state: { current, main, storyList },
   } = useContext(StoryContext);
-  useEffect(() => {
-    //
-    const fetch = async () => {};
-    fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   //
   return (
     <>
@@ -48,7 +47,7 @@ const WrapperViewStory = (props) => {
         ? main &&
           current &&
           storyList.length > 0 && <ViewStoryRight fullScreen={fullScreen} />
-        : "Heets"}
+        : "End"}
       <div
         aria-hidden
         onClick={() => setFullScreen(!fullScreen)}
@@ -61,3 +60,5 @@ const WrapperViewStory = (props) => {
     </>
   );
 };
+
+export default ViewStory;

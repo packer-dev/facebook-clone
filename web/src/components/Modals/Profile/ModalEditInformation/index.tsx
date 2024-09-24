@@ -21,7 +21,7 @@ const ModalEditInformation = ({
   //
   return (
     <ModalWrapper
-      title={"Edit details"}
+      title="Edit details"
       className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
         z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
         shadow-lv1 dark:border-dark-third dark:bg-dark-third px-3"
@@ -34,7 +34,7 @@ const ModalEditInformation = ({
       <ItemEditInformation
         title="Work"
         name="work"
-        placeholder={`Enter your work`}
+        placeholder="Enter your work"
         description={description}
         setDescription={setDescription}
         value={description?.work || ""}
@@ -42,7 +42,7 @@ const ModalEditInformation = ({
       <ItemEditInformation
         title="Education"
         name="study"
-        placeholder={`Enter your education`}
+        placeholder="Enter your education"
         description={description}
         setDescription={setDescription}
         value={description?.study || ""}
@@ -50,7 +50,7 @@ const ModalEditInformation = ({
       <ItemEditInformation
         title="Living at"
         name="live"
-        placeholder={`Enter your place of residence`}
+        placeholder="Enter your place of residence"
         description={description}
         setDescription={setDescription}
         value={description?.live || ""}
@@ -58,7 +58,7 @@ const ModalEditInformation = ({
       <ItemEditInformation
         title="From"
         name="from"
-        placeholder={`Enter your hometown`}
+        placeholder="Enter your hometown"
         description={description}
         setDescription={setDescription}
         value={description?.from || ""}
@@ -66,7 +66,7 @@ const ModalEditInformation = ({
       <ItemEditInformation
         title="Status"
         name="status"
-        placeholder={`Enter your status`}
+        placeholder="Enter your status"
         description={description}
         setDescription={setDescription}
         value={description?.status || ""}
@@ -92,7 +92,7 @@ const ModalEditInformation = ({
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className={`cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2 `}
+          className="cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2"
         >
           Save
         </ButtonComponent>

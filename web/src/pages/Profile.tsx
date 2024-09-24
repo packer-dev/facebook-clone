@@ -77,7 +77,7 @@ const WrapperProfile = forwardRef(
   }
 );
 
-export default function Profile() {
+const Profile = () => {
   //
   const { id } = useParams();
   const location = useLocation();
@@ -133,4 +133,6 @@ export default function Profile() {
       </UserProfileProvider>
     </WrapperLogged>
   );
-}
+};
+
+export default Profile;

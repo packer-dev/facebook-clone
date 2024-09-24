@@ -84,7 +84,7 @@ export const openModalChangeEmoji = (
   setGroupMessage: Function
 ) => {
   return {
-    type: constants.OPEN_MODAL_CHANGE_EMOJII,
+    type: constants.OPEN_MODAL_CHANGE_EMOJI,
     groupMessage,
     setGroupMessage,
   };

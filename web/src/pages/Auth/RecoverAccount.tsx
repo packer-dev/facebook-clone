@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ButtonComponent from "@/components/ButtonComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
 import useAuthenication from "@/hooks/useAuthenication";
-import WrapperAuthenination from "../WrapperAuthenination";
+import WrapperAuthentication from "../WrapperAuthentication";
 
 const RecoverAccount = (props) => {
   //
@@ -12,7 +12,7 @@ const RecoverAccount = (props) => {
   const [email, setEmail] = useState("email");
   //
   return (
-    <WrapperAuthenination
+    <WrapperAuthentication
       hideFormLogin={true}
       title={verify ? "Confirm your account" : "Reset your password"}
     >
@@ -100,7 +100,7 @@ const RecoverAccount = (props) => {
           <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin" />
         </div>
       )}
-    </WrapperAuthenination>
+    </WrapperAuthentication>
   );
 };
 

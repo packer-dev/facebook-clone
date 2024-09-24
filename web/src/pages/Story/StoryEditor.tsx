@@ -100,7 +100,7 @@ export default function StoryEditor({ mode }: any) {
       <input
         type="file"
         className="hidden"
-        name="myPictueStory"
+        name="myPictureStory"
         id="createStoryImage"
       />
     </form>

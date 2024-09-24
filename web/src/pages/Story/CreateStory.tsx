@@ -6,9 +6,8 @@ import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default function CreateStory(props) {
+const CreateStory = ({ mode }: { mode: any }) => {
   //
-  const { mode } = props;
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   const { updateData } = useContext(StoryEditorContext);
@@ -31,7 +30,7 @@ export default function CreateStory(props) {
             alt=""
           />
           <Link to="" className="py-7 px-3.5 dark:text-white font-semibold">
-            {`${user?.name}`}
+            {user?.name}
           </Link>
         </div>
         <hr />
@@ -49,7 +48,7 @@ export default function CreateStory(props) {
               }}
               type="file"
               className="hidden"
-              name="myPictueStory"
+              name="myPictureStory"
               id="createStoryImage"
             />
             <label className="w-full h-80" htmlFor="createStoryImage">
@@ -105,4 +104,6 @@ export default function CreateStory(props) {
       </div>
     </div>
   );
-}
+};
+
+export default CreateStory;

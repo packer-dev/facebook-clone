@@ -51,17 +51,16 @@ export default forwardRef(function InputComponent(
             onClick={() => handleClick?.()}
             type={show || search ? "text" : "password"}
             placeholder={placeholder}
-            className={`${width || "w-full"} ${className} ${borderValidation} 
-                    focus:border-blue-600 ${
-                      search ? "pl-10" : ""
-                    } dark:border-dark-third rounded-sm border-solid focus:shadow-sm border-gray-200`}
+            className={`${
+              width || "w-full"
+            } ${className} ${borderValidation} focus:border-blue-600 ${
+              search ? "pl-10" : ""
+            } dark:border-dark-third rounded-sm border-solid focus:shadow-sm border-gray-200`}
             {...Field}
             spellCheck={false}
             onChange={(event) => {
-              if (typeof handleChange === "function")
-                handleChange(event.target.value);
-              if (typeof register === "function")
-                register(name).onChange(event);
+              handleChange?.(event.target.value);
+              register?.(name)?.onChange(event);
             }}
             name={name}
             autoComplete={"on"}

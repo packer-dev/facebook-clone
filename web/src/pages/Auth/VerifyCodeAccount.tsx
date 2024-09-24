@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
-import WrapperAuthenination from "../WrapperAuthenination";
+import WrapperAuthentication from "../WrapperAuthentication";
 import useAuthenication from "@/hooks/useAuthenication";
 
 const VerifyCodeAccount = (props) => {
@@ -15,7 +15,7 @@ const VerifyCodeAccount = (props) => {
   const { token } = useAuthenication();
   //
   return (
-    <WrapperAuthenination
+    <WrapperAuthentication
       title={verifyAccountNew ? "Account Verification" : "Reset Your Password"}
       hideFormLogin={true}
     >
@@ -71,7 +71,7 @@ const VerifyCodeAccount = (props) => {
           </ButtonComponent>
         </div>
       </div>
-    </WrapperAuthenination>
+    </WrapperAuthentication>
   );
 };
 

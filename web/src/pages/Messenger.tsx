@@ -6,7 +6,7 @@ import ControlMessage from "@/components/Messenger/ContentMessage/ControlMessage
 import MainContentMessage from "@/components/Messenger/ContentMessage/MainContentMessage";
 import MessageList from "@/components/Messenger/MessageList";
 import SettingMessage from "@/components/Messenger/SettingMessage";
-import { MessengerProvider } from "@/contexts/MessagerContext/MessagerContext";
+import { MessengerProvider } from "@/contexts/MessengerContext";
 import WrapperLogged from "./WrapperLogged";
 import { RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
@@ -33,16 +33,12 @@ const WrapperMessenger = () => {
   };
   useEffect(() => {
     //
-    if (user) {
-      fetchMessageList();
-    }
+    if (user) fetchMessageList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   useEffect(() => {
     //
-    if (params?.id) {
-      fetchGroup();
-    }
+    if (params?.id) fetchGroup();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
   //
@@ -79,9 +75,7 @@ const WrapperMessenger = () => {
     </div>
   );
 };
-export default function Messenger() {
-  //
-  //
+const Messenger = () => {
   return (
     <WrapperLogged hideChat={true} hideMessage={true}>
       <MessengerProvider>
@@ -91,4 +85,6 @@ export default function Messenger() {
       </MessengerProvider>
     </WrapperLogged>
   );
-}
+};
+
+export default Messenger;

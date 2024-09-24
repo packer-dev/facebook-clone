@@ -7,8 +7,9 @@ import ModalPost from "@/components/Modals/ModalPost";
 import ModalChooseBackground from "@/components/Modals/ModalChooseBackground";
 import ModalEditImageVideo from "@/components/Modals/ModalEditImageVideo";
 import ModalAnswerQuestionPost from "@/components/Modals/ModalAnswerQuestionPost";
+import { PostContextProps } from "./PostContext";
 
-const AppReducer = (state, action) => {
+const AppReducer = (state: PostContextProps, action: any) => {
   switch (action.type) {
     case constants.UPDATE_DATA:
       return { ...state, [action.key]: action.value };

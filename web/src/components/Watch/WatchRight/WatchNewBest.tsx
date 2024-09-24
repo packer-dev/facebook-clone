@@ -18,7 +18,7 @@ export default function WatchNewBest({ images }) {
   //
   return (
     <div className="w-full p-5 rounded-lg">
-      <p className="font-bold text-xl dark:text-gray-300">Mới dành cho bạn</p>
+      <p className="font-bold text-xl dark:text-gray-300">New for you</p>
       <div ref={refContainer} className="w-full relative">
         {index - 1 >= 0 && (
           <CircleIcon
@@ -29,16 +29,13 @@ export default function WatchNewBest({ images }) {
             absolute top-1/2 transform -translate-y-1/2 -ml-5`}
           />
         )}
-        <ScrollContainer
-          // ref={refScroll}
-          className="w-full flex overflow-x-auto scroll-smooth"
-        >
+        <ScrollContainer className="w-full flex overflow-x-auto scroll-smooth">
           {images.map((item) => (
             <ItemWatchChildren
-              name={"Đậu Phộng TV"}
+              name="Hello TV"
               image={true}
               key={item}
-              multiline={`9+ video mới`}
+              multiline="9+ new videos"
               right
               data={item}
             />
@@ -49,8 +46,8 @@ export default function WatchNewBest({ images }) {
             handleClick={() => {
               setIndex(index + 1);
             }}
-            className={`w-9 h-9 bx bxs-chevron-right text-xl bg-gray-200 
-                 absolute top-1/2 transform -translate-y-1/2 -mr-5 right-0`}
+            className="w-9 h-9 bx bxs-chevron-right text-xl bg-gray-200 
+            absolute top-1/2 transform -translate-y-1/2 -mr-5 right-0"
           />
         )}
       </div>

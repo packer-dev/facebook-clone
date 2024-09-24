@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
-import BackgroundStoryList from "../BackgroundStoryList";
+import BackgroundStoryList from "./BackgroundStoryList";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default function StoryEditLeft() {
+const StoryEditLeft = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const {
@@ -57,4 +57,6 @@ export default function StoryEditLeft() {
       {mode === 0 && <BackgroundStoryList />}
     </div>
   );
-}
+};
+
+export default StoryEditLeft;

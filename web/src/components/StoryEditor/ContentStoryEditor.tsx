@@ -18,7 +18,7 @@ const ContentTextEdit = () => {
     <div
       ref={refContent}
       className="text-xl text-gray-100 break-all content-story-text w-80 min-h-8 absolute contentedittable__story  
-      top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -transtate-y-1/2 -translate-x-1/2"
+      top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -translate-y-1/2 -translate-x-1/2"
       spellCheck={false}
       style={{ color: color ? color.color : "white" }}
     />
@@ -33,7 +33,7 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
   //
   return (
     <div
-      className="w-11/12 flex-1 flex flex-col top-1 mx-auto rounded-2xldark:bg-dark-main bg-white relative 
+      className="w-11/12 flex-1 flex flex-col top-1 mx-auto rounded-2xl dark:bg-dark-main bg-white relative 
       border-2 border-solid border-gray-200 dark:border-dark-third"
     >
       <div className="w-97per text-center flex-1 relative bg-black">
@@ -89,7 +89,7 @@ export default forwardRef(function ContentStoryEditor(props, ref: any) {
         className="hidden justify-center items-center"
         width="345"
         height="612"
-      ></canvas>
+      />
     </div>
   );
 });
