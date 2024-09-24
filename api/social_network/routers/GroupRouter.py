@@ -11,7 +11,7 @@ from typing import Optional
 router = APIRouter(prefix="/api/social-network/v1/group")
 
 
-@router.get("/update")
+@router.post("/update")
 async def update_group_api(group: Group):
     return await update_group(group)
 

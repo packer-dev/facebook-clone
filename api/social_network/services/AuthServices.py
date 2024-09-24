@@ -276,7 +276,7 @@ async def upload_media_profile_user(folder, file, is_cover, user_id):
         public_id = os.path.splitext(
             url[url.find(f"FacebookNative/{(folder)}/") : len(url)]
         )[0]
-        await delete_media(public_id)
+        await delete_media([public_id])
 
         file_dto = FileDTO(file=file, folder=f"/FacebookNative/{(folder)}")
         result = await upload_media(file_dto)

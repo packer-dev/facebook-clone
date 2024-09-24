@@ -9,7 +9,7 @@ from datetime import datetime
 async def update_group(group: Group):
     ref = db.reference("social-network")
     groups = new_value(ref.child("groups").get(), [])
-    group.last_time_update = datetime.now()
+    group.last_time_update = str(datetime.now())
     groups = update_item(groups, group.model_dump())
 
     ref.child("groups").set(groups)
