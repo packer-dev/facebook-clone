@@ -8,7 +8,7 @@ import useKeyboard from "@/hooks/useKeyboard";
 import useListeningMessage from "@/hooks/useListeningMessage";
 import tailwind from "@/tailwind";
 import * as React from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import { Platform, SafeAreaView, ScrollView } from "react-native";
 
 const Main = ({ route: { params } }: any) => {
   const {
@@ -58,7 +58,9 @@ const Main = ({ route: { params } }: any) => {
   return (
     <SafeAreaView
       style={[
-        tailwind(`p-3 flex-col bg-white`),
+        tailwind(
+          `p-3 flex-col bg-white ${Platform.OS === "android" ? "flex-1" : ""}`
+        ),
         {
           height,
         },
