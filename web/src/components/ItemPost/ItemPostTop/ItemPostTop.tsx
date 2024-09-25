@@ -26,7 +26,7 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
         feel={postDetail.post.feel}
         local={postDetail.post.local}
         tagList={[]}
-        hideName={true}
+        hideName
       />
     );
   })();

@@ -46,7 +46,7 @@ export default function RelationshipUserStatus() {
           blue={false}
           icon="bx bxs-user-plus"
           label={"Add friend"}
-          show={true}
+          show
         />
       )}
       {userRelationship?.status === 2 && (
@@ -54,7 +54,7 @@ export default function RelationshipUserStatus() {
           <ButtonRelationshipUser
             onClick={(status) => process(status)}
             status={3}
-            blue={true}
+            blue
             icon="bx bx-user-check"
             label={"Accept"}
             show={false}
@@ -74,7 +74,7 @@ export default function RelationshipUserStatus() {
           <ButtonRelationshipUser
             onClick={(status) => process(status)}
             status={-1}
-            show={true}
+            show
             icon={
               userRelationship.status === 3
                 ? "bx bx-user-check"
@@ -87,14 +87,14 @@ export default function RelationshipUserStatus() {
         <>
           <Button
             onClick={() => navigation(PAGE_CREATE_STORY)}
-            className="flex items-center h-10 px-2 bg-main rounded-lg mr-2 text-white font-semibold text-sm"
+            className="mr-2 font-semibold text-sm"
           >
-            <div className="w-5 h-5 mr-1.5 rounded-full bg-white flex justify-center items-center text-main">
-              <i className="bx bx-plus" />
+            <div className="w-5 h-5 mr-1.5 rounded-full bg-white flex justify-center items-center">
+              <i className="bx bx-plus text-black" />
             </div>
             Add story
           </Button>
-          <Button className=" rounded-lg h-10 px-2 font-semibold bg-gray-200 hover:bg-gray-300 text-sm flex items-center">
+          <Button variant="secondary">
             <i className="bx bxs-pencil text-xl mr-2" /> Edit profile
           </Button>
         </>

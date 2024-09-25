@@ -1,5 +1,4 @@
 import React, { useContext, useRef } from "react";
-import * as functions from "@/functions";
 import ControlMessageMain from "./ControlMessageMain";
 import SendImageVideo from "./SendImageVideo/SendImageVideo";
 import PopoverEmoji from "@/popovers/PopoverEmoji";
@@ -22,13 +21,11 @@ const ControlMessage = () => {
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
   const handleSend = async (data?: any) => {
+    data = typeof data === "object" ? JSON.stringify(data) : data;
     const message = dataFakeMessage({
       user,
       type: typeof data === "object" ? 2 : 1,
-      text:
-        typeof data === "object"
-          ? JSON.stringify(data)
-          : refContent.current.innerText,
+      text: data || refContent.current.innerText,
     });
     let temp = [...messages, message];
     updateDataItemChat("messages", [...temp]);
@@ -92,7 +89,7 @@ const ControlMessage = () => {
             ref={refContent}
             className="place-input-type border-none dark:text-white bg-gray-200 dark:bg-dark-third rounded-full 
             pl-2 outline-none py-2 break-all w-full"
-            contentEditable={true}
+            contentEditable
             spellCheck={false}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
@@ -102,29 +99,28 @@ const ControlMessage = () => {
             }}
             style={{ minHeight: "20px" }}
           />
-          <PopoversWrapper
-            button={
-              <div
-                aria-hidden
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 flex cursor-pointer z-50"
-              >
-                <i className="fas fa-smile dark:text-white text-gray-600 text-2xl" />
-              </div>
-            }
+          <div
+            aria-hidden
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 flex cursor-pointer z-50"
           >
-            <PopoverEmoji
-              handleClick={(item: any) => {
-                refContent.current.innerText += item;
-                functions.placeCaretAtEnd(refContent.current);
-              }}
-            />
-          </PopoversWrapper>
+            <PopoversWrapper
+              button={
+                <i className="fas fa-smile dark:text-white text-gray-600 text-2xl" />
+              }
+            >
+              <PopoverEmoji
+                handleClick={(item: any) => {
+                  refContent.current.innerText += item;
+                }}
+              />
+            </PopoversWrapper>
+          </div>
         </div>
       </div>
       <div className="w-12 zoom flex justify-center">
         <span
           aria-hidden
-          onClick={() => handleSend("💕")}
+          onClick={() => handleSend(group?.data?.emoji)}
           className="cursor-pointer zoom text-xl flex items-center"
         >
           {group?.data?.emoji || "💕"}

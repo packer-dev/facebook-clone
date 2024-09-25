@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path: Config.PAGE_RECOVER_ACCOUNT_VERIFY,
-    element: <RecoverAccount verify={true} />,
+    element: <RecoverAccount verify />,
   },
   {
     path: Config.PAGE_VERIFY_CODE_ACCOUNT_RECOVER,
@@ -42,7 +42,7 @@ const routes = [
   },
   {
     path: Config.PAGE_VERIFY_CODE_ACCOUNT_REGISTER,
-    element: <VerifyCodeAccount verifyAccountNew={true} />,
+    element: <VerifyCodeAccount verifyAccountNew />,
   },
   {
     path: Config.PAGE_TYPE_NEW_PASSWORD,

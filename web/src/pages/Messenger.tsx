@@ -77,7 +77,7 @@ const WrapperMessenger = () => {
 };
 const Messenger = () => {
   return (
-    <WrapperLogged hideChat={true} hideMessage={true}>
+    <WrapperLogged hideChat hideMessage>
       <MessengerProvider>
         <ItemChatProvider>
           <WrapperMessenger />

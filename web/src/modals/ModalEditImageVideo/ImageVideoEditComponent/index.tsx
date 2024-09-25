@@ -65,7 +65,7 @@ const ImageVideoEditComponent = ({
       </div>
       <div className="w-full flex justify-center my-3">
         <textarea
-          className="w-full mx-auto h-20 p-3 border border-solid border-gray-200 shadow-lv1 dark:bg-dark-main 
+          className="w-full mx-auto h-12 p-3 border border-solid border-gray-200 shadow-lv1 dark:bg-dark-main 
           rounded-lg resize-none focus:border-blue-500 dark:border-dark-second"
           spellCheck={false}
           placeholder="Chú thích"

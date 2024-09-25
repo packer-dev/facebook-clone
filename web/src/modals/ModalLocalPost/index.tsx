@@ -16,7 +16,7 @@ export default function ModalLocalPost() {
           pl-4 bg-transparent dark:bg-dark-third rounded-3xl"
           type="text"
           placeholder="Search"
-          search={true}
+          search
         />
       </div>
       <div className="tac-user wrapper-content-right">

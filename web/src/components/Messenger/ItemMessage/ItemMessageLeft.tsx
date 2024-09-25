@@ -26,7 +26,7 @@ const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
         }`}
         style={{ width: "inherit" }}
       >
-        <ContentMessage item={item} left={true} groupMessage={groupMessage} />
+        <ContentMessage item={item} left groupMessage={groupMessage} />
       </div>
     </div>
   );

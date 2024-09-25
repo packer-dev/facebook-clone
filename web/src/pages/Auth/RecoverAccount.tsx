@@ -15,7 +15,7 @@ const RecoverAccount = (props: any) => {
   //
   return (
     <WrapperAuthentication
-      hideFormLogin={true}
+      hideFormLogin
       title={verify ? "Confirm your account" : "Reset your password"}
     >
       {user && token ? (

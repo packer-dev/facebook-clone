@@ -13,7 +13,7 @@ const routes = [
   {
     path: `/images`,
     exact: false,
-    element: <ImageVideoList image={true} />,
+    element: <ImageVideoList image />,
   },
   {
     path: `/videos`,

@@ -34,8 +34,7 @@ export default function Introduction() {
               )
             )
           }
-          className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
-            dark:bg-dark-second dark:text-white rounded-lg"
+          className="w-full text-sm my-2"
         >
           Edit detail
         </Button>
@@ -43,7 +42,7 @@ export default function Introduction() {
       {favorites.length > 0 && (
         <div className="w-full flex flex-wrap my-1.5 gap-1.5">
           {favorites.map((item) => (
-            <ItemFavorite item={item} key={item.id} disabled={true} />
+            <ItemFavorite item={item} key={item.id} disabled />
           ))}
         </div>
       )}
@@ -57,8 +56,7 @@ export default function Introduction() {
               )
             );
           }}
-          className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
-            dark:bg-dark-second dark:text-white rounded-lg"
+          className="w-full my-2"
         >
           {favorites.length > 0 ? "Edit" : "Add"} favorite
         </Button>

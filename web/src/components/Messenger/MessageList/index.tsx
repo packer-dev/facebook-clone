@@ -37,7 +37,7 @@ const MessageList = ({ groups, mini, closePopover }: MessageListProps) => {
           type="text"
           className="w-full mx-auto rounded-full p-2.5 flex items-center bg-gray-100 dark:bg-dark-third dark:text-white"
           placeholder="Search on messenger"
-          search={true}
+          search
         />
       </div>
       <div

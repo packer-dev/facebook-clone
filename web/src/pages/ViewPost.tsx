@@ -39,7 +39,7 @@ const ViewPost = () => {
   }, [postDetail]);
   //
   return (
-    <WrapperLogged hideHeader={true} hideChat={true} hideMessage={true}>
+    <WrapperLogged hideHeader hideChat hideMessage>
       <div className="w-full h-screen flex">
         <div
           className={`${
@@ -88,15 +88,11 @@ const ViewPost = () => {
           }`}
         >
           <div className="w-full absolute top-0 p-1 border-b-2 border-solid border-gray-300 shadow-lv1">
-            <HeaderLoggedRight hideImage={true} />
+            <HeaderLoggedRight hideImage />
           </div>
           <div className="pt-16 w-full h-full scrollbar-css overflow-y-auto">
             <hr />
-            <ItemPost
-              hideContent={true}
-              postDetail={postDetail}
-              margin={false}
-            />
+            <ItemPost hideContent postDetail={postDetail} margin={false} />
             {comments.map((comment) => (
               <ItemCommentPostMain
                 key={comment.item.id}

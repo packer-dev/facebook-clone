@@ -10,7 +10,7 @@ function CloseModal() {
       onClick={() => modalsDispatch(modalsAction.closeModal())}
       aria-hidden="true"
       className="rounded-full dark:bg-dark-third text-gray-700 dark:text-white z-50 items-center 
-      w-10 h-10 text-xl -pt-1 flex justify-center font-bold fixed right-2 bg-gray-300 top-2 cursor-pointer"
+      w-10 h-10 text-xl flex justify-center font-bold fixed right-2 bg-gray-300 top-2 cursor-pointer"
     >
       &times;
     </span>

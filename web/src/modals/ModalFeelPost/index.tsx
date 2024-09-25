@@ -80,19 +80,19 @@ export default function ModalFeelPost() {
               </span>
             </div>
             <InputComponent
-              className="dark:text-white w-full py-2 px-4 border border-gray-300 bg-transparent dark:bg-dark-third rounded-3xl"
+              className="dark:text-white w-full py-2 border border-gray-300 bg-transparent dark:bg-dark-third rounded-3xl"
               type="text"
               placeholder="Search"
-              search={true}
+              search
               width="w-2/3 ml-2"
             />
           </div>
         ) : (
           <InputComponent
-            className="dark:text-white w-full p-2.5 border border-gray-300 pl-4 bg-transparent dark:bg-dark-third rounded-3xl"
+            className="dark:text-white w-full p-2.5 border border-gray-300 bg-transparent dark:bg-dark-third rounded-3xl"
             type="text"
             placeholder="Search"
-            search={true}
+            search
           />
         )}
       </div>

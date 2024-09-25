@@ -40,23 +40,13 @@ export default function ModalEditImageVideo() {
       if (extension === "mp4" || extension === "mov") {
         type = 2;
       }
-      const width = refContainer.current.offsetWidth;
-      const widthImage = length === 3 || length === 4 ? 2 : 3;
-      const heightLengthImage = length === 3 || length === 4 ? 3 : 4;
       return (
         <ImageVideoEditComponent
           key={"url" in element ? element.url : element.name}
           src={"url" in element ? element.url : URL.createObjectURL(element)}
           element={element}
           style={{
-            width:
-              length === 1 || length === 2
-                ? width
-                : Math.floor(width / widthImage) - 6 + "px",
-            height:
-              Math.floor(
-                width / (length === 1 || length === 2 ? 2 : heightLengthImage)
-              ) - (length === 1 || length === 2 ? 20 : 60),
+            height: 200,
           }}
           component={
             <ImageVideo
@@ -71,20 +61,12 @@ export default function ModalEditImageVideo() {
     });
     setData(result);
   }, [refContainer, posts.imageVideo, length]);
-  const containerLength =
-    length === 3 || length === 4 ? "xl:w-3/5" : "xl:w-3/4";
   //
   return (
-    <ModalWrapperChildPost
-      customerClass={`shadow-sm border border-solid border-gray-200 bg-white w-full absolute  
-        dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 p-2 sm:w-10/12 md:w-2/3 lg:w-2/3 
-        ${length <= 2 ? "xl:w-36%" : containerLength} shadow-lv1 
-        z-50 top-1/2 left-1/2 `}
-      title={`Ảnh/Video`}
-    >
+    <ModalWrapperChildPost title="Image/Video">
       <div ref={refContainer} className="w-full relative pt-3 pb-12">
         <div
-          className="w-full h-full flex flex-wrap gap-1 max-h-full overflow-x-hidden overflow-y-auto"
+          className="w-full pl-1.5 h-full flex flex-col gap-1 max-h-full overflow-x-hidden overflow-y-auto"
           style={{ maxHeight: length > 4 ? "80vh" : 650 }}
         >
           {[...posts.imageVideo.old, ...Array.from(posts.imageVideo.new || [])]
@@ -107,7 +89,7 @@ export default function ModalEditImageVideo() {
         </div>
         <div
           className="w-full absolute z-50 bottom-0 border-t-2 border-solid border-gray-200 
-          left-0 p-2 pb-0 flex justify-end items-center gap-2 bg-white dark:bg-dark-second dark:border-dark-second"
+          left-0 p-2 flex justify-end items-center gap-2 bg-white dark:bg-dark-second dark:border-dark-second"
         >
           <input
             type="file"
@@ -124,7 +106,7 @@ export default function ModalEditImageVideo() {
                 );
               }
             }}
-            multiple={true}
+            multiple
             className="hidden"
             id="inputFileUpload"
             accept="image/*,video/*"

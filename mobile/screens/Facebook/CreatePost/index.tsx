@@ -195,7 +195,7 @@ const CreatePost = ({ route }: any) => {
             </View>
             <ScrollView>
               <TextInput
-                multiline={true}
+                multiline
                 ref={inputRef}
                 placeholder="What do you think?"
                 placeholderTextColor="gray"

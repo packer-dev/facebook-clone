@@ -65,7 +65,7 @@ export default function HomeLeft() {
               />
             </div>
             <span className="text-sm flex text-gray-900 ml-2 items-center font-semibold dark:text-white">
-              {length === categories.length ? "Thu gọn" : "Xem thêm"}
+              {length === categories.length ? "Less" : "More"}
             </span>
           </li>
         </ul>

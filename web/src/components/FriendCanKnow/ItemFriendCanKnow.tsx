@@ -46,7 +46,7 @@ const ItemFriendCanKnow = ({
             onClick={async () => {
               setUsers([...users].filter((dt) => dt.id !== item.id));
             }}
-            disabled={true}
+            disabled
             // className="w-full justify-center p-0.5 my-2 rounded-md text-main bg-blue-100
             // flex items-center hover:bg-blue-200 font-semibold"
           >

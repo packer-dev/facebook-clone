@@ -10,9 +10,9 @@ type ModalWrapperProps = {
 };
 
 const ModalWrapper = ({
-  className = "",
   title = "",
   children,
+  className,
 }: ModalWrapperProps) => {
   //
   const {
@@ -22,8 +22,10 @@ const ModalWrapper = ({
   return (
     <Dialog>
       <div
-        className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-          shadow-lv1 border-2 border-solid border-gray-200 w-[480px] bg-white`}
+        className={`${
+          !className || ""
+        } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg
+          shadow-lv1 w-[480px] bg-white dark:bg-dark-second`}
       >
         <div className="w-full relative">
           <p className="text-2xl font-bold p-2.5 -mt-1.5 text-center dark:text-white">

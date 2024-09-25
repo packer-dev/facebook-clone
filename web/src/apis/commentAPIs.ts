@@ -2,9 +2,6 @@ import { API_URL } from "@/constants/Config";
 
 export const sendComment = async (formData: any) => {
   return fetch(`${API_URL}/comment`, {
-    headers: {
-      "content-type": "multipart/form-data",
-    },
     body: formData,
     method: "POST",
   }).then((res) => res.json());

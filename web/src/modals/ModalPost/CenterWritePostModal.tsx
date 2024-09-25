@@ -51,7 +51,7 @@ const CenterWritePostModal = () => {
             className="text-2xl w-full px-4 flex justify-center text-white font-bold absolute top-1/2 
             left-1/2 transform -translate-x-1/2 -translate-y-1/2 contentedit break-all text-center "
             spellCheck={false}
-            contentEditable={true}
+            contentEditable
             // placeholder={`${user.lastName} ơi , bạn đang nghĩ gì đấy ?`}
           />
         </div>

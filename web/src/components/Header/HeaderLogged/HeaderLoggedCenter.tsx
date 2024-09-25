@@ -9,7 +9,7 @@ export default function HeaderLoggedCenter() {
   const active = location.pathname;
   //
   return (
-    <ul className="list-icon-header md:w-full">
+    <ul className="list-icon-header md:w-11/12 mx-auto">
       <li
         aria-hidden
         onClick={() => navigation(PAGE_HOME)}

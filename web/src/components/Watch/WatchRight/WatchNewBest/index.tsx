@@ -35,7 +35,7 @@ export default function WatchNewBest({ images }) {
           {images.map((item) => (
             <ItemWatchChildren
               name={"Đậu Phộng TV"}
-              image={true}
+              image
               key={item}
               multiline={`9+ video mới`}
               right

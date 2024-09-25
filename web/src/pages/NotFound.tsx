@@ -11,9 +11,7 @@ import { Button } from "@/components/ui/button";
 const Component = ({ children }: { children: React.ReactNode }) => {
   const user = useSelector<RootState, User>(getUser);
   if (!user)
-    return (
-      <WrapperAuthentication notFound={true}>{children}</WrapperAuthentication>
-    );
+    return <WrapperAuthentication notFound>{children}</WrapperAuthentication>;
   return <WrapperLogged>{children}</WrapperLogged>;
 };
 

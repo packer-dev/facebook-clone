@@ -18,20 +18,18 @@ const ItemCommentPostMain = ({
     <>
       <ItemComment
         setReply={setReply}
-        commentPost={commentDetail.item}
-        key={commentDetail.item.id}
+        commentPost={commentDetail}
         postDetail={postDetail}
-        level={1}
+        key={commentDetail.item.id}
       />
       <div className="w-11/12 ml-auto">
         {reply && <TypeCommentInput />}
         {commentDetail.child.map((commentPost) => (
           <ItemComment
             setReply={setReply}
-            commentPost={commentPost}
-            key={commentPost.id}
+            commentPost={{ item: commentPost, child: [] } as CommentDTO}
             postDetail={postDetail}
-            level={2}
+            key={commentPost.id}
           />
         ))}
       </div>

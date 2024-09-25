@@ -65,20 +65,14 @@ export default function StoryEditor({ mode }: any) {
       <StoryEditLeft />
       <div className="w-2/4 bg-gray-200 dark:bg-dark-main story-right shadow-3xl h-full flex flex-col">
         <ContentStoryEditor ref={refImage} />
-        <div className="w-full my-6 pl-9 flex-row flex">
-          <span
-            aria-hidden
-            onClick={() => navigation(PAGE_CREATE_STORY)}
-            className="text-center font-bold mr-4 py-3 flex-1 bg-gray-300 rounded-lg cursor-pointer"
-          >
-            Bỏ
-          </span>
+        <div className="w-11/12 mx-auto my-6 grid gap-3 grid-cols-2">
           <Button
-            disabled={loading}
-            onClick={handleCreateStory}
-            type="button"
-            className="font-bold w-1/2 bg-1877F2 py-3 rounded-lg text-white"
+            variant="secondary"
+            onClick={() => navigation(PAGE_CREATE_STORY)}
           >
+            Remove
+          </Button>
+          <Button disabled={loading} onClick={handleCreateStory} type="button">
             {loading ? (
               <i className="bx bx-shape-circle fa-spin text-main text-5xl">:</i>
             ) : (

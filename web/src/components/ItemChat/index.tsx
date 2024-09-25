@@ -68,7 +68,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
           border-gray-300 dark:border-dark-second shadow-lv1 mr-0.5 rounded-lg z-50"
         >
           <SettingMessageChild
-            hide={true}
+            hide
             group={group}
             updateGroup={(g) => updateData("group", g)}
           />

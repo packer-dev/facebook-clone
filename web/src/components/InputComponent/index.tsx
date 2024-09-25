@@ -63,7 +63,7 @@ export default forwardRef(function InputComponent(
               register?.(name)?.onChange(event);
             }}
             name={name}
-            autoComplete={"on"}
+            autoComplete
             disabled={disabled}
           />
           {!search ? (

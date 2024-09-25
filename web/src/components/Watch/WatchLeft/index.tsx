@@ -31,7 +31,7 @@ export default function ListItemWatchLeft({ images }) {
           {images.map((item) => (
             <ItemWatchChildren
               name="Hello TV"
-              image={true}
+              image
               key={item}
               multiline="9+ new videos"
               data={item}

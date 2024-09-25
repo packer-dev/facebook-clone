@@ -1,11 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import TypeCommentInput from "../Comment/TypeCommentInput";
 import ItemPostTop from "./ItemPostTop/ItemPostTop";
 import ContentPost from "./ContentPost";
 import LoadingPost from "./LoadingPost";
 import { PostDTO } from "@/interfaces/Post";
 import FooterItemPost from "./FooterItemPost";
-import { ItemPostProvider } from "@/contexts/ItemPostContext";
+import { ItemPostContext, ItemPostProvider } from "@/contexts/ItemPostContext";
 import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
 
 type ItemPostProps = {
@@ -15,6 +15,10 @@ type ItemPostProps = {
 };
 const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
   //
+  const { updateData } = useContext(ItemPostContext);
+  useEffect(() => {
+    updateData("postDetail", postDetail);
+  }, [postDetail]);
   //
   return postDetail ? (
     <div
@@ -38,7 +42,11 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
       </div>
       <TypeCommentInput />
       {postDetail.comments?.map((comment) => (
-        <ItemCommentPostMain commentDetail={comment} postDetail={postDetail} />
+        <ItemCommentPostMain
+          key={comment.item.id}
+          commentDetail={comment}
+          postDetail={postDetail}
+        />
       ))}
     </div>
   ) : (

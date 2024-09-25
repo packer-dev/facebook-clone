@@ -13,7 +13,7 @@ export default function TypeNewPassword() {
   const navigation = useNavigate();
   //
   return (
-    <WrapperAuthentication title="Choose new password" hideFormLogin={true}>
+    <WrapperAuthentication title="Choose new password" hideFormLogin>
       <div className="w-full my-2 p-2 px-5">
         <p>
           Create a new password that is at least 6 characters long. A strong

@@ -1,28 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import InputComponent from "@/components/InputComponent";
+import { useSelector } from "react-redux";
+import { getCommon, RootState } from "@/reducers";
+import { CommonDataProps } from "@/reducers/common";
 
 const ModalTagPost = () => {
   //
-  const [users, setUsers] = useState([]);
+  const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
-  useEffect(() => {
-    //
-    const fetch = async () => {
-      const result = { data: [] };
-      setUsers(result.data);
-    };
-    fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   //
   return (
     <ModalWrapperChildPost title="Tag friend">
       <div className="w-full my-2 px-2 flex items-center">
         <InputComponent
-          className="dark:text-white font-bold w-10/12 p-2.5 pl-4 bg-transparent dark:bg-dark-third rounded-3xl border border-solid border-gray-300"
-          search={true}
+          className="dark:text-white w-10/12 p-2.5 bg-transparent dark:bg-dark-third rounded-3xl border border-solid border-gray-300"
+          search
           type="text"
           placeholder="Modal search friends"
         />
@@ -47,7 +41,8 @@ const ModalTagPost = () => {
               {posts.tags.map((tag) => (
                 <div
                   key={tag.id}
-                  className="my-1 break-all text-sm w-auto rounded-md cursor-pointer p-1.5 bg-blue-100 text-blue-500 font-bold"
+                  className="break-all text-sm w-auto rounded-md cursor-pointer p-1.5 bg-blue-100 text-blue-500 font-semibold 
+                  items-center flex gap-2"
                 >
                   {`${tag.name}`}
                   <span
@@ -60,7 +55,7 @@ const ModalTagPost = () => {
                         )
                       );
                     }}
-                    className="ml-2 mr-1 text-xl cursor-pointer"
+                    className="text-xl cursor-pointer -mt-1"
                   >
                     &times;
                   </span>
@@ -74,20 +69,17 @@ const ModalTagPost = () => {
         <p className="w-11/12 mx-auto dark:text-gray-300 font-bold py-2">
           Suggest
         </p>
-        {users.map((user) => (
+        {friends.map((user) => (
           <div
             aria-hidden
             onClick={() => {
               postsDispatch(
                 postsAction.updateData(
                   "tags",
-                  [...posts.tags].findIndex(
-                    (item) => item.id === user.userUserRelationShip.id
-                  ) === -1
-                    ? [...posts.tags, user.userUserRelationShip]
-                    : [...posts.tags].filter(
-                        (item) => item.id !== user.userUserRelationShip.id
-                      )
+                  [...posts.tags].findIndex((item) => item.id === user.id) ===
+                    -1
+                    ? [...posts.tags, user]
+                    : [...posts.tags].filter((item) => item.id !== user.id)
                 )
               );
             }}
@@ -98,7 +90,7 @@ const ModalTagPost = () => {
             <div className="text-center pr-2.5">
               <img
                 className="w-12 h-12 rounded-full object-cover"
-                src={user.userUserRelationShip.avatar}
+                src={user.avatar}
                 alt=""
               />
             </div>
@@ -106,11 +98,10 @@ const ModalTagPost = () => {
               className="tac-user-2"
               style={{ paddingTop: "1%", paddingLeft: "2%" }}
             >
-              <p className="font-bold dark:text-white">{`${user.userUserRelationShip.firstName} ${user.userUserRelationShip.lastName}`}</p>
+              <p className="font-bold dark:text-white">{user.name}</p>
             </div>
-            {[...posts.tags].findIndex(
-              (item) => item.id === user.userUserRelationShip.id
-            ) !== -1 && (
+            {[...posts.tags].findIndex((item) => item.id === user.id) !==
+              -1 && (
               <span className="absolute top-1/2 transform -translate-y-1/2 right-8">
                 <i className="fas fa-check text-green-400 text-xl" />
               </span>

@@ -18,7 +18,7 @@ const ModalLogin = ({ loginFast }: ModalLoginProps) => {
     >
       <h1 className="-pt-1 pb-0.5 text-2xl my-3 text-center">Login facebook</h1>
       <hr />
-      <FormLogin remember={true} loginFast={loginFast} />
+      <FormLogin remember loginFast={loginFast} />
     </ModalWrapper>
   );
 };

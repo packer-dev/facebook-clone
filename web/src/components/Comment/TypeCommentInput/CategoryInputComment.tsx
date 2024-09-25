@@ -26,7 +26,7 @@ export default forwardRef(function CategoryInputComment(
   //
   return (
     <form>
-      <div className="absolute transform -translate-y-1/2 top-1/2 mr-3 right-2">
+      <div className="absolute transform -translate-y-1/2 top-1/2 right-2">
         <div className="flex relative items-center">
           <PopoversWrapper
             button={
@@ -34,7 +34,7 @@ export default forwardRef(function CategoryInputComment(
                 aria-hidden
                 onClick={(event) => handleClick(1, event)}
                 className=" w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                flex items-center justify-center -ml-1.5"
+                flex items-center justify-center"
               >
                 <i className="far fa-smile dark:text-white text-gray-600" />
               </div>
@@ -52,56 +52,53 @@ export default forwardRef(function CategoryInputComment(
               }}
             />
           </PopoversWrapper>
-          {dataComment.type !== 1 && (
-            <>
-              <div
-                className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
+          <div
+            className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
                 flex items-center justify-center -ml-1.5"
-              >
-                <label htmlFor={id}>
-                  {" "}
-                  <i className="fas fa-camera dark:text-white text-gray-600" />
-                </label>
-                <input
-                  name="fileImage"
-                  className="hidden"
-                  onChange={(event) => {
-                    if (event.target.files.length > 0) {
-                      updateData("file", event.target.files[0]);
-                      updateData("dataComment", { ...dataComment, type: 3 });
-                    }
-                  }}
-                  type="file"
-                  accept="image"
-                  formEncType="multipart/form-data"
-                  id={id}
-                />
-              </div>
-              <div
-                className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                flex items-center justify-center -ml-1.5"
-              >
-                <i className="fas fa-radiation dark:text-white text-gray-600" />
-              </div>
-              <PopoversWrapper
-                button={
-                  <div
-                    aria-hidden
-                    className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
-                    flex items-center justify-center -ml-1.5"
-                  >
-                    <i className="far fa-sticky-note dark:text-white text-gray-600" />
-                  </div>
+          >
+            <label htmlFor={id}>
+              {" "}
+              <i className="fas fa-camera dark:text-white text-gray-600" />
+            </label>
+            <input
+              name="fileImage"
+              className="hidden"
+              onChange={(event) => {
+                if (event.target.files.length > 0) {
+                  updateData("file", event.target.files);
+                  updateData("dataComment", { ...dataComment, type: 3 });
+                  event.currentTarget.files = null;
                 }
+              }}
+              type="file"
+              accept="image"
+              formEncType="multipart/form-data"
+              id={id}
+            />
+          </div>
+          <div
+            className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
+            flex items-center justify-center -ml-1.5"
+          >
+            <i className="fas fa-radiation dark:text-white text-gray-600" />
+          </div>
+          <PopoversWrapper
+            button={
+              <div
+                aria-hidden
+                className="w-9 h-9 rounded-full hover:bg-gray-200 dark:hover:bg-dark-second cursor-pointer 
+                    flex items-center justify-center -ml-1.5"
               >
-                <PopoverSticker
-                  handleClick={(item: any) =>
-                    handleSendComment(JSON.stringify(item), 2)
-                  }
-                />
-              </PopoversWrapper>
-            </>
-          )}
+                <i className="far fa-sticky-note dark:text-white text-gray-600" />
+              </div>
+            }
+          >
+            <PopoverSticker
+              handleClick={(item: any) =>
+                handleSendComment(JSON.stringify(item), 2)
+              }
+            />
+          </PopoversWrapper>
         </div>
       </div>
     </form>

@@ -1,18 +1,18 @@
 import ItemSticker from "@/popovers/PopoverSticker/ItemSticker";
-import { Comment } from "@/interfaces/Comment";
+import { CommentDTO } from "@/interfaces/Comment";
 import * as React from "react";
 
 export default React.forwardRef(function ContentComment(
-  { commentPost }: { commentPost: Comment },
+  { commentPost }: { commentPost: CommentDTO },
   ref: React.RefObject<HTMLImageElement>
 ) {
-  switch (commentPost.content.type) {
-    case 1:
+  switch (commentPost.item.content.type) {
+    case 3:
       return (
         <img
           ref={ref}
-          src={commentPost.content.text}
-          alt={``}
+          src={commentPost.item.content.text}
+          alt=""
           className="w-80 h-56 rounded-lg object-cover"
         />
       );
@@ -20,8 +20,7 @@ export default React.forwardRef(function ContentComment(
       return (
         <ItemSticker
           ref={ref}
-          sticker={JSON.parse(commentPost.content.text)}
-          handleClick={() => ""}
+          sticker={JSON.parse(commentPost.item.content.text)}
         />
       );
     default:

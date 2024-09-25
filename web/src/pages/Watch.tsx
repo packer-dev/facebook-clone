@@ -33,7 +33,7 @@ export default function Watch() {
             <div className="md:flex hidden w-full ">
               <InputComponent
                 type="text"
-                search={true}
+                search
                 placeholder="Search video..."
                 className="p-2 bg-gray-200 dark:bg-dark-third rounded-full"
               />

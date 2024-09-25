@@ -18,7 +18,7 @@ const VerifyCodeAccount = (props) => {
   return (
     <WrapperAuthentication
       title={verifyAccountNew ? "Account Verification" : "Reset Your Password"}
-      hideFormLogin={true}
+      hideFormLogin
     >
       <div className="w-full my-2 p-2 pl-5">
         <p>
@@ -66,7 +66,7 @@ const VerifyCodeAccount = (props) => {
               setLoading(true);
               if (code === "") setError("Verification code cannot be empty!!");
             }}
-            className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
+            className="mr-5"
           >
             Continue
           </Button>

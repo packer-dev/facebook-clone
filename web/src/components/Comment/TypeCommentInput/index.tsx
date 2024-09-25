@@ -72,9 +72,9 @@ const TypeCommentInput = () => {
               });
             }}
             onKeyDown={(event) => {
-              if (event.key === "enter") {
+              if (event.key === "Enter") {
                 event.preventDefault();
-                handleSendComment(dataComment);
+                if (dataComment.type !== 3) handleSendComment(dataComment);
               }
             }}
             className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-third dark:text-white py-3"
@@ -87,7 +87,7 @@ const TypeCommentInput = () => {
           ref={refContent}
         />
       </div>
-      {file && <PreviewImageComment />}
+      {file && <PreviewImageComment file={file} />}
     </>
   );
 };

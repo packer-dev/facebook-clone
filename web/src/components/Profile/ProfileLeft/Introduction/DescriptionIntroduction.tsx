@@ -40,8 +40,8 @@ export default function DescriptionIntroduction() {
         <div
           ref={refDescription}
           className="w-full px-3 flex break-all contentedittable text-center justify-center items-center resize-none rounded-lg bg-gray-300 h-20"
-          contentEditable={true}
-          suppressContentEditableWarning={true}
+          contentEditable
+          suppressContentEditableWarning
           onInput={(event) => {
             if (event.currentTarget.textContent.length <= 70) {
               setDescription(event.currentTarget.textContent);
@@ -52,13 +52,13 @@ export default function DescriptionIntroduction() {
         <p className="mt-1 text-right text-gray-500 text-sm">{`Còn ${
           70 - description?.length || 0
         } ký tự`}</p>
-        <div className="text-right w-full my-1 pb-2 ">
+        <div className="text-right w-full my-1 pb-2 flex-row flex gap-1 justify-end">
           <Button
             onClick={() => {
               setShow(false);
               setDescription(user.bio || "");
             }}
-            className="px-4 py-1.5 rounded-lg bg-gray-300"
+            variant="secondary"
           >
             Cancel
           </Button>
@@ -73,7 +73,6 @@ export default function DescriptionIntroduction() {
               setShow(false);
             }}
             disabled={user?.bio === description}
-            className="px-4 py-1.5 ml-3 rounded-lg bg-main text-white"
           >
             Save
           </Button>

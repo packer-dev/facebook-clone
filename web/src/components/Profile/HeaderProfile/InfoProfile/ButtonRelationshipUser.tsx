@@ -15,7 +15,7 @@ export default function ButtonRelationshipUser(props) {
   const dispatch = useDispatch();
   //
   return (
-    <>
+    <div className="flex-row flex gap-2">
       <Button
         onClick={() => {
           setLoading(true);
@@ -27,9 +27,6 @@ export default function ButtonRelationshipUser(props) {
             clearTimeout(timeOut);
           };
         }}
-        className={`flex items-center h-10 px-2 ${
-          props.blue ? "bg-main text-white" : "bg-gray-200"
-        } rounded-lg mr-2 font-semibold text-sm`}
       >
         <i
           className={`${
@@ -47,12 +44,12 @@ export default function ButtonRelationshipUser(props) {
               updateDataUserChat({ key: "zoom", value: [...zoom, userProfile] })
             )
           }
-          className="flex items-center h-10 px-2 bg-main rounded-lg mr-2 text-white font-semibold text-sm"
+          variant="secondary"
         >
           <i className="bx bxl-messenger text-xl dark:text-white mr-1" />
           <span>Message</span>
         </Button>
       )}
-    </>
+    </div>
   );
 }

@@ -128,8 +128,8 @@ export default function NewChat() {
               }}
               ref={refText}
               className="border-none pl-3 outline-none dark:text-white py-2"
-              contentEditable={true}
-              spellCheck={true}
+              contentEditable
+              spellCheck
             />
           </div>
         </div>

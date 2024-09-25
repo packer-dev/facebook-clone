@@ -60,9 +60,7 @@ const Story = () => {
           {loading &&
             Array(4)
               .fill(1)
-              .map((item, index) => (
-                <ItemStory key={item + index} loading={true} />
-              ))}
+              .map((item, index) => <ItemStory key={item + index} loading />)}
           {[...friends]?.map((friend) => (
             <ItemStory key={friend.id} friend={friend} />
           ))}

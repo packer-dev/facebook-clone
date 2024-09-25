@@ -14,8 +14,8 @@ const HeaderLogged = ({ hideMessage }: { hideMessage?: boolean }) => {
     >
       <div className="w-full flex px-2 my-1 items-center just">
         <HeaderLoggedLeft />
-        <div className="w-1/2 hidden md:block md:w-1/2 lg:w-1/2">
-          <div className="mx-auto wrapper w-4/5">
+        <div className="w-1/2 hidden md:block md:w-1/2">
+          <div className="mx-auto wrapper w-4/5 xl:w-[600px] xl:mx-auto">
             <HeaderLoggedCenter />
           </div>
         </div>

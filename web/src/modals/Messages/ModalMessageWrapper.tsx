@@ -41,11 +41,11 @@ const ModalMessageWrapper = ({
       }
     >
       {children}
-      <div className="text-right pt-3">
+      <div className="text-right py-3">
         <Button
           onClick={() => modalsDispatch(modalsAction.closeModal())}
           type="button"
-          className="cursor-pointer w-1/5 border-none font-semibold text-blue-500 rounded-lg p-2 mx-2"
+          variant="secondary"
         >
           Cancel
         </Button>
@@ -65,9 +65,7 @@ const ModalMessageWrapper = ({
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className={`cursor-pointer w-1/4 border-none font-semibold text-white rounded-lg p-2 mx-2 ${
-            !value ? "bg-gray-500" : " bg-main"
-          }`}
+          className="mx-2"
           disabled={!value}
         >
           Save
