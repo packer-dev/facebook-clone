@@ -1,4 +1,4 @@
-import ButtonComponent from "@/components/ButtonComponent";
+import { Button } from "@/components/ui/button";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { FriendProfileDTO } from "@/interfaces/User";
 import * as React from "react";
@@ -32,9 +32,9 @@ const ItemFriendList = ({ item }: { item: FriendProfileDTO }) => {
         </div>
       </div>
       <div className="w-1/3  pt-2 text-right">
-        <ButtonComponent className="my-6 px-3 py-2 opacity-80 bg-gray-300 rounded-lg font-semibold">
+        <Button className="my-6 px-3 py-2 opacity-80 bg-gray-300 rounded-lg font-semibold">
           Friends
-        </ButtonComponent>
+        </Button>
       </div>
     </div>
   );

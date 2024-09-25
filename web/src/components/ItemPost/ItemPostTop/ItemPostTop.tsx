@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { PAGE_PROFILE } from "@/constants/Config";
 import PostTopRight from "./PostTopRight";
-import InfoPostHeader from "@/components/Modals/ModalPost/TopWritePostModal/InfoPostHeader";
+import InfoPostHeader from "@/modals/ModalPost/TopWritePostModal/InfoPostHeader";
 import { RootState, getUser } from "@/reducers";
 import { PostDTO } from "@/interfaces/Post";
 import { User } from "@/interfaces/User";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemPopoverNotification from "./ItemPopoverNotification";
-import ButtonComponent from "@/components/ButtonComponent";
+import { Button } from "@/components/ui/button";
 
 const NotFoundNotification = () => {
   return (
@@ -35,8 +35,8 @@ export default function PopoverNotification() {
       </div>
       <ul className="flex mb-2 gap-2 items-center">
         <li>
-          <ButtonComponent
-            handleClick={() => {
+          <Button
+            onClick={() => {
               setActive(0);
               setNotifies([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
             }}
@@ -45,11 +45,11 @@ export default function PopoverNotification() {
             } font-semibold`}
           >
             All
-          </ButtonComponent>
+          </Button>
         </li>
         <li>
-          <ButtonComponent
-            handleClick={() => {
+          <Button
+            onClick={() => {
               setActive(1);
               setNotifies([]);
             }}
@@ -58,7 +58,7 @@ export default function PopoverNotification() {
             } font-semibold`}
           >
             Unread
-          </ButtonComponent>
+          </Button>
         </li>
       </ul>
       <div className="w-full flex items-center justify-between py-1">

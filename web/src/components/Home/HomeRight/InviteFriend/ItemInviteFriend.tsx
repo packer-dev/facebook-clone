@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
-import ButtonComponent from "@/components/ButtonComponent";
 import { FriendProfileDTO } from "@/interfaces/User";
+import { Button } from "@/components/ui/button";
 
 type ItemInviteFriendProps = {
   list: FriendProfileDTO[];
@@ -42,22 +42,22 @@ const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
           <span>1 mutual friend</span>
         </div>
         <div className="w-full flex gap-3 justify-between mt-2">
-          <ButtonComponent
-            handleClick={() => handleClick(3)}
+          <Button
+            onClick={() => handleClick(3)}
             loading={loading}
             disabled={loading}
             className="w-1/2 cursor-pointer rounded-lg py-2 text-sm font-semibold bg-main text-white"
           >
             Confirm
-          </ButtonComponent>
-          <ButtonComponent
-            handleClick={() => handleClick(0)}
+          </Button>
+          <Button
+            onClick={() => handleClick(0)}
             loading={loading}
             disabled={loading}
             className="w-1/2 cursor-pointer rounded-lg py-2 text-sm font-semibold bg-gray-200"
           >
             Delete
-          </ButtonComponent>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import ButtonComponent from "@/components/ButtonComponent";
+import { Button } from "@/components/ui/button";
 import * as React from "react";
 
 const InviteProfile = () => {
@@ -8,12 +8,12 @@ const InviteProfile = () => {
         Packer has sent you a friend request
       </p>
       <div>
-        <ButtonComponent className="px-2 h-10 mr-2 bg-main text-white text-sm font-semibold rounded-lg">
+        <Button className="px-2 h-10 mr-2 bg-main text-white text-sm font-semibold rounded-lg">
           Accept request
-        </ButtonComponent>
-        <ButtonComponent className="px-2 h-10 bg-gray-300 text-gray-800 text-sm font-semibold rounded-lg">
+        </Button>
+        <Button className="px-2 h-10 bg-gray-300 text-gray-800 text-sm font-semibold rounded-lg">
           Delete request
-        </ButtonComponent>
+        </Button>
       </div>
     </div>
   );

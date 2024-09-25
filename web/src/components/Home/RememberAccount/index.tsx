@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import logo from "@/assets/images/logo.png";
 import save_account from "@/assets/images/save_account.png";
 import { RootState, getHeaders, getUser } from "@/reducers";
-import ButtonComponent from "@/components/ButtonComponent";
 import { User } from "@/interfaces/User";
+import { Button } from "@/components/ui/button";
 
 export default function RememberAccount() {
   //
@@ -44,14 +44,14 @@ export default function RememberAccount() {
         </span>
       </div>
       <div className="w-full mt-2">
-        <p className="text-xl font-bold mb-1">Nhớ mật khẩu</p>
+        <p className="text-xl font-bold mb-1">Remember</p>
         <p className="text-sm text-gray-500">
-          Lần tới khi đăng nhập trên trình duyệt này, bạn chỉ cần nhấp vào ảnh
-          đại diện thay vì nhập mật khẩu.
+          Next time you log in on this browser, just click on your avatar
+          instead of entering your password.
         </p>
         <div className="flex w-full items-center my-2 gap-2">
-          <ButtonComponent
-            handleClick={() => {
+          <Button
+            onClick={() => {
               let rememberAccountList = [];
               if (localStorage.getItem("rememberAccountList")) {
                 if (
@@ -82,13 +82,13 @@ export default function RememberAccount() {
             className="w-1/2 p-2 rounded-lg font-semibold text-main bg-blue-100"
           >
             OK
-          </ButtonComponent>
-          <ButtonComponent
-            handleClick={removeSaveInHome}
+          </Button>
+          <Button
+            onClick={removeSaveInHome}
             className="w-1/2 p-2 rounded-lg font-semibold bg-gray-200"
           >
-            Lúc khác
-          </ButtonComponent>
+            Later
+          </Button>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import HomeLeft from "@/components/Home/HomeLeft/HomeLeft";
 import HomeCenter from "@/components/Home/HomeCenter";
 import HomeRight from "@/components/Home/HomeRight";
 import useTitle from "@/hooks/useTitle";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 
 export default function Home() {

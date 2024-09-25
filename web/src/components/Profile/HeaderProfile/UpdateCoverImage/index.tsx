@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, getCommon, getUser } from "@/reducers";
-import ButtonComponent from "@/components/ButtonComponent";
 import { User } from "@/interfaces/User";
 import { updateProfileUser } from "@/apis/userAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { login } from "@/reducers/user";
+import { Button } from "@/components/ui/button";
 
 type UpdateCoverImageProps = {
   setCover: Function;
@@ -53,14 +53,14 @@ const UpdateCoverImage = ({
         <span>Your cover photo is publicly visible.</span>
       </p>
       <div className="flex items-center gap-2">
-        <ButtonComponent
-          handleClick={() => setCover(user.cover)}
+        <Button
+          onClick={() => setCover(user.cover)}
           className="rounded-md p-1.5 md:px-8 md:py-2 font-semibold text-white bg-black bg-opacity-20"
         >
           Cancel
-        </ButtonComponent>
-        <ButtonComponent
-          handleClick={handleUpdateCoverImage}
+        </Button>
+        <Button
+          onClick={handleUpdateCoverImage}
           className="rounded-md md:px-10 md:py-2 p-1.5 font-semibold bg-main text-white"
         >
           {loadingCover ? (
@@ -68,7 +68,7 @@ const UpdateCoverImage = ({
           ) : (
             "Save Changes"
           )}
-        </ButtonComponent>
+        </Button>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
-import ItemSticker from "../../Popovers/PopoverSticker/ItemSticker";
 import ChatText from "./ChatText";
 import { Message } from "@/interfaces/Message";
 import { Group } from "@/interfaces/Group";
+import ItemSticker from "@/popovers/PopoverSticker/ItemSticker";
 
 export type ContentMessageProps = {
   item: Message;

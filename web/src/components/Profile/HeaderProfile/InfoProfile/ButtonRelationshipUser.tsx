@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, getUserChat } from "@/reducers";
-import ButtonComponent from "@/components/ButtonComponent";
 import { updateDataUserChat, UserChatReduxProps } from "@/reducers/userChat";
+import { Button } from "@/components/ui/button";
 
 export default function ButtonRelationshipUser(props) {
   //
@@ -16,8 +16,8 @@ export default function ButtonRelationshipUser(props) {
   //
   return (
     <>
-      <ButtonComponent
-        handleClick={() => {
+      <Button
+        onClick={() => {
           setLoading(true);
           const timeOut = setTimeout(() => {
             props.handleClick(props.status);
@@ -39,19 +39,19 @@ export default function ButtonRelationshipUser(props) {
           } text-xl mr-1`}
         />
         {props.label}
-      </ButtonComponent>
+      </Button>
       {props.show && (
-        <ButtonComponent
-          handleClick={() => {
+        <Button
+          onClick={() =>
             dispatch(
               updateDataUserChat({ key: "zoom", value: [...zoom, userProfile] })
-            );
-          }}
+            )
+          }
           className="flex items-center h-10 px-2 bg-main rounded-lg mr-2 text-white font-semibold text-sm"
         >
           <i className="bx bxl-messenger text-xl dark:text-white mr-1" />
           <span>Message</span>
-        </ButtonComponent>
+        </Button>
       )}
     </>
   );

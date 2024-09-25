@@ -4,8 +4,8 @@ import { Post } from "@/interfaces/Post";
 import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
 import ItemMedia from "./ItemMedia";
-import ButtonComponent from "../ButtonComponent";
 import { PostContext } from "@/contexts/PostContext/PostContext";
+import { Button } from "../ui/button";
 
 type MediaDisplayProps = {
   medias: (Media | File)[];
@@ -22,16 +22,14 @@ const MediaDisplay = ({ medias = [], post, edit }: MediaDisplayProps) => {
     <div className="w-full relative">
       {medias.length > 0 && edit && (
         <div className="flex absolute gap-2 items-center top-3 left-3 z-20">
-          <ButtonComponent
-            handleClick={() =>
-              postsDispatch(postsAction.openModalImageVideoEdit())
-            }
+          <Button
+            onClick={() => postsDispatch(postsAction.openModalImageVideoEdit())}
             className="flex items-center px-3 text-sm py-1 bg-gray-100 text-gray-600 
           hover:text-gray-800 hover:bg-gray-200 rounded-md font-semibold"
           >
             <i className="bx bxs-pencil text-xl mr-2" />
             <span>Edit</span>
-          </ButtonComponent>
+          </Button>
           <label htmlFor="inputFileUpload">
             {" "}
             <span
@@ -45,7 +43,7 @@ const MediaDisplay = ({ medias = [], post, edit }: MediaDisplayProps) => {
         </div>
       )}
       <div className={`grid grid-cols-${rowTop.length} gap-1 mb-1`}>
-        {rowTop.map((item, index) => {
+        {rowTop.map((item) => {
           const path = "url" in item ? item.url : item.name;
           const extension = path
             .split(".")

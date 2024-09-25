@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
-import WrapperAuthentication from "../WrapperAuthentication";
+import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
+import { Button } from "@/components/ui/button";
 
 export default function TypeNewPassword() {
   //
@@ -13,7 +13,7 @@ export default function TypeNewPassword() {
   const navigation = useNavigate();
   //
   return (
-    <WrapperAuthentication title="Chọn mật khẩu mới" hideFormLogin={true}>
+    <WrapperAuthentication title="Choose new password" hideFormLogin={true}>
       <div className="w-full my-2 p-2 px-5">
         <p>
           Create a new password that is at least 6 characters long. A strong
@@ -31,15 +31,15 @@ export default function TypeNewPassword() {
       <hr />
       <div className="w-full py-3 mt-1 flex justify-end items-center">
         <div className="">
-          <ButtonComponent
-            link={PAGE_LOGIN}
+          <Button
+            onClick={() => navigation(PAGE_LOGIN)}
             className="px-4 font-semibold mr-3 py-2 rounded-lg bg-gray-300 text-gray-800"
           >
             Cancel
-          </ButtonComponent>
-          <ButtonComponent
+          </Button>
+          <Button
             disabled={passwordNew.length < 6}
-            handleClick={async () => {
+            onClick={async () => {
               setLoading(true);
               navigation(PAGE_LOGIN);
             }}
@@ -47,7 +47,7 @@ export default function TypeNewPassword() {
             className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
           >
             Next
-          </ButtonComponent>
+          </Button>
         </div>
       </div>
     </WrapperAuthentication>

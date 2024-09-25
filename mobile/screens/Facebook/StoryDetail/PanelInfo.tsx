@@ -1,12 +1,12 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import tailwind from "../../../tailwind";
-import Panel from "../../../panels/index";
+import Panel from "@/panels/index";
 import {
   AntDesign,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import tailwind from "@/tailwind";
 
 const PanelInfo = () => {
   return (

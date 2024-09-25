@@ -2,11 +2,11 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_HOME, PAGE_LOGIN } from "@/constants/Config";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 import { RootState, getUser } from "@/reducers";
-import ButtonComponent from "@/components/ButtonComponent";
 import { User } from "@/interfaces/User";
-import WrapperAuthentication from "./WrapperAuthentication";
+import WrapperAuthentication from "./Wrapper/WrapperAuthentication";
+import { Button } from "@/components/ui/button";
 
 const Component = ({ children }: { children: React.ReactNode }) => {
   const user = useSelector<RootState, User>(getUser);
@@ -36,15 +36,15 @@ const NotFound = () => {
             The link may be broken or the page has been removed. Please check if
             the link you are trying to open is correct.
           </p>
-          <ButtonComponent
-            handleClick={() => {
+          <Button
+            onClick={() => {
               if (user) navigation(PAGE_HOME);
               else navigation(PAGE_LOGIN);
             }}
             className="px-5 py-2 my-5 rounded-md bg-main text-white font-semibold"
           >
             {user ? "Go to news feed" : "Back to login page"}
-          </ButtonComponent>
+          </Button>
           <p />
         </div>
       </div>

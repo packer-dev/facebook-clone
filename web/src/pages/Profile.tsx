@@ -20,7 +20,7 @@ import {
 } from "@/contexts/UserProfileContext";
 import routes from "@/routes/profileRoutes";
 import NotFound from "./NotFound";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 import { getUserById } from "@/apis/userAPIs";
 import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 

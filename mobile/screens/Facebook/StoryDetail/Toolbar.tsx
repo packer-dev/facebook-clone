@@ -1,8 +1,8 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import tailwind from "../../../tailwind";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import tailwind from "@/tailwind";
 
 type ScreenList = NavigationProp<{
   StoryDetail: undefined;

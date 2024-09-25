@@ -1,5 +1,5 @@
-import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
+import { Button } from "@/components/ui/button";
 import { PAGE_LOGIN } from "@/constants/Config";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,16 +35,16 @@ export default function HeaderSignedOut(props: any) {
             width="w-48"
             placeholder="Password"
           />
-          <ButtonComponent
-            handleClick={() => alert("This feature are developing.")}
+          <Button
+            onClick={() => alert("This feature are developing.")}
             type="submit"
             className="px-5 py-2 bg-1877F2 text-white rounded-lg"
           >
             Login
-          </ButtonComponent>
-          <ButtonComponent className="py-2 text-1877F2">
+          </Button>
+          <Button className="py-2 text-1877F2">
             Did you forget your account?
-          </ButtonComponent>
+          </Button>
         </div>
       )}
     </div>

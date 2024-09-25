@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StoryEditorProvider } from "@/contexts/StoryEditorContext";
-import WrapperLogged from "../WrapperLogged";
+import WrapperLogged from "../Wrapper/WrapperLogged";
 import CreateStory from "./CreateStory";
 import StoryEditor from "./StoryEditor";
 

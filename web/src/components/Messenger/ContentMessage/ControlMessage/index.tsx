@@ -1,9 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import * as functions from "@/functions";
 import ControlMessageMain from "./ControlMessageMain";
 import SendImageVideo from "./SendImageVideo/SendImageVideo";
-import PopoverSticker from "@/components/Popovers/PopoverSticker";
-import PopoverEmoji from "@/components/Popovers/PopoverEmoji";
+import PopoverEmoji from "@/popovers/PopoverEmoji";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { dataFakeGroup, dataFakeMessage } from "@/utils";
 import { useSelector } from "react-redux";
@@ -11,8 +10,9 @@ import { RootState, getSocket, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { sendMessageAPI } from "@/apis/messageAPIs";
 import { Socket } from "socket.io-client";
+import PopoversWrapper from "@/popovers/PopoversWrapper";
 
-export default function ControlMessage() {
+const ControlMessage = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
@@ -21,28 +21,6 @@ export default function ControlMessage() {
     updateData: updateDataItemChat,
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
-  const refPopover = useRef<HTMLDivElement>();
-  const [type, setType] = useState(-1);
-  let count = 0;
-  const handleClick = (type, event) => {
-    setType(type);
-    const current = event.target;
-    if (!current) {
-      return;
-    }
-    refPopover.current.style.display = "block";
-    window.addEventListener("click", winEv);
-  };
-  const winEv = function (event) {
-    ++count;
-    if (count > 1) {
-      if (refPopover.current && !refPopover.current.contains(event.target)) {
-        refPopover.current.style.display = "none";
-        count = 0;
-        window.removeEventListener("click", winEv);
-      }
-    }
-  };
   const handleSend = async (data?: any) => {
     const message = dataFakeMessage({
       user,
@@ -106,9 +84,7 @@ export default function ControlMessage() {
         }`}
     >
       {files?.length > 0 && <SendImageVideo />}
-      <ControlMessageMain
-        handleClick={(event, type) => handleClick(type, event)}
-      />
+      <ControlMessageMain handleSend={handleSend} />
       <div className="w-9/12 relative">
         <div className="three-exten1 w-full relative">
           <div
@@ -126,39 +102,26 @@ export default function ControlMessage() {
             }}
             style={{ minHeight: "20px" }}
           />
-          <div
-            aria-hidden
-            onClick={(event) => handleClick(0, event)}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 flex cursor-pointer z-50"
+          <PopoversWrapper
+            button={
+              <div
+                aria-hidden
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 flex cursor-pointer z-50"
+              >
+                <i className="fas fa-smile dark:text-white text-gray-600 text-2xl" />
+              </div>
+            }
           >
-            <i className="fas fa-smile dark:text-white text-gray-600 text-2xl" />
-          </div>
-          <div
-            ref={refPopover}
-            className="absolute hidden bottom-full bg-white border-2 border-solid border-gray-200 shadow-lv1 
-            right-0 rounded-lg w-72 h-80"
-          >
-            {type === 0 && (
-              <PopoverEmoji
-                handleClick={(item) => {
-                  refContent.current.innerText += item;
-                  functions.placeCaretAtEnd(refContent.current);
-                }}
-              />
-            )}
-            {type === 1 && (
-              <PopoverSticker
-                handleClick={(item) => {
-                  handleSend(item);
-                  refPopover.current.style.display = "none";
-                  count = 0;
-                }}
-              />
-            )}
-          </div>
+            <PopoverEmoji
+              handleClick={(item: any) => {
+                refContent.current.innerText += item;
+                functions.placeCaretAtEnd(refContent.current);
+              }}
+            />
+          </PopoversWrapper>
         </div>
       </div>
-      <div className="w-12 zoom flex jusitfy-center">
+      <div className="w-12 zoom flex justify-center">
         <span
           aria-hidden
           onClick={() => handleSend("💕")}
@@ -172,4 +135,6 @@ export default function ControlMessage() {
       )}
     </div>
   );
-}
+};
+
+export default ControlMessage;

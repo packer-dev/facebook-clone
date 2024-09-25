@@ -1,3 +1,4 @@
+import { CommentDTO } from "./Comment";
 import { ContentPost } from "./ContentPost";
 import { Feel } from "./Feel";
 import { Media } from "./Media";
@@ -55,4 +56,5 @@ export interface PostDTO {
   medias: Media[];
   feel: Feel[];
   comment: number;
+  comments?: CommentDTO[];
 }

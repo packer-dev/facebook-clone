@@ -6,11 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { PAGE_FORGET_ACCOUNT, PAGE_HOME } from "@/constants/Config";
 import { useDispatch } from "react-redux";
 import InputComponent from "@/components/InputComponent";
-import ButtonComponent from "@/components/ButtonComponent";
 import { User } from "@/interfaces/User";
 import { AppDispatch } from "@/reducers";
 import { FormLoginData, loginUserRequest } from "@/actions/user";
 import { login } from "@/reducers/user";
+import { Button } from "@/components/ui/button";
 
 type FormLoginProps = {
   remember?: boolean;
@@ -121,14 +121,14 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
           <span>Remember Account</span>
         </div>
       )}
-      <ButtonComponent
+      <Button
         loading={loading}
         disabled={loading}
         className="mx-auto w-full p-3 my-2.5 border-none rounded-md bg-main text-sm text-white font-semibold"
         type="submit"
       >
         Login
-      </ButtonComponent>
+      </Button>
       <p className="text-main bg-white py-4 cursor-pointer text-center">
         <Link to={PAGE_FORGET_ACCOUNT}>Forgot Account</Link>
       </p>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import HeaderLoggedRight from "@/components/Header/HeaderLogged/HeaderLoggedRight";
 import ItemPost from "@/components/ItemPost";
 import ButtonViewPostTop from "@/components/ViewPost/ButtonViewPostTop";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 import * as StringUtils from "@/utils/StringUtils";
 import { getPostById } from "@/apis/postAPIs";
 import { PostDTO } from "@/interfaces/Post";

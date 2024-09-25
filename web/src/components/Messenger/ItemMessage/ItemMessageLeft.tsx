@@ -21,7 +21,9 @@ const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
         />
       </div>
       <div
-        className="mess-user-r1 pl-2 flex z-50 relative"
+        className={`mess-user-r1 pl-2 flex z-50 relative p-1.5 rounded-sm ${
+          item.content.type === 1 ? "bg-gray-100" : ""
+        }`}
         style={{ width: "inherit" }}
       >
         <ContentMessage item={item} left={true} groupMessage={groupMessage} />

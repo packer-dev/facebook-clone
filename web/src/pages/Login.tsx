@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ButtonComponent from "@/components/ButtonComponent";
 import EndFormLogin from "@/components/Login/EndFormLogin";
 import FooterLogin from "@/components/Login/FooterLogin";
 import FormLogin from "@/components/Login/FormLogin";
@@ -9,9 +8,10 @@ import SaveLogin from "@/components/Login/SaveLogin";
 import { PAGE_HOME } from "@/constants/Config";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import useTitle from "@/hooks/useTitle";
-import WrapperPage from "./WrapperPage";
+import WrapperPage from "./Wrapper/WrapperPage";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { Button } from "@/components/ui/button";
 
 function Login() {
   //
@@ -42,15 +42,15 @@ function Login() {
               <hr className="w-90% mx-auto mb-4" />
               <div className="w-full">
                 <div className="bg-white mb-4">
-                  <ButtonComponent
-                    handleClick={() =>
+                  <Button
+                    onClick={() =>
                       modalsDispatch(modalsAction.openModalRegister())
                     }
                     type="button"
                     className="outline-none px-8 py-3 bg-36A420 text-15px font-semibold text-white rounded-md cursor-pointer"
                   >
-                    Tạo Tài Khoản
-                  </ButtonComponent>
+                    Create new account
+                  </Button>
                 </div>
               </div>
             </div>

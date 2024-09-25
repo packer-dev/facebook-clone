@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ButtonComponent from "@/components/ButtonComponent";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN, PAGE_RECOVER_ACCOUNT } from "@/constants/Config";
-import WrapperAuthentication from "../WrapperAuthentication";
+import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
+import { Button } from "@/components/ui/button";
 
 export default function ForgetAccount() {
   //
@@ -13,15 +13,15 @@ export default function ForgetAccount() {
   const [loading, setLoading] = useState(false);
   //
   return (
-    <WrapperAuthentication title="Tìm tài khoản của bạn">
+    <WrapperAuthentication title="Search your account">
       <div className="w-full px-5 mb-3">
         <p className="py-3">
-          Vui lòng nhập email hoặc số di động để tìm kiếm tài khoản của bạn.
+          Please enter your email or mobile number to search for your account.
         </p>
         <InputComponent
           type="text"
           name="code"
-          placeholder="Email hoặc số di động"
+          placeholder="Email"
           className="border border-gray-300 rounded-lg p-2.5"
           handleChange={(data) => {
             setKeyword(data);
@@ -36,21 +36,19 @@ export default function ForgetAccount() {
       </div>
       <hr />
       <div className="w-full py-3 mt-1 flex justify-end items-center">
-        <ButtonComponent
-          handleClick={() => {
-            navigation(PAGE_LOGIN);
-          }}
+        <Button
+          onClick={() => navigation(PAGE_LOGIN)}
           type="button"
           className="px-4 mr-5 py-2 rounded-lg bg-gray-500 text-white"
         >
           Huỷ
-        </ButtonComponent>
-        <ButtonComponent
-          handleClick={async () => {
+        </Button>
+        <Button
+          onClick={async () => {
             setLoading(true);
             const result = { data: { users: null, token: "" } };
             if (!result.data.users) {
-              setError("Không tìm thấy tài khoản.");
+              setError("Account not found.");
             } else {
               navigation(`${PAGE_RECOVER_ACCOUNT}?token=${result.data.token}`);
             }
@@ -60,8 +58,8 @@ export default function ForgetAccount() {
           loading={loading}
           className="px-4 mr-5 py-2  rounded-lg bg-1877F2 text-white"
         >
-          Tìm kiếm
-        </ButtonComponent>
+          Search
+        </Button>
       </div>
     </WrapperAuthentication>
   );

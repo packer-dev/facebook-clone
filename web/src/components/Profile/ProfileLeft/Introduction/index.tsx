@@ -4,10 +4,10 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import InformationMain from "./InformationMain";
 import DescriptionIntroduction from "./DescriptionIntroduction";
-import ItemFavorite from "@/components/Modals/Profile/ModalFavorite/ItemFavorite";
-import ButtonComponent from "@/components/ButtonComponent";
+import ItemFavorite from "@/modals/Profile/ModalFavorite/ItemFavorite";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { Button } from "@/components/ui/button";
 
 export default function Introduction() {
   //
@@ -25,20 +25,20 @@ export default function Introduction() {
       <DescriptionIntroduction />
       <InformationMain userProfile={userProfile} />
       {user.id === userProfile.id && (
-        <ButtonComponent
-          handleClick={() => {
+        <Button
+          onClick={() =>
             modalsDispatch(
               modalsAction.openModalEditInformation(
                 (user) => updateData("userProfile", user),
                 userProfile
               )
-            );
-          }}
+            )
+          }
           className="w-full text-sm my-2 p-2 bg-gray-200 hover:bg-gray-300 font-semibold 
             dark:bg-dark-second dark:text-white rounded-lg"
         >
           Edit detail
-        </ButtonComponent>
+        </Button>
       )}
       {favorites.length > 0 && (
         <div className="w-full flex flex-wrap my-1.5 gap-1.5">
@@ -48,8 +48,8 @@ export default function Introduction() {
         </div>
       )}
       {user.id === userProfile.id && (
-        <ButtonComponent
-          handleClick={() => {
+        <Button
+          onClick={() => {
             modalsDispatch(
               modalsAction.openModalFavorite(
                 (data) => updateData("userProfile", data),
@@ -61,7 +61,7 @@ export default function Introduction() {
             dark:bg-dark-second dark:text-white rounded-lg"
         >
           {favorites.length > 0 ? "Edit" : "Add"} favorite
-        </ButtonComponent>
+        </Button>
       )}
     </>
   );

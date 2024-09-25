@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, TouchableOpacity, Text, Alert } from "react-native";
-import tailwind from "../../../tailwind";
+import tailwind from "@/tailwind";
 import Avatar from "../../Avatar";
 import {
   Feather,

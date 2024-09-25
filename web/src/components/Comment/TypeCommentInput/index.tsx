@@ -77,9 +77,9 @@ const TypeCommentInput = () => {
                 handleSendComment(dataComment);
               }
             }}
-            className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-thirddark:text-white py-3 "
+            className="border-none pl-3 outline-none bg-gray-100 dark:bg-dark-third dark:text-white py-3"
             style={{ minHeight: 30, width: "96%" }}
-            contentEditable={true}
+            contentEditable
           />
         </div>
         <CategoryInputComment

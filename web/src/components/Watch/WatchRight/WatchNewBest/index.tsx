@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
-import CircleIcon from "../../../CircleIcon";
+import CircleIcon from "@/components/CircleIcon";
 import ItemWatchChildren from "../../ItemWatchChildren";
 
 export default function WatchNewBest({ images }) {
@@ -18,15 +18,13 @@ export default function WatchNewBest({ images }) {
   //
   return (
     <div className="w-full p-5 rounded-lg">
-      <p className="font-bold text-xl dark:text-gray-300">Mới dành cho bạn</p>
+      <p className="font-bold text-xl dark:text-gray-300">Newest for you</p>
       <div ref={refContainer} className="w-full relative">
         {index - 1 >= 0 && (
           <CircleIcon
-            handleClick={() => {
-              setIndex(index - 1);
-            }}
+            handleClick={() => setIndex(index - 1)}
             className={`w-9 h-9 bx bxs-chevron-left text-xl bg-gray-200 
-                 absolute top-1/2 transform -translate-y-1/2 -ml-5`}
+            absolute top-1/2 transform -translate-y-1/2 -ml-5`}
           />
         )}
         <ScrollContainer

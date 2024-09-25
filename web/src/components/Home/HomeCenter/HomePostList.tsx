@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemPost from "../../ItemPost";
 import LoadingPost from "../../ItemPost/LoadingPost";
@@ -13,7 +13,7 @@ import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { User } from "@/interfaces/User";
 
-export default forwardRef(function HomePostList() {
+const HomePostList = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const headers = useSelector<RootState, any>(getHeaders);
@@ -47,4 +47,6 @@ export default forwardRef(function HomePostList() {
       )}
     </>
   );
-});
+};
+
+export default HomePostList;

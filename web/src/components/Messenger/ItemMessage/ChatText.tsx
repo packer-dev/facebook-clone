@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ContentMessageProps } from "./ContentMessage";
 
-function ChatText(props: ContentMessageProps) {
+const ChatText = (props: ContentMessageProps) => {
   //
   const { left, margin, item, groupMessage } = props;
   let style = {
@@ -24,6 +24,6 @@ function ChatText(props: ContentMessageProps) {
       {item.content.text}
     </div>
   );
-}
+};
 
 export default ChatText;

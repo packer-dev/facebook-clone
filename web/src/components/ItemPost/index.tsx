@@ -6,6 +6,7 @@ import LoadingPost from "./LoadingPost";
 import { PostDTO } from "@/interfaces/Post";
 import FooterItemPost from "./FooterItemPost";
 import { ItemPostProvider } from "@/contexts/ItemPostContext";
+import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
 
 type ItemPostProps = {
   postDetail: PostDTO;
@@ -36,6 +37,9 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
         <FooterItemPost postDetail={postDetail} />
       </div>
       <TypeCommentInput />
+      {postDetail.comments?.map((comment) => (
+        <ItemCommentPostMain commentDetail={comment} postDetail={postDetail} />
+      ))}
     </div>
   ) : (
     <LoadingPost />

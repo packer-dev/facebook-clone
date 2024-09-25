@@ -1,5 +1,5 @@
-import ButtonComponent from "@/components/ButtonComponent";
 import Logo from "@/components/Logo";
+import { Button } from "@/components/ui/button";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,12 +19,9 @@ export default function ButtonViewPostTop(props) {
   return (
     <>
       <div className="flex items-center gap-3 absolute top-3 left-3 z-50">
-        <ButtonComponent
-          handleClick={() => navigation(-1)}
-          className="text-white text-4xl "
-        >
+        <Button onClick={() => navigation(-1)} className="text-white text-4xl ">
           <i className="bx bx-x" />
-        </ButtonComponent>
+        </Button>
         <div className="w-12 h-12 rounded-full">
           <Logo />
         </div>
@@ -32,8 +29,8 @@ export default function ButtonViewPostTop(props) {
       {length > 0 && (
         <>
           {index !== 0 && (
-            <ButtonComponent
-              handleClick={() => setIndex(index - 1)}
+            <Button
+              onClick={() => setIndex(index - 1)}
               className="absolute item__flex top-1/2 transform -translate-y-1/2 mx-2 w-12 h-12 
                 rounded-full bg-gray-200 bx bx-chevron-left text-4xl flex justify-center items-center hover:bg-gray-300 
                 left-0 cursor-pointer z-50"
@@ -41,8 +38,8 @@ export default function ButtonViewPostTop(props) {
           )}
 
           {index !== length - 1 && length !== 0 && (
-            <ButtonComponent
-              handleClick={() => setIndex(index + 1)}
+            <Button
+              onClick={() => setIndex(index + 1)}
               className="absolute top-1/2 item__flex transform -translate-y-1/2 mx-2 w-12 h-12 rounded-full 
                 bg-gray-200 bx bx-chevron-right text-4xl flex justify-center items-center hover:bg-gray-300 
                 right-0 cursor-pointer z-50"

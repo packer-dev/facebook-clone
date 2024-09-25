@@ -66,7 +66,7 @@ export default forwardRef(function InputComponent(
             autoComplete={"on"}
             disabled={disabled}
           />
-          {!search && (
+          {!search ? (
             <span
               aria-hidden
               onClick={() => setShow(!show)}
@@ -74,8 +74,7 @@ export default forwardRef(function InputComponent(
                 show ? "show" : "hide"
               } text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 right-2 cursor-pointer`}
             />
-          )}
-          {search && (
+          ) : (
             <span
               className={`bx bx-search text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 left-3 cursor-pointer dark:text-white`}
             />

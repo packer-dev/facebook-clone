@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import ButtonComponent from "@/components/ButtonComponent";
+import { Link, useNavigate } from "react-router-dom";
 import InputComponent from "@/components/InputComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
-import WrapperAuthentication from "../WrapperAuthentication";
-import useAuthenication from "@/hooks/useAuthenication";
+import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
+import useAuthentication from "@/hooks/useAuthentication";
+import { Button } from "@/components/ui/button";
 
 const VerifyCodeAccount = (props) => {
   //
@@ -12,7 +12,8 @@ const VerifyCodeAccount = (props) => {
   const [code, setCode] = React.useState("");
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const { token } = useAuthenication();
+  const { token } = useAuthentication();
+  const navigate = useNavigate();
   //
   return (
     <WrapperAuthentication
@@ -52,23 +53,23 @@ const VerifyCodeAccount = (props) => {
           Don't have a code?
         </Link>
         <div className="">
-          <ButtonComponent
-            link={PAGE_LOGIN}
+          <Button
+            onClick={() => navigate(PAGE_LOGIN)}
             className="px-4 font-semibold mr-3 py-2.5 rounded-lg bg-gray-300 text-gray-800"
           >
             Cancel
-          </ButtonComponent>
-          <ButtonComponent
+          </Button>
+          <Button
             loading={loading}
             disabled={loading}
-            handleClick={async () => {
+            onClick={async () => {
               setLoading(true);
               if (code === "") setError("Verification code cannot be empty!!");
             }}
             className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
           >
             Continue
-          </ButtonComponent>
+          </Button>
         </div>
       </div>
     </WrapperAuthentication>

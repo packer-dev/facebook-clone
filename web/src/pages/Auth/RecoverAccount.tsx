@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import ButtonComponent from "@/components/ButtonComponent";
 import { PAGE_LOGIN } from "@/constants/Config";
-import useAuthenication from "@/hooks/useAuthenication";
-import WrapperAuthentication from "../WrapperAuthentication";
+import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
+import useAuthentication from "@/hooks/useAuthentication";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
-const RecoverAccount = (props) => {
+const RecoverAccount = (props: any) => {
   //
   const { verify } = props;
-  const { token, user } = useAuthenication(true);
+  const { token, user } = useAuthentication(true);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("email");
+  const navigation = useNavigate();
   //
   return (
     <WrapperAuthentication
@@ -76,22 +78,20 @@ const RecoverAccount = (props) => {
           <hr />
           <div className="w-full py-3 mt-1 flex justify-end items-center">
             <div className="">
-              <ButtonComponent
-                link={PAGE_LOGIN}
+              <Button
+                onClick={() => navigation(PAGE_LOGIN)}
                 className="px-4 font-semibold mr-3 py-2.5 rounded-lg bg-gray-300 text-gray-800"
               >
                 Cancel
-              </ButtonComponent>
-              <ButtonComponent
-                handleClick={async () => {
-                  setLoading(true);
-                }}
+              </Button>
+              <Button
+                onClick={async () => setLoading(true)}
                 disabled={!email}
                 loading={loading}
                 className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
               >
                 Continue
-              </ButtonComponent>
+              </Button>
             </div>
           </div>
         </>

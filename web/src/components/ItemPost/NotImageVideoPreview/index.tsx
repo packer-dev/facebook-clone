@@ -1,4 +1,4 @@
-import ButtonComponent from "@/components/ButtonComponent";
+import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 
 const NotImageVideoPreview = () => {
@@ -44,12 +44,12 @@ const NotImageVideoPreview = () => {
             ? "Click the notification on your mobile device to add the image."
             : "Add image from mobile device."}
         </p>
-        <ButtonComponent
-          handleClick={() => setTransport(!transport)}
+        <Button
+          onClick={() => setTransport(!transport)}
           className="px-3 py-2 rounded-md font-semibold absolute top-1/2 transform -translate-y-1/2 right-2 bg-gray-300"
         >
           {transport ? "Cancel" : "Add"}
-        </ButtonComponent>
+        </Button>
       </div>
     </>
   );

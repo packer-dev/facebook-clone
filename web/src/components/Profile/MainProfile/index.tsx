@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
-import WritePost from "../../WritePost";
+import WritePost from "@/modules/WritePost";
 import PostProfileList from "../PostProfileList";
 import ProfileLeft from "../ProfileLeft";
 import { RootState, getUser } from "@/reducers";

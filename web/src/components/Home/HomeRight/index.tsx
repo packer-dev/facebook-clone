@@ -23,7 +23,7 @@ export default function HomeRight() {
                 <i className="fas fa-video dark:text-white" />
               </li>
               <li className="cursor-pointer w-8 h-8 hover:bg-gray-200 rounded-full flex justify-center items-center text-gray-500">
-                <i className="fab fa-searchengin dark:text-white" />
+                <i className="fab fa-search-engin dark:text-white" />
               </li>
               <li className="cursor-pointer w-8 h-8 hover:bg-gray-200 rounded-full flex justify-center items-center text-gray-500">
                 <i className="fas fa-ellipsis-h dark:text-white" />

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import ButtonComponent from "@/components/ButtonComponent";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { useSelector } from "react-redux";
 import { getUser, RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { updateUser } from "@/apis/userAPIs";
+import { Button } from "@/components/ui/button";
 
 export default function DescriptionIntroduction() {
   //
@@ -53,17 +53,17 @@ export default function DescriptionIntroduction() {
           70 - description?.length || 0
         } ký tự`}</p>
         <div className="text-right w-full my-1 pb-2 ">
-          <ButtonComponent
-            handleClick={() => {
+          <Button
+            onClick={() => {
               setShow(false);
               setDescription(user.bio || "");
             }}
             className="px-4 py-1.5 rounded-lg bg-gray-300"
           >
             Cancel
-          </ButtonComponent>
-          <ButtonComponent
-            handleClick={async () => {
+          </Button>
+          <Button
+            onClick={async () => {
               setLoading(true);
               const newUser = { ...userProfile, bio: description };
               await updateUser(newUser);
@@ -76,15 +76,15 @@ export default function DescriptionIntroduction() {
             className="px-4 py-1.5 ml-3 rounded-lg bg-main text-white"
           >
             Save
-          </ButtonComponent>
+          </Button>
         </div>
       </div>
       {!show && (
         <>
           <p className="mb-3 text-center">{description || ""}</p>
           {user.id === userProfile.id && (
-            <ButtonComponent
-              handleClick={() => {
+            <Button
+              onClick={() => {
                 setLoading(true);
                 setShow(true);
                 setLoading(false);
@@ -93,7 +93,7 @@ export default function DescriptionIntroduction() {
               rounded-lg dark:bg-dark-second dark:text-white"
             >
               Edit bio
-            </ButtonComponent>
+            </Button>
           )}
         </>
       )}

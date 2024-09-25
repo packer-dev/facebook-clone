@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ButtonComponent from "@/components/ButtonComponent";
 import AudioList from "@/components/StoryEditor/AudioList";
 import ColorTextList from "@/components/StoryEditor/ColorTextList";
 import backgroundStory from "@/config/backgroundStory";
@@ -9,6 +8,7 @@ import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import html2canvas from "html2canvas";
 import StoryEditLeft from "@/components/StoryEditor/StoryEditLeft";
 import ContentStoryEditor from "@/components/StoryEditor/ContentStoryEditor";
+import { Button } from "@/components/ui/button";
 
 export default function StoryEditor({ mode }: any) {
   //
@@ -73,9 +73,9 @@ export default function StoryEditor({ mode }: any) {
           >
             Bỏ
           </span>
-          <ButtonComponent
+          <Button
             disabled={loading}
-            handleClick={handleCreateStory}
+            onClick={handleCreateStory}
             type="button"
             className="font-bold w-1/2 bg-1877F2 py-3 rounded-lg text-white"
           >
@@ -84,7 +84,7 @@ export default function StoryEditor({ mode }: any) {
             ) : (
               "Share story"
             )}
-          </ButtonComponent>
+          </Button>
         </div>
       </div>
       <div className="w-1/4 p-4 pt-0 border-t-2 border-solid border-gray-300 shadow-md dark:border-dark-third">

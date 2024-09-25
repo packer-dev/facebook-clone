@@ -10,7 +10,7 @@ import {
 } from "@/interfaces/Post";
 import { Media } from "@/interfaces/Media";
 import { User } from "@/interfaces/User";
-import ModalPost from "@/components/Modals/ModalPost";
+import ModalPost from "@/modals/ModalPost";
 
 export type PostContextProps = {
   id: string;

@@ -7,7 +7,7 @@ import MainContentMessage from "@/components/Messenger/ContentMessage/MainConten
 import MessageList from "@/components/Messenger/MessageList";
 import SettingMessage from "@/components/Messenger/SettingMessage";
 import { MessengerProvider } from "@/contexts/MessengerContext";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 import { RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { getMessageListByIdUser } from "@/apis/messageAPIs";

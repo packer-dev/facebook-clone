@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_CREATE_STORY } from "@/constants/Config";
-import WritePost from "../../WritePost";
+import WritePost from "@/modules/WritePost";
 import RememberAccount from "../RememberAccount";
 import HomePostList from "./HomePostList";
 import MeetRom from "./MeetRom";

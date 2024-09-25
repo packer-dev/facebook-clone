@@ -33,7 +33,7 @@ const ItemMessageRight = ({ item, groupMessage }: ItemMessageRightProps) => {
           />
         )}
       </div>
-      <div className=" mess-user-r2 " style={{ width: "4%" }}>
+      <div className=" mess-user-r2" style={{ width: "4%" }}>
         <div className="w-full clear-both">
           <i
             className={`${

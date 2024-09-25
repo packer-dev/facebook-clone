@@ -1,12 +1,12 @@
 import * as React from "react";
-import ModalTagPost from "@/components/Modals/ModalTagPost";
+import ModalTagPost from "@/modals/ModalTagPost";
 import * as constants from "./Constant";
-import ModalLocalPost from "@/components/Modals/ModalLocalPost";
-import ModalFeelPost from "@/components/Modals/ModalFeelPost";
-import ModalPost from "@/components/Modals/ModalPost";
-import ModalChooseBackground from "@/components/Modals/ModalChooseBackground";
-import ModalEditImageVideo from "@/components/Modals/ModalEditImageVideo";
-import ModalAnswerQuestionPost from "@/components/Modals/ModalAnswerQuestionPost";
+import ModalLocalPost from "@/modals/ModalLocalPost";
+import ModalFeelPost from "@/modals/ModalFeelPost";
+import ModalPost from "@/modals/ModalPost";
+import ModalChooseBackground from "@/modals/ModalChooseBackground";
+import ModalEditImageVideo from "@/modals/ModalEditImageVideo";
+import ModalAnswerQuestionPost from "@/modals/ModalAnswerQuestionPost";
 import { PostContextProps } from "./PostContext";
 
 const AppReducer = (state: PostContextProps, action: any) => {

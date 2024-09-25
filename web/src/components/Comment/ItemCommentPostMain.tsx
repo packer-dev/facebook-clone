@@ -1,5 +1,5 @@
 import * as React from "react";
-import ItemComment from "./ItemComent";
+import ItemComment from "./ItemComment";
 import TypeCommentInput from "./TypeCommentInput";
 import { CommentDTO } from "@/interfaces/Comment";
 import { PostDTO } from "@/interfaces/Post";

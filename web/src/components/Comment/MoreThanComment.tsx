@@ -1,8 +1,8 @@
 import * as React from "react";
-import ButtonComponent from "../ButtonComponent";
+import { Button } from "../ui/button";
 
 type MoreThanCommentProps = {
-  setPostDetail?: Function;
+  // setPostDetail?: Function;
   postDetail?: any;
   index?: number;
   setIndex?: Function;
@@ -38,8 +38,8 @@ const MoreThanComment = ({
   };
   //
   return (
-    <ButtonComponent
-      handleClick={handleClick}
+    <Button
+      onClick={handleClick}
       className="py-1 text-sm font-semibold text-gray-500 cursor-pointer"
     >
       {loading ? (
@@ -47,7 +47,7 @@ const MoreThanComment = ({
       ) : (
         "View more"
       )}
-    </ButtonComponent>
+    </Button>
   );
 };
 

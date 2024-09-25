@@ -4,7 +4,7 @@ import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
 import ListItemWatchLeft from "@/components/Watch/WatchLeft";
 import WatchNewBest from "@/components/Watch/WatchRight/WatchNewBest";
-import WrapperLogged from "./WrapperLogged";
+import WrapperLogged from "./Wrapper/WrapperLogged";
 
 export default function Watch() {
   //

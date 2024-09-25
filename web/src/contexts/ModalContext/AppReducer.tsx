@@ -1,15 +1,15 @@
 import * as React from "react";
 import * as constants from "./Constant";
-import ModalLogin from "@/components/Modals/Login/ModalLogin";
-import ModalWrapperPost from "@/components/Modals/ModalWrapperPost";
-import ModalPreviewAvatar from "@/components/Modals/Profile/ModalPreviewAvatar";
-import ModalChangeColor from "@/components/Modals/Messages/ModalChangeColor";
-import ModalChangeEmoji from "@/components/Modals/Messages/ModalChangeEmoji";
-import ModalChangeNickName from "@/components/Modals/Messages/ModalChangeNickName";
-import ModalWarning from "@/components/Modals/ModalWarning";
-import ModalFavorite from "@/components/Modals/Profile/ModalFavorite";
-import ModalEditInformation from "@/components/Modals/Profile/ModalEditInformation";
-import ModalRegister from "@/components/Modals/Login/ModalRegister";
+import ModalLogin from "@/modals/Login/ModalLogin";
+import ModalWrapperPost from "@/modals/ModalWrapperPost";
+import ModalPreviewAvatar from "@/modals/Profile/ModalPreviewAvatar";
+import ModalChangeColor from "@/modals/Messages/ModalChangeColor";
+import ModalChangeEmoji from "@/modals/Messages/ModalChangeEmoji";
+import ModalChangeNickName from "@/modals/Messages/ModalChangeNickName";
+import ModalWarning from "@/modals/ModalWarning";
+import ModalFavorite from "@/modals/Profile/ModalFavorite";
+import ModalEditInformation from "@/modals/Profile/ModalEditInformation";
+import ModalRegister from "@/modals/Login/ModalRegister";
 import { ModalContextProps } from "./ModalContext";
 
 const AppReducer = (state: ModalContextProps, action: any) => {
