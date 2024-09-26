@@ -1,13 +1,11 @@
 import React, { ReactNode } from "react";
 import { AppContext, AppProvider } from "../AppContext";
 import { PostDTO } from "@/interfaces/Post";
-import { CommentDTO } from "@/interfaces/Comment";
 import { ContentComment } from "@/interfaces/ContentComment";
 import { generateUUID } from "@/utils";
 
 export type ItemPostContextProps = {
   postDetail: PostDTO;
-  comments: CommentDTO[];
   dataComment: ContentComment;
   file?: FileList;
   relyDataComment: ContentComment;
@@ -15,7 +13,6 @@ export type ItemPostContextProps = {
 
 const initialState: ItemPostContextProps = {
   postDetail: null,
-  comments: [],
   dataComment: {
     id: generateUUID(),
     text: "",

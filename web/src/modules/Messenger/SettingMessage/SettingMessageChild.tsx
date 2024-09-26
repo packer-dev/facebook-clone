@@ -27,10 +27,10 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
             className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
-            <div className="flex justity-center w-8">
+            <div className="flex justify-center w-8">
               <span className="bx bxl-messenger text-xm dark:text-white flex items-center" />
             </div>
-            <div className="flex items-center">Mở trong messenger</div>
+            <div className="flex items-center">Open in Messenger</div>
           </li>
         )}
         <li
@@ -43,10 +43,10 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
-          <div className="flex justity-center w-8">
+          <div className="flex justify-center w-8">
             <span className="fab fa-ussunnah text-xm dark:text-white flex items-center" />
           </div>
-          <div className="flex items-center">Đổi chủ đề</div>
+          <div className="flex items-center">Change Theme</div>
         </li>
         <li
           aria-hidden
@@ -58,37 +58,37 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
                 py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
-          <div className="flex justity-center w-8">
+          <div className="flex justify-center w-8">
             <span className=" text-xm dark:text-white flex items-center">
               {group?.data?.emoji || "🖐️"}
             </span>
           </div>
-          <div className="flex items-center">Thay đổi biểu tượng cảm xúc</div>
+          <div className="flex items-center">Change Emoji</div>
         </li>
         <li
           aria-hidden
           onClick={() => {
-            modalsDispatch(modalsAction.openModalChangeNickName(group));
+            modalsDispatch(
+              modalsAction.openModalChangeNickName(group, updateGroup)
+            );
           }}
           className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
-          <div className="flex justity-center w-8">
+          <div className="flex justify-center w-8">
             <span className="fas fa-pen text-xm dark:text-white flex items-center" />
           </div>
-          <div className="flex items-center">Chỉnh sửa biệt danh</div>
+          <div className="flex items-center">Edit Nickname</div>
         </li>
         {!hide && (
           <li
             className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
                 py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
-            <div className="flex justity-center w-8">
+            <div className="flex justify-center w-8">
               <span className="fas fa-search text-xm dark:text-white flex items-center" />
             </div>
-            <div className="flex items-center">
-              Tìm kiếm trong cuộc trò chuyện
-            </div>
+            <div className="flex items-center">Search in Conversation</div>
           </li>
         )}
         {hide && (
@@ -96,10 +96,10 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
             className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
-            <div className="flex justity-center w-8">
+            <div className="flex justify-center w-8">
               <span className="bx bxs-trash-alt text-xm dark:text-white flex items-center" />
             </div>
-            <div className="flex items-center">Xoá cuộc trò chuyện</div>
+            <div className="flex items-center">Delete Conversation</div>
           </li>
         )}
       </ul>

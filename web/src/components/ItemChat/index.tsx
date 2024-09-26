@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
-import MainContentMessage from "../Messenger/ContentMessage/MainContentMessage";
-import SettingMessageChild from "../Messenger/SettingMessage/SettingMessageChild";
+import MainContentMessage from "../../modules/Messenger/ContentMessage/MainContentMessage";
+import SettingMessageChild from "../../modules/Messenger/SettingMessage/SettingMessageChild";
 import WrapperItemChat from "./WrapperItemChat";
 import NewChat from "./NewChat";
 import sound from "@/assets/sound/sound.mp3";

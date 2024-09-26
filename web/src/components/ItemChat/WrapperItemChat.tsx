@@ -1,6 +1,6 @@
 import * as React from "react";
-import ContentMessageTop from "../Messenger/ContentMessage/ContentMessageTop";
-import ControlMessage from "../Messenger/ContentMessage/ControlMessage";
+import ContentMessageTop from "../../modules/Messenger/ContentMessage/ContentMessageTop";
+import ControlMessage from "../../modules/Messenger/ContentMessage/ControlMessage";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 
 const WrapperItemChat = ({ children }: { children?: React.ReactNode }) => {

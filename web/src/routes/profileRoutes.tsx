@@ -1,8 +1,8 @@
 import * as React from "react";
-import FriendList from "@/components/Profile/FriendList/FriendList";
-import ImageVideoList from "@/components/Profile/ImageVideoList";
-import MainProfile from "@/components/Profile/MainProfile";
-import StoryList from "@/components/Profile/StoryList/StoryList";
+import FriendList from "@/modules/Profile/FriendList/FriendList";
+import ImageVideoList from "@/modules/Profile/ImageVideoList";
+import MainProfile from "@/modules/Profile/MainProfile";
+import StoryList from "@/modules/Profile/StoryList/StoryList";
 
 const routes = [
   {

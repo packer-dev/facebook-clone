@@ -9,10 +9,10 @@ import React, {
 } from "react";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import FriendCanKnow from "@/components/FriendCanKnow";
-import CategoryProfile from "@/components/Profile/CategoryProfile";
-import HeaderProfile from "@/components/Profile/HeaderProfile";
-import InviteProfile from "@/components/Profile/InviteProfile";
-import LoadingProfile from "@/components/Profile/LoadingProfile";
+import CategoryProfile from "@/modules/Profile/CategoryProfile";
+import HeaderProfile from "@/modules/Profile/HeaderProfile";
+import InviteProfile from "@/modules/Profile/InviteProfile";
+import LoadingProfile from "@/modules/Profile/LoadingProfile";
 import { PAGE_PROFILE } from "@/constants/Config";
 import {
   UserProfileContext,

@@ -13,7 +13,11 @@ export const deleteComment = async (postId: string, commentId: string) => {
   }).then((res) => res.json());
 };
 
-export const getCommentByPost = async (postId: string) => {
+export const getCommentByPost = async (
+  postId: string,
+  offset: number = 0,
+  limit: number = 5
+) => {
   return fetch(
     `${API_URL}/comment/id?post_id=${postId}&offset=0&limit=10`
   ).then((res) => res.json());

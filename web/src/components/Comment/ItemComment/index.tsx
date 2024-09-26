@@ -2,9 +2,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ContentComment from "./ContentComment";
 import moment from "moment";
-import Feels from "@/components/ItemPost/Feels";
 import { CommentDTO } from "@/interfaces/Comment";
 import { PostDTO } from "@/interfaces/Post";
+import EditOrDeleteComment from "./EditOrDeleteComment";
 
 const ItemComment = ({
   commentPost,
@@ -16,7 +16,6 @@ const ItemComment = ({
   setReply: Function;
 }) => {
   //
-  const [feel, setFeel] = React.useState<any>(null);
   const refFeelComment = React.useRef<HTMLDivElement>(null);
   const refText = React.useRef<HTMLDivElement>(null);
   const refContentComment = React.useRef<HTMLImageElement>(null);
@@ -81,38 +80,8 @@ const ItemComment = ({
             <ContentComment ref={refContentComment} commentPost={commentPost} />
           </div>
         )}
-        {!commentPost.item.loading && (
+        {!commentPost.item.loading ? (
           <ul className="flex pl-2 items-center font-semibold text-gray-800 dark:text-white text-xs">
-            <li className="relative flex items-center item__hover pr-2 cursor-pointer ">
-              <div
-                aria-hidden
-                onClick={async () => {
-                  if (feel) {
-                    setFeel(null);
-                  }
-                }}
-                className="flex items-center"
-              >
-                {feel ? (
-                  <>
-                    <img
-                      src={JSON.parse(feel.content).image}
-                      alt=""
-                      className="w-3.5 mr-1.5 h-3.5 rounded-full object-cover"
-                    />
-                    <span
-                      className=""
-                      style={{ color: JSON.parse(feel.content).color }}
-                    >
-                      {JSON.parse(feel.content).label}
-                    </span>
-                  </>
-                ) : (
-                  <span className="">Thích</span>
-                )}
-              </div>
-              <Feels />
-            </li>
             <li
               aria-hidden
               onClick={() => setReply(true)}
@@ -124,14 +93,10 @@ const ItemComment = ({
               {moment(commentPost.item.time_created).fromNow(true)}
             </li>
           </ul>
+        ) : (
+          <p className="text-gray-800">Loading...</p>
         )}
-        {/* <EditOrDeleteComment
-          user={user}
-          commentPost={commentPost.commentPost}
-          level={level}
-          ref={refText}
-          postDetail={postDetail}
-        /> */}
+        <EditOrDeleteComment commentPost={commentPost} ref={refText} />
       </div>
     </div>
   );

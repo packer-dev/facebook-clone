@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AudioList from "@/components/StoryEditor/AudioList";
-import ColorTextList from "@/components/StoryEditor/ColorTextList";
+import AudioList from "@/modules/StoryEditor/AudioList";
+import ColorTextList from "@/modules/StoryEditor/ColorTextList";
 import backgroundStory from "@/config/backgroundStory";
 import { PAGE_CREATE_STORY, PAGE_HOME } from "@/constants/Config";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import html2canvas from "html2canvas";
-import StoryEditLeft from "@/components/StoryEditor/StoryEditLeft";
-import ContentStoryEditor from "@/components/StoryEditor/ContentStoryEditor";
+import StoryEditLeft from "@/modules/StoryEditor/StoryEditLeft";
+import ContentStoryEditor from "@/modules/StoryEditor/ContentStoryEditor";
 import { Button } from "@/components/ui/button";
 
 export default function StoryEditor({ mode }: any) {

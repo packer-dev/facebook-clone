@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
-import ItemPost from "../../ItemPost";
-import LoadingPost from "../../ItemPost/LoadingPost";
+import ItemPost from "../../../components/ItemPost";
+import LoadingPost from "../../../components/ItemPost/LoadingPost";
 import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";

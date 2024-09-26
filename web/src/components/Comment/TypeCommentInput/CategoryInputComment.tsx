@@ -66,7 +66,13 @@ export default forwardRef(function CategoryInputComment(
               onChange={(event) => {
                 if (event.target.files.length > 0) {
                   updateData("file", event.target.files);
-                  updateData("dataComment", { ...dataComment, type: 3 });
+                  updateData("dataComment", {
+                    ...dataComment,
+                    type: 3,
+                    text: JSON.stringify({
+                      url: URL.createObjectURL(event.target.files[0]),
+                    }),
+                  });
                   event.currentTarget.files = null;
                 }
               }}

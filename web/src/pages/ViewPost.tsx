@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeaderLoggedRight from "@/components/Header/HeaderLogged/HeaderLoggedRight";
+import HeaderLoggedRight from "@/modules/Header/HeaderLogged/HeaderLoggedRight";
 import ItemPost from "@/components/ItemPost";
-import ButtonViewPostTop from "@/components/ViewPost/ButtonViewPostTop";
+import ButtonViewPostTop from "@/modules/ViewPost/ButtonViewPostTop";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import * as StringUtils from "@/utils/StringUtils";
 import { getPostById } from "@/apis/postAPIs";

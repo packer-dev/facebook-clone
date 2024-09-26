@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
-import CircleIcon from "../../CircleIcon";
 import ItemWatchChildren from "../ItemWatchChildren";
+import CircleIcon from "@/components/CircleIcon";
 
 export default function WatchNewBest({ images }) {
   //

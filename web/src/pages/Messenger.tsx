@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ContentMessageTop from "@/components/Messenger/ContentMessage/ContentMessageTop";
-import ControlMessage from "@/components/Messenger/ContentMessage/ControlMessage";
-import MainContentMessage from "@/components/Messenger/ContentMessage/MainContentMessage";
-import MessageList from "@/components/Messenger/MessageList";
-import SettingMessage from "@/components/Messenger/SettingMessage";
+import ContentMessageTop from "@/modules/Messenger/ContentMessage/ContentMessageTop";
+import ControlMessage from "@/modules/Messenger/ContentMessage/ControlMessage";
+import MainContentMessage from "@/modules/Messenger/ContentMessage/MainContentMessage";
+import MessageList from "@/modules/Messenger/MessageList";
+import SettingMessage from "@/modules/Messenger/SettingMessage";
 import { MessengerProvider } from "@/contexts/MessengerContext";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import { RootState } from "@/reducers";

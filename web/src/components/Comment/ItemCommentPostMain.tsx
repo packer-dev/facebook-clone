@@ -23,7 +23,7 @@ const ItemCommentPostMain = ({
         key={commentDetail.item.id}
       />
       <div className="w-11/12 ml-auto">
-        {reply && <TypeCommentInput />}
+        {reply && <TypeCommentInput parent={commentDetail.item.id} />}
         {commentDetail.child.map((commentPost) => (
           <ItemComment
             setReply={setReply}

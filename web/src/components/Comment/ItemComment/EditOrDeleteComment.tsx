@@ -6,19 +6,20 @@ import {
   NAME_BUTTON_MODAL_DELETE_COMMENT,
   TITLE_MODAL_DELETE_COMMENT,
 } from "@/constants/ModalWarningConfig";
+import { CommentDTO } from "@/interfaces/Comment";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
 
 type EditOrDeleteCommentProps = {
-  user: User;
-  commentPost: any;
-  postDetail: any;
-  level: any;
+  commentPost: CommentDTO;
 };
 
 export default React.forwardRef(function EditOrDeleteComment(
-  { user, commentPost, postDetail, level }: EditOrDeleteCommentProps,
+  { commentPost }: EditOrDeleteCommentProps,
   ref: any
 ) {
   //
+  const user = useSelector<RootState, User>(getUser);
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
   const handleEvent = async (setData) => {
     if (typeof setData === "function") setData();
@@ -34,16 +35,14 @@ export default React.forwardRef(function EditOrDeleteComment(
     //
   }, [ref, refControl]);
   //
-  if (user.id === commentPost.userCommentPost.id)
+  if (user.id === commentPost.item.user.id)
     return (
       <div
         ref={refControl}
         className="item__flex absolute ml-6 top-1/2 transform -translate-y-1/2"
       >
         <span
-          onClick={() => {
-            modalsDispatch(modalsAction.openModalDeletePost(""));
-          }}
+          onClick={() => modalsDispatch(modalsAction.openModalDeletePost(""))}
           aria-hidden
           className="bx bx-edit-alt text-sm text-gray-800 cursor-pointer"
         />

@@ -306,7 +306,7 @@ export const imageGroup = (group: Group, user: User | null) => {
     };
   }
   return !result.isGroupAvatar ? (
-    <Avatar size={32} uri={result.uri} online={false} />
+    <Avatar size={32} uri={result.uri} />
   ) : (
     <GroupAvatar group={group} size={16} child={7} />
   );

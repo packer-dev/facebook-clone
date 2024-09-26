@@ -66,6 +66,7 @@ async def get_post_by_id_user(
                 else []
             ),
             "comment": len(new_value(comments.get(post["id"]), [])),
+            "comments": comments[0:5],
         }
         for post in sorted_data
     ]
@@ -158,7 +159,6 @@ async def delete_post(post_id: str):
     ref = db.reference("social-network")
 
     posts = new_value(ref.child("posts").get(), [])
-    users = new_value(ref.child("users").get(), [])
     media_post = new_value(ref.child("medias").child("posts").child(post_id).get(), [])
     media_comment = new_value(
         ref.child("medias").child("comments").child(post_id).get(), []

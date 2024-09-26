@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import WrapperLogged from "../Wrapper/WrapperLogged";
 import { StoryContext, StoryProvider } from "@/contexts/StoryContext";
-import ViewStoryLeft from "@/components/ViewStory/ViewStoryLeft";
-import ViewStoryRight from "@/components/ViewStory/ViewStoryRight";
+import ViewStoryLeft from "@/modules/ViewStory/ViewStoryLeft";
+import ViewStoryRight from "@/modules/ViewStory/ViewStoryRight";
 
 const ViewStory = () => {
   //

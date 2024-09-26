@@ -30,10 +30,10 @@ const Input = ({
   return (
     <View>
       <View
-        style={{
-          ...tailwind(`bg-gray-200 py-3 mb-2 pl-3 text-left`),
-          ...(error ? tailwind(`border border-red-500`) : {}),
-        }}
+        style={[
+          tailwind(`bg-gray-200 py-3 mb-2 pl-3 text-left`),
+          error ? tailwind(`border border-red-500`) : {},
+        ]}
       >
         <Text
           style={tailwind(

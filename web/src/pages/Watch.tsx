@@ -2,8 +2,8 @@ import * as React from "react";
 import InputComponent from "@/components/InputComponent";
 import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
-import ListItemWatchLeft from "@/components/Watch/WatchLeft";
-import WatchNewBest from "@/components/Watch/WatchRight/WatchNewBest";
+import ListItemWatchLeft from "@/modules/Watch/WatchLeft";
+import WatchNewBest from "@/modules/Watch/WatchRight/WatchNewBest";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 
 export default function Watch() {

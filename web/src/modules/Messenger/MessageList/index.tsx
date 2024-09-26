@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputComponent from "../../InputComponent";
+import InputComponent from "../../../components/InputComponent";
 import ItemMessageList from "./ItemMessageList";
 import { Group } from "@/interfaces/Group";
 

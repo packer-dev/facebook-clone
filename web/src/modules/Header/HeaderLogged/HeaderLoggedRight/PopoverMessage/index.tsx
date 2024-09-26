@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, getUser } from "@/reducers";
-import MessageList from "@/components/Messenger/MessageList";
+import MessageList from "@/modules/Messenger/MessageList";
 import { getListGroupByUserId } from "@/apis/groupAPIs";
 import { Group } from "@/interfaces/Group";
 import { User } from "@/interfaces/User";

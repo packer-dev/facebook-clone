@@ -90,10 +90,14 @@ export const openModalChangeEmoji = (
   };
 };
 
-export const openModalChangeNickName = (groupMessage: Group) => {
+export const openModalChangeNickName = (
+  group: Group,
+  updateGroup: (group: Group) => void
+) => {
   return {
     type: constants.OPEN_MODAL_CHANGE_NICK_NAME,
-    groupMessage,
+    group,
+    updateGroup,
   };
 };
 

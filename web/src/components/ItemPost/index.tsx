@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
 import TypeCommentInput from "../Comment/TypeCommentInput";
 import ItemPostTop from "./ItemPostTop/ItemPostTop";
 import ContentPost from "./ContentPost";
@@ -7,6 +7,7 @@ import { PostDTO } from "@/interfaces/Post";
 import FooterItemPost from "./FooterItemPost";
 import { ItemPostContext, ItemPostProvider } from "@/contexts/ItemPostContext";
 import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
+import { getCommentByPost } from "@/apis/commentAPIs";
 
 type ItemPostProps = {
   postDetail: PostDTO;
@@ -16,8 +17,29 @@ type ItemPostProps = {
 const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
   //
   const { updateData } = useContext(ItemPostContext);
+  const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const limit = 5;
+  const handleViewMore = () => {
+    setOffset(offset + 1);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!postDetail) return;
+      setLoading(true);
+      const result = await getCommentByPost(postDetail.post?.id, offset, limit);
+      updateData("postDetail", {
+        ...postDetail,
+        comments: [...postDetail.comments, result.list || []],
+      });
+      setLoading(false);
+    };
+    offset && fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
   useEffect(() => {
     updateData("postDetail", postDetail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDetail]);
   //
   return postDetail ? (
@@ -48,6 +70,15 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
           postDetail={postDetail}
         />
       ))}
+      {postDetail.comment && postDetail.comment <= limit * (offset || 1) && (
+        <p
+          aria-hidden
+          onClick={handleViewMore}
+          className="text-main text-sm font-semibold cursor-pointer"
+        >
+          {loading ? "Loading..." : "View more"}
+        </p>
+      )}
     </div>
   ) : (
     <LoadingPost />
