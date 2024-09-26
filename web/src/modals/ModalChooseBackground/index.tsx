@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import backgrounds from "@/config/backgrounds";
-import { PostContext } from "@/contexts/PostContext/PostContext";
-import ModalWrapperChildPost from "../ModalWrapperChildPost";
+import backgrounds from "@/config/backgrounds"; // Import backgrounds configuration
+import { PostContext } from "@/contexts/PostContext/PostContext"; // Import Post context
+import ModalWrapperChildPost from "../ModalWrapperChildPost"; // Import Modal Wrapper component
 
 const GroupChooseBackground = (props) => {
-  //
   const { title, list } = props;
   const { postsDispatch, postsAction } = useContext(PostContext);
   //
@@ -30,26 +29,25 @@ const GroupChooseBackground = (props) => {
   );
 };
 
-export default function ModalChooseBackground() {
+const ModalChooseBackground = () => {
   return (
-    <ModalWrapperChildPost title="Chọn phông nền">
-      <div
-        className="w-full overflow-y-auto scrollbar-css"
-        style={{ height: 400, maxHeight: 400 }}
-      >
+    <ModalWrapperChildPost title="Choose Background">
+      <div className="w-full overflow-y-auto scrollbar-css h-[400px] max-h-[400px]">
         <GroupChooseBackground
-          title={`Phổ biến`}
+          title="Popular"
           list={backgrounds.filter((item) => item.type === 0).slice(0, 8)}
         />
         <GroupChooseBackground
-          title={`Mới`}
+          title="New"
           list={backgrounds.filter((item) => item.type === 1).slice(0, 8)}
         />
         <GroupChooseBackground
-          title={`Xem thêm`}
+          title="See More"
           list={backgrounds.filter((item) => item.type === 2)}
         />
       </div>
     </ModalWrapperChildPost>
   );
-}
+};
+
+export default ModalChooseBackground;

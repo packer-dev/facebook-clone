@@ -80,7 +80,7 @@ const SettingMessage = () => {
       </div>
       <ul className="w-full py-2">
         <WrapperItemSetting component={ItemSetting} name={`Custom chat`}>
-          <SettingMessageChild hide={false} group={group} />
+          <SettingMessageChild group={group} />
         </WrapperItemSetting>
         <WrapperItemSetting component={ItemSetting} name={`Shared file`} />
         <WrapperItemSetting

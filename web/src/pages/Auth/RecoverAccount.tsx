@@ -33,7 +33,7 @@ const RecoverAccount = (props: any) => {
                     name="email"
                     onChange={(event) => setEmail(event.target.value)}
                     className="transform scale-130 mr-3"
-                    value={"email"}
+                    value="email"
                   />
                   <div>
                     <p>Send code via email</p>
@@ -50,7 +50,7 @@ const RecoverAccount = (props: any) => {
                     name="email"
                     onChange={(event) => setEmail(event.target.value)}
                     className="transform scale-130 mr-3"
-                    value={"phone"}
+                    value="phone"
                   />
                   <div>
                     <p>Send code via SMS</p>

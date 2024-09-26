@@ -31,11 +31,11 @@ const ControlMessage = () => {
     updateData: updateDataItemChat,
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
-  const handleSend = async (data?: any) => {
+  const handleSend = async (data?: any, typeContent?: number) => {
     data = typeof data === "object" ? JSON.stringify(data) : data;
     let message = dataFakeMessage({
       user,
-      type: typeof data === "object" ? 2 : 1,
+      type: typeContent || type,
       text: data || refContent.current.innerText,
     });
     let temp = [...messages, message];
@@ -114,7 +114,10 @@ const ControlMessage = () => {
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 event.preventDefault();
-                handleSend(refContent.current?.innerText || "");
+                handleSend(
+                  refContent.current?.innerText || "",
+                  files?.length ? 3 : 1
+                );
               }
             }}
             style={{ minHeight: "20px" }}
@@ -140,7 +143,7 @@ const ControlMessage = () => {
       <div className="w-12 zoom flex justify-center">
         <span
           aria-hidden
-          onClick={() => handleSend(group?.data?.emoji)}
+          onClick={() => handleSend(group?.data?.emoji, 1)}
           className="cursor-pointer zoom text-xl flex items-center"
         >
           {group?.data?.emoji || "💕"}

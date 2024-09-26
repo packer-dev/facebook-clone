@@ -135,7 +135,7 @@ export default memo(function ImageVideoDisplay({
                 maxHeight: height,
                 cursor: "pointer",
               }}
-              className={"object-cover"}
+              className="object-cover"
             />
           );
         });

@@ -53,7 +53,7 @@ export default memo(function HeaderProfile() {
                 )}
                 <div className="z-10 p-1.5 bg-gray-50 absolute text-center rounded-lg bottom-3 right-10 md:right-3">
                   <input
-                    type={"file"}
+                    type="file"
                     className="hidden"
                     id="changeCover"
                     onChange={(event) => {

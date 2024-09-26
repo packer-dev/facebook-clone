@@ -16,7 +16,7 @@ const SendImageVideo = ({
       style={{ bottom: "100%", maxWidth: mini ? 330 : 550 }}
     >
       <ScrollContainer
-        className="flex p-2 bg-gray-200 dark:bg-gray-third overflow-x-auto cursor-pointer list-none"
+        className="flex p-2 overflow-x-auto cursor-pointer list-none"
         style={{ maxWidth: mini ? 330 : 550 }}
       >
         <ItemSendImageVideo file={files[0]} mini={mini} />

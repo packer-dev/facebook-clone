@@ -45,7 +45,7 @@ const ModalPreviewAvatar = ({ image, user }: ModalPreviewAvatarProps) => {
       className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
         z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 w-11/12 sm:w-10/12 md:w-2/3 
         lg:w-2/3 xl:w-1/2 shadow-lv1 dark:border-dark-third dark:bg-dark-third"
-      title={"Update Profile Picture"}
+      title="Update Profile Picture"
     >
       <div className="w-full mx-auto my-5">
         <div className="mx-auto relative w-full flex justify-center max-h-[450px] min-h-[320px]">
@@ -65,7 +65,7 @@ const ModalPreviewAvatar = ({ image, user }: ModalPreviewAvatarProps) => {
       <div className="flex items-center justify-around w-3/4 mx-auto gap-1">
         <span className="bx bx-minus text-2xl" />
         <input
-          type={"range"}
+          type="range"
           min={0}
           max={100}
           className="flex-1"

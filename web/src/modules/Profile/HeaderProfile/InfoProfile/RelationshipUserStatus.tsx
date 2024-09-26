@@ -8,6 +8,7 @@ import ButtonRelationshipUser from "./ButtonRelationshipUser";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
+import { checkRelationship } from "@/apis/userAPIs";
 
 export default function RelationshipUserStatus() {
   //
@@ -21,19 +22,15 @@ export default function RelationshipUserStatus() {
   const process = async (status) => {};
   useEffect(() => {
     //
-    let unmounted = false;
     const fetch = async () => {
-      const result = { data: { status: 3 } };
-      if (unmounted) return;
-      if (result.data.status === 3) {
+      const result = await checkRelationship(user?.id, userProfile?.id ?? "");
+      if (result.status === 3) {
         updateData("isFriend", true);
       }
-      setUserRelationship(result.data);
+      setUserRelationship(result);
     };
     if (user.id !== userProfile.id) fetch();
-    return () => {
-      unmounted = true;
-    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile]);
   //
@@ -45,7 +42,7 @@ export default function RelationshipUserStatus() {
           status={1}
           blue={false}
           icon="bx bxs-user-plus"
-          label={"Add friend"}
+          label="Add friend"
           show
         />
       )}
@@ -56,7 +53,7 @@ export default function RelationshipUserStatus() {
             status={3}
             blue
             icon="bx bx-user-check"
-            label={"Accept"}
+            label="Accept"
             show={false}
           />
           <ButtonRelationshipUser
@@ -64,7 +61,7 @@ export default function RelationshipUserStatus() {
             status={-1}
             blue={false}
             icon="bx bx-user-delete"
-            label={"Remove"}
+            label="Remove"
             show={false}
           />
         </>

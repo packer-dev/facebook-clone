@@ -45,7 +45,7 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
                 className="w-full h-full rounded-full object-cover shadow-lv1 mx-auto shadow-lg"
               />
               <span className="py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rouned-full bg-red-600 text-white font-semibold">
-                {`A&Q`}
+                A&Q
               </span>
             </div>
             <div className="w-full px-4 mt-4">

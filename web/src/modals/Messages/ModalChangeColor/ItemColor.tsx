@@ -14,10 +14,7 @@ export default function ItemColor(props: any) {
           : " hover:bg-gray-300 dark:hover:bg-dark-third "
       }`}
     >
-      <div
-        className="mx-auto rounded-full "
-        style={{ backgroundColor: item, width: 60, height: 60 }}
-      />
+      <div className={`mx-auto rounded-full bg-[${item}] w-[60px] h-[60px]`} />
     </li>
   );
 }

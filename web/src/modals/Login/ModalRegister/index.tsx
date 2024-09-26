@@ -57,11 +57,7 @@ function ModalRegister() {
     );
   };
   return (
-    <ModalWrapper
-      className="wrapper-scrollbar p-2 md:w-[500px] w-11/12 fixed top-1/2 left-1/2 transform 
-      -translate-x-1/2 -translate-y-1/2 opacity-100 bg-white z-50 border border-solid 
-      border-gray-200 shadow-lv1 rounded-lg"
-    >
+    <ModalWrapper>
       <h1 className="-pt-1 pb-0.5 text-3xl font-bold">Register</h1>
       <p className="pb-2.5 text-sm pt-0.5 text-gray-600">Fast and easy</p>
       <hr />

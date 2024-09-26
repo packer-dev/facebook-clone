@@ -33,7 +33,7 @@ const WrapperLogged = ({
   //
   return (
     <WrapperPage>
-      <audio ref={ref} src={""} muted className="hidden"></audio>
+      <audio ref={ref} src="" muted className="hidden"></audio>
       {user && (
         <div className="w-full bg-gray-100 dark:bg-dark-main h-screen overflow-hidden relative">
           {!hideHeader && <HeaderLogged hideMessage={hideMessage} />}

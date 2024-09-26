@@ -103,12 +103,7 @@ const ModalPost = () => {
   };
   //
   return (
-    <ModalWrapper
-      className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
-      z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
-      shadow-lv1 dark:border-dark-third dark:bg-dark-third"
-      title={`${id ? "Edit" : "Create"} post`}
-    >
+    <ModalWrapper title={`${id ? "Edit" : "Create"} post`}>
       <TopWritePostModal />
       <div className="w-full mt-2.5 wrapper-content-right max-h-[365px] overflow-y-auto">
         <CenterWritePostModal />

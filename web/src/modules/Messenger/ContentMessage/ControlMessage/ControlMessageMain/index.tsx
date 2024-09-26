@@ -40,7 +40,6 @@ const ControlMessageMain = ({ handleSend }: { handleSend: Function }) => {
           type="file"
           name="fileImage[]"
           id="fileImageChatMain"
-          multiple={false}
         />
         <label htmlFor="fileImageChatMain">
           {" "}
@@ -99,7 +98,7 @@ const ControlMessageMain = ({ handleSend }: { handleSend: Function }) => {
             </div>
           }
         >
-          <PopoverSticker handleClick={(item: any) => handleSend(item)} />
+          <PopoverSticker handleClick={(item: any) => handleSend(item, 2)} />
         </PopoversWrapper>
 
         <div className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third">

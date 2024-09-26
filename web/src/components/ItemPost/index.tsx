@@ -63,7 +63,7 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
         <FooterItemPost postDetail={postDetail} />
       </div>
       <TypeCommentInput />
-      {postDetail.comments?.map((comment) => (
+      {postDetail?.comments?.map?.((comment) => (
         <ItemCommentPostMain
           key={comment.item.id}
           commentDetail={comment}
