@@ -32,18 +32,24 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
       time_created: getCurrentDateTime(),
       last_time_update: getCurrentDateTime(),
       level: type,
-      parent,
+      parent: parent || "",
       loading: true,
     };
     let newComments: CommentDTO[] = parent
-      ? [...postDetail.comments].map((item) => {
+      ? [...postDetail.comments.list].map((item) => {
           if (item.item.id === parent) {
             return { ...item, child: [comment, ...item.child] };
           }
           return item;
         })
-      : [{ item: comment, child: [] }, ...postDetail.comments];
-    updateData("postDetail", { ...postDetail, comments: newComments });
+      : [{ item: comment, child: [] }, ...postDetail.comments.list];
+    updateData("postDetail", {
+      ...postDetail,
+      comments: {
+        ...postDetail.comments,
+        list: { ...postDetail.comments, list: newComments },
+      },
+    });
     if (dataComment.type === 3 && file?.length) {
       const formData = new FormData();
       formData.append("file", file[0]);
@@ -61,21 +67,25 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     comment = await sendComment(formData);
     updateData("postDetail", {
       ...postDetail,
-      comments: [...newComments].map((child) => {
-        if (child.item.id === parent) {
-          return {
-            ...child,
-            child: [...child.child].map((item) => {
-              if (item.id === comment.id) return comment;
-              return item;
-            }),
-          };
-        }
-        if (!parent && child.item.id === comment.id)
-          return { item: comment, child: [] };
-        return child;
-      }),
+      comments: {
+        ...postDetail.comments,
+        list: [...newComments].map((child) => {
+          if (child.item.id === parent) {
+            return {
+              ...child,
+              child: [...child.child].map((item) => {
+                if (item.id === comment.id) return comment;
+                return item;
+              }),
+            };
+          }
+          if (!parent && child.item.id === comment.id)
+            return { item: comment, child: [] };
+          return child;
+        }),
+      },
     });
+    refContent.current.innerText = "";
   };
   //
   return (
@@ -96,7 +106,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
             onInput={(event) => {
               updateData("dataComment", {
                 ...dataComment,
-                content: event.currentTarget.textContent,
+                text: event.currentTarget.innerText,
               });
             }}
             onKeyDown={async (event) => {

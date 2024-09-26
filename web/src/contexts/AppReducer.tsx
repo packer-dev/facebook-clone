@@ -8,6 +8,7 @@ const AppReducer = <T,>(
 ) => {
   if (action.type === "UPDATE_DATA")
     return { ...state, [action.key]: action.value };
+
   return { ...state };
 };
 

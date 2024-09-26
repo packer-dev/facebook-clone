@@ -14,9 +14,16 @@ type ItemPostProps = {
   margin?: boolean;
   hideContent?: boolean;
 };
-const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
+const ItemPost = ({
+  postDetail: postDetailProps,
+  margin,
+  hideContent,
+}: ItemPostProps) => {
   //
-  const { updateData } = useContext(ItemPostContext);
+  const {
+    state: { postDetail },
+    updateData,
+  } = useContext(ItemPostContext);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const limit = 5;
@@ -30,7 +37,7 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
       const result = await getCommentByPost(postDetail.post?.id, offset, limit);
       updateData("postDetail", {
         ...postDetail,
-        comments: [...postDetail.comments, result.list || []],
+        comments: [...postDetail.comments.list, ...(result.list || [])],
       });
       setLoading(false);
     };
@@ -38,9 +45,9 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
   useEffect(() => {
-    updateData("postDetail", postDetail);
+    updateData("postDetail", postDetailProps);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postDetail]);
+  }, [postDetailProps]);
   //
   return postDetail ? (
     <div
@@ -63,7 +70,7 @@ const ItemPost = ({ postDetail, margin, hideContent }: ItemPostProps) => {
         <FooterItemPost postDetail={postDetail} />
       </div>
       <TypeCommentInput />
-      {postDetail?.comments?.map?.((comment) => (
+      {postDetail?.comments?.list?.map?.((comment) => (
         <ItemCommentPostMain
           key={comment.item.id}
           commentDetail={comment}

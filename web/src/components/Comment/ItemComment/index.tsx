@@ -65,7 +65,7 @@ const ItemComment = ({
           </p>
           {!commentPost.item.loading ? (
             <>
-              {commentPost.item.content.text && (
+              {commentPost.item.content.type === 1 && (
                 <p className="dark:text-gray-300">
                   {commentPost.item.content.text}
                 </p>
