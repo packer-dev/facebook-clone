@@ -32,7 +32,7 @@ function Login() {
         <div className="w-full mx-auto sm:w-full md:w-full lg:w-full xl:w-3/4 2xl:w-3/4">
           <SaveLogin />
           <div
-            className="w-full mx-auto rounded-lg mr-8 sm:w-11/12 sm:mx-auto lg:w-36%
+            className="w-full mx-auto rounded-lg mr-8 sm:w-11/12 sm:mx-auto lg:w-[400px]
             lg:mr-8 items-center flex flex-wrap xl:mt-12"
           >
             <div className="w-full text-center p-2 bg-white rounded-lg shadow-lv1">

@@ -31,7 +31,7 @@ const ModalFavorite = ({
         z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
         shadow-lv1 dark:border-dark-third dark:bg-dark-third px-3"
     >
-      <div className="w-full h-[500px]">
+      <div className="w-full h-[510px] p-2">
         <div className="my-2 w-full">
           <InputComponent
             type="text"
@@ -72,15 +72,15 @@ const ModalFavorite = ({
             </div>
           </>
         )}
-        <div className="w-full" style={{ height: 300 }}>
+        <div className="w-full h-[300px]">
           {content.list.length > 0 && (
             <>
               <p className="text-gray-500 dark:text-gray-300 pl-2.5 my-1 font-bold">
                 RESULTS FOR {`"${content.search}"`}
               </p>
               <div
-                className="p-2.5 overflow-y-auto w-full border-2 border-solid border-gray-200 rounded-lg"
-                style={{ height: 270, maxHeight: 270 }}
+                className="p-2.5 overflow-y-auto w-full border-2 border-solid border-gray-200 rounded-lg 
+              h-[267px] max-h-[267px]"
               >
                 <div className="w-full gap-1.5 flex flex-wrap">
                   {[...favorites]
@@ -106,12 +106,11 @@ const ModalFavorite = ({
           )}
         </div>
       </div>
-      <hr />
-      <div className="text-right pt-3">
+      <div className="text-right flex-row flex gap-2 justify-end p-2 mt-2">
         <Button
           onClick={() => modalsDispatch(modalsAction.closeModal())}
           type="button"
-          className="cursor-pointer border-none font-semibold text-white rounded-lg p-2 mx-2 bg-gray-500"
+          variant="secondary"
         >
           Cancel
         </Button>
@@ -127,7 +126,6 @@ const ModalFavorite = ({
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className="cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2"
         >
           Save
         </Button>

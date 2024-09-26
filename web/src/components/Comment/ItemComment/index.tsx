@@ -39,7 +39,7 @@ const ItemComment = ({
   }, [refFeelComment, commentPost, refText, refContentComment]);
   //
   return (
-    <div className="w-full mx-0 flex my-2">
+    <div className="w-full p-2 bg-white flex my-0.5">
       <Link to="">
         <img
           className="w-12 h-12 p-0.5 mt-2 object-cover rounded-full"

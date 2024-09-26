@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
+import { Button } from "@/components/ui/button";
 
 export default function CategoryProfile(props: any) {
   //
@@ -44,7 +45,7 @@ export default function CategoryProfile(props: any) {
   );
   //
   return (
-    <div className="w-full relative">
+    <div className="w-full relative flex-row flex justify-between items-center">
       <ul className="w-full flex py-1">
         {categories.map((category) => (
           <li
@@ -64,9 +65,9 @@ export default function CategoryProfile(props: any) {
           </li>
         ))}
       </ul>
-      <div className="px-4 py-1.5 cursor-pointer rounded-lg bg-gray-200 hover:bg-gray-300 absolute top-1/2 transform -translate-y-1/2 right-2">
+      <Button>
         <i className="bx bx-dots-horizontal-rounded text-2xl" />
-      </div>
+      </Button>
     </div>
   );
 }

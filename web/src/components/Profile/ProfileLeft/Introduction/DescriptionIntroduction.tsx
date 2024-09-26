@@ -88,8 +88,7 @@ export default function DescriptionIntroduction() {
                 setShow(true);
                 setLoading(false);
               }}
-              className="w-full p-2 text-sm bg-gray-200 hover:bg-gray-300 font-semibold 
-              rounded-lg dark:bg-dark-second dark:text-white"
+              className="w-full"
             >
               Edit bio
             </Button>
