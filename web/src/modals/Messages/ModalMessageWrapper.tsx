@@ -3,10 +3,13 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { updateGroupById } from "@/apis/groupAPIs";
 import { Group } from "@/interfaces/Group";
 import { useSelector } from "react-redux";
-import { getSocket, RootState } from "@/reducers";
+import { getSocket, getUser, RootState } from "@/reducers";
 import { Socket } from "socket.io-client";
 import ModalWrapper from "../ModalWrapper";
 import { Button } from "@/components/ui/button";
+import { dataFakeMessage } from "@/utils";
+import { User } from "@/interfaces/User";
+import { sendMessageAPI } from "@/apis/messageAPIs";
 
 export type ModalMessageWrapperProps = {
   updateGroup?: (group: Group) => void;
@@ -28,6 +31,7 @@ const ModalMessageWrapper = ({
   className = "",
 }: ModalMessageWrapperProps) => {
   //
+  const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   //
@@ -56,9 +60,16 @@ const ModalMessageWrapper = ({
               ...group,
               data: { ...group.data, [type]: value },
             });
+            const message = dataFakeMessage({
+              user,
+              text: "",
+              type: type === "color" ? 4 : 5,
+            });
+            const response = await sendMessageAPI({ group, message });
             socket.emit(`send-message`, {
               groupId: group?.id,
               [type]: value,
+              message: response?.message,
               type,
             });
             updateGroup(result);

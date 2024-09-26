@@ -35,6 +35,7 @@ const ControlMessageMain = ({ handleSend }: { handleSend: Function }) => {
           className="hidden"
           onChange={(event) => {
             updateData("files", event.target.files);
+            updateData("type", 3);
           }}
           type="file"
           name="fileImage[]"

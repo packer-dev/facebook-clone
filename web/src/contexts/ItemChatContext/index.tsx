@@ -19,6 +19,7 @@ export type ItemChatContextProps = {
   userParam?: User;
   groups: Group[];
   files: FileList;
+  type: number;
 };
 
 const initialState: ItemChatContextProps = {
@@ -34,6 +35,7 @@ const initialState: ItemChatContextProps = {
   userParam: null,
   groups: [],
   files: null,
+  type: 1,
 };
 
 export const ItemChatContext = AppContext<ItemChatContextProps>(initialState);

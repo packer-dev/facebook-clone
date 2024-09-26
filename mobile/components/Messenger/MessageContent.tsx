@@ -38,7 +38,7 @@ const MessageContent = ({
         </View>
       );
     default:
-      return <></>;
+      return <Text>Developing this feature.</Text>;
   }
 };
 

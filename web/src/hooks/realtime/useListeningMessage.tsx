@@ -14,20 +14,18 @@ const useListeningMessage = (groupId: string) => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const listenChat = (data: any) => {
     data = JSON.parse(data);
-    if (user?.id === data?.message?.user?.id) return;
+    if (user?.id === data?.message?.user?.id && !data.type) return;
+    updateData("messages", [...messages, data?.message]);
+    updateData(
+      "groups",
+      [...groups].map((item) => {
+        if (item.id === groupId) {
+          return { ...item, last_message: data?.message };
+        }
+        return item;
+      })
+    );
     switch (data.type) {
-      case "message":
-        updateData("messages", [...messages, data?.message]);
-        updateData(
-          "groups",
-          [...groups].map((item) => {
-            if (item.id === groupId) {
-              return { ...item, last_message: data?.message };
-            }
-            return item;
-          })
-        );
-        break;
       case "color":
         updateData("group", {
           ...group,

@@ -1,7 +1,13 @@
 import { updateGroupById } from "@/apis/groupAPIs";
+import { sendMessageAPI } from "@/apis/messageAPIs";
 import { Group } from "@/interfaces/Group";
 import { Member } from "@/interfaces/Member";
+import { User } from "@/interfaces/User";
+import { getSocket, getUser, RootState } from "@/reducers";
+import { dataFakeMessage } from "@/utils";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Socket } from "socket.io-client";
 
 const ItemNickName = ({
   item,
@@ -13,6 +19,8 @@ const ItemNickName = ({
   updateGroup: Function;
 }) => {
   //
+  const socket = useSelector<RootState, Socket>(getSocket);
+  const user = useSelector<RootState, User>(getUser);
   const [show, setShow] = useState(false);
   const [nickName, setNickName] = useState(
     item.nickname ? null : item.nickname
@@ -52,8 +60,34 @@ const ItemNickName = ({
           onKeyUp={async (e) => {
             if (e.key === "Enter") {
               setLoading(true);
-              await updateGroupById({ ...group });
-              // updateGroup({...group, members: [...group?.members].map(item => ) })
+              const newGroup = {
+                ...group,
+                members: [...(group?.members || [])].map((child) => {
+                  if (child.id === item.id) {
+                    return { ...child, nickname: nickName };
+                  }
+                  return child;
+                }),
+              };
+              const message = dataFakeMessage({
+                user,
+                text: JSON.stringify({
+                  name: item.user.name,
+                  to: nickName,
+                }),
+                type: 6,
+              });
+              const response = await sendMessageAPI({
+                group,
+                message,
+              });
+              socket.emit("send-message", {
+                groupId: group?.id,
+                message: response?.message,
+                type: "nickname",
+              });
+              await updateGroupById(newGroup);
+              updateGroup(newGroup);
               setShow(false);
               setLoading(false);
             }

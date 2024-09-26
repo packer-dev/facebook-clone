@@ -10,19 +10,30 @@ import { User } from "@/interfaces/User";
 import { sendMessageAPI } from "@/apis/messageAPIs";
 import { Socket } from "socket.io-client";
 import PopoversWrapper from "@/popovers/PopoversWrapper";
+import { uploadMedia } from "@/apis/uploadAPIs";
 
 const ControlMessage = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const {
-    state: { members, group, isNew, messages, userParam, groups, files },
+    state: {
+      members,
+      group,
+      isNew,
+      messages,
+      userParam,
+      groups,
+      files,
+      mini,
+      type,
+    },
     updateData: updateDataItemChat,
   } = useContext(ItemChatContext);
   const refContent = useRef<HTMLDivElement>();
   const handleSend = async (data?: any) => {
     data = typeof data === "object" ? JSON.stringify(data) : data;
-    const message = dataFakeMessage({
+    let message = dataFakeMessage({
       user,
       type: typeof data === "object" ? 2 : 1,
       text: data || refContent.current.innerText,
@@ -39,7 +50,16 @@ const ControlMessage = () => {
     try {
       if (!newGroup) return;
       refContent.current.innerText = "";
-
+      if (type === 3 && files?.length) {
+        const formData = new FormData();
+        formData.append("file", files[0]);
+        formData.append("folder", "Image Comments");
+        const image = await uploadMedia(formData);
+        message = {
+          ...message,
+          content: { ...message.content, text: JSON.stringify(image) },
+        };
+      }
       const result = await sendMessageAPI({
         message,
         group: newGroup,
@@ -80,10 +100,10 @@ const ControlMessage = () => {
           isNew && !members?.length ? "opacity-50" : ""
         }`}
     >
-      {files?.length > 0 && <SendImageVideo />}
+      {files?.length && <SendImageVideo mini={mini} files={files} />}
       <ControlMessageMain handleSend={handleSend} />
       <div className="w-9/12 relative">
-        <div className="three-exten1 w-full relative">
+        <div className="w-full relative">
           <div
             aria-hidden
             ref={refContent}

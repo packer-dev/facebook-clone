@@ -42,12 +42,17 @@ const ContentMessageTop = () => {
   const member = group?.members?.find((item) => item.user.id !== user.id) || {
     user: userParam,
   };
+  const avatar = group?.multiple ? (
+    <GroupAvatar group={group} size={10} className="mx-auto relative" />
+  ) : (
+    <Avatar uri={member?.user?.avatar} size={9} className="mx-auto relative" />
+  );
   //
   return (
     <div
       className={`w-full ${mini ? "py-1" : " pt-3"} flex shadow items-center`}
     >
-      {!isNew ? (
+      {!isNew && (
         <>
           <div
             className={`w-2/3 ${mini ? "pl-1" : "p-2 pt-0"} flex items-center`}
@@ -56,19 +61,7 @@ const ContentMessageTop = () => {
               aria-hidden
               onClick={() => updateData("showSetting", !showSetting)}
             >
-              {group?.multiple ? (
-                <GroupAvatar
-                  group={group}
-                  size={10}
-                  className="mx-auto relative"
-                />
-              ) : (
-                <Avatar
-                  uri={member?.user?.avatar}
-                  size={9}
-                  className="mx-auto relative"
-                />
-              )}
+              {avatar}
             </div>
             <div className="pl-3 flex flex-col">
               <b
@@ -237,9 +230,8 @@ const ContentMessageTop = () => {
             </ul>
           </div>
         </>
-      ) : (
-        <NewContentMessageTop />
       )}
+      {isNew && <NewContentMessageTop />}
     </div>
   );
 };
@@ -252,7 +244,7 @@ const NewContentMessageTop = () => {
   const { zoom } = useSelector<RootState, UserChatReduxProps>(getUserChat);
   return (
     <div className="w-full flex items-center p-1.5 justify-between">
-      <span>Tin nhắn mới</span>
+      <span>New message</span>
       <ItemHeaderContentMessageTop
         mini={mini}
         handleClick={() => {
