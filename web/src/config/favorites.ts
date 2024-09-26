@@ -2,87 +2,87 @@ const favorites = [
   {
     id: "0",
     icon: "💻",
-    name: "Học viết mã",
+    name: "Learn to Code",
   },
   {
     id: "1",
     icon: "📸",
-    name: "Nhiếp ảnh",
+    name: "Photography",
   },
   {
     id: "2",
     icon: "👟",
-    name: "Chạy bộ",
+    name: "Running",
   },
   {
     id: "3",
     icon: "🎧",
-    name: "Nghe nhạc",
+    name: "Listening to Music",
   },
   {
     id: "4",
     icon: "👬",
-    name: "Gặp gỡ bạn bè",
+    name: "Meeting Friends",
   },
   {
     id: "5",
     icon: "🏀",
-    name: "Chơi bóng rổ",
+    name: "Playing Basketball",
   },
   {
     id: "6",
     icon: "⚽",
-    name: "Chơi đá bóng",
+    name: "Playing Football",
   },
   {
     id: "7",
     icon: "🎣",
-    name: "Câu cá",
+    name: "Fishing",
   },
   {
     id: "8",
     icon: "🚨",
-    name: "Cứu hộ động vật",
+    name: "Animal Rescue",
   },
   {
     id: "9",
     icon: "⛰️",
-    name: "Leo núi",
+    name: "Mountain Climbing",
   },
   {
     id: "10",
     icon: "🎨",
-    name: "Vẽ tranh",
+    name: "Painting",
   },
   {
     id: "11",
     icon: "🏍️",
-    name: "Đua xe",
+    name: "Racing",
   },
   {
     id: "12",
     icon: "📖",
-    name: "Đọc sách",
+    name: "Reading Books",
   },
   {
     id: "13",
     icon: "🎮",
-    name: "Trò chơi điện tử",
+    name: "Video Games",
   },
   {
     id: "14",
     icon: "🕺",
-    name: "Nhảy hiphop",
+    name: "Hip-Hop Dancing",
   },
   {
     id: "15",
     icon: "🎞️",
-    name: "Xem phim",
+    name: "Watching Movies",
   },
   {
     id: "16",
     icon: "🏙️",
-    name: "Đầu tư bất động sản",
+    name: "Real Estate Investment",
   },
   {
     id: "17",
@@ -92,17 +92,17 @@ const favorites = [
   {
     id: "18",
     icon: "🎨",
-    name: "Thiết kế & trang trí nội thất",
+    name: "Interior Design & Decoration",
   },
   {
     id: "19",
     icon: "✂️",
-    name: "Máy vá",
+    name: "Sewing Machine",
   },
   {
     id: "20",
     icon: "🚁",
-    name: "Lái máy bay",
+    name: "Flying Helicopters",
   },
 ];
 

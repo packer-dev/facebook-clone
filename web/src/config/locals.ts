@@ -1,31 +1,31 @@
 const locals = [
   {
     id: "0",
-    name: "Quảng Nam",
+    name: "Quang Nam",
   },
   {
     id: "1",
-    name: "TP Đà nẵng",
+    name: "Da Nang City",
   },
   {
     id: "2",
-    name: "Hội an",
+    name: "Hoi An",
   },
   {
     id: "3",
-    name: "Quảng ngãi",
+    name: "Quang Ngai",
   },
   {
     id: "4",
-    name: "Tam kì",
+    name: "Tam Ky",
   },
   {
     id: "5",
-    name: "Hà nội",
+    name: "Hanoi",
   },
   {
     id: "6",
-    name: "Tam kì",
+    name: "Tam Ky",
   },
 ];
 

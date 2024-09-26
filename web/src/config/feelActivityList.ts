@@ -2,66 +2,67 @@ const feelList = [
   {
     id: "0",
     data: "😀",
-    label: "Hạnh phúc",
+    label: "Happy",
   },
   {
     id: "1",
     data: "🥰",
-    label: "Đáng yêu",
+    label: "Cute",
   },
   {
     id: "2",
     data: "🥲",
-    label: "Buồn",
+    label: "Sad",
   },
   {
     id: "3",
     data: "😃",
-    label: "Biết ơn",
+    label: "Grateful",
   },
   {
     id: "4",
     data: "🤪",
-    label: "Điên",
+    label: "Crazy",
   },
   {
     id: "5",
     data: "😎",
-    label: "Tuyệt vời",
+    label: "Awesome",
   },
 ];
+
 const activityList = [
   {
     id: "0",
     data: "🎉",
-    label: "Đang chúc mừng",
+    label: "Celebrating",
     list: [
       {
         id: "0",
         data: "🎂",
-        label: "sinh nhật",
+        label: "Birthday",
       },
       {
         id: "1",
         data: "🎓",
-        label: "tốt nghiệp",
+        label: "Graduation",
       },
     ],
   },
   {
     id: "1",
     data: "🎮",
-    label: "Đang chơi",
+    label: "Playing",
     list: [
       {
         id: "0",
         data: "🏀",
-        label: "bóng rỗ",
+        label: "Basketball",
       },
       {
         id: "1",
         data: "🏌",
-        label: "tenis",
+        label: "Tennis",
       },
     ],
   },
