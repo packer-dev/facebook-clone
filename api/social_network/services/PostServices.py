@@ -15,6 +15,7 @@ from social_network.models import (
 import os
 from social_network.services.CommonServices import delete_media
 from social_network.services.AuthServices import get_friend_main
+from social_network.services.CommentServices import get_comment_by_id_post
 from datetime import datetime
 import json
 
@@ -33,7 +34,7 @@ async def get_post_by_id_user(
     relationships = ref.child("relationships").get()
     feel_post = ref.child("feel-post").get()
     users = new_value(ref.child("users").get(), [])
-    media_post = new_value(ref.child("medias").child("posts").get(), [])
+    media_post = new_value(ref.child("medias").child("posts").get(), {})
     comments = new_value(ref.child("comments").get(), [])
 
     if posts is None and relationships is None:
@@ -56,6 +57,7 @@ async def get_post_by_id_user(
 
     # Assuming each item has a datetime field in ISO format
     sorted_data = sorted(response, key=lambda x: x["time_created"], reverse=True)
+
     sorted_data = [
         {
             "post": update_user_post(users, post),
@@ -66,7 +68,9 @@ async def get_post_by_id_user(
                 else []
             ),
             "comment": len(new_value(comments.get(post["id"]), [])),
-            "comments": comments[0:5],
+            "comments": await get_comment_by_id_post(
+                post_id=post["id"], limit=5, offset=0, parent=""
+            ),
         }
         for post in sorted_data
     ]

@@ -34,10 +34,11 @@ const AnswerQuestionContent = ({
           />
           <Text
             style={tailwind(
-              `py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rouned-full bg-red-600 text-white font-semibold`
+              `py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rounded-full 
+              bg-red-600 text-white font-semibold`
             )}
           >
-            {`A&Q`}
+            A&Q
           </Text>
         </View>
         <View style={tailwind(`w-full px-4 mt-4`)}>

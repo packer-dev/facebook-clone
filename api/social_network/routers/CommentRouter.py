@@ -13,7 +13,9 @@ router = APIRouter(prefix="/api/social-network/v1/comment")
 
 @router.get("/id")
 async def get_comment_by_id_post_api(post_id: str, limit: int = 10, offset: int = 0):
-    return await get_comment_by_id_post(post_id=post_id, limit=limit, offset=offset)
+    return await get_comment_by_id_post(
+        post_id=post_id, limit=limit, offset=offset, parent=""
+    )
 
 
 @router.post("")

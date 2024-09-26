@@ -4,10 +4,18 @@ from utils import new_value, upload_media_db
 import uuid
 
 
-async def get_comment_by_id_post(post_id: str, limit: int = 10, offset: int = 0):
+async def get_comment_by_id_post(
+    post_id: str, limit: int = 10, offset: int = 0, parent: str = ""
+):
     ref = db.reference("social-network")
     comments = new_value(ref.child("comments").child(post_id).get(), [])
-    filter_comment = [item for item in comments if item["level"] == 1]
+    filter_comment = []
+    if parent == "":
+        filter_comment = [item for item in comments if item["level"] == 1]
+    else:
+        filter_comment = [
+            item for item in comments if item["level"] == 2 and item["parent"] == parent
+        ]
     limit_data = comments[offset : limit * (1 if offset == 0 else offset)]
 
     return {
