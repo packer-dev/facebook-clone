@@ -32,7 +32,7 @@ const HomePostList = () => {
       dispatch(
         updateDataCommon({
           key: "homePosts",
-          value: result?.list || [],
+          value: [...homePosts, ...(result?.list || [])],
         })
       );
       setTotal(result?.total || 0);
@@ -41,6 +41,7 @@ const HomePostList = () => {
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headers, user, offset]);
+  console.log(total);
   //
   return (
     <>
@@ -58,7 +59,7 @@ const HomePostList = () => {
           <LoadingPost />
         </>
       )}
-      {!loading && total < limit * offset && (
+      {!loading && limit * offset < total && (
         <Button onClick={() => setOffset(offset + 1)} loading={loading}>
           View more
         </Button>

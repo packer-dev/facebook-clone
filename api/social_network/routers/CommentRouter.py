@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form, Depends
+from fastapi import APIRouter, UploadFile, File, Form
 from social_network.services.CommentServices import (
     get_comment_by_id_post,
     send_comment,
@@ -7,11 +7,9 @@ from social_network.services.CommentServices import (
 from social_network.models import CommentPayload, Comment
 from typing import Optional, List
 import json
-from fastapi.security import OAuth2PasswordBearer
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter(
-    prefix="/api/social-network/v1/comment", dependencies=[Depends(oauth2_scheme)]
+    prefix="/api/social-network/v1/comment",
 )
 
 

@@ -18,7 +18,7 @@ def generate_token(user_id: str, name: str):
         "user_id": user_id,
         "name": name,
         "iat": datetime.now(tz=timezone.utc),
-        "exp": datetime.now(tz=timezone.utc) + timedelta(days=0, seconds=120),
+        "exp": datetime.now(tz=timezone.utc) + timedelta(days=0, seconds=3600),
     }
     token = jwt.encode(
         payload,
