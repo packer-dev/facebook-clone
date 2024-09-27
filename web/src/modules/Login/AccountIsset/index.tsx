@@ -18,9 +18,9 @@ const AccountIsset = ({
         {Config.NAME_APP} <br />
       </span>
       <div className="w-full mx-auto">
-        <p className="text-2xl py-2 font-semibold">Đăng nhập gần đây</p>
+        <p className="text-2xl py-2 font-semibold">Recent Logins</p>
         <p className="pb-3 text-gray-500 tex-xm">
-          Nhấp vào ảnh của bạn hoặc thêm tài khoản.
+          Click your photo or add an account.
         </p>
         <div className="w-full flex flex-wrap">
           {list.slice(0, 5).map((item, index) => (

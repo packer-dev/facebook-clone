@@ -153,7 +153,6 @@ class PostDTO(BaseModel):
 class Feel(BaseModel):
     id: str
     user: User
-    post: Post
     type: int
 
 

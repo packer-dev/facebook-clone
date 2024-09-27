@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import MainContentMessage from "../../modules/Messenger/ContentMessage/MainContentMessage";
+import MainContentMessage from "@/modules/Messenger/ContentMessage/MainContentMessage";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { useSelector } from "react-redux";
 import { RootState, getCommon, getUser } from "@/reducers";

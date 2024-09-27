@@ -33,7 +33,6 @@ const ItemAccount = (props: any) => {
   }, []);
   const handleLogin = async () => {
     setLoading(true);
-    let unmounted = false;
     if (rememberAccount) {
       const result = {
         data: {
@@ -43,7 +42,6 @@ const ItemAccount = (props: any) => {
           },
         },
       };
-      if (unmounted) return;
       if (result.data.users) {
         const tokenParse = result.data.token;
         if (tokenParse.exp > Math.floor(new Date().getTime() / 1000)) {
@@ -61,9 +59,6 @@ const ItemAccount = (props: any) => {
       modalsDispatch(modalsAction.openModalLogin(item));
     }
     setLoading(false);
-    return () => {
-      unmounted = false;
-    };
   };
   //
   return (
@@ -115,17 +110,18 @@ const ItemAccount = (props: any) => {
       </span>
       <span
         className="text-white font-bold w-6 h-6 rounded-full -top-1.5 -right-1.5 flex justify-center 
-      items-center bg-red-500 absolute text-xs z-50"
+        items-center bg-red-500 absolute text-xs z-50"
       >
         +9
       </span>
-      <div
-        className="w-full flex items-center absolute top-0 left-0 justify-center bg-black bg-opacity-50"
-        ref={refLoading}
-        style={{ display: loading ? "flex" : "none" }}
-      >
-        <i className="fas fa-circle-notch text-xl text-gray-500 mx-9 fa-spin" />
-      </div>
+      {!loading && (
+        <div
+          className="w-full flex items-center absolute top-0 left-0 justify-center bg-black bg-opacity-50"
+          ref={refLoading}
+        >
+          <i className="fas fa-circle-notch text-xl text-gray-500 mx-9 fa-spin" />
+        </div>
+      )}
     </div>
   );
 };

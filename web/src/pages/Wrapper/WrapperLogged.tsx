@@ -11,6 +11,7 @@ import {
 } from "@/reducers/userChat";
 import { User } from "@/interfaces/User";
 import ItemChatMinimize from "@/components/ItemChatMinimize";
+import { generateUUID } from "@/utils";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -30,10 +31,28 @@ const WrapperLogged = ({
   const user = useSelector<RootState, User>(getUser);
   const userChat = useSelector<RootState, UserChatReduxProps>(getUserChat);
   const ref = React.useRef<HTMLAudioElement>(null);
+  React.useEffect(() => {
+    let chatArchive = localStorage?.getItem("chat-archive");
+    if (chatArchive) {
+      chatArchive = JSON.parse(chatArchive);
+      if (!Array.isArray(chatArchive)) return;
+      dispatch(
+        updateDataUserChat({
+          key: "zoom",
+          value: [...chatArchive].map((item) => ({
+            id: generateUUID(),
+            onload: true,
+            localStorage: item,
+          })),
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   //
   return (
     <WrapperPage>
-      <audio ref={ref} src="" muted className="hidden"></audio>
+      <audio ref={ref} src="" muted className="hidden" />
       {user && (
         <div className="w-full bg-gray-100 dark:bg-dark-main h-screen overflow-hidden relative">
           {!hideHeader && <HeaderLogged hideMessage={hideMessage} />}

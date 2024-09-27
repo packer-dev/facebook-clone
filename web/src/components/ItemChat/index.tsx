@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
-import MainContentMessage from "../../modules/Messenger/ContentMessage/MainContentMessage";
-import SettingMessageChild from "../../modules/Messenger/SettingMessage/SettingMessageChild";
+import MainContentMessage from "@/modules/Messenger/ContentMessage/MainContentMessage";
+import SettingMessageChild from "@/modules/Messenger/SettingMessage/SettingMessageChild";
 import WrapperItemChat from "./WrapperItemChat";
 import NewChat from "./NewChat";
 import sound from "@/assets/sound/sound.mp3";
@@ -9,7 +9,7 @@ import { getMessageMain } from "@/apis/messageAPIs";
 import { useSelector } from "react-redux";
 import { RootState, getUser } from "@/reducers";
 import { ZoomUserChatProps } from "@/reducers/userChat";
-import { getGroupById } from "@/apis/groupAPIs";
+import { getGroupAndMessageByIdGroup, getGroupById } from "@/apis/groupAPIs";
 import { User } from "@/interfaces/User";
 import useListeningMessage from "@/hooks/realtime/useListeningMessage";
 
@@ -27,6 +27,9 @@ const ItemChat = ({ item }: ItemChatProps) => {
   const user = useSelector<RootState, User>(getUser);
   useEffect(() => {
     updateData("loading", true);
+
+    if (item.onload) return;
+
     updateData("isNew", item.is_new);
     updateData("group", item.group);
     updateData("userParam", item.user);
@@ -55,11 +58,22 @@ const ItemChat = ({ item }: ItemChatProps) => {
     updateData("loading", false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  useEffect(() => {
+    if (item.onload) {
+      const fetchData = async () => {
+        const result = await getGroupAndMessageByIdGroup(item?.localStorage);
+        updateData("group", result?.group);
+        updateData("messages", result?.messages || []);
+        updateData("members", result?.group?.members || []);
+      };
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useListeningMessage(group?.id);
   //
   return (
-    <WrapperItemChat>
+    <WrapperItemChat onload={item.onload}>
       <audio ref={ref} muted src={sound} className="hidden" />
       {!item.is_new ? <MainContentMessage /> : <NewChat />}
       {showSetting && (

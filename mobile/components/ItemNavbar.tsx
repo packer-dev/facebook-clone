@@ -1,8 +1,8 @@
 import * as React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import tailwind from "../tailwind";
+import tailwind from "@/tailwind";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AppContext } from "../contexts";
+import { AppContext } from "@/contexts";
 
 type ItemNavbarProps = {
   current: any;

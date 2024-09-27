@@ -1,5 +1,5 @@
+import { AppContext } from "@/contexts";
 import * as React from "react";
-import { AppContext } from "../contexts";
 
 const useForm = (fields: any[] = []) => {
   const { state, updateData } = React.useContext(AppContext);

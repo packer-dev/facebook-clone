@@ -55,7 +55,6 @@ export interface PostDTO {
   post: Post;
   medias: Media[];
   feel: Feel[];
-  comment: number;
   comments?: {
     list: CommentDTO[];
     total: number;

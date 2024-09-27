@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import CloseModal from "../components/CloseModal";
+import CloseModal from "@/components/CloseModal";
 import { Dialog } from "@/components/ui/dialog";
 
 type ModalWrapperProps = {

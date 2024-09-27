@@ -52,10 +52,10 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
         data,
         callback: (result) => {
           if (result) {
-            dispatch(login(result));
+            dispatch(login(result?.user));
             navigate(PAGE_HOME);
             setLoading(false);
-            localStorage.setItem("user", result?.id);
+            localStorage.setItem("token", result?.token);
             return;
           }
           setLoading(false);

@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Text, View, TouchableOpacity, Platform, Alert } from "react-native";
 import { AntDesign, MaterialIcons, Feather } from "@expo/vector-icons";
-import tailwind from "../tailwind";
-import { AppContext } from "../contexts/index";
+import tailwind from "@/tailwind";
+import { AppContext } from "@/contexts/index";
 import Avatar from "./Avatar";
 import GroupAvatar from "./GroupAvatar";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { User } from "../interfaces/User";
-import { Group } from "../interfaces/Group";
+import { User } from "@/interfaces/User";
+import { Group } from "@/interfaces/Group";
 
 type HeaderProps = { friend: User };
 

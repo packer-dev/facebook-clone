@@ -16,7 +16,7 @@ export const getListGroupByUserId = async (userId: string) => {
   }).then((res) => res.json());
 };
 
-export const updateInforGroupByGroup = async (formData: any) => {
+export const updateInfoGroupByGroup = async (formData: any) => {
   return fetch(`${API_URL}/group/image`, {
     headers: {
       "Content-Type": "multipart/form-data",

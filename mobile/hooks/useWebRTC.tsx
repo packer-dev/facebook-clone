@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { RTCPeerConnection, mediaDevices } from "react-native-webrtc";
-import { AppContext } from "../contexts";
+import { AppContext } from "@/contexts";
 
 const useWebRTC = () => {
   const {

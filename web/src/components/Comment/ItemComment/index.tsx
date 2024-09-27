@@ -55,8 +55,7 @@ const ItemComment = ({
           ref={refText}
           className={`comment-per dark:bg-dark-third w-max relative p-2 ${
             commentPost.item.content.type !== 2 ? "bg-gray-100" : ""
-          } ml-1 relative rounded-lg`}
-          style={{ maxWidth: "91%" }}
+          } ml-1 relative rounded-lg w-11/12`}
         >
           <p>
             <Link to="" className="font-semibold dark:text-white">

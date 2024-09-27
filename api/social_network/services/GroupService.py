@@ -4,6 +4,21 @@ from social_network.models import Group, FileDTO
 from social_network.services.CommonServices import delete_media, upload_media
 import os
 from datetime import datetime
+from social_network.res import group as resGroup, message as resMessage
+
+
+async def get_group_by_id(group_id):
+    ref = db.reference("social-network")
+    groups = new_value(ref.child("groups").get(), [])
+    groups = [group for group in groups if group["id"] == group_id]
+    group = groups[0] if len(groups) == 1 else None
+    if group is None:
+        return {"group": None, "messages": []}
+    messages = new_value(ref.child("messages").child(group_id).get(), [])
+    return {
+        "group": resGroup.dict(group),
+        "messages": [resMessage.dict(message) for message in messages],
+    }
 
 
 async def update_group(group: Group):
@@ -23,7 +38,7 @@ async def get_messages_by_group(group_id: str):
 
     for message in messages:
         message["user"] = get_info_user(users, message["user"]["id"])
-    return messages
+    return [resMessage.dict(item) for item in messages]
 
 
 async def upload_image_group(file, group_id, folder, emoji, name):

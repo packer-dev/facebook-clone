@@ -7,7 +7,7 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { AppContext } from "../contexts/index";
+import { AppContext } from "@/contexts/index";
 import tailwind from "@/tailwind";
 
 const width = Dimensions.get("window").width - 20;

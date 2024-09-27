@@ -1,7 +1,7 @@
 import React from "react";
-import { AppContext } from "../contexts/index";
-import { Group } from "../interfaces/Group";
-import { User } from "../interfaces/User";
+import { AppContext } from "@/contexts/index";
+import { Group } from "@/interfaces/Group";
+import { User } from "@/interfaces/User";
 
 const useListeningCaller = ({ group }: { group?: Group }) => {
   const {

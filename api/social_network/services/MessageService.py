@@ -3,6 +3,11 @@ from utils import new_value, get_info_user, update_item, find_index
 import uuid
 from social_network.models import Group, SendMessageDTO
 from datetime import datetime
+from social_network.res import (
+    group as resGroup,
+    message as resMessage,
+    user as resUser,
+)
 
 
 async def get_group_by_user(user_id: str):
@@ -11,7 +16,7 @@ async def get_group_by_user(user_id: str):
     users = new_value(ref.child("users").get(), [])
 
     groups = [
-        update_member_group(users, item)
+        resGroup.dict(update_member_group(users, item))
         for item in groups
         if len([obj for obj in item["members"] if obj["user"]["id"] == user_id]) > 0
     ]
@@ -29,7 +34,7 @@ async def get_messages_by_group(group_id: str):
     users = new_value(ref.child("users").get(), [])
 
     for message in messages:
-        message["user"] = get_info_user(users, message["user"]["id"])
+        message["user"] = resUser.dict(get_info_user(users, message["user"]["id"]))
     return messages
 
 
@@ -77,7 +82,7 @@ async def get_group_and_message_by_person(user_id: str, current_id: str):
         return {"group": None, "messages": []}
 
     item = [
-        group
+        resGroup.dict(group)
         for group in groups
         if len(group["members"]) == 2
         and len(
@@ -97,7 +102,10 @@ async def get_group_and_message_by_person(user_id: str, current_id: str):
 
     messages = await get_messages_by_group(item["id"])
 
-    return {"group": item, "messages": messages}
+    return {
+        "group": resGroup(item),
+        "messages": [resMessage.dict(message) for message in messages],
+    }
 
 
 def update_member_group(users, group):

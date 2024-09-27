@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Form
 from social_network.models import LoginDTO, User, RelationshipPayload
 from social_network.services.AuthServices import (
     login,
@@ -15,6 +15,7 @@ from social_network.services.AuthServices import (
 )
 from fastapi import Form, UploadFile, File
 from typing import List, Optional
+from social_network.auth.JWTServices import generate_token, check_token_expired
 
 router = APIRouter(prefix="/api/social-network/v1")
 
@@ -79,3 +80,13 @@ async def upload_media_profile_user_api(
 @router.get("/user/search")
 async def search_user_api(search: str, limit: Optional[int], offset: Optional[int]):
     return await search_user(search=search, limit=limit, offset=offset)
+
+
+@router.post("/jwt/create-token")
+async def create_token_api(user_id: str = Form(...), name: str = Form(...)):
+    return generate_token(user_id=user_id, name=name)
+
+
+@router.get("/jwt/check-token-expired")
+async def check_token_expired_api(token: str):
+    return await check_token_expired(token)

@@ -7,13 +7,12 @@ const AccountNotIsset = () => {
         Facebook <br />
       </span>
       <p className="text-2xl color-word font-semibold">
-        Mạng Xã Hội Lớn Nhất Thế Giới
+        The World's Largest Social Network
       </p>
       <br />
       <br />
       <h2 className="xl:mb-32">
-        Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của
-        bạn.
+        Facebook helps you connect and share with the people in your life.
       </h2>
     </div>
   );

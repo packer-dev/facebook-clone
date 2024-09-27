@@ -2,6 +2,9 @@ from firebase_admin import db
 from social_network.models import CommentPayload
 from utils import new_value, upload_media_db
 import uuid
+from social_network.res import (
+    comment as resComment,
+)
 
 
 async def get_comment_by_id_post(
@@ -22,9 +25,29 @@ async def get_comment_by_id_post(
         "total": len(filter_comment),
         "list": [
             {
-                "item": item,
+                "item": resComment.dict(item),
                 "child": [
-                    child
+                    resComment.dict(child)
+                    for child in comments
+                    if child["level"] == 2 and child["parent"] == item["id"]
+                ],
+            }
+            for item in limit_data
+        ],
+    }
+
+
+def get_comment_by_id_post_off(post_id, comments):
+    comments = new_value(comments[post_id] if post_id in comments else [], [])
+    filter_comment = [item for item in comments if item["level"] == 1]
+    limit_data = comments[0:5]
+    return {
+        "total": len(filter_comment),
+        "list": [
+            {
+                "item": resComment.dict(item),
+                "child": [
+                    resComment.dict(child)
                     for child in comments
                     if child["level"] == 2 and child["parent"] == item["id"]
                 ],

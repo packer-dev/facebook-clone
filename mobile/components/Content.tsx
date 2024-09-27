@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
-import tailwind from "../tailwind";
-import { AppContext } from "../contexts/index";
+import tailwind from "@/tailwind";
+import { AppContext } from "@/contexts/index";
 import CurrentUser from "./Messenger/CurrentUser";
 import Sender from "./Messenger/Sender";
 

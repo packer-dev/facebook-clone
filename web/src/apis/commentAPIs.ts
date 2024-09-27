@@ -19,6 +19,6 @@ export const getCommentByPost = async (
   limit: number = 5
 ) => {
   return fetch(
-    `${API_URL}/comment/id?post_id=${postId}&offset=0&limit=10`
+    `${API_URL}/comment/id?post_id=${postId}&offset=${offset}&limit=${limit}`
   ).then((res) => res.json());
 };

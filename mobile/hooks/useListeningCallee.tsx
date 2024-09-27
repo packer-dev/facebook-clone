@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContext } from "../contexts/index";
+import { AppContext } from "@/contexts/index";
 import useSound from "./useSound";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 // import { RTCSessionDescription } from "react-native-webrtc";

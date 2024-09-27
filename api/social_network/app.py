@@ -8,6 +8,7 @@ from social_network.routers.CommentRouter import router as commentRouter
 from social_network.routers.NotificationRouter import router as notificationRouter
 from social_network.routers.GroupRouter import router as groupRouter
 
+
 router = APIRouter()
 
 router.include_router(authRouter)

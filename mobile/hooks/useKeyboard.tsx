@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Keyboard, Dimensions } from "react-native";
-import { AppContext } from "../contexts/index";
+import { AppContext } from "@/contexts/index";
 
 const useKeyboard = () => {
   const { updateData } = React.useContext(AppContext);

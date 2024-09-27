@@ -4,10 +4,10 @@ let initialState = {
   Authorization: "None",
 };
 
-if (localStorage.getItem("user")) {
-  const token = localStorage.getItem("user");
+if (localStorage.getItem("token")) {
+  const token = localStorage.getItem("token");
   if (token) {
-    initialState = { Authorization: localStorage.getItem("user") };
+    initialState = { Authorization: localStorage.getItem("token") };
   }
 }
 
@@ -15,7 +15,7 @@ const headersSlice = createSlice({
   name: "headers",
   initialState,
   reducers: {
-    updatData: (
+    updateData: (
       state: any,
       action: PayloadAction<{
         key: any;

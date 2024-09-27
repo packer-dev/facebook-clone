@@ -15,7 +15,7 @@ import { PopupProps } from "./PopupProps";
 import { AppContext } from "@/contexts";
 import { dataFakeGroup, dataFakeMessage, emojiList } from "@/utils";
 import { sendMessageAPI } from "@/api";
-import { updateInforGroupByGroup } from "@/apis/groupAPIs";
+import { updateInfoGroupByGroup } from "@/apis/groupAPIs";
 import Popup from "./Popup";
 import tailwind from "@/tailwind";
 import Avatar from "@/components/Avatar";
@@ -67,7 +67,7 @@ const ChangeImage = ({ index, popupId }: PopupProps) => {
           message,
         });
     }
-    const response = await updateInforGroupByGroup(formData);
+    const response = await updateInfoGroupByGroup(formData);
     updateData("loading", false);
     updateData("popup", []);
     updateData("groupCurrent", response);

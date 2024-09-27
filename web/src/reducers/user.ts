@@ -12,7 +12,7 @@ const userSlice = createSlice({
       return action.payload; // Set the user
     },
     logout: (state) => {
-      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       return null; // Clear the user from state
     },
     loginToken: (state, action: PayloadAction<string>) => {

@@ -7,6 +7,8 @@ export type ZoomUserChatProps = {
   group?: Group;
   is_new: boolean;
   user?: User;
+  onload?: boolean;
+  localStorage?: "";
 };
 
 export type UserChatReduxProps = {

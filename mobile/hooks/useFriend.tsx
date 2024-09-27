@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getFriendUser, getSuggestFriendByUserId } from "../apis/userAPIs";
-import { AppContext } from "../contexts/index";
+import { AppContext } from "@/contexts/index";
 import { User } from "../interfaces/User";
 
 const useFriend = (status: number) => {

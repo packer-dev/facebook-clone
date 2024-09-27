@@ -111,7 +111,7 @@ const Post = (props: any) => {
           <>
             <Content {...props} loading={props.loading} />
             <Toolbar {...props} loading={props.loading} />
-            {props.isDetail && <Comments {...props} list={comments} />}
+            <Comments {...props} list={comments} />
           </>
         )}
         {props.isDetail && (

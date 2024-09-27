@@ -16,6 +16,8 @@ from social_network.services.CommonServices import upload_media, delete_media
 import os
 from social_network.dto.response import user_response
 from typing import List
+from social_network.auth.JWTServices import generate_token
+from social_network.res import user as resUser
 
 
 async def get_user_by_id(id: str):
@@ -23,7 +25,7 @@ async def get_user_by_id(id: str):
     users = new_value(ref.child("users").get(), [])
     user = find_by_id(users, id)
 
-    return user_response(user)
+    return resUser.dict(user_response(user))
 
 
 async def login(login_dto: LoginDTO):
@@ -36,7 +38,10 @@ async def login(login_dto: LoginDTO):
             index = find_index(users, obj["id"])
             users[index]["last_time_active"] = str(datetime.now())
             ref.child("users").set(users)
-            return user_response(users[index])
+            return {
+                "user": resUser.dict(user_response(users[index])),
+                "token": generate_token(users[index]["id"], users[index]["name"]),
+            }
 
     return None
 
@@ -352,7 +357,7 @@ async def get_friend_user(user_id: str):
 
     return [
         {
-            "user": user_response(item),
+            "user": resUser.dict(user_response(item)),
             "manual": get_manual_friend(
                 relationships=relationships,
                 users=users,
@@ -392,7 +397,7 @@ async def get_request_friend_user(user_id, is_send):
 
     return [
         {
-            "user": item,
+            "user": resUser.dict(item),
             "manual": get_manual_friend(
                 relationships=relationships,
                 users=users,
@@ -422,7 +427,7 @@ async def search_user(search: str, limit: int = 10, offset: int = 0):
     for user in users:
         name = str(user["name"])
         if search.lower() in name.lower():
-            new_list.append(user)
+            new_list.append(resUser.dict(user))
     users = new_list[offset : limit * (1 if offset == 0 else offset)]
 
     return users

@@ -1,10 +1,10 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 from typing import List
 import firebase_admin
-from firebase_admin import credentials, db
+from firebase_admin import credentials
 from pydantic import BaseModel
 from chatgpt.app import router as chatGPTRouter
 from components.app import router as componentRouter

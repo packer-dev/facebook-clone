@@ -17,8 +17,7 @@ const WebcamView = () => {
         screenshotFormat="image/jpeg"
         width={400}
         videoConstraints={videoConstraints}
-        className="transform"
-        style={{ transform: "scaleX(-1)" }}
+        className="transform scale-x-[-1px]"
       />
     </div>
   );

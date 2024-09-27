@@ -8,6 +8,12 @@ export const getGroupById = async (groupId: string) => {
   );
 };
 
+export const getGroupAndMessageByIdGroup = async (groupId: string) => {
+  return fetch(`${API_URL}/group?group_id=${groupId}`).then((res) =>
+    res.json()
+  );
+};
+
 export const getListGroupByUserId = async (userId: string) => {
   return fetch(`${API_URL}/message/list?user_id=${userId}`, {
     headers: {
@@ -16,7 +22,7 @@ export const getListGroupByUserId = async (userId: string) => {
   }).then((res) => res.json());
 };
 
-export const updateInforGroupByGroup = async (formData: any) => {
+export const updateInfoGroupByGroup = async (formData: any) => {
   return fetch(`${API_URL}/group/image`, {
     headers: {
       "Content-Type": "multipart/form-data",

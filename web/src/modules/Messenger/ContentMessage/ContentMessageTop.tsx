@@ -184,6 +184,14 @@ const ContentMessageTop = () => {
                           ),
                         })
                       );
+                      const chatArchive = localStorage?.getItem("chat-archive");
+                      if (!Array.isArray(chatArchive)) return;
+                      localStorage.setItem(
+                        "chat-archive",
+                        JSON.stringify(
+                          [...chatArchive].filter((item) => item !== group.id)
+                        )
+                      );
                     }}
                   >
                     <svg width="26px" height="26px" viewBox="-4 -4 24 24">

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Form, UploadFile, File
+from fastapi import APIRouter, Form, UploadFile, File, Depends
 from social_network.services.PostServices import (
     get_post_by_id_user,
     create_post,
@@ -14,6 +14,7 @@ from social_network.models import (
     PostPayload,
     Media,
 )
+from social_network.auth.JWTServices import get_user_from_token
 from typing import List, Optional, Union
 import json
 

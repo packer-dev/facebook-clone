@@ -77,15 +77,16 @@ const ItemPost = ({
           postDetail={postDetail}
         />
       ))}
-      {postDetail.comment && postDetail.comment <= limit * (offset || 1) && (
-        <p
-          aria-hidden
-          onClick={handleViewMore}
-          className="text-main text-sm font-semibold cursor-pointer"
-        >
-          {loading ? "Loading..." : "View more"}
-        </p>
-      )}
+      {postDetail.comments.total &&
+        postDetail.comments.total <= limit * (offset || 1) && (
+          <p
+            aria-hidden
+            onClick={handleViewMore}
+            className="text-main text-sm font-semibold cursor-pointer"
+          >
+            {loading ? "Loading..." : "View more"}
+          </p>
+        )}
     </div>
   ) : (
     <LoadingPost />

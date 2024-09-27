@@ -1,6 +1,6 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { UserProfileContext } from "../../contexts/UserProfileContext";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 
 import ItemFriendCanKnow from "./ItemFriendCanKnow";
 import { RootState, getUser } from "@/reducers";

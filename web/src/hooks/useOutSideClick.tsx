@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { ModalContext } from "../contexts/ModalContext/ModalContext";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 
 const useOutSideClick = (ref: any, func?: Function) => {
   //

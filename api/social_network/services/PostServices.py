@@ -15,8 +15,14 @@ from social_network.models import (
 import os
 from social_network.services.CommonServices import delete_media
 from social_network.services.AuthServices import get_friend_main
-from social_network.services.CommentServices import get_comment_by_id_post
+from social_network.services.CommentServices import (
+    get_comment_by_id_post_off,
+)
 from datetime import datetime
+from social_network.res import (
+    post as resPost,
+    feel as resFeel,
+)
 import json
 
 
@@ -60,22 +66,26 @@ async def get_post_by_id_user(
 
     sorted_data = [
         {
-            "post": update_user_post(users, post),
+            "post": resPost.dict(update_user_post(users, post)),
             "medias": new_value(media_post.get(post["id"]), []),
-            "feel": (
-                feel_post[post["id"]]
-                if feel_post is not None and post["id"] in feel_post
-                else []
-            ),
-            "comment": len(new_value(comments.get(post["id"]), [])),
-            "comments": await get_comment_by_id_post(
-                post_id=post["id"], limit=5, offset=0, parent=""
+            "feel": [
+                resFeel.dict(item)
+                for item in (
+                    feel_post[post["id"]]
+                    if feel_post is not None and post["id"] in feel_post
+                    else []
+                )
+            ],
+            "comments": get_comment_by_id_post_off(
+                post_id=post["id"], comments=comments
             ),
         }
         for post in sorted_data
     ]
+    total = len(sorted_data)
+
     sorted_data = sorted_data[offset : limit * (1 if offset == 0 else offset)]
-    return {"total": len(sorted_data), "list": sorted_data}
+    return {"total": (total), "list": sorted_data}
 
 
 async def create_post(post_payload: PostPayload):

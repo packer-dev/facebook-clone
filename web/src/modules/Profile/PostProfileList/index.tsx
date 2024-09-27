@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
-import ItemPost from "../../../components/ItemPost";
-import LoadingPost from "../../../components/ItemPost/LoadingPost";
+import ItemPost from "@/components/ItemPost";
+import LoadingPost from "@/components/ItemPost/LoadingPost";
 import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { Button } from "@/components/ui/button";
 
 const PostProfileList = () => {
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
-  const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const limit = 20;
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
@@ -31,6 +35,7 @@ const PostProfileList = () => {
           value: result?.list || [],
         })
       );
+      setTotal(result?.total || 0);
       setLoading(false);
     };
     fetchData();
@@ -48,13 +53,16 @@ const PostProfileList = () => {
               There are no posts yet.
             </p>
           )}
-      {loading ? (
+      {loading && (
         <>
           <LoadingPost />
           <LoadingPost />
         </>
-      ) : (
-        ""
+      )}
+      {!loading && total < limit * offset && (
+        <Button onClick={() => setOffset(offset + 1)} loading={loading}>
+          View more
+        </Button>
       )}
     </div>
   );

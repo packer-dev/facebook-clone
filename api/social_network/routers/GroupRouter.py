@@ -4,6 +4,7 @@ from social_network.services.GroupService import (
     get_messages_by_group,
     upload_image_group,
     upload_info_group,
+    get_group_by_id,
 )
 from social_network.models import Group
 from typing import Optional
@@ -14,6 +15,11 @@ router = APIRouter(prefix="/api/social-network/v1/group")
 @router.post("/update")
 async def update_group_api(group: Group):
     return await update_group(group)
+
+
+@router.get("")
+async def get_group_by_id_api(group_id: str):
+    return await get_group_by_id(group_id)
 
 
 @router.get("/id")

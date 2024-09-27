@@ -42,8 +42,8 @@ const Login = () => {
     if (!result) {
       setError(true);
     } else {
-      await SecureStore.setItemAsync("token", result?.id);
-      updateData("user", userModel(result));
+      await SecureStore.setItemAsync("token", result?.token);
+      updateData("user", userModel(result?.user));
       navigation.navigate("Facebook");
       Keyboard.dismiss();
     }

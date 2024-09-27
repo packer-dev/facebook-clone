@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ModalContext } from "../../contexts/ModalContext/ModalContext";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { useNavigate } from "react-router-dom";
 import "moment/locale/vi";
 import { AppDispatch, RootState, getUser } from "@/reducers";
 import { PAGE_LOGIN } from "@/constants/Config";
-import { getUserById } from "@/apis/userAPIs";
+import { checkTokenExpired } from "@/apis/userAPIs";
 import { login } from "@/reducers/user";
 import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
@@ -24,7 +24,7 @@ export default function WrapperPage(props) {
     //
     if (!ref.current || user) return;
     document.body.className = modals.data ? "overflow-hidden" : "";
-    const dataLocal = localStorage.getItem("user");
+    const dataLocal = localStorage.getItem("token");
     if (!dataLocal && !user) {
       navigation(PAGE_LOGIN);
       ref.current.className = "";
@@ -34,7 +34,7 @@ export default function WrapperPage(props) {
 
     const fetchData = async () => {
       setLoading(true);
-      const result = await getUserById(dataLocal);
+      const result = await checkTokenExpired(dataLocal);
       if (result && ref.current) {
         if (result?.is_dark) {
           ref.current.classList.add("dark");
@@ -42,6 +42,8 @@ export default function WrapperPage(props) {
           ref.current.classList.remove("dark");
         }
         dispatch(login(result));
+      } else {
+        navigation(PAGE_LOGIN);
       }
       setLoading(false);
     };

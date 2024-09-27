@@ -84,3 +84,8 @@ export const updateProfileUser = async (formData: any) => {
     method: "POST",
   }).then((res) => res.json());
 };
+
+export const checkTokenExpired = async (token: string) =>
+  fetch(`${API_URL}/jwt/check-token-expired?token=${token}`).then((res) =>
+    res.json()
+  );

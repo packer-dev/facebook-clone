@@ -54,7 +54,7 @@ export default forwardRef(function Input(
           placeholder={placeholder}
           className={`${
             width || "w-full"
-          } ${className} ${borderValidation} focus:border-blue-600 ${
+          } ${className} ${borderValidation} focus:border-blue-600 p-2.5 ${
             search ? "pl-10" : ""
           } dark:border-dark-third rounded-sm border-solid focus:shadow-sm border-gray-200 border dark:text-white`}
           {...Field}

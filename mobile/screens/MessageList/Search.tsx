@@ -1,5 +1,5 @@
 import * as React from "react";
-import tailwind from "../../tailwind";
+import tailwind from "@/tailwind";
 import { View, TextInput } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 

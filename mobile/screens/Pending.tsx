@@ -5,7 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { AppContext } from "@/contexts";
 import useWebRTC from "@/hooks/useWebRTC";
-import { getUserById } from "@/apis/userAPIs";
+import { checkTokenExpired } from "@/apis/userAPIs";
 import { userModel } from "@/models";
 import tailwind from "@/tailwind";
 
@@ -21,11 +21,9 @@ const Pending = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       const token = await SecureStore.getItemAsync("token");
-      if (token) {
-        const userResponse = await getUserById(token);
-        updateData("user", userModel(userResponse));
-      }
-      navigation.navigate(token ? "Facebook" : "Login");
+      const userResponse = await checkTokenExpired(token || "");
+      if (userResponse) updateData("user", userResponse);
+      navigation.navigate(userResponse ? "Facebook" : "Login");
     };
     fetchData();
     // eslint-disable-next-line  react-hooks/exhaustive-deps
