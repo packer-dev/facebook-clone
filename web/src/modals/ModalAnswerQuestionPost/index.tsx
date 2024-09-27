@@ -14,7 +14,7 @@ export default function ModalAnswerQuestionPost() {
   //
   return (
     <ModalWrapperChildPost title="Organize Q&A session">
-      <div className="w-full px-5 pb-2 pt-10">
+      <div className="w-full pb-2 pt-10">
         <ContentAnswerQuestion
           edit
           setCurrent={setCurrent}

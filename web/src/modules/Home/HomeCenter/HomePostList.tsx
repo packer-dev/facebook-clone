@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ItemPost from "../../ItemPost";
-import LoadingPost from "../../ItemPost/LoadingPost";
+import ItemPost from "../../../components/ItemPost";
+import LoadingPost from "../../../components/ItemPost/LoadingPost";
 import {
   AppDispatch,
   RootState,

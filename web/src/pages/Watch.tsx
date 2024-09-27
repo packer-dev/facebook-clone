@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
 import ListItemWatchLeft from "@/modules/Watch/WatchLeft";
@@ -30,12 +30,12 @@ export default function Watch() {
                 hidden justify-center text-xl hover:bg-gray-300 dark:hover:bg-dark-second"
               />
             </div>
-            <div className="md:flex hidden w-full ">
-              <InputComponent
+            <div className="md:flex hidden w-full">
+              <Input
                 type="text"
                 search
                 placeholder="Search video..."
-                className="p-2 bg-gray-200 dark:bg-dark-third rounded-full"
+                className="rounded-full"
               />
             </div>
           </div>

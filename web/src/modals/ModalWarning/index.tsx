@@ -14,8 +14,8 @@ export default function ModalWarning({ title, handleEvent, button, content }) {
   return (
     <ModalWrapper title={title}>
       <hr className="border-gray-300 dark:border-dark-second mt-2"></hr>
-      <p className="p-3 text-justify">{content}</p>
-      <div className="w-full py-2 mt-2 flex items-center px-2 justify-end">
+      <p className="py-3 text-justify">{content}</p>
+      <div className="w-full py-2 mt-2 flex items-center justify-end">
         <div className="flex items-center gap-2">
           <Button
             onClick={() => modalsDispatch(modalsAction.closeModal())}

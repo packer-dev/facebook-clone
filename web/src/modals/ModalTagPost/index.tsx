@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { useSelector } from "react-redux";
 import { getCommon, RootState } from "@/reducers";
 import { CommonDataProps } from "@/reducers/common";
@@ -13,9 +13,9 @@ const ModalTagPost = () => {
   //
   return (
     <ModalWrapperChildPost title="Tag friend">
-      <div className="w-full my-2 px-2 flex items-center">
-        <InputComponent
-          className="dark:text-white w-10/12 p-2.5 bg-transparent dark:bg-dark-third rounded-3xl border border-solid border-gray-300"
+      <div className="w-full my-2 flex items-center">
+        <Input
+          className="w-10/12"
           search
           type="text"
           placeholder="Modal search friends"
@@ -32,7 +32,7 @@ const ModalTagPost = () => {
         </span>
       </div>
       {posts.tags.length > 0 && (
-        <div className="w-full pb-3 px-2">
+        <div className="w-full pb-3">
           <p className="w-full mx-auto dark:text-gray-300 font-bold py-1">
             Tagged
           </p>

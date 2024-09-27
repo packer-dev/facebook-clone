@@ -8,7 +8,7 @@ const GroupChooseBackground = (props) => {
   const { postsDispatch, postsAction } = useContext(PostContext);
   //
   return (
-    <div className="mt-2 mb-12 w-full px-3">
+    <div className="mt-2 mb-12 w-full">
       <p className="text-xm font-semibold my-3">{title}</p>
       <ul className="w-full flex gap-2 flex-wrap">
         {list.map((item) => (

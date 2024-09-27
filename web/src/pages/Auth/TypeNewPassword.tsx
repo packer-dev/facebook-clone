@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { PAGE_LOGIN } from "@/constants/Config";
 import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
@@ -20,11 +20,10 @@ export default function TypeNewPassword() {
           password is a combination of letters, numbers, and punctuation.
         </p>
         <div className="w-full flex my-2 items-center">
-          <InputComponent
+          <Input
             type="password"
             handleChange={(data) => setPasswordNew(data)}
             placeholder="New password..."
-            className="w-full p-3 rounded-md border-2"
           />
         </div>
       </div>

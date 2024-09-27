@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { PAGE_LOGIN, PAGE_RECOVER_ACCOUNT } from "@/constants/Config";
 import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
@@ -18,11 +18,10 @@ export default function ForgetAccount() {
         <p className="py-3">
           Please enter your email or mobile number to search for your account.
         </p>
-        <InputComponent
+        <Input
           type="text"
           name="code"
           placeholder="Email"
-          className="border border-gray-300 rounded-lg p-2.5"
           handleChange={(data) => {
             setKeyword(data);
             setError("");

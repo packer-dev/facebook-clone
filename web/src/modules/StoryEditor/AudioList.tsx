@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import audioList from "@/config/audioList";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 
 const AudioList = () => {
   //
@@ -29,13 +29,25 @@ const AudioList = () => {
       <p className="font-bold text-xm text-left py-1 px-2 dark:text-white">
         Music
       </p>
-      <audio ref={refAudio} autoPlay className="hidden" loop>
-        <track src={audio ? audio.src : ""} default></track>
+      <audio
+        ref={refAudio}
+        autoPlay
+        className="hidden"
+        loop
+        src={audio ? audio.src : ""}
+      >
+        <track
+          src="path-to-captions.vtt"
+          kind="captions"
+          srcLang="en"
+          label="English"
+          default
+        />
       </audio>
-      <InputComponent
+      <Input
         type="text"
         name=""
-        className="justify-center dark:bg-dark-second bg-gray-100 p-2.5 rounded-lg dark:text-white my-3"
+        className="my-3"
         width="w-11/12"
         placeholder="Type name music"
       />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemHeaderLoggedLeft from "./ItemHeaderLoggedLeft";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
 import { searchUser } from "@/apis/userAPIs";
@@ -50,14 +50,14 @@ export default function HeaderLoggedLeft() {
                 className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full 
                 flex items-center justify-center cursor-pointer"
               >
-                <InputComponent
+                <Input
                   handleChange={(data: any) => {
                     setLoading(true);
                     setKeyword(data);
                   }}
                   type="text"
                   placeholder="Search on Facebook"
-                  className="w-56 outline-none bg-transparent hidden xl:inline-block dark:text-white"
+                  className="w-56 outline-none bg-transparent hidden xl:inline-block"
                 />
               </div>
             </div>
@@ -91,11 +91,11 @@ export default function HeaderLoggedLeft() {
       <div className="mt-1 pl-4">
         <div className="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-11 h-11 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
           <i className="bx bx-search text-gray-500 text-xl xl:mr-2 dark:text-dark-txt" />
-          <InputComponent
+          <Input
             handleClick={() => setShow(true)}
             type="text"
             placeholder="Search on facebook"
-            className="outline-none bg-transparent hidden xl:inline-block dark:text-white"
+            className="outline-none bg-transparent hidden xl:inline-block"
           />
         </div>
       </div>

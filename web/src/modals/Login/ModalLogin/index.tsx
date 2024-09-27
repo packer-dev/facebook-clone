@@ -1,6 +1,6 @@
 import * as React from "react";
 import { User } from "@/interfaces/User";
-import FormLogin from "@/components/Login/FormLogin";
+import FormLogin from "@/modules/Login/FormLogin";
 import ModalWrapper from "@/modals/ModalWrapper";
 
 type ModalLoginProps = {

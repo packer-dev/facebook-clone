@@ -1,4 +1,4 @@
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { Button } from "@/components/ui/button";
 import { PAGE_LOGIN } from "@/constants/Config";
 import * as React from "react";
@@ -21,17 +21,10 @@ export default function HeaderSignedOut(props: any) {
       </span>
       {!hideFormLogin && (
         <div className="hidden w-2/3 gap-3 items-center lg:flex justify-end mr-5">
-          <InputComponent
-            type="text"
-            name="email"
-            className="p-2 border border-gray-300 rounded-lg"
-            width="w-48"
-            placeholder="Email"
-          />
-          <InputComponent
+          <Input type="text" name="email" width="w-48" placeholder="Email" />
+          <Input
             type="password"
             name="password"
-            className="p-2 border border-gray-300 rounded-lg"
             width="w-48"
             placeholder="Password"
           />

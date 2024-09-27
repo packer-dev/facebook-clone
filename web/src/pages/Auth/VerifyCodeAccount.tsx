@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { PAGE_LOGIN } from "@/constants/Config";
 import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import useAuthentication from "@/hooks/useAuthentication";
@@ -27,7 +27,7 @@ const VerifyCodeAccount = (props) => {
         </p>
         <div className="w-full flex my-2 items-center">
           <div className="w-1/2">
-            <InputComponent
+            <Input
               handleChange={(value) => {
                 setError(null);
                 setCode(value);
@@ -35,7 +35,6 @@ const VerifyCodeAccount = (props) => {
               type="text"
               value={code}
               placeholder="Enter code"
-              className="w-full p-3 rounded-md border-2"
             />
             {error && (
               <p className="text-red-600 font-semibold text-sm my-2">{error}</p>

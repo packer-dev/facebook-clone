@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import locals from "@/config/locals";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 
 export default function ModalLocalPost() {
   //
@@ -10,14 +10,8 @@ export default function ModalLocalPost() {
   //
   return (
     <ModalWrapperChildPost title="Search location">
-      <div className="w-full my-2 px-2">
-        <InputComponent
-          className="dark:text-white w-full p-2.5 border border-gray-300 
-          pl-4 bg-transparent dark:bg-dark-third rounded-3xl"
-          type="text"
-          placeholder="Search"
-          search
-        />
+      <div className="w-full my-2">
+        <Input type="text" placeholder="Search" search />
       </div>
       <div className="tac-user wrapper-content-right">
         {locals.map((local) => (

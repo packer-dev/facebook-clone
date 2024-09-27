@@ -1,7 +1,7 @@
 import * as React from "react";
-import HomeLeft from "@/components/Home/HomeLeft/HomeLeft";
-import HomeCenter from "@/components/Home/HomeCenter";
-import HomeRight from "@/components/Home/HomeRight";
+import HomeLeft from "@/modules/Home/HomeLeft/HomeLeft";
+import HomeCenter from "@/modules/Home/HomeCenter";
+import HomeRight from "@/modules/Home/HomeRight";
 import useTitle from "@/hooks/useTitle";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import useSetPageCurrent from "@/hooks/useSetPageCurrent";

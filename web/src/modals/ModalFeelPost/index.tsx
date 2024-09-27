@@ -4,7 +4,7 @@ import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import ActivityPost from "./ActivityPost";
 import FeelPost from "./FeelPost";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 
 export default function ModalFeelPost() {
   //
@@ -79,21 +79,10 @@ export default function ModalFeelPost() {
                 &times;
               </span>
             </div>
-            <InputComponent
-              className="dark:text-white w-full py-2 border border-gray-300 bg-transparent dark:bg-dark-third rounded-3xl"
-              type="text"
-              placeholder="Search"
-              search
-              width="w-2/3 ml-2"
-            />
+            <Input type="text" placeholder="Search" search width="w-2/3 ml-2" />
           </div>
         ) : (
-          <InputComponent
-            className="dark:text-white w-full p-2.5 border border-gray-300 bg-transparent dark:bg-dark-third rounded-3xl"
-            type="text"
-            placeholder="Search"
-            search
-          />
+          <Input type="text" placeholder="Search" search />
         )}
       </div>
       <div className="w-full h-80 overflow-x-hidden overflow-y-auto max-h-80 wrapper-content-right">

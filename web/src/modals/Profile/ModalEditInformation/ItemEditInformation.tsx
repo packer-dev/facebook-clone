@@ -1,4 +1,4 @@
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import React, { useRef, useState, useEffect } from "react";
 
 export default function ItemEditInformation({
@@ -23,12 +23,10 @@ export default function ItemEditInformation({
   return (
     <div className="w-full my-1.5">
       <p className="font-semibold mb-1">{title}</p>
-      <InputComponent
+      <Input
         ref={ref}
         type="text"
         name={name}
-        className="p-2 rounded-lg w-full border border-solid 
-            border-gray-300 dark:border-gray-300 text-base"
         placeholder={placeholder}
         handleChange={(data) => {
           setInput(data);

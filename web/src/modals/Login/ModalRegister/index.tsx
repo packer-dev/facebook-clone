@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { REGEX_EMAIL } from "@/constants/Config";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { FormRegisterData, registerUserRequest } from "@/actions/user";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/reducers";
@@ -64,18 +64,18 @@ function ModalRegister() {
       <form onSubmit={handleSubmit(handleRegister)} className="mt-2">
         <div className="w-full gap-3 flex">
           <div className="w-full">
-            <InputComponent
+            <Input
               register={register}
               error={errors["name"]}
               type="text"
               name="name"
-              className="w-full p-2 border my-1"
+              className="w-full my-1"
               placeholder="Name"
             />
           </div>
         </div>
         <div className="w-full">
-          <InputComponent
+          <Input
             register={register}
             error={errors["email"]}
             type="text"
@@ -84,7 +84,7 @@ function ModalRegister() {
               setErrorsIsset(false);
               setEmailAgain(REGEX_EMAIL.test(value));
             }}
-            className="p-2 border my-1"
+            className="w-full my-1"
             placeholder="Email"
           />
         </div>
@@ -95,23 +95,23 @@ function ModalRegister() {
         )}
         {emailAgain && (
           <div className="w-full">
-            <InputComponent
+            <Input
               register={register}
               error={errors["emailAgain"]}
               type="text"
               name="emailAgain"
-              className="p-2 border my-1"
+              className="w-full my-1"
               placeholder="Email again"
             />
           </div>
         )}
         <div className="w-full">
-          <InputComponent
+          <Input
             register={register}
             error={errors["password"]}
             type="password"
             name="password"
-            className="p-2 border my-1"
+            className="w-full my-1"
             placeholder="Password"
           />
         </div>

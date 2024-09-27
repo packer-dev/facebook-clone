@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import EndFormLogin from "@/components/Login/EndFormLogin";
-import FooterLogin from "@/components/Login/FooterLogin";
-import FormLogin from "@/components/Login/FormLogin";
-import SaveLogin from "@/components/Login/SaveLogin";
+import EndFormLogin from "@/modules/Login/EndFormLogin";
+import FooterLogin from "@/modules/Login/FooterLogin";
+import FormLogin from "@/modules/Login/FormLogin";
+import SaveLogin from "@/modules/Login/SaveLogin";
 import { PAGE_HOME } from "@/constants/Config";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import useTitle from "@/hooks/useTitle";

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import HeaderSignedOut from "@/modules/Header/HeaderSignedOut";
-import FooterLogin from "@/components/Login/FooterLogin";
+import FooterLogin from "@/modules/Login/FooterLogin";
 import { PAGE_HOME } from "@/constants/Config";
 import WrapperPage from "./WrapperPage";
 import { RootState, getUser } from "@/reducers";

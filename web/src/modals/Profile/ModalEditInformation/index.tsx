@@ -21,7 +21,7 @@ const ModalEditInformation = ({
   //
   return (
     <ModalWrapper title="Edit details">
-      <div className="p-2">
+      <div className="py-2">
         <p className="text-gray-500 dark:text-gray-300 text-sm mt-1 mb-4">
           The details you choose will be displayed publicly.
         </p>

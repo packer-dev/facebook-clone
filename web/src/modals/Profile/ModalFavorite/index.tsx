@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from "react";
 import favorites from "@/config/favorites";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { User } from "@/interfaces/User";
 import { updateUser } from "@/apis/userAPIs";
 import { Button } from "@/components/ui/button";
@@ -25,18 +25,12 @@ const ModalFavorite = ({
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   //
   return (
-    <ModalWrapper
-      title="Favorites"
-      className="animate__rubberBand shadow-sm border-t border-b border-solid border-gray-200 bg-white absolute  
-        z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg transform -translate-x-1/2 -translate-y-1/2 py-2 
-        shadow-lv1 dark:border-dark-third dark:bg-dark-third px-3"
-    >
-      <div className="w-full h-[510px] p-2">
+    <ModalWrapper title="Favorites">
+      <div className="w-full h-[510px] py-2">
         <div className="my-2 w-full">
-          <InputComponent
+          <Input
             type="text"
             search
-            className="p-2 w-full border-2 border-solid border-gray-200 rounded-full"
             ref={ref}
             placeholder="What do you do for fun?"
             handleChange={(data) => {

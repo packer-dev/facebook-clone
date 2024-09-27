@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { PAGE_FORGET_ACCOUNT, PAGE_HOME } from "@/constants/Config";
 import { useDispatch } from "react-redux";
-import InputComponent from "@/components/InputComponent";
+import Input from "@/components/Input";
 import { User } from "@/interfaces/User";
 import { AppDispatch } from "@/reducers";
 import { FormLoginData, loginUserRequest } from "@/actions/user";
@@ -66,10 +66,7 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
   };
 
   return (
-    <form
-      className="w-full bg-white p-2.5"
-      onSubmit={handleSubmit(handleLogin)}
-    >
+    <form onSubmit={handleSubmit(handleLogin)}>
       {loginFast ? (
         <div className="w-full flex flex-col justify-center p-3">
           <img
@@ -82,22 +79,22 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
           </p>
         </div>
       ) : (
-        <InputComponent
+        <Input
           type="text"
           name="email"
-          placeholder="Email Or Phone Number"
-          className={`border rounded-md p-3 my-2 ${
+          placeholder="Email"
+          className={`my-2 ${
             errors["email"] ? "border-red-500 text-red-500" : "border-gray-200"
           }`}
           register={register}
           error={errors["email"]}
         />
       )}
-      <InputComponent
+      <Input
         type="password"
         name="password"
         placeholder="Password"
-        className={`border rounded-md p-3 my-2 ${
+        className={`my-2 ${
           errors["password"] ? "border-red-500 text-red-500" : "border-gray-200"
         }`}
         register={register}

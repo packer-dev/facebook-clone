@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputComponent from "../../../components/InputComponent";
+import Input from "../../../components/Input";
 import ItemMessageList from "./ItemMessageList";
 import { Group } from "@/interfaces/Group";
 
@@ -33,9 +33,9 @@ const MessageList = ({ groups, mini, closePopover }: MessageListProps) => {
         </div>
       </div>
       <div className="w-full text-center px-2 flex">
-        <InputComponent
+        <Input
           type="text"
-          className="w-full mx-auto rounded-full p-2.5 flex items-center bg-gray-100 dark:bg-dark-third dark:text-white"
+          className="w-full mx-auto rounded-full "
           placeholder="Search on messenger"
           search
         />
