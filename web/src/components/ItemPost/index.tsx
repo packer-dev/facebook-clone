@@ -77,7 +77,7 @@ const ItemPost = ({
           postDetail={postDetail}
         />
       ))}
-      {postDetail.comments.total &&
+      {!!postDetail.comments.total &&
         postDetail.comments.total <= limit * (offset || 1) && (
           <p
             aria-hidden

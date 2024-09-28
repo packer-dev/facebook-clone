@@ -57,7 +57,8 @@ export default function HeaderLoggedLeft() {
                   }}
                   type="text"
                   placeholder="Search on Facebook"
-                  className="w-56 outline-none bg-transparent hidden xl:inline-block"
+                  className="w-56 outline-none bg-transparent hidden xl:inline-block border-none"
+                  hiddenBorder
                 />
               </div>
             </div>
@@ -96,6 +97,7 @@ export default function HeaderLoggedLeft() {
             type="text"
             placeholder="Search on facebook"
             className="outline-none bg-transparent hidden xl:inline-block"
+            hiddenBorder
           />
         </div>
       </div>

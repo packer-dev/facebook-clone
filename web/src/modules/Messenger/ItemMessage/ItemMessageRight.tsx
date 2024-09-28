@@ -18,32 +18,34 @@ const ItemMessageRight = ({ item, groupMessage }: ItemMessageRightProps) => {
         style={{ width: "inherit" }}
       >
         {item.content.type !== 0 ? (
-          <div className="ml-auto">
+          <div className={item.content.type < 4 ? "ml-auto" : "w-full"}>
             <ContentMessage
-              margin="ml-auto"
+              margin={item.content.type < 4 ? "ml-auto" : ""}
               item={item}
               groupMessage={groupMessage}
             />
           </div>
         ) : (
           <ContentMessage
-            margin="ml-auto"
+            margin={item.content.type < 4 ? "ml-auto" : ""}
             item={item}
             groupMessage={groupMessage}
           />
         )}
       </div>
-      <div className=" mess-user-r2" style={{ width: "4%" }}>
-        <div className="w-full clear-both">
-          <i
-            className={`${
-              item.loading
-                ? "bx bx-radio-circle text-xl text-gray-500 "
-                : "fas fa-check-circle text-gray-300"
-            } img-mess-right absolute bottom-2.5 right-1 `}
-          />
+      {item.content.type < 4 && (
+        <div className=" mess-user-r2" style={{ width: "4%" }}>
+          <div className="w-full clear-both">
+            <i
+              className={`${
+                item.loading
+                  ? "bx bx-radio-circle text-xl text-gray-500 "
+                  : "fas fa-check-circle text-gray-300"
+              } img-mess-right absolute bottom-2.5 right-1 `}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

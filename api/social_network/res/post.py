@@ -7,6 +7,7 @@ def get(post: Post):
         "id": post.id,
         "user": user.get(post.user),
         "time_created": post.time_created,
+        "content": post.content,
         "type": post.type,
         "background": post.background,
         "answer_question": post.answer_question,
@@ -21,6 +22,7 @@ def dict(post: any):
         "id": post["id"],
         "user": user.dict(post["user"]),
         "time_created": post["time_created"],
+        "content": post["content"],
         "type": post["type"],
         "background": post["background"] if "background" in post else None,
         "answer_question": (

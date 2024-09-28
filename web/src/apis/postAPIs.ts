@@ -29,7 +29,9 @@ export const getPostByIdUser = async (
   limit = 20
 ) => {
   return fetch(
-    `${API_URL}/post?user_id=${userId}&is_profile=${isProfile}&offset=${offset}&limit=${limit}`
+    `${API_URL}/post?user_id=${userId}&is_profile=${isProfile}&offset=${
+      offset * limit
+    }&limit=${limit}`
   ).then((res) => res.json());
 };
 

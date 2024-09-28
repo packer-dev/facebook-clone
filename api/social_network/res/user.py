@@ -7,6 +7,7 @@ def get(user: User):
         "name": user.name,
         "avatar": user.avatar,
         "email": user.email,
+        "cover": user.cover,
     }
 
 
@@ -16,4 +17,5 @@ def dict(user: any):
         "name": user["name"],
         "avatar": user["avatar"],
         "email": user["email"],
+        "cover": user["cover"],
     }

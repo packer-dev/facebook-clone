@@ -9,6 +9,7 @@ import { generateUUID, getCurrentDateTime } from "@/utils";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { sendComment } from "@/apis/commentAPIs";
 import { uploadMedia } from "@/apis/uploadAPIs";
+import { userModel } from "@/models";
 
 const TypeCommentInput = ({ parent }: { parent?: string }) => {
   //
@@ -61,7 +62,11 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     const formData = new FormData();
     formData.append(
       "comment",
-      JSON.stringify({ ...comment, content: newDataComment })
+      JSON.stringify({
+        ...comment,
+        content: newDataComment,
+        user: userModel(user),
+      })
     );
     formData.append("post_id", postDetail.post.id);
     comment = await sendComment(formData);

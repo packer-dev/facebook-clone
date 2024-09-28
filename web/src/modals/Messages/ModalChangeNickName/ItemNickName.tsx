@@ -22,9 +22,7 @@ const ItemNickName = ({
   const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const [show, setShow] = useState(false);
-  const [nickName, setNickName] = useState(
-    item.nickname ? null : item.nickname
-  );
+  const [nickName, setNickName] = useState(item.nickname);
   const [loading, setLoading] = useState(false);
   //
   return (

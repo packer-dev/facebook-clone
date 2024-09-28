@@ -1,71 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ItemPost from "@/components/ItemPost";
-import LoadingPost from "@/components/ItemPost/LoadingPost";
-import {
-  AppDispatch,
-  RootState,
-  getCommon,
-  getHeaders,
-  getUser,
-} from "@/reducers";
-import { getPostByIdUser } from "@/apis/postAPIs";
-import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
-import { Button } from "@/components/ui/button";
+import PostListContainer from "@/modules/PostListContainer";
 
 const HomePostList = () => {
   //
   const user = useSelector<RootState, User>(getUser);
-  const headers = useSelector<RootState, any>(getHeaders);
-  const { homePosts } = useSelector<RootState, CommonDataProps>(getCommon);
-  const dispatch = useDispatch<AppDispatch>();
-  const [total, setTotal] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const limit = 5;
-  useEffect(() => {
-    //
-    const fetch = async () => {
-      setLoading(true);
-      const result = await getPostByIdUser(user.id, "false", offset, limit);
-      dispatch(
-        updateDataCommon({
-          key: "homePosts",
-          value: [...homePosts, ...(result?.list || [])],
-        })
-      );
-      setTotal(result?.total || 0);
-      setLoading(false);
-    };
-    fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headers, user, offset]);
-  console.log(total);
   //
-  return (
-    <>
-      {homePosts?.map((postDetail) => (
-        <ItemPost postDetail={postDetail} key={postDetail.post.id} />
-      ))}
-      {!loading && !homePosts?.length && (
-        <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
-          There are no posts yet.
-        </p>
-      )}
-      {!homePosts.length && loading && (
-        <>
-          <LoadingPost />
-          <LoadingPost />
-        </>
-      )}
-      {!loading && limit * offset < total && (
-        <Button onClick={() => setOffset(offset + 1)} loading={loading}>
-          View more
-        </Button>
-      )}
-    </>
-  );
+  return <PostListContainer mode="home" user={user} />;
 };
 
 export default HomePostList;

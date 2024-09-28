@@ -17,8 +17,11 @@ const ChatText = (props: ContentMessageProps) => {
   return (
     <div
       className={`relative border-none outline-none ${
-        item.content.type === 2 ? "" : "p-1.5"
-      } ${margin} rounded-lg relative dark:text-white bg-opacity-80`}
+        left && item.content.type === 1 ? "bg-gray-100 p-1.5" : ""
+      }
+       ${
+         item.content.type === 2 ? "" : "p-1.5"
+       } ${margin} rounded-lg relative dark:text-white bg-opacity-80`}
       style={item.content.type === 2 ? { fontSize: 28 } : style}
     >
       {item.content.text}

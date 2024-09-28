@@ -51,19 +51,28 @@ export default forwardRef(function ContentMessage(
       );
     case 4:
       return (
-        <p>{`${
+        <p
+          className="w-11/12 mx-auto text-wrap text-center text-sm font-semibold 
+        text-gray-500 dark:text-white"
+        >{`${
           item.user.id === user?.id ? "You" : item.user.name.split(" ")[0]
         } changed the color of the chat.`}</p>
       );
     case 5:
       return (
-        <p>{`${
+        <p
+          className="w-11/12 mx-auto text-wrap text-center text-sm font-semibold 
+        text-gray-500 dark:text-white"
+        >{`${
           item.user.id === user?.id ? "You" : item.user.name.split(" ")[0]
         } emoji changed.`}</p>
       );
     case 6:
       return (
-        <p>{`${
+        <p
+          className="w-11/12 mx-auto text-wrap text-center text-sm font-semibold 
+        text-gray-500 dark:text-white"
+        >{`${
           item.user.id === user?.id ? "You" : item.user.name.split(" ")[0]
         } changed nickname of ${JSON.parse(item.content.text)?.name} to ${
           JSON.parse(item.content.text)?.to
@@ -71,7 +80,7 @@ export default forwardRef(function ContentMessage(
       );
     case 7:
       return (
-        <p>{`${
+        <p className="w-11/12 mx-auto text-wrap text-center text-sm font-bold text-gray-500 dark:text-white">{`${
           item.user.id === user?.id ? "You" : item.user.name.split(" ")[0]
         } changed name group to ${item.content.text}.`}</p>
       );

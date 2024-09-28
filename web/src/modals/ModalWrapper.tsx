@@ -25,7 +25,7 @@ const ModalWrapper = ({
         className={`${
           !className || ""
         } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg
-          shadow-lv1 w-[480px] sm:w-11/12 bg-white dark:bg-dark-second`}
+          shadow-lv1 sm:w-[480px] w-11/12 bg-white dark:bg-dark-second`}
       >
         <div className="w-full relative p-3">
           <p className="text-2xl font-bold p-2.5 -mt-1.5 text-center dark:text-white">

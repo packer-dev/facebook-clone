@@ -1,5 +1,6 @@
 import { loginUserRequest } from "@/actions/user";
 import { User } from "@/interfaces/User";
+import { userModel } from "@/models";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: User | null = null;
@@ -9,7 +10,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<User>) => {
-      return action.payload; // Set the user
+      return userModel(action.payload); // Set the user
     },
     logout: (state) => {
       localStorage.removeItem("token");

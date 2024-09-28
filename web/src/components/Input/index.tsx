@@ -16,6 +16,7 @@ type InputProps = {
   width?: string;
   handleClick?: Function;
   value?: string;
+  hiddenBorder?: boolean;
 };
 
 export default forwardRef(function Input(
@@ -34,6 +35,7 @@ export default forwardRef(function Input(
     label = "",
     width = "",
     handleClick,
+    hiddenBorder,
   }: InputProps,
   ref: RefObject<HTMLInputElement>
 ) {
@@ -46,17 +48,19 @@ export default forwardRef(function Input(
     <>
       {label && <p className="font-semibold mb-2">{label}</p>}
 
-      <div className={`${wrapper} ${width || "w-full"} relative`}>
+      <div className={`${wrapper || ""} ${width || "w-full"} relative`.trim()}>
         <input
           ref={ref}
           onClick={() => handleClick?.()}
           type={show && search ? "text" : result}
           placeholder={placeholder}
-          className={`${
+          className={`rounded-sm focus:shadow-sm ${
+            hiddenBorder
+              ? ""
+              : "border-gray-200 border focus:border-blue-600 border-solid dark:border-dark-third"
+          } dark:text-white ${
             width || "w-full"
-          } ${className} ${borderValidation} focus:border-blue-600 p-2.5 ${
-            search ? "pl-10" : ""
-          } dark:border-dark-third rounded-sm border-solid focus:shadow-sm border-gray-200 border dark:text-white`}
+          } ${className} ${borderValidation} p-2.5 ${search ? "pl-10" : ""}`}
           {...Field}
           spellCheck={false}
           onChange={(event) => {
@@ -64,10 +68,9 @@ export default forwardRef(function Input(
             register?.(name)?.onChange(event);
           }}
           name={name}
-          autoComplete
           disabled={disabled}
         />
-        {!search ? (
+        {type === "password" && (
           <span
             aria-hidden
             onClick={() => setShow(!show)}
@@ -75,10 +78,11 @@ export default forwardRef(function Input(
               show ? "show" : "hide"
             } text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 right-2 cursor-pointer`}
           />
-        ) : (
+        )}
+        {search && (
           <span
             className="bx bx-search text-xl text-gray-700 absolute top-1/2 transform -translate-y-1/2 z-30 left-3 
-              cursor-pointer dark:text-white"
+          cursor-pointer dark:text-white"
           />
         )}
       </div>

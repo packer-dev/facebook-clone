@@ -14,7 +14,7 @@ const useListeningMessage = (groupId: string) => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const listenChat = (data: any) => {
     data = JSON.parse(data);
-    if (user?.id === data?.message?.user?.id && !data.type) return;
+    if (user?.id === data?.message?.user?.id && data.type === "message") return;
     updateData("messages", [...messages, data?.message]);
     updateData(
       "groups",

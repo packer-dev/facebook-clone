@@ -100,7 +100,7 @@ const ModalFavorite = ({
           )}
         </div>
       </div>
-      <div className="text-right flex-row flex gap-2 justify-end p-2 mt-2">
+      <div className="text-right flex-row flex gap-2 justify-end mt-2">
         <Button
           onClick={() => modalsDispatch(modalsAction.closeModal())}
           type="button"

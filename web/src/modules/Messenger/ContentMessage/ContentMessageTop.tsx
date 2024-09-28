@@ -9,6 +9,7 @@ import GroupAvatar from "@/components/GroupAvatar";
 import { UserChatReduxProps, updateDataUserChat } from "@/reducers/userChat";
 import { nameGroup } from "@/utils";
 import { User } from "@/interfaces/User";
+import { Member } from "@/interfaces/Member";
 
 const ItemHeaderContentMessageTop = (props: any) => {
   //
@@ -39,7 +40,9 @@ const ContentMessageTop = () => {
     getUserChat
   );
   const user = useSelector<RootState, User>(getUser);
-  const member = group?.members?.find((item) => item.user.id !== user.id) || {
+  const member: { user: User } | Member = group?.members?.find(
+    (item) => item.user.id !== user.id
+  ) || {
     user: userParam,
   };
   const avatar = group?.multiple ? (
@@ -47,6 +50,8 @@ const ContentMessageTop = () => {
   ) : (
     <Avatar uri={member?.user?.avatar} size={9} className="mx-auto relative" />
   );
+  const peerToPeer =
+    "nickname" in member ? member?.nickname : member?.user?.name;
   //
   return (
     <div
@@ -68,7 +73,7 @@ const ContentMessageTop = () => {
                 className={`dark:text-white inline-block whitespace-nowrap font-semibold overflow-ellipsis overflow-hidden 
               max-w-full pr-4 ${mini ? "w-[150px]" : ""}`}
               >
-                {group ? nameGroup(group, user) : member?.user?.name}
+                {group ? nameGroup(group, user) : peerToPeer}
               </b>
               <span className="text-gray-700 dark:text-gray-300 text-sm">
                 Activity

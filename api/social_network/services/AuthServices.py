@@ -25,7 +25,7 @@ async def get_user_by_id(id: str):
     users = new_value(ref.child("users").get(), [])
     user = find_by_id(users, id)
 
-    return resUser.dict(user_response(user))
+    return user_response(user)
 
 
 async def login(login_dto: LoginDTO):

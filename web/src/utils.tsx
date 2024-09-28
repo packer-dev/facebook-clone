@@ -269,8 +269,10 @@ export const nameGroup = (group: Group, user: User | null) => {
       group?.name || group?.members?.map((item) => item?.user?.name).join(", ")
     );
   } else {
-    return group?.members?.find((item) => item?.user?.id !== user?.id)?.user
-      ?.name;
+    const peerToPeer = group?.members?.find(
+      (item) => item?.user?.id !== user?.id
+    );
+    return peerToPeer?.nickname || peerToPeer?.user?.name;
   }
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import PopoverNotification from "./PopoverNotification";
 import PopoverSetting from "./PopoverSetting";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { getNsvbarAmountNew } from "@/apis/commonAPIs";
 
 export default function HeaderLoggedRight(props) {
   //
@@ -25,6 +26,17 @@ export default function HeaderLoggedRight(props) {
     refPopover.current.style.display = "block";
     document.addEventListener("click", windowEvent, false);
   };
+  const [amount, setAmount] = useState<{
+    friend: number;
+    notification: number;
+    watch: number;
+    marketplace: number;
+  }>({
+    friend: 0,
+    notification: 0,
+    watch: 0,
+    marketplace: 0,
+  });
   const windowEvent = (event) => {
     ++count;
     if (count > 1) {
@@ -37,6 +49,13 @@ export default function HeaderLoggedRight(props) {
       refPopover.current.style.display = "block";
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getNsvbarAmountNew(user?.id);
+      setAmount(result);
+    };
+    fetchData();
+  }, [user]);
   //
   return (
     <div className="w-1/2 flex sm:w-3/4 md:w-1/4">
@@ -81,12 +100,14 @@ export default function HeaderLoggedRight(props) {
               dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
             >
               <i className="bx bxl-messenger text-2xl" />
-              <span
-                className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
+              {!!amount.watch && (
+                <span
+                  className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
               bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
-              >
-                9+
-              </span>
+                >
+                  {amount.watch > 9 ? 9 : amount.watch}+
+                </span>
+              )}
             </li>
           )}
           <li
@@ -96,12 +117,14 @@ export default function HeaderLoggedRight(props) {
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
           >
             <i className="bx bx-bell text-xl" />
-            <span
-              className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
-            bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
-            >
-              9+
-            </span>
+            {!!amount.notification && (
+              <span
+                className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
+              bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
+              >
+                {amount.notification > 9 ? 9 : amount.notification}+
+              </span>
+            )}
           </li>
           <li
             aria-hidden

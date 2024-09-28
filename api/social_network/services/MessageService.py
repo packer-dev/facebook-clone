@@ -103,7 +103,7 @@ async def get_group_and_message_by_person(user_id: str, current_id: str):
     messages = await get_messages_by_group(item["id"])
 
     return {
-        "group": resGroup(item),
+        "group": resGroup.dict(item),
         "messages": [resMessage.dict(message) for message in messages],
     }
 

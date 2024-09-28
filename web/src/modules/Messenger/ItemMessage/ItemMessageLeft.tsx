@@ -13,17 +13,17 @@ const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
   //
   return (
     <div className="mess-user z-0 chat-lefts w-full py-2 flex relative">
-      <div className="w-12 relative">
-        <img
-          className="absolute bottom-1 w-9 h-9 object-cover rounded-full"
-          src={item.user.avatar}
-          alt=""
-        />
-      </div>
+      {item.content.type < 4 && (
+        <div className="w-12 relative">
+          <img
+            className="absolute bottom-1 w-9 h-9 object-cover rounded-full"
+            src={item.user.avatar}
+            alt=""
+          />
+        </div>
+      )}
       <div
-        className={`mess-user-r1 pl-2 flex z-50 relative p-1.5 rounded-sm ${
-          item.content.type === 1 ? "bg-gray-100" : ""
-        }`}
+        className="mess-user-r1 pl-2 flex z-50 relative p-1.5 rounded-sm"
         style={{ width: "inherit" }}
       >
         <ContentMessage item={item} left groupMessage={groupMessage} />
