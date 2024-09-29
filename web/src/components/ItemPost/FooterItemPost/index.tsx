@@ -79,13 +79,14 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
   return (
     <>
       <div className="w-full flex text-sm text-gray-700 dark:text-gray-300 justify-between items-center my-1.5">
-        <div className="flex items-center w-full gap-2 pl-2">
-          {feelList.map((item) => (
+        <div className="flex items-center w-full pl-1">
+          {feelList.map((item, index) => (
             <img
               key={item.id}
               src={feels[item.type - 1].image}
               alt=""
-              className="w-5 h-5 transform scale-90 -ml-1 rounded-full object-cover"
+              className="w-6 h-6 transform scale-90 p-0.5 bg-white -ml-1.5 relative rounded-full object-cover"
+              style={{ zIndex: feelList.length - index }}
             />
           ))}
           {!!postDetail.feel.length && (

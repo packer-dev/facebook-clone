@@ -104,18 +104,29 @@ async def delete_comment(post_id: str, comment_id: str):
     comments = new_value(ref.child("comments").child(post_id).get(), [])
     comment = [item for item in comments if item["id"] == comment_id]
     comment = comment[0] if len(comment) == 1 else None
+    list_comment_level_2 = [item for item in comments if item["parent"] == comment_id]
     if comment is None:
         return False
-
+    public_ids = []
     if comment["content"]["type"] == 3:
         result = json.loads(comment["content"]["text"])
         url = result["url"]
         public_id = os.path.splitext(
             url[url.find("FacebookNative/Comments/") : len(url)]
         )[0]
-
-        await delete_media([public_id])
+        public_ids.append(public_id)
+    for item in list_comment_level_2:
+        if item["content"]["type"] == 3:
+            result = json.loads(item["content"]["text"])
+            url = result["url"]
+            public_id = os.path.splitext(
+                url[url.find("FacebookNative/Comments/") : len(url)]
+            )[0]
+            public_ids.append(public_id)
+    if len(public_ids) > 0:
+        await delete_media(public_ids)
     comments = [item for item in comments if item["id"] != comment_id]
+    comments = [item for item in comments if item["parent"] != comment_id]
     ref.child("comments").child(post_id).set(comments)
 
     return True
