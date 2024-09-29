@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { PAGE_PROFILE } from "@/constants/Config";
+import { AVATAR_DEFAULT, PAGE_PROFILE } from "@/constants/Config";
 import { FriendProfileDTO } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
@@ -21,11 +21,11 @@ const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
   };
   //
   return (
-    <div className="w-full flex relative p-2 bg-white rounded-lg dark:bg-dark-third my-2">
+    <div className="w-full flex relative p-4 bg-white rounded-lg dark:bg-dark-third my-2 items-center">
       <img
         src={item.user.avatar}
         alt=""
-        className="w-14 h-14 rounded-full object-cover mr-1"
+        className="w-16 h-16 rounded-full object-cover mr-1"
       />
       <div className="ml-1" style={{ width: "calc(100% - 64px)" }}>
         <p className="font-semibold cursor-pointer dark:text-white">
@@ -33,28 +33,29 @@ const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
             {`${item.user.name}`}
           </Link>
         </p>
-        <div className="flex gap-2 text-sm text-gray-500 dark:text-gray-300 items-center my-1">
-          <img
-            src="http://res.cloudinary.com/ensonet-dev/image/upload/v1644153514/Avatars/1644153513203.jpg"
-            alt=""
-            className="w-4 h-4 rounded-full object-cover"
-          />
-          <span>1 mutual friend</span>
-        </div>
-        <div className="w-full flex gap-3 justify-between mt-2">
+        {!!item.manual && (
+          <div className="flex gap-2 text-sm text-gray-500 dark:text-gray-300 items-center my-1">
+            <img
+              src={AVATAR_DEFAULT}
+              alt=""
+              className="w-4 h-4 rounded-full object-cover"
+            />
+            <span>{item.manual} mutual friend</span>
+          </div>
+        )}
+        <div className="w-full mt-2 grid grid-cols-2 gap-2">
           <Button
             onClick={() => handleClick(3)}
             loading={loading}
             disabled={loading}
-            className="w-1/2 cursor-pointer rounded-lg py-2 text-sm font-semibold bg-main text-white"
           >
             Confirm
           </Button>
           <Button
             onClick={() => handleClick(0)}
+            variant="secondary"
             loading={loading}
             disabled={loading}
-            className="w-1/2 cursor-pointer rounded-lg py-2 text-sm font-semibold bg-gray-200"
           >
             Delete
           </Button>

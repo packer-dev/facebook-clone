@@ -114,10 +114,10 @@ const ModalPost = () => {
           />
         )}
       </div>
-      <div className="w-full px-2">
+      <div className="w-full">
         <BottomWritePostModal />
       </div>
-      <div className="w-full px-2 text-center my-2.5 mx-0">
+      <div className="w-full text-center my-2.5 mx-0">
         <Button
           onClick={handlePost}
           className="w-full p-2.5 border-none rounded-lg font-bold"

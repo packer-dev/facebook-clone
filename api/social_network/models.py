@@ -175,8 +175,8 @@ class Comment(BaseModel):
 class CommentPayload(BaseModel):
     post_id: str
     comment: Comment
-    media_new: Optional[List[UploadFile]] = File(...)
-    media_old: Optional[List[Media]] = None
+    media_new: Optional[UploadFile] = File(None)
+    media_old: Optional[str] = None
 
 
 class FileDTO(BaseModel):

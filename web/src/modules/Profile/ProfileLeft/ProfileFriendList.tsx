@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { getFriendUser } from "@/apis/userAPIs";
-import { FriendProfileDTO } from "@/interfaces/User";
+import { FriendProfileDTO, User } from "@/interfaces/User";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
 
 export default function ProfileFriendList() {
   //
+  const user = useSelector<RootState, User>(getUser);
   const [friends, setFriends] = useState<FriendProfileDTO[]>([]);
   const {
-    state: { userProfile },
+    state: { userProfile, isFriend },
   } = useContext(UserProfileContext);
+  const list = friends.filter((item) =>
+    isFriend ? item.user.id !== user.id : true
+  );
   useEffect(() => {
     //
     const fetchData = async () => {
@@ -28,12 +34,12 @@ export default function ProfileFriendList() {
           <p className="dark:text-white font-bold pt-2">
             Friends <br />
           </p>
-          <span className="color-word">{friends.length} friends</span>
+          <span className="color-word">{list.length} friends</span>
         </div>
         <div className="w-1/2 mt-2.5 pr-2.5 text-right text-main">View all</div>
       </div>
       <div className="w-full pt-4 grid grid-cols-3 gap-1">
-        {friends.map((friend) => (
+        {list.slice(0, 9).map((friend) => (
           <div className="w-full" key={friend.user.id}>
             <Link
               to={`${PAGE_PROFILE}/${friend.user.id}`}

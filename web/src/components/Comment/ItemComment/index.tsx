@@ -6,15 +6,19 @@ import { CommentDTO } from "@/interfaces/Comment";
 import { PostDTO } from "@/interfaces/Post";
 import EditOrDeleteComment from "./EditOrDeleteComment";
 
+type ItemCommentProps = {
+  commentPost: CommentDTO;
+  postDetail: PostDTO;
+  setReply: Function;
+  parent?: string;
+};
+
 const ItemComment = ({
   commentPost,
   postDetail,
   setReply,
-}: {
-  commentPost: CommentDTO;
-  postDetail: PostDTO;
-  setReply: Function;
-}) => {
+  parent,
+}: ItemCommentProps) => {
   //
   const refFeelComment = React.useRef<HTMLDivElement>(null);
   const refText = React.useRef<HTMLDivElement>(null);
@@ -36,9 +40,14 @@ const ItemComment = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refFeelComment, commentPost, refText, refContentComment]);
+
   //
   return (
-    <div className="w-full p-2 bg-white flex my-0.5">
+    <div
+      className={`w-full p-2 bg-white flex my-0.5 ${
+        commentPost.item.loading ? "opacity-50" : ""
+      }`}
+    >
       <Link to="">
         <img
           className="w-12 h-12 p-0.5 mt-2 object-cover rounded-full"
@@ -62,24 +71,18 @@ const ItemComment = ({
               {commentPost.item.user.name}
             </Link>
           </p>
-          {!commentPost.item.loading ? (
-            <>
-              {commentPost.item.content.type === 1 && (
-                <p className="dark:text-gray-300">
-                  {commentPost.item.content.text}
-                </p>
-              )}
-            </>
-          ) : (
-            <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin" />
+          {commentPost.item.content.type !== 2 && (
+            <p className="dark:text-gray-300 break-words w-full">
+              {commentPost.item.content.type === 3
+                ? JSON.parse(commentPost.item.content.text)?.text
+                : commentPost.item.content.text}
+            </p>
           )}
         </div>
+        <div className="my-0.5">
+          <ContentComment ref={refContentComment} commentPost={commentPost} />
+        </div>
         {!commentPost.item.loading && (
-          <div className="my-0.5 ">
-            <ContentComment ref={refContentComment} commentPost={commentPost} />
-          </div>
-        )}
-        {!commentPost.item.loading ? (
           <ul className="flex pl-2 items-center font-semibold text-gray-800 dark:text-white text-xs">
             <li
               aria-hidden
@@ -92,10 +95,16 @@ const ItemComment = ({
               {moment(commentPost.item.time_created).fromNow(true)}
             </li>
           </ul>
-        ) : (
-          <p className="text-gray-800">Loading...</p>
         )}
-        <EditOrDeleteComment commentPost={commentPost} ref={refText} />
+        {commentPost.item.loading && (
+          <i className="fas fa-circle-notch text-xs text-gray-500 mx-9 fa-spin" />
+        )}
+        <EditOrDeleteComment
+          commentPost={commentPost}
+          ref={refText}
+          postId={postDetail.post.id}
+          parent={parent}
+        />
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ import { generateUUID } from "@/utils";
 export type ItemPostContextProps = {
   postDetail: PostDTO;
   dataComment: ContentComment;
-  file?: FileList;
+  file?: File | { url: string };
   relyDataComment: ContentComment;
+  edit: string;
 };
 
 const initialState: ItemPostContextProps = {
@@ -24,6 +25,7 @@ const initialState: ItemPostContextProps = {
     type: 1,
   },
   file: null,
+  edit: "",
 };
 
 export const ItemPostContext = AppContext<ItemPostContextProps>(initialState);

@@ -46,3 +46,5 @@ export const PAGE_VIEW_POST = "/post/view";
 export const AVATAR_DEFAULT =
   "https://res.cloudinary.com/ensonet-dev/image/upload/v1641124176/default-avatar_leprc2.png";
 //
+export const COVER_DEFAULT =
+  "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMDktYWRqLTA1LmpwZw.jpg";

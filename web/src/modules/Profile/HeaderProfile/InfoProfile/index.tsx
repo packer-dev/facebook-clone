@@ -9,7 +9,7 @@ export default function InfoProfile() {
   } = useContext(UserProfileContext);
   //
   return (
-    <div className="p-2 relative" style={{ width: "calc(100% - 180px)" }}>
+    <div className="p-2 pr-0 relative" style={{ width: "calc(100% - 180px)" }}>
       <p className="font-semibold text-4xl py-1 dark:text-white flex items-center">
         {`${userProfile.name}`}
         <span className="ml-3 bg-blue-500 rounded-full text-sm font-bold text-white w-4 h-4 flex">

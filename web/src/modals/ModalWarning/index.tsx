@@ -21,13 +21,14 @@ export default function ModalWarning({ title, handleEvent, button, content }) {
             onClick={() => modalsDispatch(modalsAction.closeModal())}
             variant="secondary"
           >
-            Huỷ
+            Cancel
           </Button>
           <Button
             disabled={loading}
-            onClick={() => {
+            onClick={async () => {
               modalsDispatch(modalsAction.loadingModal(true));
-              handleEvent();
+              await handleEvent?.();
+              modalsDispatch(modalsAction.closeModal());
             }}
           >
             {button}

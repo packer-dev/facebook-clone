@@ -12,20 +12,17 @@ const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
   //
   //
   return (
-    <div className="mess-user z-0 chat-lefts w-full py-2 flex relative">
+    <div className="mess-user z-0 chat-lefts w-full flex relative">
       {item.content.type < 4 && (
-        <div className="w-12 relative">
+        <div className="w-6 relative self-end flex">
           <img
-            className="absolute bottom-1 w-9 h-9 object-cover rounded-full"
+            className="w-6 h-6 object-cover rounded-full"
             src={item.user.avatar}
             alt=""
           />
         </div>
       )}
-      <div
-        className="mess-user-r1 pl-2 flex z-50 relative p-1.5 rounded-sm"
-        style={{ width: "inherit" }}
-      >
+      <div className="mess-user-r1 pl-2 flex z-50 relative px-1.5 rounded-sm w-3/4">
         <ContentMessage item={item} left groupMessage={groupMessage} />
       </div>
     </div>

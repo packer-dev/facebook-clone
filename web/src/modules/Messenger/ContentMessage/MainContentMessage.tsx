@@ -61,20 +61,26 @@ export default memo(function MainContentMessage() {
             </p>
           </div>
         )}
-        {messages.map((item) => {
-          if (item.user.id === user.id)
-            return (
-              <ItemMessageRight
-                key={item.id}
-                item={item}
-                groupMessage={group}
-              />
-            );
-          else
-            return (
-              <ItemMessageLeft key={item.id} item={item} groupMessage={group} />
-            );
-        })}
+        <div className="flex flex-col gap-2 py-2">
+          {messages.map((item) => {
+            if (item.user.id === user.id)
+              return (
+                <ItemMessageRight
+                  key={item.id}
+                  item={item}
+                  groupMessage={group}
+                />
+              );
+            else
+              return (
+                <ItemMessageLeft
+                  key={item.id}
+                  item={item}
+                  groupMessage={group}
+                />
+              );
+          })}
+        </div>
       </div>
     </div>
   );

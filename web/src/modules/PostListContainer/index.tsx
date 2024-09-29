@@ -55,7 +55,7 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
       {(mode === "home" ? homePosts : profilePosts)?.map((postDetail) => (
         <ItemPost postDetail={postDetail} key={postDetail.post.id} />
       ))}
-      {!loading && !homePosts?.length && (
+      {!loading && !(mode === "home" ? homePosts : profilePosts)?.length && (
         <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
           There are no posts yet.
         </p>
@@ -66,7 +66,7 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
           <LoadingPost />
         </>
       )}
-      {!loading && limit * offset < total && (
+      {!loading && limit * (offset || 1) < total ? (
         <Button
           className="w-full"
           onClick={() => setOffset(offset + 1)}
@@ -74,6 +74,8 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
         >
           View more
         </Button>
+      ) : (
+        total > 0 && <p className="font-semibold py-4 text-center">End.</p>
       )}
       <div className="h-4 w-full" />
     </>

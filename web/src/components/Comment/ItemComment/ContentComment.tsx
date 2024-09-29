@@ -11,9 +11,9 @@ export default React.forwardRef(function ContentComment(
       return (
         <img
           ref={ref}
-          src={commentPost.item.content.text}
+          src={JSON.parse(commentPost.item.content.text)?.url}
           alt=""
-          className="w-80 h-56 rounded-lg object-cover"
+          className="w-80 h-56 mt-2 ml-2 rounded-lg object-cover"
         />
       );
     case 2:

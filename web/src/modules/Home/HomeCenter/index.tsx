@@ -19,7 +19,7 @@ const HomeCenter = () => {
   return (
     <div
       ref={refWrapper}
-      className="center-content relative left-0 px-2 pt-6 w-full sm:mx-auto md:w-3/4 lg:mx-0 
+      className="center-content relative left-0 px-2 pt-16 w-full sm:mx-auto md:w-3/4 lg:mx-0 
       lg:w-4/6 lg:left-0! xl:w-1/2 xl:px-8 xl:left-1/4"
     >
       <div className="w-full xl:w-[600px] mx-auto">

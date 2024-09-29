@@ -28,7 +28,7 @@ const ModalWrapper = ({
           shadow-lv1 sm:w-[480px] w-11/12 bg-white dark:bg-dark-second`}
       >
         <div className="w-full relative p-3">
-          <p className="text-2xl font-bold p-2.5 -mt-1.5 text-center dark:text-white">
+          <p className="text-2xl w-11/12 mx-auto font-bold p-2.5 -mt-1.5 text-center dark:text-white">
             {title}
           </p>
           <CloseModal />

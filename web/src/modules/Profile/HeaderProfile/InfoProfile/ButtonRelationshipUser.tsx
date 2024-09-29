@@ -2,12 +2,33 @@ import React, { useContext, useState } from "react";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, getUserChat } from "@/reducers";
-import { updateDataUserChat, UserChatReduxProps } from "@/reducers/userChat";
+import {
+  updateDataUserChat,
+  UserChatReduxProps,
+  ZoomUserChatProps,
+} from "@/reducers/userChat";
 import { Button } from "@/components/ui/button";
+import { generateUUID } from "@/utils";
 
-export default function ButtonRelationshipUser(props) {
+type ButtonRelationshipUserProps = {
+  status: number;
+  label: string;
+  show?: boolean;
+  onClick?: (status: number) => Promise<void>;
+  icon: string;
+};
+
+const ButtonRelationshipUser = ({
+  status,
+  onClick,
+  show,
+  label,
+  icon,
+}: ButtonRelationshipUserProps) => {
   //
-  const { zoom } = useSelector<RootState, UserChatReduxProps>(getUserChat);
+  const { zoom, minimize } = useSelector<RootState, UserChatReduxProps>(
+    getUserChat
+  );
   const [loading, setLoading] = useState(false);
   const {
     state: { userProfile },
@@ -17,33 +38,68 @@ export default function ButtonRelationshipUser(props) {
   return (
     <div className="flex-row flex gap-2">
       <Button
-        onClick={() => {
+        onClick={async () => {
           setLoading(true);
-          const timeOut = setTimeout(() => {
-            props.handleClick(props.status);
-            setLoading(false);
-          }, 500);
-          return () => {
-            clearTimeout(timeOut);
-          };
+          await onClick(status);
+          setLoading(false);
         }}
+        disabled={loading}
       >
         <i
           className={`${
             loading
-              ? "bx bx-shape-circle fa-spin text-main"
-              : `${props.icon} dark:text-white`
+              ? "fa-spinner fa-solid fa-spin text-white"
+              : `${icon} dark:text-white`
           } text-xl mr-1`}
         />
-        {props.label}
+        {label}
       </Button>
-      {props.show && (
+      {show && (
         <Button
-          onClick={() =>
-            dispatch(
-              updateDataUserChat({ key: "zoom", value: [...zoom, userProfile] })
-            )
-          }
+          onClick={() => {
+            const indexMinimize = minimize.findIndex(
+              (data) => userProfile.id === data.id
+            );
+            const indexZoom = zoom.findIndex(
+              (data) => userProfile.id === data.id
+            );
+            const newData: ZoomUserChatProps = {
+              id: generateUUID(),
+              user: userProfile,
+              is_new: false,
+            };
+            if (indexZoom === -1 && indexMinimize === -1) {
+              if (zoom.length === 2) {
+                dispatch(
+                  updateDataUserChat({
+                    key: "minimize",
+                    value: [...minimize, zoom[0]],
+                  })
+                );
+                let clone = [...zoom];
+                clone[0] = newData;
+                dispatch(
+                  updateDataUserChat({ key: "zoom", value: [...clone] })
+                );
+              } else {
+                dispatch(
+                  updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
+                );
+              }
+            } else if (indexMinimize !== -1 && zoom.length !== 2) {
+              dispatch(
+                updateDataUserChat({ key: "zoom", value: [...zoom, newData] })
+              );
+              dispatch(
+                updateDataUserChat({
+                  key: "minimize",
+                  value: [...minimize].filter(
+                    (data) => data.id !== userProfile.id
+                  ),
+                })
+              );
+            }
+          }}
           variant="secondary"
         >
           <i className="bx bxl-messenger text-xl dark:text-white mr-1" />
@@ -52,4 +108,6 @@ export default function ButtonRelationshipUser(props) {
       )}
     </div>
   );
-}
+};
+
+export default ButtonRelationshipUser;

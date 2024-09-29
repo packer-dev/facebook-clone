@@ -15,7 +15,7 @@ export default function TopWritePostModal() {
   return (
     <div className="w-full flex px-0 py-2">
       <img
-        className="w-14 h-14 ml-3 mt-1 rounded-full object-cover mx-auto"
+        className="w-14 h-14 mt-1 rounded-full object-cover mx-auto"
         src={user.avatar}
         alt=""
       />

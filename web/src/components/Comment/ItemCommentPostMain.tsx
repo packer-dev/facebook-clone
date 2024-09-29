@@ -30,6 +30,7 @@ const ItemCommentPostMain = ({
             commentPost={{ item: commentPost, child: [] } as CommentDTO}
             postDetail={postDetail}
             key={commentPost.id}
+            parent={commentDetail.item.id}
           />
         ))}
       </div>

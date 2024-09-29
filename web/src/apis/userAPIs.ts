@@ -1,5 +1,5 @@
-import { API_URL } from "@/constants/Config";
-import { User } from "../interfaces/User";
+import { API_URL, AVATAR_DEFAULT, COVER_DEFAULT } from "@/constants/Config";
+import { User } from "@/interfaces/User";
 import { userModel } from "@/models";
 
 export const getUserById = async (userId: string) =>
@@ -9,7 +9,9 @@ export const registerAPI = async (param: any) =>
   fetch(`${API_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userModel(param)),
+    body: JSON.stringify(
+      userModel({ ...param, avatar: AVATAR_DEFAULT, cover: COVER_DEFAULT })
+    ),
   }).then((res) => res.json());
 
 export const loginAPI = async (param: any) =>

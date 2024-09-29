@@ -48,6 +48,7 @@ const ItemPost = ({
     updateData("postDetail", postDetailProps);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDetailProps]);
+
   //
   return postDetail ? (
     <div
@@ -78,7 +79,7 @@ const ItemPost = ({
         />
       ))}
       {!!postDetail.comments.total &&
-        postDetail.comments.total <= limit * (offset || 1) && (
+        limit * (offset || 1) < postDetail.comments.total && (
           <p
             aria-hidden
             onClick={handleViewMore}

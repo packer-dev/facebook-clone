@@ -2,7 +2,7 @@ import * as React from "react";
 import CloseComponent from "../CloseComponent";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 
-const PreviewImageComment = ({ file }: { file: FileList }) => {
+const PreviewImageComment = ({ file }: { file: File | { url: string } }) => {
   //
   const {
     state: { dataComment },
@@ -20,7 +20,7 @@ const PreviewImageComment = ({ file }: { file: FileList }) => {
         &times;
       </CloseComponent>
       <img
-        src={URL.createObjectURL(file[0])}
+        src={"name" in file ? URL.createObjectURL(file) : file.url}
         alt=""
         className="w-20 h-28 object-cover rounded-md"
       />

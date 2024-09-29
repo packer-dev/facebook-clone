@@ -65,7 +65,7 @@ export default forwardRef(function CategoryInputComment(
               className="hidden"
               onChange={(event) => {
                 if (event.target.files.length > 0) {
-                  updateData("file", event.target.files);
+                  updateData("file", event.target.files[0]);
                   updateData("dataComment", {
                     ...dataComment,
                     type: 3,

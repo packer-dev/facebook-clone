@@ -1,15 +1,17 @@
 import React, { ReactNode } from "react";
 import { AppContext, AppProvider } from "../AppContext";
-import { User } from "@/interfaces/User";
+import { FriendProfileDTO, User } from "@/interfaces/User";
 
 export type UserProfileContextProps = {
   userProfile?: User;
   isFriend?: boolean;
+  friendList: FriendProfileDTO[];
 };
 
-const initialState: any = {
+const initialState: UserProfileContextProps = {
   userProfile: null,
   isFriend: false,
+  friendList: [],
 };
 
 export const UserProfileContext =
