@@ -108,11 +108,13 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
         list: listComment,
       },
     });
+    alert(postDetail.post.id);
     socket.emit("send-comment", {
       level: parent ? 2 : 1,
       edit,
       comment,
       parent,
+      postId: postDetail.post.id,
     });
   };
   React.useEffect(() => {

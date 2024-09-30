@@ -14,9 +14,9 @@ const useListeningComment = (postId: string) => {
   } = useContext(ItemPostContext);
   const listenComment = (data: any) => {
     if (!data) return;
-
     data = JSON.parse(data);
     let listComment = updateDataComment(postDetail, data);
+    alert(JSON.stringify(listComment));
     updateData("postDetail", {
       ...postDetail,
       comments: { ...postDetail.comments, list: listComment },
@@ -24,6 +24,7 @@ const useListeningComment = (postId: string) => {
   };
   useEffect(() => {
     if (socket && postId) {
+      console.log(postId);
       socket.off(`receive-comment-${postId}`, listenComment);
       socket.on(`receive-comment-${postId}`, listenComment);
     }

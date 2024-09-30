@@ -50,7 +50,7 @@ const ItemPost = ({
     updateData("postDetail", postDetailProps);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDetailProps]);
-  useListeningComment(postDetail.post?.id);
+  useListeningComment(postDetail?.post?.id);
   useFeelPost(postDetail?.post?.id);
   //
   return postDetail ? (
