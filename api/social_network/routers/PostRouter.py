@@ -18,7 +18,9 @@ from social_network.auth.JWTServices import get_user_from_token
 from typing import List, Optional, Union
 import json
 
-router = APIRouter(prefix="/api/social-network/v1")
+router = APIRouter(
+    prefix="/api/social-network/v1", dependencies=[Depends(get_user_from_token)]
+)
 
 
 @router.get("/post")

@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from social_network.models import SendMessageDTO, Group
 from social_network.services.MessageService import (
     send_message,
@@ -7,8 +7,11 @@ from social_network.services.MessageService import (
     update_status_message,
     get_amount_message_not_read,
 )
+from social_network.auth.JWTServices import get_user_from_token
 
-router = APIRouter(prefix="/api/social-network/v1/message")
+router = APIRouter(
+    prefix="/api/social-network/v1/message", dependencies=[Depends(get_user_from_token)]
+)
 
 
 @router.post("/send")

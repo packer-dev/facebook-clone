@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Form, UploadFile, File
+from fastapi import APIRouter, Form, UploadFile, File, Depends
 from social_network.services.GroupService import (
     update_group,
     get_messages_by_group,
@@ -8,8 +8,11 @@ from social_network.services.GroupService import (
 )
 from social_network.models import Group
 from typing import Optional
+from social_network.auth.JWTServices import get_user_from_token
 
-router = APIRouter(prefix="/api/social-network/v1/group")
+router = APIRouter(
+    prefix="/api/social-network/v1/group", dependencies=[Depends(get_user_from_token)]
+)
 
 
 @router.post("/update")

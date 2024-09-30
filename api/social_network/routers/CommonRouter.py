@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, Depends
 from social_network.services.CommonServices import (
     upload_media,
     delete_media,
@@ -6,8 +6,11 @@ from social_network.services.CommonServices import (
 )
 from social_network.models import FileDTO
 from typing import List
+from social_network.auth.JWTServices import get_user_from_token
 
-router = APIRouter(prefix="/api/social-network/v1")
+router = APIRouter(
+    prefix="/api/social-network/v1", dependencies=[Depends(get_user_from_token)]
+)
 
 
 @router.post("/upload/media")

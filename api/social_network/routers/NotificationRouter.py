@@ -1,12 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from social_network.services.NotificationServices import (
     get_notification_by_user,
     add_notification,
     mark_read_notification,
 )
 from social_network.models import Notification
+from social_network.auth.JWTServices import get_user_from_token
 
-router = APIRouter(prefix="/api/social-network/v1/notification")
+router = APIRouter(
+    prefix="/api/social-network/v1/notification",
+    dependencies=[Depends(get_user_from_token)],
+)
 
 
 @router.get("/user")

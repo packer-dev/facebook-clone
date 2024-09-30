@@ -39,7 +39,13 @@ async def check_token_expired(token: str):
         users = users if users is not None else []
         users = [user for user in users if user["id"] == decoded["user_id"]]
         user = users[0] if len(users) == 1 else None
-        return resUser.dict(user) if user is not None else False
+        if user is None:
+            return False
+
+        return {
+            user: resUser.dict(user) if user is not None else False,
+            token: generate_token(user["id"], user["name"]),
+        }
     except jwt.ExpiredSignatureError:
         return False
     except jwt.InvalidTokenError:

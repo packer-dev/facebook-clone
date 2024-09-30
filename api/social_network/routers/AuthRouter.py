@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Form
+from fastapi import APIRouter, Form, Depends
 from social_network.models import LoginDTO, User, RelationshipPayload
 from social_network.services.AuthServices import (
     login,
@@ -15,7 +15,11 @@ from social_network.services.AuthServices import (
 )
 from fastapi import Form, UploadFile, File
 from typing import List, Optional
-from social_network.auth.JWTServices import generate_token, check_token_expired
+from social_network.auth.JWTServices import (
+    generate_token,
+    check_token_expired,
+    get_user_from_token,
+)
 
 router = APIRouter(prefix="/api/social-network/v1")
 
@@ -30,42 +34,42 @@ async def register_api(dto: User):
     return await register(dto)
 
 
-@router.put("/user")
+@router.put("/user", dependencies=[Depends(get_user_from_token)])
 async def register_api(dto: User):
     return await update_user_service(dto)
 
 
-@router.get("/user/id")
+@router.get("/user/id", dependencies=[Depends(get_user_from_token)])
 async def get_user_by_id_api(user_id: str):
     return await get_user_by_id(user_id)
 
 
-@router.post("/friends")
+@router.post("/friends", dependencies=[Depends(get_user_from_token)])
 async def get_friends_api(user_id: str, selected: List[str] = None):
     return await get_friends(user_id, selected)
 
 
-@router.get("/suggest-friend")
+@router.get("/suggest-friend", dependencies=[Depends(get_user_from_token)])
 async def get_suggest_friend_api(user_id: str):
     return await get_suggest_friend(user_id)
 
 
-@router.post("/relationship")
+@router.post("/relationship", dependencies=[Depends(get_user_from_token)])
 async def relationship_api(relationship_payload: RelationshipPayload):
     return await relationship_request(relationship_payload)
 
 
-@router.get("/relationship")
+@router.get("/relationship", dependencies=[Depends(get_user_from_token)])
 async def relationship_api(user1: str, user2: str):
     return await relationship_check(user1, user2)
 
 
-@router.get("/users")
+@router.get("/users", dependencies=[Depends(get_user_from_token)])
 async def relationship_api(user_id: str, status: int):
     return await get_friend_main(user_id, status)
 
 
-@router.post("/upload-profile")
+@router.post("/upload-profile", dependencies=[Depends(get_user_from_token)])
 async def upload_media_profile_user_api(
     folder: str = Form(...),
     file: UploadFile = File(None),
@@ -77,7 +81,7 @@ async def upload_media_profile_user_api(
     )
 
 
-@router.get("/user/search")
+@router.get("/user/search", dependencies=[Depends(get_user_from_token)])
 async def search_user_api(search: str, limit: Optional[int], offset: Optional[int]):
     return await search_user(search=search, limit=limit, offset=offset)
 

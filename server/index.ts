@@ -20,6 +20,10 @@ socketIo.on("connection", (socket: Socket) => {
     socketIo.emit(`receive-feel-post-${data?.postId}`, JSON.stringify(data));
   });
 
+  socket.on("send-comment", (data) => {
+    socketIo.emit(`receive-comment-${data?.postId}`, JSON.stringify(data));
+  });
+
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
