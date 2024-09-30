@@ -41,7 +41,8 @@ export default function WrapperPage(props) {
         } else {
           ref.current.classList.remove("dark");
         }
-        dispatch(login(result));
+        dispatch(login(result?.user));
+        localStorage.setItem("token", result?.token);
       } else {
         navigation(PAGE_LOGIN);
       }

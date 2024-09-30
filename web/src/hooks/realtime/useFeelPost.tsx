@@ -40,6 +40,7 @@ const useFeelPost = (postId: string) => {
         })
       );
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 

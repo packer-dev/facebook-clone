@@ -8,6 +8,8 @@ import FooterItemPost from "./FooterItemPost";
 import { ItemPostContext, ItemPostProvider } from "@/contexts/ItemPostContext";
 import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
 import { getCommentByPost } from "@/apis/commentAPIs";
+import useListeningComment from "@/hooks/realtime/useListeningComment";
+import useFeelPost from "@/hooks/realtime/useFeelPost";
 
 type ItemPostProps = {
   postDetail: PostDTO;
@@ -48,7 +50,8 @@ const ItemPost = ({
     updateData("postDetail", postDetailProps);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDetailProps]);
-
+  useListeningComment(postDetail.post?.id);
+  useFeelPost(postDetail?.post?.id);
   //
   return postDetail ? (
     <div

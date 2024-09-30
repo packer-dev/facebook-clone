@@ -8,7 +8,7 @@ import PopoverNotification from "./PopoverNotification";
 import PopoverSetting from "./PopoverSetting";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
-import { getNsvbarAmountNew } from "@/apis/commonAPIs";
+import { getNavbarAmountNew } from "@/apis/commonAPIs";
 
 export default function HeaderLoggedRight(props) {
   //
@@ -51,7 +51,7 @@ export default function HeaderLoggedRight(props) {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getNsvbarAmountNew(user?.id);
+      const result = await getNavbarAmountNew(user?.id);
       setAmount(result);
     };
     fetchData();

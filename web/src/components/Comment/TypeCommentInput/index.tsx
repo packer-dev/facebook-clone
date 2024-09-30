@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import PreviewImageComment from "../PreviewImageComment";
-import { RootState, getUser } from "@/reducers";
+import { RootState, getSocket, getUser } from "@/reducers";
 import CategoryInputComment from "./CategoryInputComment";
 import { User } from "@/interfaces/User";
 import { Comment, CommentDTO } from "@/interfaces/Comment";
@@ -9,6 +9,8 @@ import { generateUUID, getCurrentDateTime } from "@/utils";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { sendComment } from "@/apis/commentAPIs";
 import { userModel } from "@/models";
+import { Socket } from "socket.io-client";
+import { updateDataComment } from "@/hooks/realtime/useListeningComment";
 
 const TypeCommentInput = ({ parent }: { parent?: string }) => {
   //
@@ -16,6 +18,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     state: { postDetail, dataComment, file, edit },
     updateData,
   } = React.useContext(ItemPostContext);
+  const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const refContent = React.useRef<HTMLDivElement>(null);
   const handleSendComment = async (val?: any, type?: number) => {
@@ -83,31 +86,33 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     refContent.current.innerText = "";
     updateData("file", null);
     comment = await sendComment(formData);
+    const listComment = updateDataComment(
+      {
+        ...postDetail,
+        comments: {
+          ...postDetail.comments,
+          list: newComments.filter((item) => item.item.id),
+        },
+      },
+      {
+        edit,
+        parent,
+        comment,
+        level: parent ? 2 : 1,
+      }
+    );
     updateData("postDetail", {
       ...postDetail,
       comments: {
         ...postDetail.comments,
-        list: !parent
-          ? [{ item: comment, child: [] }, ...newComments]
-              .filter((item) => item.item.id)
-              .map((child) => {
-                if (child.item.id === comment.id)
-                  return { item: comment, child: [] };
-                return child;
-              })
-          : [...newComments].map((item) => {
-              if (parent === item.item.id) {
-                item.child = [...item.child].filter((child) => child.id);
-                item.child = edit
-                  ? [...item.child].map((child) => {
-                      if (child.id === comment.id) return comment;
-                      return child;
-                    })
-                  : [comment, ...item.child];
-              }
-              return item;
-            }),
+        list: listComment,
       },
+    });
+    socket.emit("send-comment", {
+      level: parent ? 2 : 1,
+      edit,
+      comment,
+      parent,
     });
   };
   React.useEffect(() => {

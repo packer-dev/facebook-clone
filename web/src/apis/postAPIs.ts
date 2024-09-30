@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/Config";
-import { sendXmlHttpRequest } from "../utils";
+import { sendXmlHttpRequest } from "@/utils";
+import axiosInstance from "./api";
 
 export const createPost = async (formData: any) => {
   return sendXmlHttpRequest(`${API_URL}/post`, formData, "POST").then(
@@ -14,12 +15,15 @@ export const editPost = async (formData: any) => {
 };
 
 export const deletePost = async (postId: string) => {
-  return fetch(`${API_URL}/post?post_id=${postId}`, {
+  return axiosInstance(`${API_URL}/post`, {
     headers: {
       "Content-Type": "application/json",
     },
+    params: {
+      post_id: postId,
+    },
     method: "DELETE",
-  }).then((res) => res.json());
+  }).then((res) => res.data);
 };
 
 export const getPostByIdUser = async (
@@ -28,17 +32,22 @@ export const getPostByIdUser = async (
   offset = 0,
   limit = 20
 ) => {
-  return fetch(
-    `${API_URL}/post?user_id=${userId}&is_profile=${isProfile}&offset=${
-      offset * limit
-    }&limit=${limit}`
-  ).then((res) => res.json());
+  return axiosInstance(`${API_URL}/post`, {
+    params: {
+      user_id: userId,
+      is_profile: isProfile,
+      offset,
+      limit,
+    },
+  }).then((res) => res.data);
 };
 
 export const getPostById = async (postId: string) => {
-  return fetch(`${API_URL}/post/id?post_id=${postId}`).then((res) =>
-    res.json()
-  );
+  return axiosInstance(`${API_URL}/post/id`, {
+    params: {
+      post_id: postId,
+    },
+  }).then((res) => res.data);
 };
 
 export const sendFeelPost = async (
@@ -46,15 +55,17 @@ export const sendFeelPost = async (
   userId: string,
   type: number
 ) => {
-  return fetch(
-    `${API_URL}/feel?post_id=${postId}&user_id=${userId}&type=${type}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    }
-  ).then((res) => res.json());
+  return axiosInstance(`${API_URL}/feel`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    params: {
+      post_id: postId,
+      user_id: userId,
+      type,
+    },
+  }).then((res) => res.data);
 };
 
 export const getMediaByUserId = async (
@@ -63,12 +74,15 @@ export const getMediaByUserId = async (
   offset = 0,
   limit = 9
 ) => {
-  return fetch(
-    `${API_URL}/post/media?user_id=${userId}&type=${type}&offset=${offset}&limit=${limit}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  ).then((res) => res.json());
+  return axiosInstance(`${API_URL}/post/media`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    params: {
+      user_id: userId,
+      type,
+      offset,
+      limit,
+    },
+  }).then((res) => res.data);
 };
