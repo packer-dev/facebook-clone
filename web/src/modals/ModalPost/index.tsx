@@ -16,6 +16,7 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
 import MediaDisplay from "@/components/MediaDisplay";
 import { Button } from "@/components/ui/button";
+import ItemPost from "@/components/ItemPost";
 
 const ModalPost = () => {
   //
@@ -36,6 +37,7 @@ const ModalPost = () => {
       feel,
       local,
       time_created,
+      share,
     },
   } = useContext(PostContext);
 
@@ -113,6 +115,7 @@ const ModalPost = () => {
             medias={[...imageVideo.old, ...Array.from(imageVideo.new || [])]}
           />
         )}
+        {share && <ItemPost postDetail={share} hideComment hideToolbar />}
       </div>
       <div className="w-full">
         <BottomWritePostModal />

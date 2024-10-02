@@ -134,6 +134,8 @@ class Post(BaseModel):
     answer_question: Optional[AnswerQuestion]
     local: Optional[Local]
     activity: Optional[Activity]
+    share_id: str
+    is_share_memory: bool
 
 
 class PostPayload(BaseModel):

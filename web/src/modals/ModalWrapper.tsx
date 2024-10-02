@@ -7,12 +7,14 @@ type ModalWrapperProps = {
   className?: string;
   title?: string;
   children?: ReactNode;
+  width?: number;
 };
 
 const ModalWrapper = ({
   title = "",
   children,
   className,
+  width,
 }: ModalWrapperProps) => {
   //
   const {
@@ -24,8 +26,10 @@ const ModalWrapper = ({
       <div
         className={`${
           !className || ""
-        } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg
-          shadow-lv1 sm:w-[480px] w-11/12 bg-white dark:bg-dark-second`}
+        } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lv1${
+          width ? "" : "sm:w-[480px]"
+        } w-11/12 bg-white dark:bg-dark-second`}
+        style={width ? { width } : { width: 480 }}
       >
         <div className="w-full relative p-3">
           <p className="text-2xl w-11/12 mx-auto font-bold p-2.5 -mt-1.5 text-center dark:text-white">

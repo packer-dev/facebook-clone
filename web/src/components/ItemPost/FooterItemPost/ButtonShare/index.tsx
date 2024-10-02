@@ -43,8 +43,8 @@ export default function ButtonShare() {
         className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-200 w-full font-semibold 
         text-sm h-12 flex items-center justify-center "
       >
-        <i className="bx bx-share text-xl transform rotate-180 dark:text-gray-300" />{" "}
-        &nbsp; Share
+        <i className="bx bx-share text-xl transform rotate-180 dark:text-gray-300" />
+        <span>&nbsp; Share</span>
       </div>
       <PopupShare ref={refPopup} />
     </li>

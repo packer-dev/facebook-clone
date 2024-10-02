@@ -6,7 +6,7 @@ const BottomWritePostModal = () => {
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   //
   return (
-    <div className="w-full flex px-2 border-2 border-sodivd border-gray-300 dark:border-dark-third mt-4 rounded-lg">
+    <div className="w-full flex px-2 border-2 border-solid border-gray-300 dark:border-dark-third mt-4 rounded-lg">
       <div className="cursor-pointer w-40 flex">
         <p className="pl-2.5 dark:text-white font-bold text-sm flex items-center">
           Add into post
@@ -45,7 +45,7 @@ const BottomWritePostModal = () => {
           {" "}
           <i
             className={`far fa-image text-2xl text-${
-              posts.background ? "gray" : "green"
+              posts.background || posts.share ? "gray" : "green"
             }-500 flex items-center`}
           />
         </label>
@@ -83,12 +83,14 @@ const BottomWritePostModal = () => {
             postsDispatch(postsAction.openModalAnswerQuestion());
           }}
           className={`cursor-pointer flex w-10 h-10 mx-1 rounded-full ${
-            posts.background ? "" : "hover:bg-gray-200 dark:hover:bg-dark-third"
+            posts.background || posts.share
+              ? ""
+              : "hover:bg-gray-200 dark:hover:bg-dark-third"
           } justify-center`}
         >
           <i
             className={`far fa-question-circle text-2xl text-${
-              posts.background ? "gray" : "pink"
+              posts.background || posts.share ? "gray" : "pink"
             }-500 flex items-center`}
           />
         </div>

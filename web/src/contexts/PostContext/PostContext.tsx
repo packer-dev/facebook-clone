@@ -7,6 +7,7 @@ import {
   Background,
   FeelPost,
   Local,
+  PostDTO,
 } from "@/interfaces/Post";
 import { Media } from "@/interfaces/Media";
 import { User } from "@/interfaces/User";
@@ -33,6 +34,7 @@ export type PostContextProps = {
   local: Local | null;
   fileList: File[] | [];
   time_created: string;
+  share: PostDTO;
 };
 
 const initialState: PostContextProps = {
@@ -56,6 +58,7 @@ const initialState: PostContextProps = {
   tags: [],
   fileList: null,
   time_created: "",
+  share: null,
 };
 
 export const PostContext = React.createContext({

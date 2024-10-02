@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Feels from "../Feels";
 import ButtonShare from "./ButtonShare";
 import { PostDTO } from "@/interfaces/Post";
@@ -16,6 +16,7 @@ import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
 import { Socket } from "socket.io-client";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 
 type FooterItemPostProps = {
   postDetail: PostDTO;
@@ -27,6 +28,7 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
     RootState,
     CommonDataProps
   >(getCommon);
+  const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const dispatch = useDispatch<AppDispatch>();
@@ -79,7 +81,13 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
   return (
     <>
       <div className="w-full flex text-sm text-gray-700 dark:text-gray-300 justify-between items-center my-1.5">
-        <div className="flex items-center w-full pl-1">
+        <div
+          aria-hidden
+          onClick={() =>
+            modalsDispatch(modalsAction.openModalViewFeelPost({ postDetail }))
+          }
+          className="flex items-center w-full pl-1 cursor-pointer"
+        >
           {feelList.map((item, index) => (
             <img
               key={item.id}
@@ -134,7 +142,7 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
           h-12 text-sm cursor-pointer justify-center items-center flex"
         >
           <i className="fas fa-comment-alt dark:text-gray-300" /> &nbsp;
-          <span>Bình Luận</span>
+          <span>Comment</span>
         </li>
         <ButtonShare />
       </ul>

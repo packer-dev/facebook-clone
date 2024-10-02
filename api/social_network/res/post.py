@@ -14,6 +14,8 @@ def get(post: Post):
         "local": post.local,
         "activity": post.activity,
         "tags": post.tags,
+        "share_id": post.share_id,
+        "is_share_memory": post.is_share_memory,
     }
 
 
@@ -31,6 +33,10 @@ def dict(post: any):
         "local": post["local"] if "local" in post else None,
         "activity": post["activity"] if "activity" in post else None,
         "tags": [user.dict(item) for item in (post["tags"] if "tags" in post else [])],
+        "share_id": post["share_id"] if "share_id" in post else "",
+        "is_share_memory": (
+            post["is_share_memory"] if "is_share_memory" in post else False
+        ),
     }
 
     return {key: value for key, value in response.items() if value is not None}

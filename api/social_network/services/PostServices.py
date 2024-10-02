@@ -31,8 +31,16 @@ def update_user_post(users, post):
     return post
 
 
+def create_date(date):
+    date = date.split(" ")[0]
+    date = date.split("-")
+    month = date[1]
+    day = date[2]
+    return {"day": day, "month": month}
+
+
 async def get_post_by_id_user(
-    user_id: str, is_profile: str, offset: int = 0, limit: int = 10
+    user_id: str, mode: str, offset: int = 0, limit: int = 10
 ):
     ref = db.reference("social-network")
 
@@ -47,7 +55,7 @@ async def get_post_by_id_user(
         return []
 
     response = []
-    if is_profile == "false":
+    if mode == "false":
         relationships = [
             relationship["user2"]
             for relationship in relationships
@@ -58,8 +66,18 @@ async def get_post_by_id_user(
             filter_post = [post for post in posts if post["user"]["id"] == relationship]
             response = response + filter_post
 
-    else:
+    if mode == "true":
         response = [post for post in posts if post["user"]["id"] == user_id]
+
+    if mode == "memory":
+        for post in posts:
+            post_date = create_date(post["time_created"])
+            current_date = create_date(str(datetime.now()))
+            if (
+                post_date["day"] == current_date["day"]
+                and post_date["month"] == current_date["month"]
+            ):
+                response.append(post)
 
     # Assuming each item has a datetime field in ISO format
     sorted_data = sorted(response, key=lambda x: x["time_created"], reverse=True)
@@ -84,7 +102,9 @@ async def get_post_by_id_user(
     ]
     total = len(sorted_data)
 
-    sorted_data = sorted_data[offset : limit * (1 if offset == 0 else offset)]
+    if mode != "memory":
+        sorted_data = sorted_data[offset : limit * (1 if offset == 0 else offset)]
+
     return {"total": (total), "list": sorted_data}
 
 

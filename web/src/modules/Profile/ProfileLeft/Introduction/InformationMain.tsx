@@ -54,7 +54,7 @@ export default function InformationMain({ userProfile }) {
       <li className="w-full pb-3">
         <p className="dark:text-gray-300">
           <i className="fas fa-clock text-gray-600 text-xl dark:text-gray-300 mr-1" />
-          Đã tham gia tháng{" "}
+          Joined at
           {moment(userProfile.timeCreated).month() + 1 > 12
             ? "01"
             : moment(userProfile.timeCreated).month() + 1 < 10

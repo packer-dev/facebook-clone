@@ -11,6 +11,7 @@ import ModalFavorite from "@/modals/Profile/ModalFavorite";
 import ModalEditInformation from "@/modals/Profile/ModalEditInformation";
 import ModalRegister from "@/modals/Login/ModalRegister";
 import { ModalContextProps } from "./ModalContext";
+import ModalFeelList from "@/modals/Post/ModalFeelList";
 
 const AppReducer = (state: ModalContextProps, action: any) => {
   switch (action.type) {
@@ -95,6 +96,11 @@ const AppReducer = (state: ModalContextProps, action: any) => {
             userProfile={action.userProfile}
           />
         ),
+      };
+    case constants.OPEN_MODAL_VIEW_FEEL_POST:
+      return {
+        ...state,
+        data: <ModalFeelList postDetail={action.postDetail} />,
       };
     default:
       return { ...state };

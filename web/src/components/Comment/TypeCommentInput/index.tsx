@@ -48,6 +48,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     };
 
     let newComments: CommentDTO[] = postDetail.comments.list;
+    let newPostDetail = { ...postDetail };
     if (!edit) {
       newComments = parent
         ? [...postDetail.comments.list].map((item) => {
@@ -57,13 +58,14 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
             return item;
           })
         : [{ item: comment, child: [] }, ...postDetail.comments.list];
-      updateData("postDetail", {
+      newPostDetail = {
         ...postDetail,
         comments: {
           ...postDetail.comments,
           list: newComments,
         },
-      });
+      };
+      updateData("postDetail", newPostDetail);
     }
     const comment_ = { ...comment };
     delete comment_.loading;
@@ -86,25 +88,16 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     refContent.current.innerText = "";
     updateData("file", null);
     comment = await sendComment(formData);
-    const listComment = updateDataComment(
-      {
-        ...postDetail,
-        comments: {
-          ...postDetail.comments,
-          list: newComments.filter((item) => item.item.id),
-        },
-      },
-      {
-        edit,
-        parent,
-        comment,
-        level: parent ? 2 : 1,
-      }
-    );
+    const listComment = updateDataComment(newPostDetail, {
+      edit,
+      parent,
+      comment,
+      level: parent ? 2 : 1,
+    });
     updateData("postDetail", {
-      ...postDetail,
+      ...newPostDetail,
       comments: {
-        ...postDetail.comments,
+        ...newPostDetail.comments,
         list: listComment,
       },
     });

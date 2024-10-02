@@ -43,6 +43,8 @@ export const PAGE_MESSENGER = "/messenger";
 //
 export const PAGE_VIEW_POST = "/post/view";
 //
+export const PAGE_MEMORY = "/memory";
+//
 export const AVATAR_DEFAULT =
   "https://res.cloudinary.com/ensonet-dev/image/upload/v1641124176/default-avatar_leprc2.png";
 //

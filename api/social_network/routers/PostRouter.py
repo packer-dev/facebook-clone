@@ -24,10 +24,8 @@ router = APIRouter(
 
 
 @router.get("/post")
-async def get_post_by_id_user_api(
-    user_id: str, is_profile: str, offset: int, limit: int
-):
-    return await get_post_by_id_user(user_id, is_profile, offset, limit)
+async def get_post_by_id_user_api(user_id: str, mode: str, offset: int, limit: int):
+    return await get_post_by_id_user(user_id, mode, offset, limit)
 
 
 @router.post("/post")

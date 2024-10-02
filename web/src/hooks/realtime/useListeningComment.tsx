@@ -47,7 +47,9 @@ export const updateDataComment = (
     parent: string;
   }
 ) => {
-  let listComment = [...postDetail.comments.list];
+  let listComment = [...postDetail.comments.list].filter(
+    (item) => item.item.id
+  );
   if (data?.level === 1) {
     if (data?.edit) {
       listComment = [...listComment].map((item) =>

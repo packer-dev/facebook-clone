@@ -29,14 +29,14 @@ export const deletePost = async (postId: string) => {
 
 export const getPostByIdUser = async (
   userId: string,
-  isProfile = "true",
+  mode = "true",
   offset = 0,
   limit = 20
 ) => {
   return axiosInstance(`${API_URL}/post`, {
     params: {
       user_id: userId,
-      is_profile: isProfile,
+      mode,
       offset,
       limit,
     },

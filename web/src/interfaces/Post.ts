@@ -49,6 +49,8 @@ export interface Post {
   local?: Local;
   background?: Background;
   answer_question?: AnswerQuestion;
+  share_id?: string;
+  is_share_memory?: boolean;
 }
 
 export interface PostDTO {

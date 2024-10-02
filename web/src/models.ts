@@ -73,6 +73,8 @@ export const postModel = (obj: Post) => ({
   answer_question: obj.answer_question || null,
   local: obj.local || null,
   activity: obj.activity || null,
+  share_id: obj?.share_id || "",
+  is_share_memory: obj?.is_share_memory || false,
 });
 
 export const mediaModel = (obj: Media) => ({

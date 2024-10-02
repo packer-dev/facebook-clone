@@ -10,16 +10,21 @@ import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
 import { getCommentByPost } from "@/apis/commentAPIs";
 import useListeningComment from "@/hooks/realtime/useListeningComment";
 import useFeelPost from "@/hooks/realtime/useFeelPost";
+import SharePost from "./SharePost";
 
 type ItemPostProps = {
   postDetail: PostDTO;
   margin?: boolean;
   hideContent?: boolean;
+  hideToolbar?: boolean;
+  hideComment?: boolean;
 };
 const ItemPost = ({
   postDetail: postDetailProps,
   margin,
   hideContent,
+  hideToolbar,
+  hideComment,
 }: ItemPostProps) => {
   //
   const {
@@ -69,28 +74,38 @@ const ItemPost = ({
           }}
         />
       )}
-      {!hideContent && <ContentPost postDetail={postDetail} />}
-      <div className="w-full mb-4 mx-0">
-        <FooterItemPost postDetail={postDetail} />
-      </div>
-      <TypeCommentInput />
-      {postDetail?.comments?.list?.map?.((comment) => (
-        <ItemCommentPostMain
-          key={comment.item.id}
-          commentDetail={comment}
-          postDetail={postDetail}
-        />
-      ))}
-      {!!postDetail.comments.total &&
-        limit * (offset || 1) < postDetail.comments.total && (
-          <p
-            aria-hidden
-            onClick={handleViewMore}
-            className="text-main text-sm font-semibold cursor-pointer"
-          >
-            {loading ? "Loading..." : "View more"}
-          </p>
-        )}
+      {!hideContent && postDetail?.post?.type === 4 ? (
+        <SharePost postDetail={postDetail} />
+      ) : (
+        <ContentPost postDetail={postDetail} />
+      )}
+      {!hideToolbar && (
+        <div className="w-full mb-4 mx-0">
+          <FooterItemPost postDetail={postDetail} />
+        </div>
+      )}
+      {!hideComment && (
+        <div>
+          <TypeCommentInput />
+          {postDetail?.comments?.list?.map?.((comment) => (
+            <ItemCommentPostMain
+              key={comment.item.id}
+              commentDetail={comment}
+              postDetail={postDetail}
+            />
+          ))}
+          {!!postDetail.comments.total &&
+            limit * (offset || 1) < postDetail.comments.total && (
+              <p
+                aria-hidden
+                onClick={handleViewMore}
+                className="text-main text-sm font-semibold cursor-pointer"
+              >
+                {loading ? "Loading..." : "View more"}
+              </p>
+            )}
+        </div>
+      )}
     </div>
   ) : (
     <LoadingPost />

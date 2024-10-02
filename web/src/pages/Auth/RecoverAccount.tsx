@@ -23,7 +23,7 @@ const RecoverAccount = (props: any) => {
           <div className="w-full my-2 p-2 flex">
             <div className="w-2/3 pl-4">
               <p className="mb-2">
-                How would you like to receive the code to{" "}
+                How would you like to receive the code to
                 {verify ? "confirm your account" : "reset your password"}?
               </p>
               {user.email && (

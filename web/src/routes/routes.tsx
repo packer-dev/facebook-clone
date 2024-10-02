@@ -14,6 +14,7 @@ import Watch from "@/pages/Watch";
 import Messenger from "@/pages/Messenger";
 import ViewPost from "@/pages/ViewPost";
 import NotFound from "@/pages/NotFound";
+import Memory from "@/pages/Memory";
 
 const routes = [
   {
@@ -87,6 +88,10 @@ const routes = [
   {
     path: Config.PAGE_VIEW_POST + "/:id",
     element: <ViewPost />,
+  },
+  {
+    path: Config.PAGE_MEMORY,
+    element: <Memory />,
   },
   {
     path: "*",
