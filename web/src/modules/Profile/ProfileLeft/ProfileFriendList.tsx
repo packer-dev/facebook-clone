@@ -1,27 +1,34 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { getFriendUser } from "@/apis/userAPIs";
-import { FriendProfileDTO, User } from "@/interfaces/User";
-import { useSelector } from "react-redux";
-import { getUser, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, getCommon, getUser, RootState } from "@/reducers";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
 export default function ProfileFriendList() {
   //
   const user = useSelector<RootState, User>(getUser);
-  const [friends, setFriends] = useState<FriendProfileDTO[]>([]);
+  const { profileFriends } = useSelector<RootState, CommonDataProps>(getCommon);
+  const dispatch = useDispatch<AppDispatch>();
   const {
     state: { userProfile, isFriend },
   } = useContext(UserProfileContext);
-  const list = friends.filter((item) =>
+  const list = profileFriends.filter((item) =>
     isFriend ? item.user.id !== user.id : true
   );
   useEffect(() => {
     //
     const fetchData = async () => {
       const result = await getFriendUser(userProfile?.id, 3);
-      setFriends(result);
+      dispatch(
+        updateDataCommon({
+          key: "profileFriends",
+          value: result || [],
+        })
+      );
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { AppContext, AppProvider } from "../AppContext";
+import stories from "@/config/stories";
 
 type StoryContextProps = {
   current: any;
@@ -20,7 +21,7 @@ const initialState: StoryContextProps = {
   main: null,
   indexRun: 0,
   show: false,
-  storyList: [],
+  storyList: stories,
 };
 
 export const StoryContext = AppContext<StoryContextProps>(initialState);

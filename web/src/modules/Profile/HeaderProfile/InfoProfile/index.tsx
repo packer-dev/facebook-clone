@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import RelationshipUserStatus from "./RelationshipUserStatus";
+import { useSelector } from "react-redux";
+import { getCommon, RootState } from "@/reducers";
+import { CommonDataProps } from "@/reducers/common";
 
 export default function InfoProfile() {
   //
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
+  const { profileFriends } = useSelector<RootState, CommonDataProps>(getCommon);
   //
   return (
     <div className="p-2 pr-0 relative" style={{ width: "calc(100% - 180px)" }}>
@@ -17,27 +21,21 @@ export default function InfoProfile() {
         </span>
       </p>
       <p className="text-gray-600 dark:text-gray-300 items-center pl-1 pb-1 flex">
-        <span>1.870 friends</span>
+        <span>{profileFriends.length} friends</span>
         <span className="mx-1">•</span>
         <span />
       </p>
       <div className="w-full flex flex-col md:flex-row justify-between items-center">
-        <div className="flex pl-2 my-1 w-full md:w-auto">
-          <img
-            className="w-10 h-10 border-2 border-solid border-white dark:border-dark-third relative z-30 -ml-2 rounded-full object-cover"
-            src="http://res.cloudinary.com/tratahuong01/image/upload/v1638973763/Avatar/kxqbimjteg5ka9cbqh6y.jpg"
-            alt=""
-          />
-          <img
-            className="w-10 h-10 border-2 border-solid border-white dark:border-dark-third relative z-20 -ml-2 rounded-full object-cover"
-            src="http://res.cloudinary.com/tratahuong01/image/upload/v1634874843/Avatar/wwyvpklsoeqxbw0jzawr.jpg"
-            alt=""
-          />
-          <img
-            className="w-10 h-10 border-2 border-solid border-white dark:border-dark-third relative z-10 -ml-2 rounded-full object-cover"
-            src="http://res.cloudinary.com/tratahuong01/image/upload/v1623289083/PostNormal/xxxi1jytvxdmvnmwckcf.jpg"
-            alt=""
-          />
+        <div className="flex pl-2 my-1 w-full">
+          {profileFriends.slice(0, 3).map((item, index) => (
+            <img
+              key={item.user.id}
+              className="w-10 h-10 border-2 border-solid border-white dark:border-dark-third relative -ml-2 rounded-full object-cover"
+              src={item.user.avatar}
+              style={{ zIndex: profileFriends.length - index }}
+              alt=""
+            />
+          ))}
         </div>
         <RelationshipUserStatus />
       </div>

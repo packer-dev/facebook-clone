@@ -1,17 +1,18 @@
 import { API_URL } from "@/constants/Config";
-import { sendXmlHttpRequest } from "@/utils";
 import axiosInstance from "./api";
 
 export const createPost = async (formData: any) => {
-  return sendXmlHttpRequest(`${API_URL}/post`, formData, "POST").then(
-    (res) => res
-  );
+  return axiosInstance(`${API_URL}/post`, {
+    data: formData,
+    method: "POST",
+  }).then((res) => res.data);
 };
 
 export const editPost = async (formData: any) => {
-  return sendXmlHttpRequest(`${API_URL}/post`, formData, "PUT").then(
-    (res) => res
-  );
+  return axiosInstance(`${API_URL}/post`, {
+    data: formData,
+    method: "PUT",
+  }).then((res) => res.data);
 };
 
 export const deletePost = async (postId: string) => {

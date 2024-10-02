@@ -1,22 +1,26 @@
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { Comment } from "@/interfaces/Comment";
 import { PostDTO } from "@/interfaces/Post";
-import { getSocket, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { getSocket, getUser, RootState } from "@/reducers";
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
 
 const useListeningComment = (postId: string) => {
+  const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const {
     state: { postDetail },
     updateData,
   } = useContext(ItemPostContext);
   const listenComment = (data: any) => {
-    if (!data) return;
+    if (!data || !user) return;
     data = JSON.parse(data);
     let listComment = updateDataComment(postDetail, data);
-    alert(JSON.stringify(listComment));
+
+    if (user?.id === data?.comment?.user?.id) return;
+
     updateData("postDetail", {
       ...postDetail,
       comments: { ...postDetail.comments, list: listComment },
@@ -24,7 +28,6 @@ const useListeningComment = (postId: string) => {
   };
   useEffect(() => {
     if (socket && postId) {
-      console.log(postId);
       socket.off(`receive-comment-${postId}`, listenComment);
       socket.on(`receive-comment-${postId}`, listenComment);
     }
