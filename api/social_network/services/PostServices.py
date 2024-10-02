@@ -117,7 +117,7 @@ async def create_post(post_payload: PostPayload):
             "post": update_user_post(users, post),
             "medias": media_list,
             "feel": [],
-            "comment": [],
+            "comment": {"total": 0, "list": []},
         }
 
     except OSError as err:
@@ -300,7 +300,7 @@ def model_post(post: Post):
 
     content = ContentPost(
         id=post["content"]["id"],
-        text=post["content"]["text"],
+        text=post["content"]["text"] if "text" in post["content"] else "",
         data=post["content"]["data"] if "data" in post["content"] else "",
         type=post["content"]["type"],
     )
