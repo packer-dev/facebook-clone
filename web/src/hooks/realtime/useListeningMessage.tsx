@@ -4,7 +4,7 @@ import { RootState, getSocket, getUser } from "@/reducers";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
-
+import audio_notice from "@/assets/sound/audio.mp3";
 const useListeningMessage = (groupId: string) => {
   const {
     state: { messages, groups, group },
@@ -12,9 +12,12 @@ const useListeningMessage = (groupId: string) => {
   } = React.useContext(ItemChatContext);
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
+  const audio = new Audio(audio_notice);
+
   const listenChat = (data: any) => {
     data = JSON.parse(data);
     if (user?.id === data?.message?.user?.id && data.type === "message") return;
+    audio.play();
     updateData("messages", [...messages, data?.message]);
     updateData(
       "groups",

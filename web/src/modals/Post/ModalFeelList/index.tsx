@@ -12,13 +12,15 @@ const ModalFeelList = ({ postDetail }: { postDetail: PostDTO }) => {
   return (
     <ModalWrapper title="Feel" width={550}>
       <div className="w-full">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 border-b border-solid border-gray-200">
           {feelList.map((item) => (
             <div
               aria-hidden
               onClick={() => setCurrentType(item.type)}
               key={item.id}
-              className="cursor-pointer flex gap-1 items-center"
+              className={`cursor-pointer px-3 py-3 flex gap-1 items-center ${
+                currentType === item.type ? "bg-gray-200" : ""
+              }`}
             >
               <img
                 src={feels[item.type - 1].image}
@@ -45,7 +47,7 @@ const ModalFeelList = ({ postDetail }: { postDetail: PostDTO }) => {
                     <img
                       src={item.user.avatar}
                       alt=""
-                      className="w-14 h-14 rounded-full"
+                      className="w-14 h-14 rounded-full object-cover"
                     />
                     <img
                       src={feels[item.type - 1].image}

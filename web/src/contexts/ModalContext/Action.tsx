@@ -138,3 +138,9 @@ export const openModalViewFeelPost = ({
     postDetail,
   };
 };
+
+export const openModalExpiredToken = () => {
+  return {
+    type: constants.OPEN_MODAL_EXPIRED_TOKEN,
+  };
+};

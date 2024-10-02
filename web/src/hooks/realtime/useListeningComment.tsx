@@ -68,7 +68,10 @@ export const updateDataComment = (
                 child.id === data?.comment?.id ? data?.comment : child
               ),
             }
-          : { ...item, child: [data?.comment, ...item.child] };
+          : {
+              ...item,
+              child: [data?.comment, ...item.child].filter((child) => child.id),
+            };
       }
       return item;
     });

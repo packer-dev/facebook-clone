@@ -14,7 +14,7 @@ const ItemPostMemory = ({ postDetail }: { postDetail: PostDTO }) => {
         <p className="text-xl font-bold dark:text-white">1 year ago</p>
       </div>
       <div className="w-full pt-2">
-        <ItemPost postDetail={postDetail} />
+        <ItemPost postDetail={postDetail} hideToolbar />
       </div>
       <div
         aria-hidden

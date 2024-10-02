@@ -167,7 +167,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
           ref={refContent}
         />
       </div>
-      {file && edit && <PreviewImageComment file={file} />}
+      {file && <PreviewImageComment file={file} />}
     </>
   );
 };
