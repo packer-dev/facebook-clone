@@ -1,37 +1,51 @@
-import { API_URL } from "../config";
+import { API_URL } from "@/config";
 import { Group } from "../interfaces/Group";
 import { groupModel } from "../models";
+import axiosInstance from "./api";
 
 export const getGroupById = async (groupId: string) => {
-  return fetch(`${API_URL}/group/id?group_id=${groupId}`).then((res) =>
-    res.json()
-  );
+  return axiosInstance(`${API_URL}/group/id`, {
+    params: {
+      group_id: groupId,
+    },
+  }).then((res) => res.data);
+};
+
+export const getGroupAndMessageByIdGroup = async (groupId: string) => {
+  return axiosInstance(`${API_URL}/group`, {
+    params: {
+      group_id: groupId,
+    },
+  }).then((res) => res.data);
 };
 
 export const getListGroupByUserId = async (userId: string) => {
-  return fetch(`${API_URL}/message/list?user_id=${userId}`, {
+  return axiosInstance(`${API_URL}/message/list`, {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+    params: {
+      user_id: userId,
+    },
+  }).then((res) => res.data);
 };
 
 export const updateInfoGroupByGroup = async (formData: any) => {
-  return fetch(`${API_URL}/group/image`, {
+  return axiosInstance(`${API_URL}/group/image`, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    body: formData,
+    data: formData,
     method: "POST",
-  }).then((res) => res.json());
+  }).then((res) => res.data);
 };
 
 export const updateGroupById = async (group: Group) => {
-  return fetch(`${API_URL}/group`, {
+  return axiosInstance(`${API_URL}/group/update`, {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(groupModel(group)),
-    method: "PUT",
-  }).then((res) => res.json());
+    data: JSON.stringify(groupModel(group)),
+    method: "POST",
+  }).then((res) => res.data);
 };

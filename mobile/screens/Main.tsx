@@ -8,7 +8,12 @@ import useKeyboard from "@/hooks/useKeyboard";
 import useListeningMessage from "@/hooks/useListeningMessage";
 import tailwind from "@/tailwind";
 import * as React from "react";
-import { Platform, SafeAreaView, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 
 const Main = ({ route: { params } }: any) => {
   const {
@@ -17,7 +22,7 @@ const Main = ({ route: { params } }: any) => {
   } = React.useContext(AppContext);
   const refScroll = React.useRef<ScrollView>(null);
   useListeningMessage(groupCurrent?.id ?? "");
-  const { keyboardHeight, width, height } = useKeyboard();
+  const { keyboardHeight, width } = useKeyboard();
   React.useEffect(() => {
     const fetchData = async () => {
       if (!user || !groupCurrent) return;
@@ -56,26 +61,22 @@ const Main = ({ route: { params } }: any) => {
     refScroll.current?.scrollToEnd();
   }, [messages]);
   return (
-    <SafeAreaView
-      style={[
-        tailwind(
-          `p-3 flex-col bg-white ${Platform.OS === "android" ? "flex-1" : ""}`
-        ),
-        {
-          height,
-        },
-      ]}
-    >
-      <Header friend={params?.friend} />
-      <ScrollView
-        ref={refScroll}
-        style={{ ...tailwind(`flex-1`), width: width - 12 }}
-        showsVerticalScrollIndicator={false}
-        onContentSizeChange={() => refScroll.current?.scrollToEnd()}
+    <SafeAreaView style={[tailwind(`p-3 flex-col bg-white flex-1`)]}>
+      <KeyboardAvoidingView
+        style={tailwind(`flex-1`)}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Content />
-      </ScrollView>
-      <Toolbar friend={params?.friend} keyboardHeight={keyboardHeight} />
+        <Header friend={params?.friend} />
+        <ScrollView
+          ref={refScroll}
+          style={{ ...tailwind(`flex-1`), width: width - 12 }}
+          showsVerticalScrollIndicator={false}
+          onContentSizeChange={() => refScroll.current?.scrollToEnd()}
+        >
+          <Content />
+        </ScrollView>
+        <Toolbar friend={params?.friend} keyboardHeight={keyboardHeight} />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

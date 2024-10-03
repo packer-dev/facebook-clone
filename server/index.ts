@@ -24,6 +24,10 @@ socketIo.on("connection", (socket: Socket) => {
     socketIo.emit(`receive-comment-${data?.postId}`, JSON.stringify(data));
   });
 
+  socket.on("call", (data) => {
+    socketIo.emit(`waiting-${data?.id}`, JSON.stringify(data));
+  });
+
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });

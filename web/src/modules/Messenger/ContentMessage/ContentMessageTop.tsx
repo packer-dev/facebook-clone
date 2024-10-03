@@ -2,7 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_CALL } from "@/constants/Config";
-import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
+import {
+  AppDispatch,
+  RootState,
+  getCall,
+  getSocket,
+  getUser,
+  getUserChat,
+} from "@/reducers";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
@@ -10,6 +17,8 @@ import { UserChatReduxProps, updateDataUserChat } from "@/reducers/userChat";
 import { nameGroup } from "@/utils";
 import { User } from "@/interfaces/User";
 import { Member } from "@/interfaces/Member";
+import { CallProps, updateDataCall } from "@/reducers/call";
+import { Socket } from "socket.io-client";
 
 const ItemHeaderContentMessageTop = (props: any) => {
   //
@@ -39,6 +48,8 @@ const ContentMessageTop = () => {
   const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
+  const { peer } = useSelector<RootState, CallProps>(getCall);
+  const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const member: { user: User } | Member = group?.members?.find(
     (item) => item.user.id !== user.id
@@ -83,7 +94,53 @@ const ContentMessageTop = () => {
           <div className="w-1/3 ml-auto">
             <ul className="ml-auto flex float-right pr-1.5">
               <ItemHeaderContentMessageTop
-                handleClick={() => {
+                handleClick={async () => {
+                  dispatch(
+                    updateDataCall({
+                      key: "status",
+                      value: "caller",
+                    })
+                  );
+                  if (group.multiple) {
+                    dispatch(
+                      updateDataCall({
+                        key: "group",
+                        value: group,
+                      })
+                    );
+                  } else {
+                    dispatch(
+                      updateDataCall({
+                        key: "current",
+                        value: member.user,
+                      })
+                    );
+                  }
+                  const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true,
+                  });
+                  dispatch(
+                    updateDataCall({
+                      key: "localStream",
+                      value: stream,
+                    })
+                  );
+                  const call = peer.call(member?.user?.id, null);
+                  call.on("stream", (stream) => {
+                    dispatch(
+                      updateDataCall({
+                        key: "localStream",
+                        value: stream,
+                      })
+                    );
+                  });
+                  socket.emit(`call`, {
+                    id: member?.user?.id,
+                    isGroup: group?.multiple,
+                    info: group?.multiple ? group : member,
+                    type: "catch",
+                  });
                   navigation(PAGE_CALL);
                 }}
                 mini={mini}

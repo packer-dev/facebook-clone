@@ -97,7 +97,7 @@ const getRandomEmail = (name: string) => {
   return email;
 };
 
-export const ramdomUser = () => {
+export const randomUser = () => {
   const randomName = getRandomName();
   const randomEmail = getRandomEmail(randomName);
   return {

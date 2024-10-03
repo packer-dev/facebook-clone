@@ -6,7 +6,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { AppContext } from "@/contexts";
 import useWebRTC from "@/hooks/useWebRTC";
 import { checkTokenExpired } from "@/apis/userAPIs";
-import { userModel } from "@/models";
 import tailwind from "@/tailwind";
 
 type ScreenList = NavigationProp<{

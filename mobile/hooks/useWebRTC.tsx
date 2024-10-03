@@ -5,7 +5,7 @@ import { AppContext } from "@/contexts";
 const useWebRTC = () => {
   const {
     state: { user },
-    updateData,
+    // updateData,
   } = React.useContext(AppContext);
 
   React.useEffect(() => {

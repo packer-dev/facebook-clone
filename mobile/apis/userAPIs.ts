@@ -1,91 +1,110 @@
-import { API_URL } from "../config";
-import { User } from "../interfaces/User";
+import { AVATAR_DEFAULT, COVER_DEFAULT, API_URL } from "@/config";
+import { User } from "@/interfaces/User";
+import { userModel } from "@/models";
+import axiosInstance from "./api";
 
-export const getUserById = async (userId: string) => {
-  return fetch(`${API_URL}/user/id?user_id=${userId}`).then((res) =>
-    res.json()
-  );
-};
+export const getUserById = async (userId: string) =>
+  axiosInstance(`${API_URL}/user/id`, {
+    params: {
+      user_id: userId,
+    },
+  }).then((res) => res.data);
 
 export const registerAPI = async (param: any) =>
-  fetch(`${API_URL}/register`, {
+  axiosInstance(`${API_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(param),
-  }).then((res) => res.json());
+    data: userModel({ ...param, avatar: AVATAR_DEFAULT, cover: COVER_DEFAULT }),
+  }).then((res) => res.data);
 
 export const loginAPI = async (param: any) =>
-  fetch(`${API_URL}/login`, {
+  axiosInstance(`${API_URL}/login`, {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(param),
+    data: param,
     method: "POST",
-  }).then((res) => res.json());
+  }).then((res) => res.data);
 
-export const updateUser = async (user: User) => {
-  return fetch(`${API_URL}/user`, {
+export const updateUser = async (user: User) =>
+  axiosInstance(`${API_URL}/user`, {
     headers: {
       "content-type": "application/json",
     },
     method: "PUT",
-    body: JSON.stringify(user),
-  }).then((res) => res.json());
-};
+    data: userModel(user),
+  }).then((res) => res.data);
 
-export const getFriendsByUserId = async (userId: string) => {
-  return fetch(`${API_URL}/friends?user_id=${userId}`, {
+export const getFriendsByUserId = async (userId: string) =>
+  axiosInstance(`${API_URL}/friends`, {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify([]),
+    params: { user_id: userId },
+    data: [],
     method: "POST",
-  }).then((res) => res.json());
-};
+  }).then((res) => res.data);
 
-export const getSuggestFriendByUserId = async (userId: string) => {
-  return fetch(`${API_URL}/suggest-friend?user_id=${userId}`).then((res) =>
-    res.json()
-  );
-};
+export const getSuggestFriendByUserId = async (userId: string) =>
+  axiosInstance(`${API_URL}/suggest-friend`, {
+    params: {
+      user_id: userId,
+    },
+  }).then((res) => res.data);
 
-export const sendRelationship = async (body: any) => {
-  return fetch(`${API_URL}/relationship`, {
+export const sendRelationship = async (data: any) =>
+  axiosInstance(`${API_URL}/relationship`, {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    data: data,
     method: "POST",
-  }).then((res) => res.json());
-};
+  }).then((res) => res.data);
 
-export const checkRelationship = async (user1: string, user2: string) => {
-  return fetch(`${API_URL}/relationship?user1=${user1}&user2=${user2}`, {
+export const checkRelationship = async (user1: string, user2: string) =>
+  axiosInstance(`${API_URL}/relationship`, {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
-};
+    params: {
+      user1,
+      user2,
+    },
+  }).then((res) => res.data);
 
-export const getFriendUser = async (userId: string, status: any) => {
-  return fetch(`${API_URL}/users?user_id=${userId}&status=${status}`, {
+export const getFriendUser = async (userId: string, status: any) =>
+  axiosInstance(`${API_URL}/users`, {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
-};
-
-export const updateProfileUser = async (formData: any) => {
-  return fetch(`${API_URL}/upload-profile`, {
-    headers: {
-      "Content-Type": "multipart/form-data",
+    params: {
+      user_id: userId,
+      status,
     },
-    body: formData,
+  }).then((res) => res.data);
+
+export const updateProfileUser = async (formData: any) =>
+  axiosInstance(`${API_URL}/upload-profile`, {
+    data: formData,
     method: "POST",
-  }).then((res) => res.json());
-};
+  }).then((res) => res.data);
+
+export const searchUser = async (
+  search: string = "",
+  offset: number = 0,
+  limit: number = 10
+) =>
+  axiosInstance(`${API_URL}/user/search`, {
+    params: {
+      search,
+      offset,
+      limit,
+    },
+  }).then((res) => res.data);
 
 export const checkTokenExpired = async (token: string) =>
-  fetch(`${API_URL}/jwt/check-token-expired?token=${token}`).then((res) =>
-    res.json()
-  );
+  axiosInstance(`${API_URL}/jwt/check-token-expired`, {
+    params: {
+      token,
+    },
+  }).then((res) => res.data);

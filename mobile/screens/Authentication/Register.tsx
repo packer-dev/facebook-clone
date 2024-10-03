@@ -2,14 +2,14 @@ import Authentication from "./index";
 import * as React from "react";
 import { Keyboard, Text } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { ramdomUser, validateEmail } from "@/utils";
+import { randomUser, validateEmail } from "@/utils";
 import useForm from "@/hooks/useForm";
 import { registerAPI } from "@/api";
 import { userModel } from "@/models";
 import Input from "@/components/Input";
 import tailwind from "@/tailwind";
 
-const random = ramdomUser();
+const random = randomUser();
 
 const init = [
   {

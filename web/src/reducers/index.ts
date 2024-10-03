@@ -5,6 +5,7 @@ import userChat from "./userChat";
 import posts from "./posts";
 import { configureStore } from "@reduxjs/toolkit";
 import common from "./common";
+import call from "./call";
 
 const myReducer = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const myReducer = configureStore({
     userChat: userChat.reducer,
     posts: posts.reducer,
     common: common.reducer,
+    call: call.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -35,5 +37,6 @@ export const getCommon = (state: RootState) => state.common;
 export const getSocket = (state: RootState) => state.socket;
 export const getHeaders = (state: RootState) => state.headers;
 export const getPosts = (state: RootState) => state.posts;
+export const getCall = (state: RootState) => state.call;
 
 export default myReducer;

@@ -12,6 +12,7 @@ import {
 import { User } from "@/interfaces/User";
 import ItemChatMinimize from "@/components/ItemChatMinimize";
 import { generateUUID } from "@/utils";
+import useListenCall from "@/hooks/realtime/useListenCall";
 
 type WrapperLoggedProps = {
   hideChat?: boolean;
@@ -49,6 +50,7 @@ const WrapperLogged = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useListenCall();
   //
   return (
     <WrapperPage>
