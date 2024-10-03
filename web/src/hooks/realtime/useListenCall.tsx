@@ -1,4 +1,3 @@
-import { PAGE_CALL } from "@/constants/Config";
 import { User } from "@/interfaces/User";
 import {
   AppDispatch,
@@ -8,20 +7,21 @@ import {
   RootState,
 } from "@/reducers";
 import { CallProps, updateDataCall } from "@/reducers/call";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Socket } from "socket.io-client";
 import { Peer } from "peerjs";
+import { ModalContext } from "@/contexts/ModalContext/ModalContext";
+
 const useListenCall = () => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const { acceptUser } = useSelector<RootState, CallProps>(getCall);
-  const navigate = useNavigate();
+  const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const dispatch = useDispatch<AppDispatch>();
   const listenCall = (data: any) => {
     data = JSON.parse(data);
-    if (data?.id === user.id) return;
+    if (data?.id !== user.id) return;
 
     switch (data.type) {
       case "catch":
@@ -33,17 +33,17 @@ const useListenCall = () => {
         );
         dispatch(
           updateDataCall({
-            key: "status",
-            value: "callee",
+            key: data?.isGroup ? "group" : "current",
+            value: data?.caller,
           })
         );
         dispatch(
           updateDataCall({
-            key: data?.isGroup ? "group" : "current",
-            value: data.info,
+            key: "status",
+            value: "callee",
           })
         );
-        navigate(PAGE_CALL);
+        modalsDispatch(modalsAction.openModalCaller(data));
         break;
       case "accept":
         dispatch(
@@ -60,7 +60,7 @@ const useListenCall = () => {
   useEffect(() => {
     if (socket && user) {
       socket.off(`waiting-${user.id}`, listenCall);
-      socket.on(`receive-comment-${user.id}`, listenCall);
+      socket.on(`waiting-${user.id}`, listenCall);
       const peer = new Peer(user.id);
       dispatch(
         updateDataCall({
@@ -70,7 +70,7 @@ const useListenCall = () => {
       );
     }
     return () => {
-      socket.off(`receive-comment-${user.id}`, listenCall);
+      socket.off(`waiting-${user?.id}`, listenCall);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);

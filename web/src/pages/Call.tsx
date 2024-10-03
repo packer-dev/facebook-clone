@@ -4,32 +4,21 @@ import ItemExtensionCall from "@/components/Call/ExtensionCall/ItemExtensionCall
 import InfoCalling from "@/components/Call/InfoCalling";
 import NotifyRight from "@/components/Call/NotifyRight";
 import messenger from "@/assets/sound/messenger.mp3";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  AppDispatch,
-  getCall,
-  getSocket,
-  getUser,
-  RootState,
-} from "@/reducers";
-import { CallProps, updateDataCall } from "@/reducers/call";
-import { Button } from "@/components/ui/button";
-import { Socket } from "socket.io-client";
-import { User } from "@/interfaces/User";
+import { useSelector } from "react-redux";
+import { getCall, RootState } from "@/reducers";
+import { CallProps } from "@/reducers/call";
+import { PAGE_HOME } from "@/constants/Config";
+import { useNavigate } from "react-router-dom";
 
 const Call = () => {
   //
-  const socket = useSelector<RootState, Socket>(getSocket);
-  const user = useSelector<RootState, User>(getUser);
-  const dispatch = useDispatch<AppDispatch>();
-  const { mode, status, acceptUser, localStream } = useSelector<
-    RootState,
-    CallProps
-  >(getCall);
+  const { mode, showVideo, localStream } = useSelector<RootState, CallProps>(
+    getCall
+  );
   const refLocalStream = useRef<HTMLVideoElement>(null);
   const audio = new Audio(messenger);
   audio.loop = true;
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetch() {
       // audio.play();
@@ -37,24 +26,34 @@ const Call = () => {
         window.close();
       }, 20000);
     }
-    fetch();
+    mode !== "offline" && fetch();
     return () => {
       audio.pause();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mode]);
   useEffect(() => {
-    if (refLocalStream.current && localStream) {
-      refLocalStream.current.srcObject = localStream;
-    }
-  }, [localStream]);
-
+    const fetchData = async () => {
+      if (mode === "offline") {
+        navigate(PAGE_HOME);
+        return;
+      }
+      if (refLocalStream.current && localStream) {
+        refLocalStream.current.srcObject = localStream;
+        refLocalStream.current.onloadedmetadata = function (e) {
+          refLocalStream.current.play();
+        };
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [localStream, mode]);
   return (
     <div className="w-full bg-black h-screen relative">
       <div className="w-full h-screen relative">
         <div className="w-full">
           <InfoCalling />
-          <ExtensionCall />
+          <ExtensionCall ref={refLocalStream} />
           <div className="absolute bottom-6 left-5">
             <ItemExtensionCall
               icon="bx bx-message-rounded"
@@ -62,48 +61,11 @@ const Call = () => {
             />
           </div>
         </div>
-        {status === "callee" && (
-          <>
-            <Button
-              onClick={() =>
-                socket.emit("call", {
-                  id: user.id,
-                  type: "deny",
-                })
-              }
-              variant="secondary"
-            >
-              Deny
-            </Button>
-            <Button
-              onClick={() => {
-                socket.emit("call", {
-                  id: user.id,
-                  user,
-                  type: "accept",
-                });
-                dispatch(
-                  updateDataCall({
-                    key: "acceptUser",
-                    value: [user, ...acceptUser],
-                  })
-                );
-              }}
-              className="bg-green-500"
-            >
-              Accept
-            </Button>
-          </>
-        )}
-        {mode === "offline" && (
-          <div className="border-gray-300 border border-solid rounded-lg absolute bottom-4 right-4">
-            <div className="w-60 h-40 rounded-lg relative">
-              <video
-                ref={refLocalStream}
-                className="absolute top-0 left-0 bottom-0 right-0"
-              />
-            </div>
-          </div>
+        {mode === "single" && showVideo && (
+          <video
+            ref={refLocalStream}
+            className="w-60 h-40 border-gray-300 border border-solid rounded-lg absolute bottom-4 right-4"
+          />
         )}
         <NotifyRight />
       </div>

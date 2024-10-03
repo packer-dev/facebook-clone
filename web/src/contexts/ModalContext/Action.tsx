@@ -144,3 +144,10 @@ export const openModalExpiredToken = () => {
     type: constants.OPEN_MODAL_EXPIRED_TOKEN,
   };
 };
+
+export const openModalCaller = (data: any) => {
+  return {
+    type: constants.OPEN_MODAL_CALLER,
+    data,
+  };
+};

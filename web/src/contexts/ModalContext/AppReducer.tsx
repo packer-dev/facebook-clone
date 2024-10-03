@@ -13,6 +13,7 @@ import ModalRegister from "@/modals/Login/ModalRegister";
 import { ModalContextProps } from "./ModalContext";
 import ModalFeelList from "@/modals/Post/ModalFeelList";
 import ModalExpiredToken from "@/modals/ModalExpiredToken";
+import ModalCaller from "@/modals/ModalCaller";
 
 const AppReducer = (state: ModalContextProps, action: any) => {
   switch (action.type) {
@@ -105,6 +106,8 @@ const AppReducer = (state: ModalContextProps, action: any) => {
       };
     case constants.OPEN_MODAL_EXPIRED_TOKEN:
       return { ...state, data: <ModalExpiredToken /> };
+    case constants.OPEN_MODAL_CALLER:
+      return { ...state, data: <ModalCaller data={action.data} /> };
     default:
       return { ...state };
   }

@@ -22,6 +22,9 @@ socketIo.on("connection", (socket) => {
     socket.on("send-comment", (data) => {
         socketIo.emit(`receive-comment-${data === null || data === void 0 ? void 0 : data.postId}`, JSON.stringify(data));
     });
+    socket.on("call", (data) => {
+        socketIo.emit(`waiting-${data === null || data === void 0 ? void 0 : data.id}`, JSON.stringify(data));
+    });
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     });

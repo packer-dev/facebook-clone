@@ -52,9 +52,11 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
   //
   return (
     <>
-      {(mode === "home" ? homePosts : profilePosts)?.map((postDetail) => (
-        <ItemPost postDetail={postDetail} key={postDetail.post.id} />
-      ))}
+      {(mode === "home" ? homePosts : profilePosts)?.map(
+        (postDetail, index) => (
+          <ItemPost postDetail={postDetail} key={postDetail.post.id + index} />
+        )
+      )}
       {!loading && !(mode === "home" ? homePosts : profilePosts)?.length && (
         <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
           There are no posts yet.

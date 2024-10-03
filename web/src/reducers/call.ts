@@ -12,6 +12,8 @@ export type CallProps = {
   peer: Peer | null;
   localStream: MediaStream;
   remoteStream: MediaStream[];
+  showVideo: boolean;
+  showAudio: boolean;
 };
 
 const initialState: CallProps = {
@@ -23,6 +25,8 @@ const initialState: CallProps = {
   peer: null,
   localStream: null,
   remoteStream: [],
+  showVideo: true,
+  showAudio: false,
 };
 
 const callSlice = createSlice({

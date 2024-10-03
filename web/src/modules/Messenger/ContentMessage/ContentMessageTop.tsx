@@ -63,6 +63,56 @@ const ContentMessageTop = () => {
   );
   const peerToPeer =
     "nickname" in member ? member?.nickname : member?.user?.name;
+
+  const handleCall = async (isVideo?: boolean) => {
+    dispatch(
+      updateDataCall({
+        key: "status",
+        value: "caller",
+      })
+    );
+    dispatch(
+      updateDataCall({
+        key: "mode",
+        value: group?.multiple ? "group" : "single",
+      })
+    );
+    if (group?.multiple) {
+      dispatch(
+        updateDataCall({
+          key: "group",
+          value: group,
+        })
+      );
+    } else {
+      dispatch(
+        updateDataCall({
+          key: "current",
+          value: member?.user,
+        })
+      );
+    }
+    const stream = await navigator?.mediaDevices?.getUserMedia({
+      video: isVideo,
+      audio: false,
+    });
+    dispatch(
+      updateDataCall({
+        key: "localStream",
+        value: stream,
+      })
+    );
+    const call = peer.call(member?.user?.id, stream);
+    call?.on?.("stream", (stream) => {});
+    socket.emit(`call`, {
+      id: member?.user?.id,
+      isGroup: group?.multiple,
+      caller: user,
+      info: group?.multiple ? group : member.user,
+      type: "catch",
+    });
+    navigation(PAGE_CALL);
+  };
   //
   return (
     <div
@@ -94,55 +144,7 @@ const ContentMessageTop = () => {
           <div className="w-1/3 ml-auto">
             <ul className="ml-auto flex float-right pr-1.5">
               <ItemHeaderContentMessageTop
-                handleClick={async () => {
-                  dispatch(
-                    updateDataCall({
-                      key: "status",
-                      value: "caller",
-                    })
-                  );
-                  if (group.multiple) {
-                    dispatch(
-                      updateDataCall({
-                        key: "group",
-                        value: group,
-                      })
-                    );
-                  } else {
-                    dispatch(
-                      updateDataCall({
-                        key: "current",
-                        value: member.user,
-                      })
-                    );
-                  }
-                  const stream = await navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: true,
-                  });
-                  dispatch(
-                    updateDataCall({
-                      key: "localStream",
-                      value: stream,
-                    })
-                  );
-                  const call = peer.call(member?.user?.id, null);
-                  call.on("stream", (stream) => {
-                    dispatch(
-                      updateDataCall({
-                        key: "localStream",
-                        value: stream,
-                      })
-                    );
-                  });
-                  socket.emit(`call`, {
-                    id: member?.user?.id,
-                    isGroup: group?.multiple,
-                    info: group?.multiple ? group : member,
-                    type: "catch",
-                  });
-                  navigation(PAGE_CALL);
-                }}
+                handleClick={() => handleCall(true)}
                 mini={mini}
               >
                 <svg
@@ -156,7 +158,10 @@ const ContentMessageTop = () => {
                   ></path>
                 </svg>
               </ItemHeaderContentMessageTop>
-              <ItemHeaderContentMessageTop mini={mini}>
+              <ItemHeaderContentMessageTop
+                handleClick={() => handleCall(false)}
+                mini={mini}
+              >
                 <svg
                   height={`${mini ? "28px" : "32px"}`}
                   width={`${mini ? "28px" : "32px"}`}

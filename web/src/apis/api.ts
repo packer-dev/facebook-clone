@@ -3,7 +3,7 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 20000,
 });
 
 const applyToken = (
