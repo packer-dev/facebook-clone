@@ -37,7 +37,7 @@ const ItemChatMinimize = ({ item }: { item: Group }) => {
                 {
                   id: generateUUID(),
                   group: item,
-                },
+                } as ZoomUserChatProps,
               ],
       })
     );

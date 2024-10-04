@@ -19,7 +19,7 @@ type InputProps = {
   hiddenBorder?: boolean;
 };
 
-export default forwardRef(function Input(
+const Input = (
   {
     register,
     wrapper,
@@ -38,7 +38,7 @@ export default forwardRef(function Input(
     hiddenBorder,
   }: InputProps,
   ref: RefObject<HTMLInputElement>
-) {
+) => {
   //
   const [show, setShow] = useState(false);
   const Field = typeof register === "function" ? register(name) : () => "";
@@ -94,4 +94,6 @@ export default forwardRef(function Input(
       )}
     </>
   );
-});
+};
+
+export default forwardRef(Input);

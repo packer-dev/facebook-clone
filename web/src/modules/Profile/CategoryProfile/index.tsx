@@ -3,9 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { Button } from "@/components/ui/button";
 
-export default function CategoryProfile(props: any) {
+const CategoryProfile = ({ id }: { id: string | number }) => {
   //
-  const id = props.id;
   const categories = [
     {
       id: 0,
@@ -70,4 +69,6 @@ export default function CategoryProfile(props: any) {
       </Button>
     </div>
   );
-}
+};
+
+export default CategoryProfile;

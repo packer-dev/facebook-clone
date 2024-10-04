@@ -60,7 +60,7 @@ const ItemNewChat = forwardRef(
   }
 );
 
-export default function NewChat() {
+const NewChat = () => {
   //
   const {
     state: { choose },
@@ -160,4 +160,6 @@ export default function NewChat() {
       </div>
     </div>
   );
-}
+};
+
+export default NewChat;

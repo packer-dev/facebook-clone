@@ -13,7 +13,7 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
-function Login() {
+const Login = () => {
   //
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
   const user = useSelector<RootState, User>(getUser);
@@ -61,6 +61,6 @@ function Login() {
       </div>
     </WrapperPage>
   );
-}
+};
 
 export default Login;

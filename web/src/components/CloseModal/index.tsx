@@ -1,7 +1,7 @@
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import * as React from "react";
 
-function CloseModal() {
+const CloseModal = () => {
   //
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
   //
@@ -15,6 +15,6 @@ function CloseModal() {
       &times;
     </span>
   );
-}
+};
 
 export default CloseModal;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AccountIsset from "../AccountIsset";
 import AccountNotIsset from "../AccountNotIsset";
 
-export default function SaveLogin() {
+const SaveLogin = () => {
   //
   const [list, setList] = useState<any>([]);
   useEffect(() => {
@@ -31,4 +31,6 @@ export default function SaveLogin() {
       </div>
     </div>
   );
-}
+};
+
+export default SaveLogin;

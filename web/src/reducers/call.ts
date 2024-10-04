@@ -37,7 +37,7 @@ const callSlice = createSlice({
       state: CallProps,
       action: PayloadAction<{
         key: keyof CallProps;
-        value: any;
+        value: CallProps[keyof CallProps];
       }>
     ) => {
       state[action.payload.key as string] = action.payload.value;

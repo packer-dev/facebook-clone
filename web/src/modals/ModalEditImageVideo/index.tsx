@@ -18,7 +18,7 @@ const ImageVideo = (props: { src: string; type: 1 | 2 }) => {
   );
 };
 
-export default function ModalEditImageVideo() {
+const ModalEditImageVideo = () => {
   //
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   const length = posts.imageVideo.length;
@@ -128,4 +128,6 @@ export default function ModalEditImageVideo() {
       </div>
     </ModalWrapperChildPost>
   );
-}
+};
+
+export default ModalEditImageVideo;

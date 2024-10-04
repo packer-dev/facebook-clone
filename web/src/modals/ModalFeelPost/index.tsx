@@ -6,7 +6,7 @@ import ActivityPost from "./ActivityPost";
 import FeelPost from "./FeelPost";
 import Input from "@/components/Input";
 
-export default function ModalFeelPost() {
+const ModalFeelPost = () => {
   //
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   const [type, setType] = useState(posts.activity ? 1 : 0);
@@ -46,7 +46,7 @@ export default function ModalFeelPost() {
               : "border-white dark:border-dark-third"
           } p-3 border-solid font-semibold cursor-pointer`}
         >
-          Cảm xúc
+          Feel
         </li>
         <li
           aria-hidden
@@ -102,4 +102,6 @@ export default function ModalFeelPost() {
       </div>
     </ModalWrapperChildPost>
   );
-}
+};
+
+export default ModalFeelPost;

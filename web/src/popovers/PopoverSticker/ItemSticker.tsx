@@ -1,9 +1,16 @@
+import { StickerProps } from "@/config/stickers";
 import * as React from "react";
 
-export default React.forwardRef(function ItemSticker(
-  { sticker, handleClick }: any,
+const ItemSticker = (
+  {
+    sticker,
+    handleClick,
+  }: {
+    sticker: StickerProps;
+    handleClick?: Function;
+  },
   ref: React.RefObject<HTMLDivElement>
-) {
+) => {
   //
   const data = `stickerAnimation:${sticker.col}:${sticker.row}`;
   const [animation, setAnimation] = React.useState("");
@@ -27,4 +34,6 @@ export default React.forwardRef(function ItemSticker(
       />
     </div>
   );
-});
+};
+
+export default React.forwardRef(ItemSticker);

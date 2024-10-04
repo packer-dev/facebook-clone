@@ -1,4 +1,10 @@
-import React, { forwardRef, useContext, useEffect, useRef } from "react";
+import React, {
+  forwardRef,
+  RefObject,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import imageAsset from "@/assets/images/51655920_280807142616755_4913279188888190976_n_aj6bex.jpeg";
 
@@ -25,7 +31,10 @@ const ContentTextEdit = () => {
   );
 };
 
-export default forwardRef(function ContentStoryEditor(props, ref: any) {
+export default forwardRef(function ContentStoryEditor(
+  props,
+  ref: RefObject<HTMLImageElement>
+) {
   //
   const {
     state: { data, audio },

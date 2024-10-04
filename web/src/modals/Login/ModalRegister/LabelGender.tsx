@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function LabelGender({ name, value, register }: any) {
+const LabelGender = ({ name, value, register }: any) => {
   return (
     <div className="w-1/3 p-2 border-gray-300 flex items-center justify-between border-solid border-1">
       <label className="">
@@ -15,4 +15,6 @@ export default function LabelGender({ name, value, register }: any) {
       />
     </div>
   );
-}
+};
+
+export default LabelGender;

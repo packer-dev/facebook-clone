@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function ItemColor(props: any) {
+const ItemColor = (props: any) => {
   //
   const { item, color, setColor } = props;
 
@@ -17,4 +17,6 @@ export default function ItemColor(props: any) {
       <div className={`mx-auto rounded-full bg-[${item}] w-[60px] h-[60px]`} />
     </li>
   );
-}
+};
+
+export default ItemColor;

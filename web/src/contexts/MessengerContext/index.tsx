@@ -34,7 +34,6 @@ export const MessengerProvider = (props: { children?: ReactNode }) => {
       state,
       updateData: (key: keyof MessageContextProps, value: any) => {
         dispatch({
-          type: "UPDATE_DATA",
           key,
           value,
         });

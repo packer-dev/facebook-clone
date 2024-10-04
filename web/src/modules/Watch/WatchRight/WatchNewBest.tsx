@@ -3,7 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import ItemWatchChildren from "../ItemWatchChildren";
 import CircleIcon from "@/components/CircleIcon";
 
-export default function WatchNewBest({ images }) {
+const WatchNewBest = ({ images }) => {
   //
   const refContainer = useRef<HTMLDivElement>();
   const refScroll = useRef<HTMLDivElement>(null);
@@ -53,4 +53,5 @@ export default function WatchNewBest({ images }) {
       </div>
     </div>
   );
-}
+};
+export default WatchNewBest;

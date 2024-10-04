@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import PopupShare from "../PopupShare";
 
-export default function ButtonShare() {
+const ButtonShare = () => {
   //
   const refPopup = useRef<any>();
   let count = 0;
@@ -49,4 +49,6 @@ export default function ButtonShare() {
       <PopupShare ref={refPopup} />
     </li>
   );
-}
+};
+
+export default ButtonShare;

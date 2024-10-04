@@ -4,7 +4,7 @@ import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import Input from "@/components/Input";
 
-export default function ModalLocalPost() {
+const ModalLocalPost = () => {
   //
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   //
@@ -40,4 +40,6 @@ export default function ModalLocalPost() {
       </div>
     </ModalWrapperChildPost>
   );
-}
+};
+
+export default ModalLocalPost;

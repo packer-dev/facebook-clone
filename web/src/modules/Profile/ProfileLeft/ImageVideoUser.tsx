@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
 import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
-import { RootState, getHeaders } from "@/reducers";
 import { getMediaByUserId } from "@/apis/postAPIs";
 import { ImageVideoProps } from "../ImageVideoList";
 
-export default function ImageVideoUser() {
+const ImageVideoUser = () => {
   //
-  const headers = useSelector<RootState, any>(getHeaders);
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
@@ -24,7 +21,7 @@ export default function ImageVideoUser() {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile, setImageVideos, headers]);
+  }, [userProfile]);
   //
   return (
     <>
@@ -77,4 +74,6 @@ export default function ImageVideoUser() {
       </div>
     </>
   );
-}
+};
+
+export default ImageVideoUser;

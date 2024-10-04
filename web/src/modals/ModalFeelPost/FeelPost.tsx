@@ -27,7 +27,7 @@ const ItemFeelPost = (props) => {
   );
 };
 
-export default function FeelPost(props) {
+const FeelPost = (props) => {
   //
   const { feels } = props;
   //
@@ -38,4 +38,6 @@ export default function FeelPost(props) {
       ))}
     </div>
   );
-}
+};
+
+export default FeelPost;

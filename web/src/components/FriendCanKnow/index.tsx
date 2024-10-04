@@ -6,7 +6,7 @@ import ItemFriendCanKnow from "./ItemFriendCanKnow";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default memo(function FriendCanKnow() {
+const FriendCanKnow = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const {
@@ -51,4 +51,6 @@ export default memo(function FriendCanKnow() {
       </div>
     )
   );
-});
+};
+
+export default memo(FriendCanKnow);

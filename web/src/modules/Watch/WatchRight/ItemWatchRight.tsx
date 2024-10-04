@@ -1,5 +1,7 @@
 import * as React from "react";
 
-export default function ItemWatchRight() {
+const ItemWatchRight = () => {
   return <div>ItemWatchRight</div>;
-}
+};
+
+export default ItemWatchRight;

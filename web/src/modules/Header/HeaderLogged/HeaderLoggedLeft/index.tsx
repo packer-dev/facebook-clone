@@ -5,7 +5,7 @@ import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
 import { searchUser } from "@/apis/userAPIs";
 
-export default function HeaderLoggedLeft() {
+const HeaderLoggedLeft = () => {
   //
   const [show, setShow] = useState(false);
   const [list, setList] = useState<User[]>([]);
@@ -103,4 +103,6 @@ export default function HeaderLoggedLeft() {
       </div>
     </div>
   );
-}
+};
+
+export default HeaderLoggedLeft;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemPost from "@/components/ItemPost";
 import LoadingPost from "@/components/ItemPost/LoadingPost";
-import { AppDispatch, RootState, getCommon, getHeaders } from "@/reducers";
+import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { User } from "@/interfaces/User";
@@ -15,7 +15,6 @@ type PostListContainerProps = {
 
 const PostListContainer = ({ mode, user }: PostListContainerProps) => {
   //
-  const headers = useSelector<RootState, any>(getHeaders);
   const { homePosts, profilePosts } = useSelector<RootState, CommonDataProps>(
     getCommon
   );
@@ -48,7 +47,7 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headers, user?.id, offset]);
+  }, [user?.id, offset]);
   //
   return (
     <>

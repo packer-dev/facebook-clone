@@ -5,9 +5,12 @@ import useAuthentication from "@/hooks/useAuthentication";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
-const RecoverAccount = (props: any) => {
+type RecoverAccountProps = {
+  verify?: boolean;
+};
+
+const RecoverAccount = ({ verify }: RecoverAccountProps) => {
   //
-  const { verify } = props;
   const { token, user } = useAuthentication(true);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("email");

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { checkRelationship, sendRelationship } from "@/apis/userAPIs";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 
-export default function RelationshipUserStatus() {
+const RelationshipUserStatus = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
@@ -129,4 +129,6 @@ export default function RelationshipUserStatus() {
       )}
     </div>
   );
-}
+};
+
+export default RelationshipUserStatus;

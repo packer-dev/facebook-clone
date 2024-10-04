@@ -1,7 +1,7 @@
 import * as React from "react";
 import ItemWatchChildren from "../ItemWatchChildren";
 
-export default function ListItemWatchLeft({ images }) {
+const ListItemWatchLeft = ({ images }) => {
   //
   //
   return (
@@ -41,4 +41,6 @@ export default function ListItemWatchLeft({ images }) {
       </div>
     </div>
   );
-}
+};
+
+export default ListItemWatchLeft;

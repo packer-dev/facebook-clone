@@ -5,7 +5,7 @@ import { PAGE_LOGIN, PAGE_RECOVER_ACCOUNT } from "@/constants/Config";
 import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
 
-export default function ForgetAccount() {
+const ForgetAccount = () => {
   //
   const navigation = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -62,4 +62,6 @@ export default function ForgetAccount() {
       </div>
     </WrapperAuthentication>
   );
-}
+};
+
+export default ForgetAccount;

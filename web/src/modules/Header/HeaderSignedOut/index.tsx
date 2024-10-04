@@ -4,7 +4,7 @@ import { PAGE_LOGIN } from "@/constants/Config";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function HeaderSignedOut(props: any) {
+const HeaderSignedOut = (props: any) => {
   //
   const { hideFormLogin } = props;
   const navigation = useNavigate();
@@ -42,4 +42,6 @@ export default function HeaderSignedOut(props: any) {
       )}
     </div>
   );
-}
+};
+
+export default HeaderSignedOut;

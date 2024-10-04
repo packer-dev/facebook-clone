@@ -6,7 +6,7 @@ import ContentAnswerQuestion from "./ContentAnswerQuestion";
 import { generateUUID } from "@/utils";
 import { Button } from "@/components/ui/button";
 
-export default function ModalAnswerQuestionPost() {
+const ModalAnswerQuestionPost = () => {
   //
   const { postsDispatch, postsAction } = useContext(PostContext);
   const [current, setCurrent] = useState(answer_question[0]);
@@ -40,4 +40,6 @@ export default function ModalAnswerQuestionPost() {
       </div>
     </ModalWrapperChildPost>
   );
-}
+};
+
+export default ModalAnswerQuestionPost;

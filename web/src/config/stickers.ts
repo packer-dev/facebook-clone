@@ -1,4 +1,14 @@
-const stickers = [
+export type StickerProps = {
+  id: number;
+  col: number;
+  row: number;
+  group: string;
+  feel?: string;
+  src: string;
+  type?: string;
+};
+
+const stickers: StickerProps[] = [
   {
     id: 1,
     col: 5,

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RootState, getHeaders, getUser } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import ItemInviteFriend from "./ItemInviteFriend";
 import { getFriendUser } from "@/apis/userAPIs";
 import { FriendProfileDTO, User } from "@/interfaces/User";
 
-export default function InviteFriend() {
+const InviteFriend = () => {
   //
   const [list, setList] = useState<FriendProfileDTO[]>([]);
   const user = useSelector<RootState, User>(getUser);
-  const headers = useSelector<RootState, any>(getHeaders);
   useEffect(() => {
     //
     const fetch = async () => {
@@ -19,7 +18,7 @@ export default function InviteFriend() {
     };
     fetch();
     //
-  }, [headers, user]);
+  }, [user]);
   //
   return list ? (
     <>
@@ -56,4 +55,6 @@ export default function InviteFriend() {
   ) : (
     <div />
   );
-}
+};
+
+export default InviteFriend;

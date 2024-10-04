@@ -53,7 +53,7 @@ const ItemActivityChildPost = (props) => {
   );
 };
 
-export default function ActivityPost(props) {
+const ActivityPost = (props) => {
   //
   const { activities, activity, setActivity } = props;
   //
@@ -76,4 +76,6 @@ export default function ActivityPost(props) {
           ))}
     </div>
   );
-}
+};
+
+export default ActivityPost;

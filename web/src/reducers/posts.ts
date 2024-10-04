@@ -21,7 +21,7 @@ const postsSlice = createSlice({
       state: PostReduxProps,
       action: PayloadAction<{
         key: keyof PostReduxProps;
-        value: any;
+        value: PostReduxProps[keyof PostReduxProps];
       }>
     ) => {
       state[action.payload.key as string] = action.payload.value;

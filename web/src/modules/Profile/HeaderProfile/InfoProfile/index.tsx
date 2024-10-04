@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getCommon, RootState } from "@/reducers";
 import { CommonDataProps } from "@/reducers/common";
 
-export default function InfoProfile() {
+const InfoProfile = () => {
   //
   const {
     state: { userProfile },
@@ -41,4 +41,6 @@ export default function InfoProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default InfoProfile;

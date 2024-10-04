@@ -1,6 +1,5 @@
 import socket from "./socket";
 import user from "./user";
-import headers from "./headers";
 import userChat from "./userChat";
 import posts from "./posts";
 import { configureStore } from "@reduxjs/toolkit";
@@ -11,7 +10,6 @@ const myReducer = configureStore({
   reducer: {
     user: user.reducer,
     socket: socket.reducer,
-    headers: headers.reducer,
     userChat: userChat.reducer,
     posts: posts.reducer,
     common: common.reducer,
@@ -35,7 +33,6 @@ export const getUser = (state: RootState) => state.user;
 export const getUserChat = (state: RootState) => state.userChat;
 export const getCommon = (state: RootState) => state.common;
 export const getSocket = (state: RootState) => state.socket;
-export const getHeaders = (state: RootState) => state.headers;
 export const getPosts = (state: RootState) => state.posts;
 export const getCall = (state: RootState) => state.call;
 

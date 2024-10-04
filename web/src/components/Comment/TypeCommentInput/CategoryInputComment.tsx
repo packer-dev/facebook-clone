@@ -5,11 +5,12 @@ import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { placeCaretAtEnd } from "@/functions";
 import React, { RefObject, forwardRef, useContext } from "react";
 import { v4 } from "uuid";
+import { ContentComment } from "@/interfaces/ContentComment";
 
-export default forwardRef(function CategoryInputComment(
+const CategoryInputComment = (
   props: { handleSendComment: Function },
   ref: RefObject<HTMLDivElement>
-) {
+) => {
   //
   const {
     state: { dataComment },
@@ -46,7 +47,7 @@ export default forwardRef(function CategoryInputComment(
                   ...dataComment,
                   content: dataComment.text + item,
                   type: 1,
-                });
+                } as ContentComment);
                 ref.current.innerText = dataComment.text + item;
                 placeCaretAtEnd(ref.current);
               }}
@@ -109,4 +110,6 @@ export default forwardRef(function CategoryInputComment(
       </div>
     </form>
   );
-});
+};
+
+export default forwardRef(CategoryInputComment);

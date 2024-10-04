@@ -45,7 +45,7 @@ const WrapperProfile = forwardRef(
     const refPath = useRef("");
     useEffect(() => {
       //
-      let timeOut: any;
+      let timeOut: ReturnType<typeof setTimeout>;
       const fetchData = async () => {
         setLoading(true);
         const result = await getUserById(id);

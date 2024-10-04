@@ -2,7 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { PAGE_STORY } from "@/constants/Config";
 
-export default function ItemStory(props: any) {
+const ItemStory = (props: any) => {
   //
   const {
     last,
@@ -56,4 +56,6 @@ export default function ItemStory(props: any) {
       )}
     </div>
   );
-}
+};
+
+export default ItemStory;

@@ -6,7 +6,7 @@ import { User } from "@/interfaces/User";
 import { updateUser } from "@/apis/userAPIs";
 import { Button } from "@/components/ui/button";
 
-export default function DescriptionIntroduction() {
+const DescriptionIntroduction = () => {
   //
   const {
     state: { userProfile },
@@ -104,4 +104,6 @@ export default function DescriptionIntroduction() {
       </div>
     </div>
   );
-}
+};
+
+export default DescriptionIntroduction;

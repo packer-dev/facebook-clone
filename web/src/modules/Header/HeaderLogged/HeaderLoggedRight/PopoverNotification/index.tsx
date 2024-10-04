@@ -18,7 +18,7 @@ const NotFoundNotification = () => {
   );
 };
 
-export default function PopoverNotification() {
+const PopoverNotification = () => {
   //
   const [active, setActive] = useState(0);
   const [notifies, setNotifies] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
@@ -81,4 +81,6 @@ export default function PopoverNotification() {
       </div>
     </div>
   );
-}
+};
+
+export default PopoverNotification;

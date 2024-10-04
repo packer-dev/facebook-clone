@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  RefObject,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import audioList from "@/config/audioList";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import Input from "@/components/Input";
@@ -67,7 +73,15 @@ const AudioList = () => {
   );
 };
 
-const ItemAudio = ({ refAudio, item }: any) => {
+type ItemAudioProps = {
+  refAudio: RefObject<HTMLAudioElement>;
+  item: any;
+  index: number;
+  play?: boolean;
+  setPlay?: Function;
+};
+
+const ItemAudio = ({ refAudio, item, index }: ItemAudioProps) => {
   //
   const {
     state: { audio },

@@ -6,11 +6,14 @@ import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-const CreateStory = ({ mode }: { mode: any }) => {
+const CreateStory = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
-  const { updateData } = useContext(StoryEditorContext);
+  const {
+    state: { mode },
+    updateData,
+  } = useContext(StoryEditorContext);
   useEffect(() => {
     //
     updateData("mode", mode);

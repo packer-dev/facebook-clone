@@ -1,15 +1,7 @@
-const AppReducer = <T,>(
-  state: T,
-  action: {
-    type: "UPDATE_DATA";
-    key: keyof T;
-    value: any;
-  }
-) => {
-  if (action.type === "UPDATE_DATA")
-    return { ...state, [action.key]: action.value };
+import { Action } from "./AppContext";
 
-  return { ...state };
+const AppReducer = <T,>(state: T, action: Action<T, keyof T>): T => {
+  return { ...state, [action.key]: action.value };
 };
 
 export default AppReducer;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ItemWatchChildren from "../../ItemWatchChildren";
 
-export default function ListItemWatchLeft({ images }) {
+const ListItemWatchLeft = ({ images }) => {
   return (
     <div className="w-full flex my-3">
       <div className="w-full h-full overflow-y-auto">
@@ -39,4 +39,6 @@ export default function ListItemWatchLeft({ images }) {
       </div>
     </div>
   );
-}
+};
+
+export default ListItemWatchLeft;

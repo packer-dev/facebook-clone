@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ContentStory from "./ContentStory";
 import { StoryContext } from "@/contexts/StoryContext";
 
-export default function ViewStoryRight(props) {
+const ViewStoryRight = (props) => {
   //
   const { fullScreen } = props;
   const {
@@ -114,4 +114,6 @@ export default function ViewStoryRight(props) {
       </div>
     </div>
   );
-}
+};
+
+export default ViewStoryRight;

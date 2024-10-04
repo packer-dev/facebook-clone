@@ -40,11 +40,14 @@ const WrapperLogged = ({
       dispatch(
         updateDataUserChat({
           key: "zoom",
-          value: [...chatArchive].map((item) => ({
-            id: generateUUID(),
-            onload: true,
-            localStorage: item,
-          })),
+          value: [...chatArchive].map(
+            (item) =>
+              ({
+                id: generateUUID(),
+                onload: true,
+                localStorage: item,
+              } as ZoomUserChatProps)
+          ),
         })
       );
     }

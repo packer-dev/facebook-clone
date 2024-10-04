@@ -3,7 +3,7 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import ModalWrapper from "../ModalWrapper";
 import { Button } from "@/components/ui/button";
 
-export default function ModalWarning({ title, handleEvent, button, content }) {
+const ModalWarning = ({ title, handleEvent, button, content }) => {
   //
   const {
     modals: { loading },
@@ -37,4 +37,6 @@ export default function ModalWarning({ title, handleEvent, button, content }) {
       </div>
     </ModalWrapper>
   );
-}
+};
+
+export default ModalWarning;

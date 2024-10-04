@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-export default function ItemStoryList(props: any) {
+const ItemStoryList = (props: any) => {
   //
   const { story } = props;
   //
@@ -22,4 +22,6 @@ export default function ItemStoryList(props: any) {
       </span>
     </div>
   );
-}
+};
+
+export default ItemStoryList;

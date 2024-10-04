@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function LoadingPost() {
+const LoadingPost = () => {
   return (
     <div className="removeTimeline w-full mx-auto bg-white dark:bg-dark-second my-4 py-4 px-2 rounded-lg ph-item dark:ph-item">
       <div className="w-full py-2 flex">
@@ -28,4 +28,6 @@ export default function LoadingPost() {
       </div>
     </div>
   );
-}
+};
+
+export default LoadingPost;

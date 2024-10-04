@@ -5,7 +5,7 @@ import ItemFriendList from "./ItemFriendList";
 import { FriendProfileDTO } from "@/interfaces/User";
 import { getFriendUser } from "@/apis/userAPIs";
 
-export default function FriendList() {
+const FriendList = () => {
   //
   const {
     state: { userProfile },
@@ -25,4 +25,6 @@ export default function FriendList() {
       </div>
     </WrapperContentChildProfile>
   );
-}
+};
+
+export default FriendList;

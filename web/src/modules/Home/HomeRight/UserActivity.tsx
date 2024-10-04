@@ -4,7 +4,6 @@ import {
   AppDispatch,
   RootState,
   getCommon,
-  getHeaders,
   getUser,
   getUserChat,
 } from "@/reducers";
@@ -18,13 +17,12 @@ import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { generateUUID } from "@/utils";
 import { User } from "@/interfaces/User";
 
-export default function UserActivity() {
+const UserActivity = () => {
   //
   const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
   const user = useSelector<RootState, User>(getUser);
-  const headers = useSelector<RootState, any>(getHeaders);
   const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -40,7 +38,7 @@ export default function UserActivity() {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, headers]);
+  }, [user]);
   //
   return [...friends.filter((item) => item.id !== user.id)].map((item) => (
     <div
@@ -58,7 +56,7 @@ export default function UserActivity() {
             dispatch(
               updateDataUserChat({
                 key: "minimize",
-                value: [...minimize, zoom[0]],
+                value: [...minimize, zoom[0].group],
               })
             );
             let clone = [...zoom];
@@ -95,4 +93,6 @@ export default function UserActivity() {
       <p className="font-semibold ml-3 dark:text-white">{`${item.name}`}</p>
     </div>
   ));
-}
+};
+
+export default UserActivity;

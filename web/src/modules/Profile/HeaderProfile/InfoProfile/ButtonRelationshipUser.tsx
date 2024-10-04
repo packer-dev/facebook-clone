@@ -73,7 +73,7 @@ const ButtonRelationshipUser = ({
                 dispatch(
                   updateDataUserChat({
                     key: "minimize",
-                    value: [...minimize, zoom[0]],
+                    value: [...minimize, zoom[0].group],
                   })
                 );
                 let clone = [...zoom];

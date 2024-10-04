@@ -10,9 +10,14 @@ import { login } from "@/reducers/user";
 import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
 
-export default function WrapperPage(props) {
+type WrapperPageProps = {
+  white?: boolean;
+  children?: React.ReactNode;
+  login?: boolean;
+};
+
+const WrapperPage = ({ white, children }: WrapperPageProps) => {
   //
-  const { white } = props;
   const { modals, modalsDispatch, modalsAction } =
     React.useContext(ModalContext);
   const user = useSelector<RootState, User>(getUser);
@@ -74,7 +79,7 @@ export default function WrapperPage(props) {
           </div>
         </div>
       ) : (
-        props.children
+        children
       )}
       <div
         className={`w-full h-screen fixed top-0 left-0 bg-${
@@ -86,4 +91,6 @@ export default function WrapperPage(props) {
       </div>
     </div>
   );
-}
+};
+
+export default WrapperPage;

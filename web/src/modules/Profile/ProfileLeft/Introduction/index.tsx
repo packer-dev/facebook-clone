@@ -9,7 +9,7 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
-export default function Introduction() {
+const Introduction = () => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const {
@@ -63,4 +63,6 @@ export default function Introduction() {
       )}
     </>
   );
-}
+};
+
+export default Introduction;

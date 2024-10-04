@@ -32,14 +32,7 @@ export default forwardRef(function ContentMessage(
         />
       );
     case 2:
-      return (
-        <ItemSticker
-          ref={ref}
-          groupMessage={groupMessage}
-          sticker={JSON.parse(item.content.text)}
-          handleClick={() => ""}
-        />
-      );
+      return <ItemSticker ref={ref} sticker={JSON.parse(item.content.text)} />;
     case 3:
       return (
         <img

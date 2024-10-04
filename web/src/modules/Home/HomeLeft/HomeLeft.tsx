@@ -7,7 +7,7 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
-export default function HomeLeft() {
+const HomeLeft = () => {
   //
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -75,4 +75,6 @@ export default function HomeLeft() {
       </div>
     </div>
   );
-}
+};
+
+export default HomeLeft;

@@ -10,7 +10,7 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { getNavbarAmountNew } from "@/apis/commonAPIs";
 
-export default function HeaderLoggedRight(props) {
+const HeaderLoggedRight = (props) => {
   //
   const { hideMessage, hideImage } = props;
   const user = useSelector<RootState, User>(getUser);
@@ -145,4 +145,6 @@ export default function HeaderLoggedRight(props) {
       </div>
     </div>
   );
-}
+};
+
+export default HeaderLoggedRight;

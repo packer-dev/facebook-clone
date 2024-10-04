@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useSelector } from "react-redux";
-import { RootState, getHeaders, getUser } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
-export default function MeetRom() {
+const MeetRom = () => {
   //
   const [users, setUsers] = useState([]);
   const user = useSelector<RootState, User>(getUser);
-  const headers = useSelector<RootState, any>(getHeaders);
   useEffect(() => {
     //
     const fetch = async () => {
@@ -18,7 +17,7 @@ export default function MeetRom() {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, headers]);
+  }, [user]);
   //
   return users.length > 0 ? (
     <div className="my-5 shadow-lv1 w-full flex items-center px-3 py-3 bg-white dark:bg-dark-third rounded-lg">
@@ -51,4 +50,6 @@ export default function MeetRom() {
   ) : (
     ""
   );
-}
+};
+
+export default MeetRom;

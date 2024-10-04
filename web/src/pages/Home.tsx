@@ -6,7 +6,7 @@ import useTitle from "@/hooks/useTitle";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 
-export default function Home() {
+const Home = () => {
   //
   useTitle("Facebook");
   useSetPageCurrent();
@@ -23,4 +23,6 @@ export default function Home() {
       </div>
     </WrapperLogged>
   );
-}
+};
+
+export default Home;

@@ -18,10 +18,10 @@ type EditOrDeleteCommentProps = {
   parent?: string;
 };
 
-export default React.forwardRef(function EditOrDeleteComment(
+const EditOrDeleteComment = (
   { commentPost, postId, parent }: EditOrDeleteCommentProps,
   ref: any
-) {
+) => {
   //
   const user = useSelector<RootState, User>(getUser);
   const {
@@ -95,4 +95,6 @@ export default React.forwardRef(function EditOrDeleteComment(
       </div>
     );
   return <></>;
-});
+};
+
+export default React.forwardRef(EditOrDeleteComment);

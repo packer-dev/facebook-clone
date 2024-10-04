@@ -10,12 +10,12 @@ import StoryEditLeft from "@/modules/StoryEditor/StoryEditLeft";
 import ContentStoryEditor from "@/modules/StoryEditor/ContentStoryEditor";
 import { Button } from "@/components/ui/button";
 
-export default function StoryEditor({ mode }: any) {
+const StoryEditor = () => {
   //
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
   const {
-    state: { data },
+    state: { data, mode },
     updateData,
   } = useContext(StoryEditorContext);
   useEffect(() => {
@@ -99,4 +99,6 @@ export default function StoryEditor({ mode }: any) {
       />
     </form>
   );
-}
+};
+
+export default StoryEditor;

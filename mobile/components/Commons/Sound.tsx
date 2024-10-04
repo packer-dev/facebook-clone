@@ -7,7 +7,7 @@ type SoundProps = {
   isPlay: boolean;
 };
 
-export default function Sound({ isPlay }: Readonly<SoundProps>) {
+const Sound({ isPlay }: Readonly<SoundProps>) {
   const [sound, setSound] = useState<any>();
 
   async function playSound() {

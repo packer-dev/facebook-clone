@@ -20,13 +20,10 @@ const Call = () => {
   audio.loop = true;
   const navigate = useNavigate();
   useEffect(() => {
-    async function fetch() {
-      // audio.play();
-      setTimeout(() => {
-        window.close();
-      }, 20000);
-    }
-    mode !== "offline" && fetch();
+    const fetchData = async () => {
+      audio.play();
+    };
+    mode !== "offline" && fetchData();
     return () => {
       audio.pause();
     };
@@ -40,7 +37,7 @@ const Call = () => {
       }
       if (refLocalStream.current && localStream) {
         refLocalStream.current.srcObject = localStream;
-        refLocalStream.current.onloadedmetadata = function (e) {
+        refLocalStream.current.onloadedmetadata = (e) => {
           refLocalStream.current.play();
         };
       }
@@ -65,7 +62,9 @@ const Call = () => {
           <video
             ref={refLocalStream}
             className="w-60 h-40 border-gray-300 border border-solid rounded-lg absolute bottom-4 right-4"
-          />
+          >
+            <track default kind="captions" srcLang="en" />
+          </video>
         )}
         <NotifyRight />
       </div>

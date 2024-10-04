@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function LoadingProfile() {
+const LoadingProfile = () => {
   return (
     <div className="removeTimelineFirst w-full mx-auto bg-white dark:bg-dark-second px-2 rounded-lg ph-item dark:ph-item">
       <div className="w-63% mx-auto dark:bg-dark-second rounded-lg">
@@ -27,4 +27,6 @@ export default function LoadingProfile() {
       </div>
     </div>
   );
-}
+};
+
+export default LoadingProfile;

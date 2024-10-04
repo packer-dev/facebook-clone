@@ -1,14 +1,14 @@
 import Input from "@/components/Input";
 import React, { useRef, useState, useEffect } from "react";
 
-export default function ItemEditInformation({
+const ItemEditInformation = ({
   title,
   name,
   placeholder,
   setDescription,
   description,
   value,
-}) {
+}) => {
   //
   const ref = useRef<HTMLInputElement>();
   const [input, setInput] = useState(value);
@@ -35,4 +35,6 @@ export default function ItemEditInformation({
       />
     </div>
   );
-}
+};
+
+export default ItemEditInformation;

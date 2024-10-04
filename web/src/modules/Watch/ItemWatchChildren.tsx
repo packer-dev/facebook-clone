@@ -3,7 +3,7 @@ import list_icon from "@/assets/images/list_icon.png";
 import CircleIcon from "@/components/CircleIcon";
 
 export type ItemWatchChildrenProps = {
-  image?: any;
+  image?: string | boolean;
   data?: any;
   multiline?: string;
   name?: string;

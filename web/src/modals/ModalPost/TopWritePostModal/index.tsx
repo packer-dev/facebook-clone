@@ -5,7 +5,7 @@ import { RootState, getUser } from "@/reducers";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import { User } from "@/interfaces/User";
 
-export default function TopWritePostModal() {
+const TopWritePostModal = () => {
   //
   const {
     posts: { activity, feel, tags, local },
@@ -39,4 +39,6 @@ export default function TopWritePostModal() {
       </div>
     </div>
   );
-}
+};
+
+export default TopWritePostModal;

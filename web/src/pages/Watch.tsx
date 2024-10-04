@@ -6,7 +6,7 @@ import ListItemWatchLeft from "@/modules/Watch/WatchLeft";
 import WatchNewBest from "@/modules/Watch/WatchRight/WatchNewBest";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 
-export default function Watch() {
+const Watch = () => {
   //
   const [postDetails, setPostDetails] = React.useState([]);
   React.useEffect(() => {
@@ -63,4 +63,6 @@ export default function Watch() {
       </div>
     </WrapperLogged>
   );
-}
+};
+
+export default Watch;

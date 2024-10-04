@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ButtonViewPostTop(props) {
+const ButtonViewPostTop = (props) => {
   //
   const navigation = useNavigate();
   const {
@@ -72,4 +72,6 @@ export default function ButtonViewPostTop(props) {
       </div>
     </>
   );
-}
+};
+
+export default ButtonViewPostTop;

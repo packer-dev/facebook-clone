@@ -49,7 +49,7 @@ const useListenCall = () => {
         dispatch(
           updateDataCall({
             key: "acceptUser",
-            value: [data.user, ...acceptUser],
+            value: [data?.user, ...acceptUser],
           })
         );
         break;

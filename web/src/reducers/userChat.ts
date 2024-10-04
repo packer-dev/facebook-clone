@@ -29,7 +29,7 @@ const userChatSlice = createSlice({
       state: UserChatReduxProps,
       action: PayloadAction<{
         key: keyof UserChatReduxProps;
-        value: any;
+        value: UserChatReduxProps[keyof UserChatReduxProps];
       }>
     ) => {
       state[action.payload.key as string] = action.payload.value;

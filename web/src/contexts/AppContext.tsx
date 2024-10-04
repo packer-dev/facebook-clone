@@ -3,16 +3,21 @@ import AppReducer from "./AppReducer";
 
 export type ContextProps<T> = {
   state: T;
-  updateData: (key: keyof T, value: any) => void;
+  updateData: (key: keyof T, value: T[keyof T]) => void;
   actions?: Function[];
 };
 
 export const AppContext = <T,>(initialState?: T) =>
   createContext<ContextProps<T>>({
     state: initialState,
-    updateData: (key: keyof T, value: any) => {},
+    updateData: (key: keyof T, value: T[keyof T]) => {},
     actions: [],
   });
+
+export type Action<T, K extends keyof T> = {
+  key: K;
+  value: T[K]; // The type of value is based on the key
+};
 
 export const AppProvider = <T,>({
   actions,
@@ -30,9 +35,8 @@ export const AppProvider = <T,>({
   const value = React.useMemo(() => {
     return {
       state,
-      updateData: (key: keyof T, value: any) => {
+      updateData: (key: keyof T, value: T[keyof T]) => {
         dispatch({
-          type: "UPDATE_DATA",
           key,
           value,
         });

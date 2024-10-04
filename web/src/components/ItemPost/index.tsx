@@ -44,7 +44,11 @@ const ItemPost = ({
       const result = await getCommentByPost(postDetail.post?.id, offset, limit);
       updateData("postDetail", {
         ...postDetail,
-        comments: [...postDetail.comments.list, ...(result.list || [])],
+        comments: {
+          ...postDetail.comments,
+          list: [...postDetail.comments.list, ...(result.list || [])],
+          total: result.total,
+        },
       });
       setLoading(false);
     };

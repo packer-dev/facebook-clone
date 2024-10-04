@@ -6,7 +6,7 @@ import { PAGE_LOGIN } from "@/constants/Config";
 import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
 
-export default function TypeNewPassword() {
+const TypeNewPassword = () => {
   //
   const [passwordNew, setPasswordNew] = useState("");
   const [loading, setLoading] = useState(false);
@@ -51,4 +51,6 @@ export default function TypeNewPassword() {
       </div>
     </WrapperAuthentication>
   );
-}
+};
+
+export default TypeNewPassword;

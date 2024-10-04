@@ -4,11 +4,7 @@ import CoverPost from "../CoverPost";
 import NormalPost from "../NormalPost";
 import { PostDTO } from "@/interfaces/Post";
 
-export default memo(function ContentPost({
-  postDetail,
-}: {
-  postDetail: PostDTO;
-}) {
+const ContentPost = ({ postDetail }: { postDetail: PostDTO }) => {
   switch (postDetail.post.type) {
     case 0:
     case 1:
@@ -25,4 +21,6 @@ export default memo(function ContentPost({
     default:
       return <></>;
   }
-});
+};
+
+export default memo(ContentPost);

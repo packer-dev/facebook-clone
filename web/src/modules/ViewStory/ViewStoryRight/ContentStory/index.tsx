@@ -27,7 +27,7 @@ const ContentStory = () => {
   const refAudio = useRef<HTMLAudioElement>();
   useEffect(() => {
     //
-    let timeOut: any;
+    let timeOut: ReturnType<typeof setTimeout>;
     if (isPlaying) {
       timeOut = setTimeout(() => {
         if (timeCurrent + 1 > 10) {

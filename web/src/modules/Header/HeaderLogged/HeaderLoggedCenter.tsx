@@ -2,7 +2,7 @@ import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PAGE_HOME, PAGE_WATCH } from "@/constants/Config";
 
-export default function HeaderLoggedCenter() {
+const HeaderLoggedCenter = () => {
   //
   const location = useLocation();
   const navigation = useNavigate();
@@ -92,4 +92,6 @@ export default function HeaderLoggedCenter() {
       </li>
     </ul>
   );
-}
+};
+
+export default HeaderLoggedCenter;

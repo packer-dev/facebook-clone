@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, getCommon, getUser, RootState } from "@/reducers";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
-export default function ProfileFriendList() {
+const ProfileFriendList = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const { profileFriends } = useSelector<RootState, CommonDataProps>(getCommon);
@@ -70,4 +70,6 @@ export default function ProfileFriendList() {
       </div>
     </>
   );
-}
+};
+
+export default ProfileFriendList;

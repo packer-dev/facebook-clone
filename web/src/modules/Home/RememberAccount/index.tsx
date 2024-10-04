@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import logo from "@/assets/images/logo.png";
 import save_account from "@/assets/images/save_account.png";
-import { RootState, getHeaders, getUser } from "@/reducers";
+import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
-export default function RememberAccount() {
+const RememberAccount = () => {
   //
   const user = useSelector<RootState, User>(getUser);
-  const headers = useSelector<RootState, any>(getHeaders);
   const [show, setShow] = useState(false);
   useEffect(() => {
     //
@@ -73,7 +72,7 @@ export default function RememberAccount() {
                     id: user.id,
                     email: user.email,
                     name: user.name,
-                    token: headers.Authorization,
+                    token: "",
                   },
                 ])
               );
@@ -95,4 +94,6 @@ export default function RememberAccount() {
   ) : (
     ""
   );
-}
+};
+
+export default RememberAccount;

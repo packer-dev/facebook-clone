@@ -3,7 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import CircleIcon from "@/components/CircleIcon";
 import ItemWatchChildren from "../../ItemWatchChildren";
 
-export default function WatchNewBest({ images }) {
+const WatchNewBest = ({ images }) => {
   //
   const refContainer = useRef<HTMLDivElement>();
   const refScroll = useRef<HTMLDivElement>(null);
@@ -45,14 +45,14 @@ export default function WatchNewBest({ images }) {
         </ScrollContainer>
         {index + 1 <= images.length / 2 && (
           <CircleIcon
-            handleClick={() => {
-              setIndex(index + 1);
-            }}
-            className={`w-9 h-9 bx bxs-chevron-right text-xl bg-gray-200 
-                 absolute top-1/2 transform -translate-y-1/2 -mr-5 right-0`}
+            handleClick={() => setIndex(index + 1)}
+            className="w-9 h-9 bx bxs-chevron-right text-xl bg-gray-200 
+            absolute top-1/2 transform -translate-y-1/2 -mr-5 right-0"
           />
         )}
       </div>
     </div>
   );
-}
+};
+
+export default WatchNewBest;

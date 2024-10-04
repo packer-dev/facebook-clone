@@ -8,7 +8,11 @@ import { generateUUID, lastMessage } from "@/utils";
 import Avatar from "@/components/Avatar";
 import GroupAvatar from "@/components/GroupAvatar";
 import { useDispatch, useSelector } from "react-redux";
-import { UserChatReduxProps, updateDataUserChat } from "@/reducers/userChat";
+import {
+  UserChatReduxProps,
+  ZoomUserChatProps,
+  updateDataUserChat,
+} from "@/reducers/userChat";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { User } from "@/interfaces/User";
 
@@ -44,7 +48,7 @@ const ItemMessageList = ({
                 {
                   id: generateUUID(),
                   group,
-                },
+                } as ZoomUserChatProps,
               ],
             })
           );

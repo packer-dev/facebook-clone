@@ -26,7 +26,7 @@ const commonSlice = createSlice({
       state: CommonDataProps,
       action: PayloadAction<{
         key: keyof CommonDataProps;
-        value: any;
+        value: CommonDataProps[keyof CommonDataProps];
       }>
     ) => {
       state[action.payload.key as string] = action.payload.value;
