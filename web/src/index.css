@@ -84,3 +84,10 @@ div:empty:before {
   content:attr(data-placeholder);
   color:gray
 }
+
+.HoverCardContent[data-side="top"] {
+	animation-name: slideUp;
+}
+.HoverCardContent[data-side="bottom"] {
+	animation-name: slideDown;
+}

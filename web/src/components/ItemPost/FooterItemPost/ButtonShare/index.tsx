@@ -36,7 +36,7 @@ const ButtonShare = () => {
   };
 
   return (
-    <li className="w-1/3 z-40 relative cursor-pointer justify-center items-center">
+    <div className="w-1/3 z-40 relative cursor-pointer justify-center items-center">
       <div
         aria-hidden
         onClick={handleClick}
@@ -47,7 +47,7 @@ const ButtonShare = () => {
         <span>&nbsp; Share</span>
       </div>
       <PopupShare ref={refPopup} />
-    </li>
+    </div>
   );
 };
 

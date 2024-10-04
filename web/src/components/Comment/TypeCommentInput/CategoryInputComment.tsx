@@ -13,7 +13,7 @@ const CategoryInputComment = (
 ) => {
   //
   const {
-    state: { dataComment },
+    state: { dataComment, file },
     updateData,
   } = useContext(ItemPostContext);
   const { handleSendComment } = props;
@@ -45,10 +45,10 @@ const CategoryInputComment = (
               handleClick={(item: string) => {
                 updateData("dataComment", {
                   ...dataComment,
-                  content: dataComment.text + item,
-                  type: 1,
+                  text: dataComment.text + item,
+                  type: file ? 3 : 1,
                 } as ContentComment);
-                ref.current.innerText = dataComment.text + item;
+                ref.current.innerText += item;
                 placeCaretAtEnd(ref.current);
               }}
             />

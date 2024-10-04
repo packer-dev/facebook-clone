@@ -165,11 +165,15 @@ const CenterWritePostModal = () => {
             >
               <PopoverEmoji
                 handleClick={(item: any) => {
+                  console.log(refArea.current);
                   postsDispatch(
-                    postsAction.updateData("content", posts.content + item)
+                    postsAction.updateData(
+                      "content",
+                      refArea.current.value + item
+                    )
                   );
-                  if (!refInput.current) return;
-                  refInput.current.innerText = posts.content + item;
+                  if (!refArea.current) return;
+                  refArea.current.value += item;
                 }}
               />
             </PopoversWrapper>

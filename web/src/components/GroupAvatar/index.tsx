@@ -23,7 +23,7 @@ const GroupAvatar = ({
           alt=""
           key={item.id}
           src={item?.user?.avatar || `https://picsum.photos/536/354`}
-          className={`absolute w-${size - child} h-${
+          className={`absolute  p-0.5 bg-white w-${size - child} h-${
             size - child
           } rounded-full object-cover ${
             index === 0 ? "top-0 left-0" : bottom(index)

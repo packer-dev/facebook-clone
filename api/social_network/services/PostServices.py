@@ -404,6 +404,8 @@ def model_post(post: Post):
         answer_question=answer_question,
         local=local,
         activity=activity,
+        is_share_memory=post["is_share_memory"],
+        share_id=post["share_id"],
     )
 
     return post

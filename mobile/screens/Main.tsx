@@ -61,9 +61,9 @@ const Main = ({ route: { params } }: any) => {
     refScroll.current?.scrollToEnd();
   }, [messages]);
   return (
-    <SafeAreaView style={[tailwind(`p-3 flex-col bg-white flex-1`)]}>
+    <SafeAreaView style={[tailwind(`p-3 bg-white flex-1`)]}>
       <KeyboardAvoidingView
-        style={tailwind(`flex-1`)}
+        style={tailwind(`flex-1 flex-col`)}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Header friend={params?.friend} />

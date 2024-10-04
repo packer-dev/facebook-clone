@@ -7,7 +7,7 @@ type SoundProps = {
   isPlay: boolean;
 };
 
-const Sound({ isPlay }: Readonly<SoundProps>) {
+const Sound = ({ isPlay }: Readonly<SoundProps>) => {
   const [sound, setSound] = useState<any>();
 
   async function playSound() {
@@ -33,4 +33,6 @@ const Sound({ isPlay }: Readonly<SoundProps>) {
       <Button title="click" onPress={playSound} />
     </View>
   );
-}
+};
+
+export default Sound;

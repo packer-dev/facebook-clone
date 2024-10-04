@@ -147,7 +147,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
             onInput={(event) => {
               updateData("dataComment", {
                 ...dataComment,
-                text: event.currentTarget.innerText,
+                text: dataComment.text,
               });
             }}
             onKeyDown={async (event) => {

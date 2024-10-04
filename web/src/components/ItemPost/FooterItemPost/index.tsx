@@ -17,6 +17,11 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
 import { Socket } from "socket.io-client";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 type FooterItemPostProps = {
   postDetail: PostDTO;
@@ -102,50 +107,60 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
           )}
         </div>
       </div>
-      <ul className="w-full flex border-t-2 border-b-2 border-solid border-gray-200 dark:border-dark-third relative text-gray-700">
-        <li className="w-1/3 dark:hover:bg-dark-third hover:bg-gray-100 item__hover">
-          <div
-            className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-100 flex w-full 
+      <div className="w-full flex border-t-2 border-b-2 border-solid border-gray-200 dark:border-dark-third relative text-gray-700">
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <div className="w-1/3 dark:hover:bg-dark-third hover:bg-gray-100">
+              <div
+                className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-100 flex w-full 
             font-semibold h-12 text-sm cursor-pointer justify-center items-center"
-          >
-            <div
-              aria-hidden
-              onClick={() => handleLike(1)}
-              className="flex items-center"
-            >
-              {checkUser ? (
-                <>
-                  <img
-                    src={feels[checkUser.type - 1].image}
-                    alt=""
-                    className="w-5 mr-1.5 h-5 rounded-full object-cover"
-                  />
-                  <span
-                    className=""
-                    style={{ color: feels[checkUser.type - 1].color }}
-                  >
-                    {feels[checkUser.type - 1].label}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="bx bx-like text-xl" />
-                  <span className=" font-semibold ml-2">Like</span>
-                </>
-              )}
+              >
+                <div
+                  aria-hidden
+                  onClick={() => handleLike(1)}
+                  className="flex items-center"
+                >
+                  {checkUser ? (
+                    <>
+                      <img
+                        src={feels[checkUser.type - 1].image}
+                        alt=""
+                        className="w-5 mr-1.5 h-5 rounded-full object-cover"
+                      />
+                      <span
+                        className=""
+                        style={{ color: feels[checkUser.type - 1].color }}
+                      >
+                        {feels[checkUser.type - 1].label}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="bx bx-like text-xl" />
+                      <span className=" font-semibold ml-2">Like</span>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-          <Feels handle={handleLike} />
-        </li>
-        <li
+          </HoverCardTrigger>
+          <HoverCardContent
+            side="top"
+            align="center"
+            className="w-[340px] HoverCardContent p-0 bg-white border-none bg-transparent shadow-none left-0 bottom-full"
+          >
+            <Feels handle={handleLike} />
+          </HoverCardContent>
+        </HoverCard>
+        <div
           className="dark:text-gray-300 dark:hover:bg-dark-third hover:bg-gray-200 w-1/3 font-semibold 
           h-12 text-sm cursor-pointer justify-center items-center flex"
         >
           <i className="fas fa-comment-alt dark:text-gray-300" /> &nbsp;
           <span>Comment</span>
-        </li>
+        </div>
         <ButtonShare />
-      </ul>
+      </div>
     </>
   );
 };

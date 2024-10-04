@@ -3,14 +3,21 @@ import ControlMessageMain from "./ControlMessageMain";
 import SendImageVideo from "./SendImageVideo/SendImageVideo";
 import PopoverEmoji from "@/popovers/PopoverEmoji";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
-import { dataFakeGroup, dataFakeMessage } from "@/utils";
-import { useSelector } from "react-redux";
-import { RootState, getSocket, getUser } from "@/reducers";
+import { dataFakeGroup, dataFakeMessage, generateUUID } from "@/utils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  AppDispatch,
+  RootState,
+  getSocket,
+  getUser,
+  getUserChat,
+} from "@/reducers";
 import { User } from "@/interfaces/User";
 import { sendMessageAPI } from "@/apis/messageAPIs";
 import { Socket } from "socket.io-client";
 import PopoversWrapper from "@/popovers/PopoversWrapper";
 import { uploadMedia } from "@/apis/uploadAPIs";
+import { updateDataUserChat, UserChatReduxProps } from "@/reducers/userChat";
 
 const ControlMessage = () => {
   //
@@ -18,18 +25,20 @@ const ControlMessage = () => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const {
     state: {
-      members,
       group,
       isNew,
       messages,
-      userParam,
       groups,
       files,
       mini,
       type,
+      choose,
+      idItemChat,
     },
     updateData: updateDataItemChat,
   } = useContext(ItemChatContext);
+  const { zoom } = useSelector<RootState, UserChatReduxProps>(getUserChat);
+  const dispatch = useDispatch<AppDispatch>();
   const refContent = useRef<HTMLDivElement>();
   const handleSend = async (data?: any, typeContent?: number) => {
     data = typeof data === "object" ? JSON.stringify(data) : data;
@@ -42,9 +51,30 @@ const ControlMessage = () => {
     updateDataItemChat("messages", [...temp]);
     delete message.loading;
     let newGroup = dataFakeGroup({
-      groupCurrent: group ?? null,
+      groupCurrent: group ?? {
+        members: [
+          {
+            id: generateUUID(),
+            is_owner: false,
+            user,
+            nickname: "",
+          },
+          ...choose.map((child) => ({
+            id: generateUUID(),
+            is_owner: false,
+            user: child,
+            nickname: "",
+          })),
+        ],
+        last_message: { ...message },
+        seen: {
+          ...Object.fromEntries([...choose].map((item) => [item.id, false])),
+          [user?.id]: true,
+        },
+        multiple: false,
+      },
       user,
-      friend: userParam,
+      friend: choose.length === 1 ? choose[0] : null,
       message,
     });
     try {
@@ -67,6 +97,17 @@ const ControlMessage = () => {
       if (!result?.group || !result?.message) {
         return;
       }
+      updateDataItemChat("isNew", false);
+      updateDataItemChat("group", result.group);
+      updateDataItemChat("members", result.group?.members);
+      dispatch(
+        updateDataUserChat({
+          key: "zoom",
+          value: [...zoom].map((item) =>
+            item.id === idItemChat ? { ...item, is_new: false } : item
+          ),
+        })
+      );
       const index = temp.findIndex((item) => item?.id === message?.id);
       if (index === -1) return;
       temp[index].loading = false;
@@ -97,7 +138,7 @@ const ControlMessage = () => {
     <div
       className={`w-full bg-white dark:bg-dark-second z-20 pt-2 pb-3 px-1 flex items-center 
         dark:border-dark-third border-t-2 border-solid border-gray-300 relative ${
-          isNew && !members?.length ? "opacity-50" : ""
+          isNew && choose.length === 0 ? "opacity-50" : ""
         }`}
     >
       {files?.length && <SendImageVideo mini={mini} files={files} />}
@@ -149,7 +190,7 @@ const ControlMessage = () => {
           {group?.data?.emoji || "💕"}
         </span>
       </div>
-      {isNew && (
+      {isNew && choose.length === 0 && (
         <div className="w-full absolute opacity-50 top-0 left-0 z-50 h-[66px]" />
       )}
     </div>

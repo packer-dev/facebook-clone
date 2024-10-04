@@ -104,7 +104,7 @@ const Post = (props: any) => {
             <View style={tailwind(`flex-col gap-3 pb-12`)}>
               <Content {...props} loading={props.loading} />
               <Toolbar {...props} loading={props.loading} />
-              <Comments {...props} list={comments} />
+              <Comments {...props} list={props?.comments?.list} />
             </View>
           </ScrollView>
         ) : (

@@ -53,7 +53,7 @@ const ItemChatMinimize = ({ item }: { item: Group }) => {
     <div className="scroll-user w-14 h-14 relative my-3">
       <div aria-hidden onClick={handleClick}>
         {item.multiple ? (
-          <GroupAvatar group={item} size={14} />
+          <GroupAvatar group={item} size={14} child={6} />
         ) : (
           <Avatar
             uri={

@@ -40,21 +40,22 @@ const Content = ({
           {post?.content?.text || "Hello world"}
         </Text>
       )}
-      {!loading && post.answer_question && (
+      {!loading && post?.answer_question && (
         <AnswerQuestionContent
           answerQuestion={post?.answer_question}
           user={post.user}
         />
       )}
       {!loading &&
-      (post?.type === 0 || post?.type === 1) &&
-      !post.background ? (
-        <MediaDisplay
-          medias={medias.map((item) => ({ ...item, uri: item?.url }))}
-          width={width}
-          real
-        />
-      ) : (
+        (post?.type === 0 || post?.type === 1) &&
+        !post.background && (
+          <MediaDisplay
+            medias={medias.map((item) => ({ ...item, uri: item?.url }))}
+            width={width}
+            real
+          />
+        )}
+      {post?.background && (
         <BackgroundContent
           background={post.background}
           content={post.content.text}
