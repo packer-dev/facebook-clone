@@ -64,7 +64,7 @@ const ItemPost = ({
   //
   return postDetail ? (
     <div
-      className={`w-full bg-white dark:bg-dark-second shadow-lv1 ${
+      className={`w-full bg-white dark:bg-dark-second dark:border-dark-third border-2 border-solid shadow-lv1 ${
         margin ? "my-4" : ""
       } 
         py-4 px-2 rounded-lg mb-3`}

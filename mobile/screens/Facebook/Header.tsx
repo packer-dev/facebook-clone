@@ -26,7 +26,7 @@ const Header = () => {
       setNumber(result);
     };
     user && fetchData();
-  }, [user, groups]);
+  }, [user?.id, groups]);
   //
   return (
     <View

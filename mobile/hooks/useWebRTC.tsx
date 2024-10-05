@@ -35,7 +35,7 @@ const useWebRTC = () => {
     //     updateData("peerConnection", null);
     //   }
     // };
-  }, [user]);
+  }, [user?.id]);
 };
 
 export default useWebRTC;

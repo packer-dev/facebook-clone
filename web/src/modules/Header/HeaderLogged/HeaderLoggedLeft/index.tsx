@@ -57,7 +57,7 @@ const HeaderLoggedLeft = () => {
                   }}
                   type="text"
                   placeholder="Search on Facebook"
-                  className="w-56 outline-none bg-transparent hidden xl:inline-block border-none"
+                  className="w-56 outline-none bg-transparent hidden xl:inline-block border-none dark:bg-dark-third"
                   hiddenBorder
                 />
               </div>
@@ -96,7 +96,7 @@ const HeaderLoggedLeft = () => {
             handleClick={() => setShow(true)}
             type="text"
             placeholder="Search on facebook"
-            className="outline-none bg-transparent hidden xl:inline-block"
+            className="outline-none bg-transparent hidden xl:inline-block dark:bg-dark-third"
             hiddenBorder
           />
         </div>

@@ -18,7 +18,7 @@ const Memory = () => {
     };
     user && fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   return (
     <WrapperLogged>
       <div

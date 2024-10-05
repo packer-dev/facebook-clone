@@ -21,7 +21,7 @@ const SuggestFriend = () => {
       setFriends(result);
     };
     fetchData();
-  }, [user, trigger.suggestFriend]);
+  }, [user?.id, trigger.suggestFriend]);
   return friends?.length > 0 ? (
     <View style={tailwind(friends?.length ? `py-1 bg-gray-300 -mt-1` : "")}>
       <View style={tailwind(`bg-white p-3 flex-col gap-3`)}>

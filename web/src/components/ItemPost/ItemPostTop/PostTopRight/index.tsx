@@ -9,9 +9,12 @@ import { User } from "@/interfaces/User";
 import { Post } from "@/interfaces/Post";
 import { deletePost } from "@/apis/postAPIs";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, getCommon } from "@/reducers";
+import { AppDispatch, RootState, getCommon, getUser } from "@/reducers";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { Media } from "@/interfaces/Media";
+import { login } from "@/reducers/user";
+import { AVATAR_DEFAULT, COVER_DEFAULT } from "@/constants/Config";
+import { UserProfileContext } from "@/contexts/UserProfileContext";
 
 type PostTopRightProps = {
   user: User;
@@ -21,8 +24,11 @@ type PostTopRightProps = {
 
 const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
   //
+  const userRedux = useSelector<RootState, User>(getUser);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
+  const { updateData: updateDataUserProfile, state } =
+    useContext(UserProfileContext);
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = async () => {
     await deletePost(post.id);
@@ -32,6 +38,20 @@ const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
         value: [...profilePosts].filter((item) => item.post.id !== post.id),
       })
     );
+    let newUser = {
+      ...(state?.userProfile || userRedux),
+    };
+    console.log(newUser);
+    if (post.type === 2 && medias[0].url === user.avatar) {
+      newUser = { ...newUser, avatar: AVATAR_DEFAULT };
+    }
+    if (post.type === 3 && medias[0].url === user.cover) {
+      newUser = { ...newUser, cover: COVER_DEFAULT };
+    }
+    if (state.userProfile) {
+      updateDataUserProfile("userProfile", newUser);
+    }
+    dispatch(login(newUser));
     modalsDispatch(modalsAction.loadingModal(false));
     modalsDispatch(modalsAction.closeModal());
   };

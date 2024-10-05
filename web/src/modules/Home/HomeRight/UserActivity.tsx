@@ -38,7 +38,7 @@ const UserActivity = () => {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   //
   return [...friends.filter((item) => item.id !== user.id)].map((item) => (
     <div

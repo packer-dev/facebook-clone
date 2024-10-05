@@ -14,7 +14,7 @@ const StoryList = () => {
       setStories([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   //
   return stories.length ? (
     [...stories]

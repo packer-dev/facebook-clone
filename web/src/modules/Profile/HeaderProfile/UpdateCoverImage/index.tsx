@@ -44,6 +44,7 @@ const UpdateCoverImage = ({
     );
     dispatch(login(newUser));
     setLoadingCover(false);
+    setCover(res.url);
   };
   //
   return (

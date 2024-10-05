@@ -32,7 +32,7 @@ const ProfileFriendList = () => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile]);
+  }, [userProfile?.id]);
   //
   return (
     <>

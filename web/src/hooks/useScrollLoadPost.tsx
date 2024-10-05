@@ -22,7 +22,7 @@ const useScrollLoadPost = () => {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]); // Depend on headers and user; also consider including postDetails if needed
+  }, [user?.id]); // Depend on headers and user; also consider including postDetails if needed
 
   return { index, postDetails, setIndex };
 };

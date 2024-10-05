@@ -32,7 +32,7 @@ const Story = () => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   return (
     <View style={tailwind(`px-3 pb-3 border-b border-gray-200`)}>
       <ScrollView

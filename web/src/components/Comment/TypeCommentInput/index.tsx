@@ -5,17 +5,24 @@ import { RootState, getSocket, getUser } from "@/reducers";
 import CategoryInputComment from "./CategoryInputComment";
 import { User } from "@/interfaces/User";
 import { Comment, CommentDTO } from "@/interfaces/Comment";
-import { generateUUID, getCurrentDateTime } from "@/utils";
+import { generateUUID } from "@/utils";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 import { sendComment } from "@/apis/commentAPIs";
-import { userModel } from "@/models";
+import { commentModel, userModel } from "@/models";
 import { Socket } from "socket.io-client";
 import { updateDataComment } from "@/hooks/realtime/useListeningComment";
 
 const TypeCommentInput = ({ parent }: { parent?: string }) => {
   //
   const {
-    state: { postDetail, dataComment, file, edit },
+    state: {
+      postDetail,
+      dataComment,
+      file,
+      edit,
+      replyFileComment,
+      replyDataComment,
+    },
     updateData,
   } = React.useContext(ItemPostContext);
   const socket = useSelector<RootState, Socket>(getSocket);
@@ -23,25 +30,33 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
   const refContent = React.useRef<HTMLDivElement>(null);
   const handleSendComment = async (val?: any, type?: number) => {
     if (!user) return;
+    const jsonString = () => {
+      if (type !== 3) return "";
+      const jsonFunction = (file: File | { url: string }) => {
+        return JSON.stringify({
+          url: "name" in file ? URL.createObjectURL(file) : file.url,
+          text: parent ? replyDataComment[parent].text : dataComment.text,
+        });
+      };
+      const jsonString = parent
+        ? jsonFunction(replyFileComment[parent])
+        : jsonFunction(file);
 
+      return jsonString;
+    };
+    const textString = parent
+      ? replyDataComment[parent]?.text || ""
+      : dataComment.text;
     let newDataComment = {
-      ...dataComment,
+      ...(parent ? replyDataComment[parent] : dataComment),
       type: type,
       id: generateUUID(),
-      text:
-        type === 3
-          ? JSON.stringify({
-              url: "name" in file ? URL.createObjectURL(file) : file.url,
-              text: dataComment.text,
-            })
-          : val || dataComment.text,
+      text: type === 3 ? jsonString() : val || textString,
     };
     let comment: Comment = {
       id: edit,
       user,
       content: newDataComment,
-      time_created: getCurrentDateTime(),
-      last_time_update: getCurrentDateTime(),
       level: parent ? 2 : 1,
       parent: parent || "",
       loading: true,
@@ -72,21 +87,33 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     const formData = new FormData();
     formData.append(
       "comment",
-      JSON.stringify({
-        ...comment_,
-        content: newDataComment,
-        user: userModel(user),
-      })
+      JSON.stringify(
+        commentModel({
+          ...comment_,
+          content: newDataComment,
+          user: userModel(user),
+        })
+      )
     );
     formData.append("post_id", postDetail.post.id);
-    if (file && "name" in file) {
+    if (!parent && file && "name" in file) {
       formData.append("media_new", file);
+    }
+    if (parent && "name" in replyFileComment[parent]) {
+      formData.append("media_new", replyFileComment[parent]);
     }
     if (edit && file && "name" in file) {
       formData.append("media_old", JSON.parse(comment.content.text)?.url);
     }
     refContent.current.innerText = "";
-    updateData("file", null);
+    if (parent) {
+      updateData("replyFileComment", {
+        ...replyFileComment,
+        [parent]: null,
+      });
+    } else {
+      updateData("file", null);
+    }
     comment = await sendComment(formData);
     const listComment = updateDataComment(newPostDetail, {
       edit,
@@ -145,15 +172,25 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
             aria-hidden
             ref={refContent}
             onInput={(event) => {
-              updateData("dataComment", {
-                ...dataComment,
-                text: dataComment.text,
-              });
+              if (parent) {
+                updateData("replyDataComment", {
+                  ...replyDataComment,
+                  [parent]: {
+                    ...replyDataComment[parent],
+                    text: event.currentTarget.innerText,
+                  },
+                });
+              } else {
+                updateData("dataComment", {
+                  ...dataComment,
+                  text: event.currentTarget.innerText,
+                });
+              }
             }}
             onKeyDown={async (event) => {
               if (event.key === "Enter") {
                 event.preventDefault();
-                handleSendComment("", file ? 3 : 1);
+                handleSendComment("", file || replyFileComment[parent] ? 3 : 1);
               }
             }}
             data-placeholder={`Comment with name ${user.name}`}
@@ -165,9 +202,13 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
         <CategoryInputComment
           handleSendComment={handleSendComment}
           ref={refContent}
+          parent={parent}
         />
       </div>
-      {file && <PreviewImageComment file={file} />}
+      {!parent && file && <PreviewImageComment file={file} parent="" />}
+      {parent && replyFileComment[parent] && (
+        <PreviewImageComment file={replyFileComment[parent]} parent={parent} />
+      )}
     </>
   );
 };

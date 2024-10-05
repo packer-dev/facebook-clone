@@ -123,7 +123,7 @@ const ModalPost = () => {
       <div className="w-full text-center my-2.5 mx-0">
         <Button
           onClick={handlePost}
-          className="w-full p-2.5 border-none rounded-lg font-bold"
+          className="w-full p-2.5 border-none rounded-lg font-bold dark:bg-dark-main dark:text-white dark:hover:bg-black"
           type="button"
           // bgColor="bg-main text-white"
           disabled={

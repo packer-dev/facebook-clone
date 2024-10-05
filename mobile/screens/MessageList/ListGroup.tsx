@@ -30,7 +30,7 @@ const ListGroup = () => {
 
     user && fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   const sorted = groups.sort((a: any, b: any) => {
     const dateA = new Date(a?.last_message?.time_created?.replace(" ", "T"));
     const dateB = new Date(b?.last_message?.time_created?.replace(" ", "T"));

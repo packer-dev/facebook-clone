@@ -21,7 +21,7 @@ const FriendCanKnow = () => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile, user]);
+  }, [userProfile?.id, user]);
   //
   return (
     users.length > 0 && (

@@ -5,12 +5,16 @@ import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
 import { getMediaByUserId } from "@/apis/postAPIs";
 import { ImageVideoProps } from "../ImageVideoList";
+import { useSelector } from "react-redux";
+import { getCommon, RootState } from "@/reducers";
+import { CommonDataProps } from "@/reducers/common";
 
 const ImageVideoUser = () => {
   //
   const {
     state: { userProfile },
   } = useContext(UserProfileContext);
+  const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const navigation = useNavigate();
   const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   useEffect(() => {
@@ -21,7 +25,7 @@ const ImageVideoUser = () => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile]);
+  }, [userProfile, profilePosts.length]);
   //
   return (
     <>

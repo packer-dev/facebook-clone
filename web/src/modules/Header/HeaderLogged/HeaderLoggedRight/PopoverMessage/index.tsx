@@ -18,7 +18,7 @@ const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
     };
     if (user) fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   //
   return (
     <div className="w-full p-2 rounded-lg h-[725px]">

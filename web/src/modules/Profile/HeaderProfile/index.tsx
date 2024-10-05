@@ -19,7 +19,7 @@ export default memo(function HeaderProfile() {
   useEffect(() => {
     setCover(userProfile.cover);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, setCover]);
+  }, [user?.id]);
   //
   return (
     <>
@@ -51,7 +51,7 @@ export default memo(function HeaderProfile() {
                     <i className="fas fa-spinner fa-pulse text-5xl text-main" />
                   </div>
                 )}
-                <div className="z-10 p-1.5 bg-gray-50 absolute text-center rounded-lg bottom-3 right-10 md:right-3">
+                <div className="z-10 p-1.5 bg-gray-50 dark:bg-dark-second absolute text-center rounded-lg bottom-3 right-10 md:right-3">
                   <input
                     type="file"
                     className="hidden"
@@ -64,7 +64,7 @@ export default memo(function HeaderProfile() {
                   />
                   <label htmlFor="changeCover" className="flex items-center">
                     <i className="fas fa-camera text-2xl md:pl-1" />
-                    <span className="hidden lg:inline pt-1 lg:ml-2 text-sm font-semibold">
+                    <span className="hidden lg:inline lg:ml-2 text-sm font-semibold">
                       Edit cover
                     </span>
                   </label>

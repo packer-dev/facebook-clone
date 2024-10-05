@@ -98,7 +98,7 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
               key={item.id}
               src={feels[item.type - 1].image}
               alt=""
-              className="w-6 h-6 transform scale-90 p-0.5 bg-white -ml-1.5 relative rounded-full object-cover"
+              className="w-6 h-6 transform scale-90 p-0.5 bg-white -ml-1.5 relative rounded-full object-cover dark:bg-dark-third"
               style={{ zIndex: feelList.length - index }}
             />
           ))}

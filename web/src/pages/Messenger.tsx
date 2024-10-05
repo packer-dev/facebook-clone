@@ -35,7 +35,7 @@ const WrapperMessenger = () => {
     //
     if (user) fetchMessageList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   useEffect(() => {
     //
     if (params?.id) fetchGroup();

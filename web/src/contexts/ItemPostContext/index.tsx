@@ -8,8 +8,9 @@ export type ItemPostContextProps = {
   postDetail: PostDTO;
   dataComment: ContentComment;
   file?: File | { url: string };
-  relyDataComment: ContentComment;
+  replyDataComment: { [key: string]: ContentComment };
   edit: string;
+  replyFileComment: { [key: string]: File };
 };
 
 const initialState: ItemPostContextProps = {
@@ -19,11 +20,8 @@ const initialState: ItemPostContextProps = {
     text: "",
     type: 1,
   },
-  relyDataComment: {
-    id: generateUUID(),
-    text: "",
-    type: 1,
-  },
+  replyDataComment: {},
+  replyFileComment: {},
   file: null,
   edit: "",
 };

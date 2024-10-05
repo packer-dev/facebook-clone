@@ -57,7 +57,7 @@ const RelationshipUserStatus = () => {
     if (user.id !== userProfile.id) fetch();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile]);
+  }, [userProfile?.id]);
   //
   return (
     <div className="flex md:justify-end justify-start items-center w-full md:w-auto">

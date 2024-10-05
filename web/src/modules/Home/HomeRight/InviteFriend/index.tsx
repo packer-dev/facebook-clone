@@ -18,7 +18,7 @@ const InviteFriend = () => {
     };
     fetch();
     //
-  }, [user]);
+  }, [user?.id]);
   //
   return list ? (
     <>

@@ -54,13 +54,13 @@ const Input = (
           onClick={() => handleClick?.()}
           type={show && search ? "text" : result}
           placeholder={placeholder}
-          className={`rounded-sm focus:shadow-sm ${
+          className={`rounded-sm dark:bg-dark-second dark:focus:border-dark-third focus:shadow-sm ${
             hiddenBorder
               ? ""
               : "border-gray-200 border focus:border-blue-600 border-solid dark:border-dark-third"
-          } dark:text-white ${
-            width || "w-full"
-          } ${className} ${borderValidation} p-2.5 ${search ? "pl-10" : ""}`}
+          } dark:text-white ${width || "w-full"} ${
+            className || ""
+          } ${borderValidation} p-2.5 ${search ? "pl-10" : ""}`}
           {...Field}
           spellCheck={false}
           onChange={(event) => {

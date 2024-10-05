@@ -55,7 +55,7 @@ const WrapperPage = ({ white, children }: WrapperPageProps) => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   React.useEffect(() => {
     //
     modalsDispatch(modalsAction.closeModal());

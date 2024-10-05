@@ -44,7 +44,7 @@ const ItemComment = ({
   //
   return (
     <div
-      className={`w-full p-2 bg-white flex my-0.5 ${
+      className={`w-full p-2 bg-white dark:bg-dark-second flex my-0.5 ${
         commentPost.item.loading ? "opacity-50" : ""
       }`}
     >

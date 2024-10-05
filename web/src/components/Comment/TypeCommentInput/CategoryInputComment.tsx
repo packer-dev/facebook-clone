@@ -8,12 +8,12 @@ import { v4 } from "uuid";
 import { ContentComment } from "@/interfaces/ContentComment";
 
 const CategoryInputComment = (
-  props: { handleSendComment: Function },
+  props: { handleSendComment: Function; parent: string },
   ref: RefObject<HTMLDivElement>
 ) => {
   //
   const {
-    state: { dataComment, file },
+    state: { dataComment, file, replyDataComment, replyFileComment },
     updateData,
   } = useContext(ItemPostContext);
   const { handleSendComment } = props;
@@ -66,14 +66,31 @@ const CategoryInputComment = (
               className="hidden"
               onChange={(event) => {
                 if (event.target.files.length > 0) {
-                  updateData("file", event.target.files[0]);
-                  updateData("dataComment", {
-                    ...dataComment,
-                    type: 3,
-                    text: JSON.stringify({
-                      url: URL.createObjectURL(event.target.files[0]),
-                    }),
-                  });
+                  if (props.parent) {
+                    updateData("replyFileComment", {
+                      ...replyFileComment,
+                      [props.parent]: event.target.files[0],
+                    });
+                    updateData("replyDataComment", {
+                      ...replyDataComment,
+                      [props.parent]: {
+                        ...replyDataComment[props.parent],
+                        type: 3,
+                        text: JSON.stringify({
+                          url: URL.createObjectURL(event.target.files[0]),
+                        }),
+                      },
+                    });
+                  } else {
+                    updateData("file", event.target.files[0]);
+                    updateData("dataComment", {
+                      ...dataComment,
+                      type: 3,
+                      text: JSON.stringify({
+                        url: URL.createObjectURL(event.target.files[0]),
+                      }),
+                    });
+                  }
                   event.currentTarget.files = null;
                 }
               }}

@@ -22,7 +22,7 @@ const Avatar = ({
       {loading ? (
         <View
           style={tailwind(
-            `w-${size} h-${size} rounded-full mx-auto bg-gray-300`
+            `w-${size} h-${size} rounded-full mx-auto bg-gray-300 `
           )}
         />
       ) : (

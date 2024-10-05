@@ -6,6 +6,7 @@ from social_network.res import (
     comment as resComment,
 )
 import json, os, uuid
+import datetime
 
 
 async def get_comment_by_id_post(
@@ -87,6 +88,8 @@ async def send_comment(comment_payload: CommentPayload):
 
     if is_edit == "":
         comment["id"] = str(uuid.uuid4())
+        comment["time_created"] = str(datetime.datetime.now())
+        comment["last_time_update"] = str(datetime.datetime.now())
         comments = [comment] + comments
     else:
         index = find_index(comments, comment["id"])

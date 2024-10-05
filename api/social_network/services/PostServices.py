@@ -1,5 +1,5 @@
 from firebase_admin import db
-from utils import new_value, update_item, upload_media_db, get_info_user
+from utils import new_value, update_item, upload_media_db, get_info_user, find_index
 import uuid
 from social_network.models import (
     PostPayload,
@@ -137,7 +137,7 @@ async def create_post(post_payload: PostPayload):
             "post": update_user_post(users, post),
             "medias": media_list,
             "feel": [],
-            "comment": {"total": 0, "list": []},
+            "comments": {"total": 0, "list": []},
         }
 
     except OSError as err:
@@ -185,7 +185,7 @@ async def edit_post(post_payload: PostPayload):
         "post": update_user_post(users, post),
         "medias": media_list,
         "feel": [],
-        "comment": [],
+        "comments": [],
     }
 
 
@@ -193,14 +193,10 @@ async def delete_post(post_id: str):
     ref = db.reference("social-network")
 
     posts = new_value(ref.child("posts").get(), [])
-    media_post = new_value(ref.child("medias").child("posts").child(post_id).get(), [])
-    media_comment = new_value(
-        ref.child("medias").child("comments").child(post_id).get(), []
-    )
-
-    medias = media_post + media_comment
+    users = new_value(ref.child("users").get(), [])
+    medias = new_value(ref.child("medias").child("posts").child(post_id).get(), [])
+    public_ids = []
     if len(medias) > 0:
-        public_ids = []
         for media in medias:
             url = media["url"]
             folder = media["folder"]
@@ -209,12 +205,36 @@ async def delete_post(post_id: str):
             )[0]
             public_ids.append(public_id)
 
+    comments = new_value(ref.child("comments").child(post_id).get(), [])
+    for comment in comments:
+        if comment["content"]["type"] == 3:
+            url = json.loads(comment["content"]["text"])
+            url = url["url"]
+            public_id = os.path.splitext(
+                url[url.find("FacebookNative/Comments/") : len(url)]
+            )[0]
+            public_ids.append(public_id)
+
+    if len(public_ids) > 0:
         await delete_media(public_ids)
 
-    posts = [post for post in posts if post["id"] != post_id]
+    post = [item for item in posts if item["id"] == post_id]
+    posts = [item for item in posts if item["id"] != post_id]
+    post = post[0] if len(post) == 1 else None
+    if post is not None:
+        index = find_index(users, post["user"]["id"])
+        if index != -1:
+            if post["type"] == 2 and users[index]["avatar"] == medias[0]["url"]:
+                users[index][
+                    "avatar"
+                ] = "https://res.cloudinary.com/ensonet-dev/image/upload/v1641124176/default-avatar_leprc2.png"
+            if post["type"] == 3 and users[index]["cover"] == medias[0]["url"]:
+                users[index][
+                    "cover"
+                ] = "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMDktYWRqLTA1LmpwZw.jpg"
 
     ref.child("medias").child("posts").child(post_id).set({})
-    ref.child("medias").child("comments").child(post_id).set({})
+    ref.child("users").set(users)
     ref.child("comments").child(post_id).set({})
     ref.child("posts").set(posts)
     return True

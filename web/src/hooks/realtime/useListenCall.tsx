@@ -73,7 +73,7 @@ const useListenCall = () => {
       socket.off(`waiting-${user?.id}`, listenCall);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
 };
 
 export default useListenCall;

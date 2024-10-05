@@ -41,7 +41,7 @@ const WrapperContentChildProfile = <T,>({
       clearTimeout(timeOut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile, location.pathname]);
+  }, [userProfile?.id, location.pathname]);
   return (
     <>
       <div className="py-2 px-4 mb-2 text-center border-b-2 border-solid border-main text-main">

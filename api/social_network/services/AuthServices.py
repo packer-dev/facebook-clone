@@ -302,6 +302,8 @@ async def upload_media_profile_user(folder, file, is_cover, user_id):
             activity=None,
             local=None,
             answer_question=None,
+            share_id="",
+            is_share_memory=False,
         )
         posts.append(post.model_dump())
 
@@ -323,7 +325,7 @@ async def upload_media_profile_user(folder, file, is_cover, user_id):
                 "post": update_user_post(users, post.model_dump()),
                 "medias": [media.model_dump()],
                 "feel": [],
-                "comment": [],
+                "comments": [],
             },
         }
     return {"url": ""}

@@ -5,8 +5,8 @@ export interface Comment {
   id: string;
   user: User;
   content: ContentComment;
-  time_created: string;
-  last_time_update: string;
+  time_created?: string;
+  last_time_update?: string;
   level: number;
   parent: string;
   loading?: boolean;

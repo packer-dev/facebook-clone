@@ -30,11 +30,11 @@ const DetailProfile = ({ route }: any) => {
     if (!user || !visit) return;
     user?.id !== visit?.id && fetchData();
     // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, [user, visit]);
+  }, [user?.id, visit]);
   React.useEffect(() => {
     user && fetchData();
     // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   React.useEffect(() => {
     updateData("visit", route?.params?.visit);
     updateData("list_post", []);

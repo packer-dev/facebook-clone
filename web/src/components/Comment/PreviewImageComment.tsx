@@ -2,10 +2,15 @@ import * as React from "react";
 import CloseComponent from "../CloseComponent";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 
-const PreviewImageComment = ({ file }: { file: File | { url: string } }) => {
+type PreviewImageCommentProps = {
+  file: File | { url: string };
+  parent: string;
+};
+
+const PreviewImageComment = ({ file, parent }: PreviewImageCommentProps) => {
   //
   const {
-    state: { dataComment },
+    state: { dataComment, replyFileComment, replyDataComment },
     updateData,
   } = React.useContext(ItemPostContext);
   //
@@ -13,8 +18,19 @@ const PreviewImageComment = ({ file }: { file: File | { url: string } }) => {
     <div className="w-11/12 pt-2 pl-2.5 ml-auto mt-2 relative">
       <CloseComponent
         handleClick={() => {
-          updateData("file", null);
-          updateData("dataComment", { ...dataComment, type: 1 });
+          if (parent) {
+            updateData("replyFileComment", {
+              ...replyFileComment,
+              [parent]: null,
+            });
+            updateData("replyFileComment", {
+              ...replyDataComment,
+              [parent]: { ...replyDataComment[parent], type: 1 },
+            });
+          } else {
+            updateData("file", null);
+            updateData("dataComment", { ...dataComment, type: 1 });
+          }
         }}
       >
         &times;

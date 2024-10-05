@@ -22,7 +22,7 @@ const Login = () => {
     //
     if (user) navigation(PAGE_HOME);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   //
   useTitle("Login");
   //

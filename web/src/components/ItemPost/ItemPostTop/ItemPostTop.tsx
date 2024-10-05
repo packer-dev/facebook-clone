@@ -36,7 +36,7 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
       <div className="w-12 h-12 relative">
         <Link to={`${PAGE_PROFILE}/${postDetail.post.user.id}`}>
           <img
-            className="w-12 h-12 rounded-full object-cover border-4 border-solid border-gray-200"
+            className="w-12 h-12 rounded-full object-cover border-4 border-solid border-gray-200 dark:border-dark-third"
             alt=""
             src={postDetail.post.user.avatar}
           />

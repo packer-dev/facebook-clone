@@ -17,7 +17,7 @@ const MeetRom = () => {
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user?.id]);
   //
   return users.length > 0 ? (
     <div className="my-5 shadow-lv1 w-full flex items-center px-3 py-3 bg-white dark:bg-dark-third rounded-lg">
