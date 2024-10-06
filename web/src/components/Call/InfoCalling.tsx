@@ -7,7 +7,7 @@ import { CallProps } from "@/reducers/call";
 
 const InfoCalling = () => {
   //
-  const { mode, current, group, acceptUser } = useSelector<
+  const { mode, current, group, acceptUser, callStatus } = useSelector<
     RootState,
     CallProps
   >(getCall);
@@ -27,7 +27,9 @@ const InfoCalling = () => {
             group?.members.map((item) => item?.user?.name).join(", ")}
       </p>
       <p className="font-semibold text-sm text-center py-1 text-gray-300">
-        {acceptUser.length > 0 ? "00:00" : "Calling..."}
+        {acceptUser.length > 0 && callStatus === "ready"
+          ? "00:00"
+          : "Calling..."}
       </p>
     </div>
   );

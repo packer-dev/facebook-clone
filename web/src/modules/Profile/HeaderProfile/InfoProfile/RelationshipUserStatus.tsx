@@ -1,26 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { PAGE_CREATE_STORY } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import ButtonRelationshipUser from "./ButtonRelationshipUser";
-import { RootState, getUser } from "@/reducers";
+import { AppDispatch, RootState, getUser, getUserProfile } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
-import { checkRelationship, sendRelationship } from "@/apis/userAPIs";
+import { sendRelationship } from "@/apis/userAPIs";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
+import {
+  updateDataUserProfile,
+  UserProfileReduxProps,
+} from "@/reducers/userProfile";
 
 const RelationshipUserStatus = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
-  const {
-    state: { userProfile },
-    updateData,
-  } = useContext(UserProfileContext);
+  const { userProfile, status } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const [userRelationship, setUserRelationship] = useState(null);
+  const dispatch = useDispatch<AppDispatch>();
   const process = async (status: number) => {
     let payloadStatusAPI = status === 1 ? "" : "accept";
     await sendRelationship({
@@ -30,38 +31,25 @@ const RelationshipUserStatus = () => {
     });
     switch (status) {
       case 0:
-        setUserRelationship(1);
+        dispatch(updateDataUserProfile({ key: "status", value: 1 }));
         break;
       case 1:
-        setUserRelationship(null);
+        dispatch(updateDataUserProfile({ key: "status", value: null }));
         break;
       case 2:
-        setUserRelationship(3);
+        dispatch(updateDataUserProfile({ key: "status", value: 3 }));
         break;
       case 3:
-        setUserRelationship(null);
+        dispatch(updateDataUserProfile({ key: "status", value: null }));
         break;
       default:
         break;
     }
   };
-  useEffect(() => {
-    //
-    const fetch = async () => {
-      const result = await checkRelationship(user?.id, userProfile?.id ?? "");
-      if (result === 3) {
-        updateData("isFriend", true);
-      }
-      setUserRelationship(result);
-    };
-    if (user.id !== userProfile.id) fetch();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile?.id]);
   //
   return (
     <div className="flex md:justify-end justify-start items-center w-full md:w-auto">
-      {!userRelationship && userProfile.id !== user.id && (
+      {!status && userProfile.id !== user.id && (
         <ButtonRelationshipUser
           onClick={process}
           status={0}
@@ -70,7 +58,7 @@ const RelationshipUserStatus = () => {
           show
         />
       )}
-      {userRelationship === 2 && (
+      {status === 2 && (
         <div className="flex-row flex gap-1">
           <ButtonRelationshipUser
             onClick={process}
@@ -88,29 +76,28 @@ const RelationshipUserStatus = () => {
           />
         </div>
       )}
-      {(userRelationship === 1 || userRelationship === 3) &&
-        user.id !== userProfile.id && (
-          <ButtonRelationshipUser
-            onClick={async (status) => {
-              if (status === 3) {
-                modalsDispatch(
-                  modalsAction.openModalDeletePost(
-                    `Notice`,
-                    `If you agree, you and ${userProfile.name} will not be able to interact with each other on facebook or messenger. Please note this.`,
-                    "OK",
-                    () => process(1)
-                  )
-                );
-              } else {
-                process(status);
-              }
-            }}
-            status={userRelationship}
-            show
-            icon={userRelationship === 3 ? "bx bx-user-check" : "bx bxs-user-x"}
-            label={userRelationship === 3 ? "Friend" : "Cancel request"}
-          />
-        )}
+      {(status === 1 || status === 3) && user.id !== userProfile.id && (
+        <ButtonRelationshipUser
+          onClick={async (status) => {
+            if (status === 3) {
+              modalsDispatch(
+                modalsAction.openModalDeletePost(
+                  `Notice`,
+                  `If you agree, you and ${userProfile.name} will not be able to interact with each other on facebook or messenger. Please note this.`,
+                  "OK",
+                  () => process(1)
+                )
+              );
+            } else {
+              process(status);
+            }
+          }}
+          status={status}
+          show
+          icon={status === 3 ? "bx bx-user-check" : "bx bxs-user-x"}
+          label={status === 3 ? "Friend" : "Cancel request"}
+        />
+      )}
       {user.id === userProfile.id && (
         <>
           <Button

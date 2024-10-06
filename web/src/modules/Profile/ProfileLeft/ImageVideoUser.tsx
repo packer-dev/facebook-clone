@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import * as StringUtils from "@/utils/StringUtils";
 import { getMediaByUserId } from "@/apis/postAPIs";
 import { ImageVideoProps } from "../ImageVideoList";
 import { useSelector } from "react-redux";
-import { getCommon, RootState } from "@/reducers";
+import { getCommon, getUserProfile, RootState } from "@/reducers";
 import { CommonDataProps } from "@/reducers/common";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const ImageVideoUser = () => {
   //
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
   const navigation = useNavigate();
   const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);

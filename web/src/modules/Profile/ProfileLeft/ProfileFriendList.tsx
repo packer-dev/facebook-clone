@@ -1,21 +1,28 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import { getFriendUser } from "@/apis/userAPIs";
 import { User } from "@/interfaces/User";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, getCommon, getUser, RootState } from "@/reducers";
+import {
+  AppDispatch,
+  getCommon,
+  getUser,
+  getUserProfile,
+  RootState,
+} from "@/reducers";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const ProfileFriendList = () => {
   //
   const user = useSelector<RootState, User>(getUser);
   const { profileFriends } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
-  const {
-    state: { userProfile, isFriend },
-  } = useContext(UserProfileContext);
+  const { userProfile, isFriend } = useSelector<
+    RootState,
+    UserProfileReduxProps
+  >(getUserProfile);
   const list = profileFriends.filter((item) =>
     isFriend ? item.user.id !== user.id : true
   );

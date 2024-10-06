@@ -5,6 +5,7 @@ import posts from "./posts";
 import { configureStore } from "@reduxjs/toolkit";
 import common from "./common";
 import call from "./call";
+import userProfile from "./userProfile";
 
 const myReducer = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const myReducer = configureStore({
     posts: posts.reducer,
     common: common.reducer,
     call: call.reducer,
+    userProfile: userProfile.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -35,5 +37,6 @@ export const getCommon = (state: RootState) => state.common;
 export const getSocket = (state: RootState) => state.socket;
 export const getPosts = (state: RootState) => state.posts;
 export const getCall = (state: RootState) => state.call;
+export const getUserProfile = (state: RootState) => state.userProfile;
 
 export default myReducer;

@@ -1,18 +1,18 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import InfoProfile from "./InfoProfile";
 import UpdateCoverImage from "./UpdateCoverImage";
-import { RootState, getUser } from "@/reducers";
+import { RootState, getUser, getUserProfile } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 export default memo(function HeaderProfile() {
   //
   const user = useSelector<RootState, User>(getUser);
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const [loadingCover, setLoadingCover] = useState(false);
   const [cover, setCover] = useState<string | File>(userProfile.cover);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);

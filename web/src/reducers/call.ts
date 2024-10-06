@@ -14,6 +14,7 @@ export type CallProps = {
   remoteStream: MediaStream[];
   showVideo: boolean;
   showAudio: boolean;
+  callStatus: "waiting" | "ready";
 };
 
 const initialState: CallProps = {
@@ -27,6 +28,7 @@ const initialState: CallProps = {
   remoteStream: [],
   showVideo: true,
   showAudio: false,
+  callStatus: "waiting",
 };
 
 const callSlice = createSlice({

@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
+import React, { useState } from "react";
 import WrapperContentChildProfile from "../WrapperContentChildProfile";
 import ItemImageVideoList from "./ItemImageVideoList";
 import { getMediaByUserId } from "@/apis/postAPIs";
 import { Media } from "@/interfaces/Media";
+import { getUserProfile, RootState } from "@/reducers";
+import { useSelector } from "react-redux";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 export type ImageVideoProps = {
   post_id: string;
@@ -13,9 +15,9 @@ export type ImageVideoProps = {
 
 const ImageVideoList = ({ image }: { image?: boolean }) => {
   //
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   return (
     <WrapperContentChildProfile<ImageVideoProps>

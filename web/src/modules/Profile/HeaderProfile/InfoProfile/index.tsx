@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
+import React from "react";
 import RelationshipUserStatus from "./RelationshipUserStatus";
 import { useSelector } from "react-redux";
-import { getCommon, RootState } from "@/reducers";
+import { getCommon, getUserProfile, RootState } from "@/reducers";
 import { CommonDataProps } from "@/reducers/common";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const InfoProfile = () => {
   //
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const { profileFriends } = useSelector<RootState, CommonDataProps>(getCommon);
   //
   return (

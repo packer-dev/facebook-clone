@@ -1,17 +1,19 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
-import { useSelector } from "react-redux";
-import { getUser, RootState } from "@/reducers";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, getUser, getUserProfile, RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { updateUser } from "@/apis/userAPIs";
 import { Button } from "@/components/ui/button";
+import {
+  updateDataUserProfile,
+  UserProfileReduxProps,
+} from "@/reducers/userProfile";
 
 const DescriptionIntroduction = () => {
   //
-  const {
-    state: { userProfile },
-    updateData: updateDataUserProfile,
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const user = useSelector<RootState, User>(getUser);
   const refContainer = useRef<HTMLDivElement>();
   const refDescription = useRef<HTMLDivElement>();
@@ -19,6 +21,7 @@ const DescriptionIntroduction = () => {
   const [description, setDescription] = useState(userProfile.bio || "");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     //
     if (refDescription.current) {
@@ -67,8 +70,9 @@ const DescriptionIntroduction = () => {
               setLoading(true);
               const newUser = { ...userProfile, bio: description };
               await updateUser(newUser);
-              updateDataUserProfile("userProfile", newUser);
-              updateDataUserProfile("userProfile", newUser);
+              dispatch(
+                updateDataUserProfile({ key: "userProfile", value: newUser })
+              );
               setLoading(false);
               setShow(false);
             }}

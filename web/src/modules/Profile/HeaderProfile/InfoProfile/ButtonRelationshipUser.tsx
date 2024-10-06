@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, getUserChat } from "@/reducers";
+import { RootState, getUserChat, getUserProfile } from "@/reducers";
 import {
   updateDataUserChat,
   UserChatReduxProps,
@@ -9,6 +8,7 @@ import {
 } from "@/reducers/userChat";
 import { Button } from "@/components/ui/button";
 import { generateUUID } from "@/utils";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 type ButtonRelationshipUserProps = {
   status: number;
@@ -30,9 +30,9 @@ const ButtonRelationshipUser = ({
     getUserChat
   );
   const [loading, setLoading] = useState(false);
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const dispatch = useDispatch();
   //
   return (

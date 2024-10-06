@@ -1,22 +1,25 @@
 import React, { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import InformationMain from "./InformationMain";
 import DescriptionIntroduction from "./DescriptionIntroduction";
 import ItemFavorite from "@/modals/Profile/ModalFavorite/ItemFavorite";
-import { RootState, getUser } from "@/reducers";
+import { AppDispatch, RootState, getUser, getUserProfile } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
+import {
+  updateDataUserProfile,
+  UserProfileReduxProps,
+} from "@/reducers/userProfile";
 
 const Introduction = () => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  const {
-    state: { userProfile },
-    updateData,
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const user = useSelector<RootState, User>(getUser);
+  const dispatch = useDispatch<AppDispatch>();
   const favorites = JSON.parse(userProfile.favorites || "[]");
   //
   return (
@@ -29,7 +32,10 @@ const Introduction = () => {
           onClick={() =>
             modalsDispatch(
               modalsAction.openModalEditInformation(
-                (user) => updateData("userProfile", user),
+                (user) =>
+                  dispatch(
+                    updateDataUserProfile({ key: "userProfile", value: user })
+                  ),
                 userProfile
               )
             )
@@ -51,7 +57,10 @@ const Introduction = () => {
           onClick={() => {
             modalsDispatch(
               modalsAction.openModalFavorite(
-                (data) => updateData("userProfile", data),
+                (data) =>
+                  dispatch(
+                    updateDataUserProfile({ key: "userProfile", value: data })
+                  ),
                 userProfile
               )
             );

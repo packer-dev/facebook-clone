@@ -8,7 +8,7 @@ import { PAGE_HOME } from "@/constants/Config";
 
 const ExtensionCall = (props: any, ref: React.RefObject<HTMLVideoElement>) => {
   //
-  const { localStream, showAudio, showVideo } = useSelector<
+  const { showAudio, showVideo, localStream } = useSelector<
     RootState,
     CallProps
   >(getCall);
@@ -23,18 +23,17 @@ const ExtensionCall = (props: any, ref: React.RefObject<HTMLVideoElement>) => {
       <ItemExtensionCall
         handleClick={async () => {
           if (showVideo) {
-            localStream?.getTracks().forEach((track) => {
+            localStream.getVideoTracks().forEach((track) => {
               track.stop();
             });
           } else {
-            let newLocalStream = await navigator?.mediaDevices?.getUserMedia({
-              video: true,
-              audio: false,
-            });
             dispatch(
               updateDataCall({
                 key: "localStream",
-                value: newLocalStream,
+                value: await navigator.mediaDevices.getUserMedia({
+                  video: true,
+                  audio: false,
+                }),
               })
             );
           }
@@ -62,6 +61,9 @@ const ExtensionCall = (props: any, ref: React.RefObject<HTMLVideoElement>) => {
       />
       <ItemExtensionCall
         handleClick={() => {
+          localStream.getTracks().forEach((track) => {
+            track.stop();
+          });
           navigate(PAGE_HOME);
         }}
         icon="bx bxs-phone"

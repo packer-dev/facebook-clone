@@ -1,15 +1,17 @@
-import React, { useContext, useState } from "react";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
+import React, { useState } from "react";
 import WrapperContentChildProfile from "../WrapperContentChildProfile";
 import ItemFriendList from "./ItemFriendList";
 import { FriendProfileDTO } from "@/interfaces/User";
 import { getFriendUser } from "@/apis/userAPIs";
+import { getUserProfile, RootState } from "@/reducers";
+import { useSelector } from "react-redux";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const FriendList = () => {
   //
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const [friends, setFriends] = useState<FriendProfileDTO[]>([]);
   //
   return (

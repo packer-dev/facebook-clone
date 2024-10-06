@@ -34,6 +34,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
     updateData("group", item.group);
     updateData("userParam", item.user);
     updateData("idItemChat", item.id);
+    updateData("choose", [item.user]);
     if (item.user) {
       const fetchDataUser = async () => {
         const result = await getMessageMain(user?.id, item.user.id);

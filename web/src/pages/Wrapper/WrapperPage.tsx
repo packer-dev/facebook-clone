@@ -9,6 +9,8 @@ import { checkTokenExpired } from "@/apis/userAPIs";
 import { login } from "@/reducers/user";
 import Logo from "@/components/Logo";
 import { User } from "@/interfaces/User";
+import Peer from "peerjs";
+import { updateDataCall } from "@/reducers/call";
 
 type WrapperPageProps = {
   white?: boolean;
@@ -47,6 +49,13 @@ const WrapperPage = ({ white, children }: WrapperPageProps) => {
           ref.current.classList.remove("dark");
         }
         dispatch(login(result?.user));
+        const peer = new Peer(result?.user?.id);
+        dispatch(
+          updateDataCall({
+            key: "peer",
+            value: peer,
+          })
+        );
         localStorage.setItem("token", result?.token);
       } else {
         navigation(PAGE_LOGIN);

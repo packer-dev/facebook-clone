@@ -1,18 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
 import WritePost from "@/modules/WritePost";
 import PostProfileList from "../PostProfileList";
 import ProfileLeft from "../ProfileLeft";
-import { RootState, getUser } from "@/reducers";
+import { RootState, getUser, getUserProfile } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const MainProfile = () => {
   //
   const user = useSelector<RootState, User>(getUser);
-  const {
-    state: { userProfile, isFriend },
-  } = useContext(UserProfileContext);
+  const { userProfile, isFriend } = useSelector<
+    RootState,
+    UserProfileReduxProps
+  >(getUserProfile);
   //
   return (
     <div className="w-full lg:flex gap-3">

@@ -1,7 +1,9 @@
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import LoadingChildren from "./LoadingChildren";
-import { UserProfileContext } from "@/contexts/UserProfileContext";
+import { useSelector } from "react-redux";
+import { getUserProfile, RootState } from "@/reducers";
+import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 type WrapperContentChildProfileProps<T> = {
   getResultAPI?: () => Promise<any>;
@@ -17,9 +19,9 @@ const WrapperContentChildProfile = <T,>({
   children,
 }: WrapperContentChildProfileProps<T>) => {
   //
-  const {
-    state: { userProfile },
-  } = useContext(UserProfileContext);
+  const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
+    getUserProfile
+  );
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
