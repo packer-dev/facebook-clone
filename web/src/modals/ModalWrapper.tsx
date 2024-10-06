@@ -8,6 +8,7 @@ type ModalWrapperProps = {
   title?: string;
   children?: ReactNode;
   width?: number;
+  hideButtonClose?: boolean;
 };
 
 const ModalWrapper = ({
@@ -15,6 +16,7 @@ const ModalWrapper = ({
   children,
   className,
   width,
+  hideButtonClose,
 }: ModalWrapperProps) => {
   //
   const {
@@ -35,7 +37,7 @@ const ModalWrapper = ({
           <p className="text-2xl w-11/12 mx-auto font-bold p-2.5 -mt-1.5 text-center dark:text-white">
             {title}
           </p>
-          <CloseModal />
+          {!hideButtonClose && <CloseModal />}
           {children}
           {loading && (
             <div

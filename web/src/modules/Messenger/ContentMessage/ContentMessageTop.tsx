@@ -48,9 +48,7 @@ const ContentMessageTop = () => {
   const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
-  const { localStream, peer, remoteStream } = useSelector<RootState, CallProps>(
-    getCall
-  );
+  const { peer, remoteStream } = useSelector<RootState, CallProps>(getCall);
   const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const member: { user: User } | Member = group?.members?.find(
@@ -112,20 +110,22 @@ const ContentMessageTop = () => {
     group.members
       ?.filter((item) => item.user.id !== user.id)
       .forEach((member) => {
-        console.log(member.user.id);
-        const call = peer.call(member.user.id, localStream);
-        console.log(call);
-        call?.on?.("stream", (remoteStream_) => {
-          console.log("Received remote stream", remoteStream);
-
-          // Cập nhật state hoặc dispatch dữ liệu remoteStream sau khi nhận
-          dispatch(
-            updateDataCall({
-              key: "remoteStream",
-              value: [...remoteStream, remoteStream_],
-            })
-          );
-        });
+        navigator.mediaDevices
+          .getUserMedia({
+            video: true,
+            audio: false,
+          })
+          .then((stream) => {
+            const call = peer?.call(member.user.id, stream);
+            call?.on?.("stream", (remoteStream_) => {
+              dispatch(
+                updateDataCall({
+                  key: "remoteStream",
+                  value: [...remoteStream, remoteStream_],
+                })
+              );
+            });
+          });
       });
     dispatch(
       updateDataCall({

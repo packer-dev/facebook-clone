@@ -1,7 +1,7 @@
 import { Group } from "@/interfaces/Group";
 import { User } from "@/interfaces/User";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import Peer from "peerjs";
+import Peer, { MediaConnection } from "peerjs";
 
 export type CallProps = {
   current: User | null;
@@ -15,6 +15,7 @@ export type CallProps = {
   showVideo: boolean;
   showAudio: boolean;
   callStatus: "waiting" | "ready";
+  callEvent: MediaConnection;
 };
 
 const initialState: CallProps = {
@@ -29,6 +30,7 @@ const initialState: CallProps = {
   showVideo: true,
   showAudio: false,
   callStatus: "waiting",
+  callEvent: null,
 };
 
 const callSlice = createSlice({

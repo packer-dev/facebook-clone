@@ -15,7 +15,7 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 const useListenCall = () => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
-  const { acceptUser, peer, localStream, remoteStream } = useSelector<
+  const { acceptUser, peer, remoteStream, callStatus } = useSelector<
     RootState,
     CallProps
   >(getCall);
@@ -72,31 +72,23 @@ const useListenCall = () => {
     if (socket && user && peer) {
       socket.off(`waiting-${user.id}`, listenCall);
       socket.on(`waiting-${user.id}`, listenCall);
-      peer.on("open", (id) => {
-        console.log(id);
-      });
-      peer.on("call", (call) => {
-        console.log("have call");
-        call.answer(localStream);
-        // Lắng nghe sự kiện 'stream' để nhận remoteStream từ peer gọi đến
-        call.on("stream", (remoteStream_) => {
-          console.log("Received remote stream", remoteStream);
-
-          // Cập nhật state hoặc dispatch dữ liệu remoteStream sau khi nhận
-          dispatch(
-            updateDataCall({
-              key: "remoteStream",
-              value: [...remoteStream, remoteStream_],
-            })
-          );
-        });
-      });
+      peer.on("open", (id) => {});
     }
     return () => {
       socket.off(`waiting-${user?.id}`, listenCall);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
+  useEffect(() => {
+    peer.on("call", (call) => {
+      dispatch(
+        updateDataCall({
+          key: "callEvent",
+          value: call,
+        })
+      );
+    });
+  }, [callStatus]);
 };
 
 export default useListenCall;

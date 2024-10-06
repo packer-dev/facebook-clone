@@ -23,6 +23,7 @@ socketIo.on("connection", (socket) => {
         socketIo.emit(`receive-comment-${data === null || data === void 0 ? void 0 : data.postId}`, JSON.stringify(data));
     });
     socket.on("call", (data) => {
+        console.log(data === null || data === void 0 ? void 0 : data.id);
         socketIo.emit(`waiting-${data === null || data === void 0 ? void 0 : data.id}`, JSON.stringify(data));
     });
     socket.on("disconnect", () => {

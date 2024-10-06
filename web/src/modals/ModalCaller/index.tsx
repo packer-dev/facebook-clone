@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ModalWrapper from "../ModalWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,20 +20,32 @@ import { Group } from "@/interfaces/Group";
 const ModalCaller = ({ data }: { data: any }) => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
-  const { acceptUser } = useSelector<RootState, CallProps>(getCall);
+  const { acceptUser, remoteStream, callEvent } = useSelector<
+    RootState,
+    CallProps
+  >(getCall);
   const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const refButton = useRef<HTMLButtonElement>(null);
-  const sound = new Audio(sound_callee);
-  sound.loop = true;
-  sound.muted = true;
-  sound.autoplay = true;
+  const [sound, setSound] = useState(new Audio(sound_callee));
   useEffect(() => {
+    sound.loop = true;
+    sound.muted = true;
+    sound.autoplay = true;
     if (refButton.current) refButton.current.click();
+    return () => {
+      if (sound) {
+        // sound.pause();
+        sound.currentTime = 0;
+        sound.remove();
+      }
+      setSound(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refButton]);
   return (
-    <ModalWrapper title="Caller" width={360}>
+    <ModalWrapper title="Caller" width={360} hideButtonClose>
       <button
         className="hidden"
         ref={refButton}
@@ -61,6 +73,7 @@ const ModalCaller = ({ data }: { data: any }) => {
           <span
             aria-hidden
             onClick={() => {
+              setSound(null);
               socket.emit("call", {
                 type: "deny",
               });
@@ -106,17 +119,29 @@ const ModalCaller = ({ data }: { data: any }) => {
                   value: data?.info?.multiple ? "group" : "single",
                 })
               );
-              const localStream = await navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: false,
-              });
-              dispatch(
-                updateDataCall({
-                  key: "localStream",
-                  value: localStream,
-                })
-              );
+              navigator.mediaDevices
+                .getUserMedia({ video: true, audio: false })
+                .then((stream) => {
+                  callEvent.answer(stream);
+                  dispatch(
+                    updateDataCall({
+                      key: "localStream",
+                      value: stream,
+                    })
+                  );
+                  // Lắng nghe sự kiện 'stream' để nhận remoteStream từ peer gọi đến
+                  callEvent.on("stream", (remoteStream_) => {
+                    // Cập nhật state hoặc dispatch dữ liệu remoteStream sau khi nhận
+                    dispatch(
+                      updateDataCall({
+                        key: "remoteStream",
+                        value: [...remoteStream, remoteStream_],
+                      })
+                    );
+                  });
+                });
               sound.pause();
+              sound.autoplay = false;
               navigate(PAGE_CALL);
             }}
             className="w-10 h-10 rounded-full bx bx-phone text-2xl bg-green-500 flex items-center justify-center 

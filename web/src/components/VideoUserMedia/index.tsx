@@ -12,7 +12,8 @@ const VideoUserMedia = ({ className = "", stream }: VideoUserMediaProps) => {
     refStream.current.onloadedmetadata = (e) => {
       refStream.current.play();
     };
-  }, [stream]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stream, refStream.current]);
   return <video ref={refStream} className={className}></video>;
 };
 

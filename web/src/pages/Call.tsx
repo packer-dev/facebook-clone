@@ -67,12 +67,12 @@ const Call = () => {
       setCount(count + 1);
       clearTimeout(timeOut);
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, callStatus]);
   useEffect(() => {
     if (mode === "offline") {
       navigate(PAGE_HOME);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, user, group, peer]);
   return (
