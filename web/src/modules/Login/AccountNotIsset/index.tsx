@@ -2,7 +2,7 @@ import * as React from "react";
 
 const AccountNotIsset = () => {
   return (
-    <div className="w-full">
+    <div className="w-11/12 mx-auto sm:w-[400px] lg:w-full pt-10">
       <span className="text-55px font-semibold text-1877F2">
         Facebook <br />
       </span>

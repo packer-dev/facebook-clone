@@ -80,6 +80,8 @@ const useListenCall = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
   useEffect(() => {
+    if (!peer) return;
+
     peer.on("call", (call) => {
       dispatch(
         updateDataCall({
@@ -88,7 +90,7 @@ const useListenCall = () => {
         })
       );
     });
-  }, [callStatus]);
+  }, [callStatus, peer]);
 };
 
 export default useListenCall;

@@ -36,7 +36,7 @@ const ModalCaller = ({ data }: { data: any }) => {
     if (refButton.current) refButton.current.click();
     return () => {
       if (sound) {
-        // sound.pause();
+        sound.pause();
         sound.currentTime = 0;
         sound.remove();
       }
@@ -73,7 +73,6 @@ const ModalCaller = ({ data }: { data: any }) => {
           <span
             aria-hidden
             onClick={() => {
-              setSound(null);
               socket.emit("call", {
                 type: "deny",
               });
@@ -142,6 +141,8 @@ const ModalCaller = ({ data }: { data: any }) => {
                 });
               sound.pause();
               sound.autoplay = false;
+              sound.currentTime = 0;
+              sound.remove();
               navigate(PAGE_CALL);
             }}
             className="w-10 h-10 rounded-full bx bx-phone text-2xl bg-green-500 flex items-center justify-center 
