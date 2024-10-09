@@ -5,19 +5,21 @@ import { PostContext } from "@/contexts/PostContext/PostContext";
 import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
+type ContentAnswerQuestionProps = {
+  edit?: boolean;
+  current: string;
+  setCurrent?: Function;
+  setValue?: Function;
+  value: string;
+};
+
 const ContentAnswerQuestion = ({
   edit,
   current,
   setCurrent,
   value,
   setValue,
-}: {
-  edit?: boolean;
-  current: string;
-  setCurrent?: Function;
-  setValue?: Function;
-  value: string;
-}) => {
+}: ContentAnswerQuestionProps) => {
   //
   const {
     posts: { answer_question },
@@ -29,11 +31,9 @@ const ContentAnswerQuestion = ({
   const [show, setShow] = useState("Hi! I have a Q&A corner. Ask away...");
   useEffect(() => {
     if (refInput.current) {
-      if (edit) {
-        refInput.current.innerText = "Hi! I have a Q&A corner. Ask away...";
-      } else {
-        refInput.current.innerText = answer_question?.value || "";
-      }
+      refInput.current.innerText = edit
+        ? "Hi! I have a Q&A corner. Ask away..."
+        : answer_question?.value || "";
       setValue?.("Hi! I have a Q&A corner. Ask away...");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

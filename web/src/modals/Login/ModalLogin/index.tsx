@@ -8,8 +8,6 @@ type ModalLoginProps = {
 };
 
 const ModalLogin = ({ loginFast }: ModalLoginProps) => {
-  //
-  //
   return (
     <ModalWrapper>
       <h1 className="-pt-1 pb-0.5 text-2xl my-3 text-center">Login facebook</h1>

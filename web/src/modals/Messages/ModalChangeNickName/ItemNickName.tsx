@@ -9,21 +9,52 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
 
-const ItemNickName = ({
-  item,
-  group,
-  updateGroup,
-}: {
+type ItemNickNameProps = {
   item: Member;
   group: Group;
   updateGroup: Function;
-}) => {
+};
+
+const ItemNickName = ({ item, group, updateGroup }: ItemNickNameProps) => {
   //
   const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const [show, setShow] = useState(false);
   const [nickName, setNickName] = useState(item.nickname);
   const [loading, setLoading] = useState(false);
+  const handleChange = async () => {
+    setLoading(true);
+    const newGroup = {
+      ...group,
+      members: [...(group?.members || [])].map((child) => {
+        if (child.id === item.id) {
+          return { ...child, nickname: nickName };
+        }
+        return child;
+      }),
+    };
+    const message = dataFakeMessage({
+      user,
+      text: JSON.stringify({
+        name: item.user.name,
+        to: nickName,
+      }),
+      type: 6,
+    });
+    const response = await sendMessageAPI({
+      group,
+      message,
+    });
+    socket.emit("send-message", {
+      groupId: group?.id,
+      message: response?.message,
+      type: "nickname",
+    });
+    await updateGroupById(newGroup);
+    updateGroup(newGroup);
+    setShow(false);
+    setLoading(false);
+  };
   //
   return (
     <div className="w-full cursor-pointer p-2.5 flex hover:bg-gray-200 dark:hover:bg-dark-third rounded-lg relative">
@@ -55,41 +86,7 @@ const ItemNickName = ({
           }`}
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
-          onKeyUp={async (e) => {
-            if (e.key === "Enter") {
-              setLoading(true);
-              const newGroup = {
-                ...group,
-                members: [...(group?.members || [])].map((child) => {
-                  if (child.id === item.id) {
-                    return { ...child, nickname: nickName };
-                  }
-                  return child;
-                }),
-              };
-              const message = dataFakeMessage({
-                user,
-                text: JSON.stringify({
-                  name: item.user.name,
-                  to: nickName,
-                }),
-                type: 6,
-              });
-              const response = await sendMessageAPI({
-                group,
-                message,
-              });
-              socket.emit("send-message", {
-                groupId: group?.id,
-                message: response?.message,
-                type: "nickname",
-              });
-              await updateGroupById(newGroup);
-              updateGroup(newGroup);
-              setShow(false);
-              setLoading(false);
-            }
-          }}
+          onKeyUp={(e) => e.key === "Enter" && handleChange()}
         />
       </div>
       <div className="w-1/12 text-center flex">

@@ -3,7 +3,9 @@ import ModalWrapper from "@/modals/ModalWrapper";
 import { PostDTO } from "@/interfaces/Post";
 import feels from "@/config/feels";
 
-const ModalFeelList = ({ postDetail }: { postDetail: PostDTO }) => {
+type ModalFeelListProps = { postDetail: PostDTO };
+
+const ModalFeelList = ({ postDetail }: ModalFeelListProps) => {
   const feelList = postDetail?.feel?.filter(
     (value, index, self) =>
       index === self.findIndex((obj) => obj.type === value.type)

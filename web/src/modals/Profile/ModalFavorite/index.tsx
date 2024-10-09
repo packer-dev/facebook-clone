@@ -8,13 +8,15 @@ import { Button } from "@/components/ui/button";
 import ItemFavorite from "./ItemFavorite";
 import ModalWrapper from "@/modals/ModalWrapper";
 
+type ModalFavoriteProps = {
+  updateUserProfile: (user: User) => void;
+  userProfile: User;
+};
+
 const ModalFavorite = ({
   updateUserProfile,
   userProfile,
-}: {
-  updateUserProfile: (user: User) => void;
-  userProfile: User;
-}) => {
+}: ModalFavoriteProps) => {
   //
   const [content, setContent] = useState({
     choose: JSON.parse(userProfile?.favorites || "[]"),

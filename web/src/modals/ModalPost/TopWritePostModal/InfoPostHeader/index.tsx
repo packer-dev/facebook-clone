@@ -19,8 +19,6 @@ const InfoPostHeader = ({
   activity,
   local,
 }: InfoPostHeaderProps) => {
-  //
-  //
   return (
     <>
       {!hideName && (
@@ -28,26 +26,26 @@ const InfoPostHeader = ({
       )}
       {feel && (
         <span id="feelCur">
-          đang {feel.data} cảm thấy {feel.label.toLowerCase()}{" "}
+          is {feel.data} feeling {feel.label.toLowerCase()}{" "}
         </span>
       )}
       {activity && (
         <span id="feelCur">
-          đang {activity.data} {activity.name.replace("Đang", "")}{" "}
+          is {activity.data} {activity.name.replace("Đang", "")}{" "}
           {activity.label.toLowerCase()}{" "}
         </span>
       )}
       {tagList?.length > 0 && (
         <span id="tag">
-          cùng với{" "}
+          together with{" "}
           <span className="font-semibold">{`${tagList[0]?.name}`}</span>
           {tagList?.length > 1 && (
             <>
               {" "}
-              và
+              and
               {` `}
               <span className="font-semibold">
-                {tagList?.length - 1} người khác{" "}
+                {tagList?.length - 1} others{" "}
               </span>
             </>
           )}
@@ -55,7 +53,7 @@ const InfoPostHeader = ({
       )}
       {local && (
         <span id="local">
-          tại <b className="dark:text-white"> {local.name}</b>
+          at <b className="dark:text-white"> {local.name}</b>
         </span>
       )}
     </>

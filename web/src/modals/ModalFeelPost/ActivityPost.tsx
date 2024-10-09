@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 
-const ItemActivityPost = (props) => {
-  //
-  const { item, setActivity } = props;
+type ItemActivityPostProps = {
+  item: any;
+  setActivity: (activity: any) => void;
+};
+
+const ItemActivityPost = ({ item, setActivity }: ItemActivityPostProps) => {
   return (
     <div
       aria-hidden
@@ -20,11 +23,16 @@ const ItemActivityPost = (props) => {
   );
 };
 
-const ItemActivityChildPost = (props) => {
-  //
-  const { item, activity } = props;
+type ItemActivityChildPostProps = {
+  item: any;
+  activity: any;
+};
+
+const ItemActivityChildPost = ({
+  item,
+  activity,
+}: ItemActivityChildPostProps) => {
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
-  //
   return (
     <div
       aria-hidden
@@ -53,10 +61,17 @@ const ItemActivityChildPost = (props) => {
   );
 };
 
-const ActivityPost = (props) => {
-  //
-  const { activities, activity, setActivity } = props;
-  //
+type ActivityPostProps = {
+  activities: any[];
+  activity: any;
+  setActivity: (activity: any) => void;
+};
+
+const ActivityPost = ({
+  activities,
+  activity,
+  setActivity,
+}: ActivityPostProps) => {
   return (
     <div className={`w - full ${activity ? "flex flex-wrap" : ""} `}>
       {activity

@@ -6,9 +6,12 @@ import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import useAuthentication from "@/hooks/useAuthentication";
 import { Button } from "@/components/ui/button";
 
-const VerifyCodeAccount = (props) => {
+type VerifyCodeAccountProps = {
+  verifyAccountNew?: boolean;
+};
+
+const VerifyCodeAccount = ({ verifyAccountNew }: VerifyCodeAccountProps) => {
   //
-  const { verifyAccountNew } = props;
   const [code, setCode] = React.useState("");
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);

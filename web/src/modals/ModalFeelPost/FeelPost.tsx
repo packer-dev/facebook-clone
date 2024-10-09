@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 
-const ItemFeelPost = (props) => {
+type ItemFeelPostProps = {
+  item: any;
+};
+
+const ItemFeelPost = ({ item }: ItemFeelPostProps) => {
   //
-  const { item } = props;
   const { posts, postsDispatch, postsAction } = useContext(PostContext);
   return (
     <div
@@ -27,10 +30,11 @@ const ItemFeelPost = (props) => {
   );
 };
 
-const FeelPost = (props) => {
-  //
-  const { feels } = props;
-  //
+type FeelPostProps = {
+  feels: any[];
+};
+
+const FeelPost = ({ feels }: FeelPostProps) => {
   return (
     <div className="w-full flex flex-wrap">
       {feels.map((item) => (

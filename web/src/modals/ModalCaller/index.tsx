@@ -17,7 +17,9 @@ import sound_callee from "@/assets/sound/sound-callee.mp3";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { Group } from "@/interfaces/Group";
 
-const ModalCaller = ({ data }: { data: any }) => {
+type ModalCallerProps = { data: any };
+
+const ModalCaller = ({ data }: ModalCallerProps) => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const { acceptUser, remoteStream, callEvent } = useSelector<
@@ -128,9 +130,7 @@ const ModalCaller = ({ data }: { data: any }) => {
                       value: stream,
                     })
                   );
-                  // Lắng nghe sự kiện 'stream' để nhận remoteStream từ peer gọi đến
                   callEvent.on("stream", (remoteStream_) => {
-                    // Cập nhật state hoặc dispatch dữ liệu remoteStream sau khi nhận
                     dispatch(
                       updateDataCall({
                         key: "remoteStream",

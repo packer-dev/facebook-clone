@@ -4,7 +4,9 @@ import ModalWrapperChildPost from "../ModalWrapperChildPost";
 import ImageVideoEditComponent from "./ImageVideoEditComponent";
 import { Button } from "@/components/ui/button";
 
-const ImageVideo = (props: { src: string; type: 1 | 2 }) => {
+type ImageVideoProps = { src: string; type: 1 | 2 };
+
+const ImageVideo = (props: ImageVideoProps) => {
   return props.type === 1 ? (
     <img
       src={props.src}

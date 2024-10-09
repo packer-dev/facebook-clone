@@ -15,7 +15,6 @@ const CreateStory = () => {
     updateData,
   } = useContext(StoryEditorContext);
   useEffect(() => {
-    //
     updateData("mode", mode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);

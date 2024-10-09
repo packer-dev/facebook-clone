@@ -11,7 +11,7 @@ def get(message: Message):
     }
 
 
-def dict(message: Message):
+def dict(message: any):
     return {
         "id": message["id"],
         "content": message["content"],

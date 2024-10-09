@@ -4,6 +4,7 @@ from social_network.models import FileDTO, Media
 from social_network.services.CommonServices import upload_media
 import uuid
 from social_network.dto.response import user_response
+from datetime import datetime, timedelta
 
 
 def find_index(list, id):
@@ -83,3 +84,36 @@ def get_info_user(users, id):
         return None
     else:
         return user_response(users[index])
+
+
+def create_date(date):
+    date = date.split(" ")[0]
+    date = date.split("-")
+    month = date[1]
+    day = date[2]
+    return {"day": day, "month": month}
+
+
+def check_datetime_less_than_24(datetime_):
+    datetime_ = datetime_.split(" ")
+    date = datetime_[0]
+    date = date.split("-")
+    time = datetime_[1]
+    time = time.split(":")
+
+    second = time[2]
+    second = second.split(".")[0]
+
+    special_datetime = datetime(
+        int(date[0]),
+        int(date[1]),
+        int(date[2]),
+        int(time[0]),
+        int(time[1]),
+        int(second),
+    )
+    current_datetime = datetime.now()
+    time_difference = current_datetime - special_datetime
+    if time_difference < timedelta(hours=24):
+        return True
+    return False

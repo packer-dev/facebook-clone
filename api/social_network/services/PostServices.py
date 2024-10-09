@@ -1,5 +1,12 @@
 from firebase_admin import db
-from utils import new_value, update_item, upload_media_db, get_info_user, find_index
+from utils import (
+    new_value,
+    update_item,
+    upload_media_db,
+    get_info_user,
+    find_index,
+    create_date,
+)
 import uuid
 from social_network.models import (
     PostPayload,
@@ -29,14 +36,6 @@ import json
 def update_user_post(users, post):
     post["user"] = get_info_user(users, post["user"]["id"])
     return post
-
-
-def create_date(date):
-    date = date.split(" ")[0]
-    date = date.split("-")
-    month = date[1]
-    day = date[2]
-    return {"day": day, "month": month}
 
 
 async def get_post_by_id_user(

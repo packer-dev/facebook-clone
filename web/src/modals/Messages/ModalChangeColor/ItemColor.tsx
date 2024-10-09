@@ -1,9 +1,12 @@
 import * as React from "react";
 
-const ItemColor = (props: any) => {
-  //
-  const { item, color, setColor } = props;
+type ItemColorProps = {
+  item: any;
+  color: any;
+  setColor: (color: any) => void;
+};
 
+const ItemColor = ({ item, color, setColor }: ItemColorProps) => {
   return (
     <li
       aria-hidden

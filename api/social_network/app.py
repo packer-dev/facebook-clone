@@ -7,6 +7,7 @@ from social_network.routers.CommonRouter import router as commonRouter
 from social_network.routers.CommentRouter import router as commentRouter
 from social_network.routers.NotificationRouter import router as notificationRouter
 from social_network.routers.GroupRouter import router as groupRouter
+from social_network.routers.StoryController import router as storyRouter
 
 
 router = APIRouter()
@@ -19,3 +20,4 @@ router.include_router(commonRouter)
 router.include_router(commentRouter)
 router.include_router(notificationRouter)
 router.include_router(groupRouter)
+router.include_router(storyRouter)

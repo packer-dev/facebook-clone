@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button";
 import ItemEditInformation from "./ItemEditInformation";
 import ModalWrapper from "@/modals/ModalWrapper";
 
+type ModalEditInformationProps = {
+  updateUserProfile: (user: User) => void;
+  userProfile: User;
+};
+
 const ModalEditInformation = ({
   updateUserProfile,
   userProfile,
-}: {
-  updateUserProfile: (user: User) => void;
-  userProfile: User;
-}) => {
+}: ModalEditInformationProps) => {
   //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const [description, setDescription] = useState(

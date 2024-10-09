@@ -200,3 +200,12 @@ class Notification(BaseModel):
     time_created: str
     is_read: bool
     last_time_update: str
+
+
+class Story(BaseModel):
+    id: str
+    type: int
+    music: str
+    time_created: str
+    user: User
+    url: str

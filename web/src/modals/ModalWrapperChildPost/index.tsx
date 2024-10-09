@@ -2,13 +2,15 @@ import React, { ReactNode, useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
 import ModalWrapper from "../ModalWrapper";
 
+type ModalWrapperChildPostProps = {
+  title?: string;
+  children?: ReactNode;
+};
+
 const ModalWrapperChildPost = ({
   title,
   children,
-}: {
-  title?: string;
-  children?: ReactNode;
-}) => {
+}: ModalWrapperChildPostProps) => {
   //
   const { postsDispatch, postsAction } = useContext(PostContext);
   //
