@@ -9,9 +9,15 @@ import html2canvas from "html2canvas";
 import StoryEditLeft from "@/modules/StoryEditor/StoryEditLeft";
 import ContentStoryEditor from "@/modules/StoryEditor/ContentStoryEditor";
 import { Button } from "@/components/ui/button";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { storyModel } from "@/models";
+import { createStory } from "@/apis/storyAPI";
 
 const StoryEditor = () => {
   //
+  const user = useSelector<RootState, User>(getUser);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
   const {
@@ -38,11 +44,10 @@ const StoryEditor = () => {
       html2canvas(refImage.current).then(async (canvas) => {
         const image = canvas.toDataURL("image/png"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
         const formData = new FormData();
-        formData.append("base64", image);
-        formData.append("id", new Date().getTime().toString());
-        formData.append("publicId", "Stories/");
-        formData.append("typeFile", "image");
-
+        formData.append("media", image);
+        formData.append("user_id", user.id);
+        formData.append("story", JSON.stringify(storyModel({ user })));
+        await createStory(formData);
         navigation(PAGE_HOME);
       });
     }

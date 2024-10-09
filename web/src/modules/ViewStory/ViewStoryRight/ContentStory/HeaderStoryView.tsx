@@ -15,11 +15,11 @@ function HeaderStoryView(props) {
     <div className="w-full py-1 px-2 absolute top-1">
       <div className="w-full pb-2">
         <ul className="w-full flex">
-          {current.storyList.map((item, index) => (
+          {main.map((item) => (
             <li
               key={item?.id}
               className={`w-${Math.floor(
-                100 / current.storyList.length
+                100 / main.length
               )}% bg-gray-300 mr-1 cursor-pointer`}
             >
               <div
@@ -34,29 +34,28 @@ function HeaderStoryView(props) {
           ))}
         </ul>
       </div>
-      <div className="w-full flex">
-        <div className="w-2/12">
+      <div className="w-full flex items-center gap-3">
+        <div className="">
           <img
-            src={current.groupStory.userGroupStory.avatar}
+            src={current.user.avatar}
             className="w-12 h-12 object-cover rounded-full p-1"
             alt=""
           />
         </div>
-        <div className="w-1/2 pt-1">
+        <div className="flex-1 pt-1">
           <p className="pb-1">
             <Link
               to=""
               className="font-bold text-white"
-            >{`${current.groupStory.userGroupStory.firstName} 
-                    ${current.groupStory.userGroupStory.lastName}`}</Link>
+            >{`${current.user.name}`}</Link>
             &nbsp;
             <span className="text-sm text-white">
-              {moment(main.timeCreated).fromNow(true)}
+              {moment(current.timeCreated).fromNow(true)}
             </span>
           </p>
           <p className="text-white text-sm">Mod(Remix) </p>
         </div>
-        <div className="w-1/3">
+        <div className="">
           <ul className="w-full flex relative">
             <li className=" py-2 px-2 cursor-pointer">
               <i

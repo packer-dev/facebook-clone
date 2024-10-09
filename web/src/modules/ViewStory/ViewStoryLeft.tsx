@@ -39,11 +39,11 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
         </div>
       </div>
       <p className="font-semibold my-2 dark:text-white">Your story</p>
-      <div className="cursor-pointer w-full flex p-2">
-        <div className="w-2/12">
-          <i className="fas fa-plus p-5 text-main bg-gray-100 rounded-full" />
+      <div className="cursor-pointer w-full flex p-2 gap-3 items-center">
+        <div className="w-12 h-12 rounded-full bg-gray-100 flex justify-center items-center">
+          <i className="fas fa-plus text-main" />
         </div>
-        <div className="w-10/12 pl-3">
+        <div className="flex-1">
           <p className="font-semibold pb-1 dark:text-white">Create story</p>
           <p className="text-sm text-gray-600 dark:text-gray-300">
             You can share or write something.
@@ -58,33 +58,33 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
           <div
             aria-hidden
             onClick={() => {
-              updateData("current", story);
+              updateData("current", story[0]);
               updateData("timeCurrent", 0);
               updateData("indexRun", 0);
               updateData("indexStory", index);
-              updateData("main", story.storyList[0]);
+              updateData("main", story);
             }}
             key={story?.id}
-            className={`w-full flex my-2 cursor-pointer rounded-lg p-2
+            className={`w-full flex my-2 gap-3 cursor-pointer rounded-lg p-2
                 ${
-                  story.groupStory.id === current?.groupStory?.id
+                  story[0]?.id === current?.id
                     ? "dark:bg-dark-third bg-gray-100"
                     : "dark:hover:bg-dark-third hover:bg-gray-100"
                 }`}
           >
-            <div className="w-23per">
+            <div className="flex gap-3">
               <img
-                src={story.groupStory.userGroupStory.avatar}
+                src={story[0]?.user?.avatar}
                 className="rounded-full p-1 w-16 h-16 border-4 border-white object-cover border-solid"
                 alt=""
               />
             </div>
-            <div className="w-3/4">
-              <p className="font-semibold pt-2 dark:text-white">{`${story.groupStory.userGroupStory.firstName} ${story.groupStory.userGroupStory.lastName}`}</p>
+            <div className="flex-1">
+              <p className="font-semibold pt-2 dark:text-white">{`${story[0]?.user?.name}`}</p>
               <p className="color-word text-sm">
                 <span className="text-blue-400" />
                 <span className="font0-bold text-sm">
-                  {moment(story.groupStory.timeCreated).fromNow()}
+                  {moment(story[0]?.time_created).fromNow()}
                 </span>
               </p>
             </div>

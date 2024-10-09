@@ -5,6 +5,7 @@ from social_network.services.CommonServices import upload_media
 import uuid
 from social_network.dto.response import user_response
 from datetime import datetime, timedelta
+from social_network.res.user import dict as dictUser
 
 
 def find_index(list, id):
@@ -117,3 +118,11 @@ def check_datetime_less_than_24(datetime_):
     if time_difference < timedelta(hours=24):
         return True
     return False
+
+
+def get_latest_user(users, id):
+    index = find_index(users, id)
+    if index == -1:
+        return None
+    else:
+        return dictUser(users[index])

@@ -11,21 +11,21 @@ const ViewStoryRight = (props) => {
   } = useContext(StoryContext);
   const processUp = () => {
     updateData("timeCurrent", 0);
-    if (indexRun + 1 === current.storyList.length) {
+    if (indexRun + 1 === current.length) {
       if (indexStory + 1 === storyList.length) {
         updateData("indexStory", 0);
         updateData("indexRun", 0);
-        updateData("main", storyList[0].storyList[0]);
-        updateData("current", storyList[0]);
+        updateData("main", storyList[0]);
+        updateData("current", storyList[0][0]);
       } else {
         updateData("indexRun", 0);
         updateData("indexStory", indexStory + 1);
-        updateData("current", storyList[indexStory + 1]);
-        updateData("main", storyList[indexStory + 1].storyList[0]);
+        updateData("current", storyList[indexStory + 1][0]);
+        updateData("main", storyList[indexStory + 1]);
       }
     } else {
       updateData("indexRun", indexRun + 1);
-      updateData("main", current.storyList[indexRun + 1]);
+      updateData("current", main[indexRun + 1]);
     }
   };
   const processDown = () => {
@@ -33,37 +33,30 @@ const ViewStoryRight = (props) => {
     if (indexStory - 1 < 0) {
       if (indexRun - 1 >= 0) {
         updateData("indexRun", indexRun - 1);
-        updateData("main", storyList[indexStory].storyList[indexRun - 1]);
+        updateData("current", storyList[indexStory][indexRun - 1]);
       } else {
         updateData("indexStory", storyList.length - 1);
-
+        updateData("indexRun", storyList[storyList.length - 1].length - 1);
         updateData(
-          "indexRun",
-          storyList[storyList.length - 1].storyList.length - 1
-        );
-
-        updateData(
-          "main",
-          storyList[storyList.length - 1].storyList[
-            storyList[storyList.length - 1].storyList.length - 1
+          "current",
+          storyList[storyList.length - 1][
+            storyList[storyList.length - 1].length - 1
           ]
         );
 
-        updateData("current", storyList[storyList.length - 1]);
+        updateData("main", storyList[storyList.length - 1]);
       }
     } else if (indexRun - 1 >= 0) {
       updateData("indexRun", indexRun - 1);
-      updateData("main", storyList[indexStory].storyList[indexRun - 1]);
+      updateData("current", storyList[indexStory][indexRun - 1]);
     } else {
       updateData("indexStory", indexStory - 1);
-      updateData("indexRun", storyList[indexStory - 1].storyList.length - 1);
+      updateData("indexRun", storyList[indexStory - 1].length - 1);
       updateData(
-        "main",
-        storyList[indexStory - 1].storyList[
-          storyList[indexStory - 1].storyList.length - 1
-        ]
+        "current",
+        storyList[indexStory - 1][storyList[indexStory - 1].length - 1]
       );
-      updateData("current", storyList[indexStory - 1]);
+      updateData("main", storyList[indexStory - 1]);
     }
   };
   //
@@ -96,7 +89,7 @@ const ViewStoryRight = (props) => {
           )}
           {current && main && <ContentStory />}
           {indexStory === storyList.length - 1 &&
-          indexRun === storyList[storyList.length - 1].storyList.length - 1 ? (
+          indexRun === storyList[storyList.length - 1].length - 1 ? (
             <div className="w-1/12 pl-4" />
           ) : (
             <div

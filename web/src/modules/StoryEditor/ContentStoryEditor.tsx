@@ -96,7 +96,7 @@ export default forwardRef(function ContentStoryEditor(
       <canvas
         id="myCanvas"
         className="hidden justify-center items-center"
-        width="345"
+        width="450"
         height="612"
       />
     </div>

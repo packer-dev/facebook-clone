@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Form, UploadFile, File
+from fastapi import APIRouter, Depends, Form
 from social_network.auth.JWTServices import get_user_from_token
 from social_network.services.StoryServices import (
     get_story_by_user,
@@ -22,7 +22,7 @@ async def get_story_by_user_api(user_id: str):
 async def add_story_api(
     user_id: str = Form(...),
     story: str = Form(...),
-    media: UploadFile = Form(File),
+    media: str = Form(...),
 ):
     story = json.loads(story)
 

@@ -5,6 +5,7 @@ import { Media } from "./interfaces/Media";
 import { Member } from "./interfaces/Member";
 import { Message } from "./interfaces/Message";
 import { Post } from "./interfaces/Post";
+import { Story } from "./interfaces/Story";
 import { User } from "./interfaces/User";
 import { getCurrentDateTime } from "./utils";
 
@@ -113,4 +114,13 @@ export const postResponseModel = ({
   post: postModel(post),
   medias: [...(medias || [])].map((item) => mediaModel(item)),
   feel,
+});
+
+export const storyModel = (story?: Story) => ({
+  id: story?.id || "",
+  music: story?.music || "",
+  type: story?.type || 1,
+  url: story?.url || "",
+  user: story?.user || null,
+  time_created: story?.time_created || "",
 });

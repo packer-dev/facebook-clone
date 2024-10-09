@@ -39,7 +39,7 @@ async def get_comment_by_id_post(
     }
 
 
-def get_comment_by_id_post_off(post_id, comments):
+def get_comment_by_id_post_off(post_id, comments, users):
     comments = new_value(comments[post_id] if post_id in comments else [], [])
     filter_comment = [item for item in comments if item["level"] == 1]
     limit_data = filter_comment[0:5]
@@ -47,9 +47,9 @@ def get_comment_by_id_post_off(post_id, comments):
         "total": len(filter_comment),
         "list": [
             {
-                "item": resComment.dict(item),
+                "item": resComment.dict(item, users),
                 "child": [
-                    resComment.dict(child)
+                    resComment.dict(child, users)
                     for child in comments
                     if child["level"] == 2 and child["parent"] == item["id"]
                 ],

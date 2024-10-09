@@ -1,8 +1,7 @@
-from fastapi import Form, UploadFile, File
 from firebase_admin import db
 from utils import new_value, check_datetime_less_than_24
-from social_network.services.CommonServices import upload_media, delete_media
-from social_network.models import FileDTO, Story
+from social_network.services.CommonServices import upload_media_base64, delete_media
+from social_network.models import Story
 from uuid import uuid4
 from datetime import datetime
 from social_network.res import story as resStory
@@ -59,9 +58,8 @@ async def get_story_by_user(user_id):
     return response
 
 
-async def add_story(user_id: str, story: Story, media: UploadFile = File(...)):
-    file_dto = FileDTO(file=media, folder="Stories")
-    result = await upload_media(file_dto=file_dto)
+async def add_story(user_id: str, story: Story, media: str):
+    result = await upload_media_base64(media, "Stories")
 
     ref = db.reference("social-network")
 
@@ -73,8 +71,9 @@ async def add_story(user_id: str, story: Story, media: UploadFile = File(...)):
 
     list_story = stories[user_id] if user_id in stories else []
     stories[user_id] = [story.model_dump()] + list_story
-
     ref.child("stories").set(stories)
+
+    return story
 
 
 async def delete_story(user_id: str, story_id: str):

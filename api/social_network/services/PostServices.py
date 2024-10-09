@@ -94,7 +94,7 @@ async def get_post_by_id_user(
                 )
             ],
             "comments": get_comment_by_id_post_off(
-                post_id=post["id"], comments=comments
+                post_id=post["id"], comments=comments, users=users
             ),
         }
         for post in sorted_data
@@ -242,6 +242,7 @@ async def delete_post(post_id: str):
 async def get_post_by_id(post_id: str):
     ref = db.reference("social-network")
     posts = new_value(ref.child("posts").get(), [])
+    users = new_value(ref.child("users").get(), [])
     posts = [post for post in posts if post["id"] == post_id]
     response = posts[0] if len(posts) == 1 else None
     if response is None:
@@ -254,7 +255,9 @@ async def get_post_by_id(post_id: str):
             ref.child("medias").child("posts").child(response["id"]).get(), []
         ),
         "feel": [resFeel.dict(item) for item in feels],
-        "comments": get_comment_by_id_post_off(post_id=post_id, comments=comments),
+        "comments": get_comment_by_id_post_off(
+            post_id=post_id, comments=comments, users=users
+        ),
     }
 
 

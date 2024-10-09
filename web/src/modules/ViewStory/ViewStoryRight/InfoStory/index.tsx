@@ -5,7 +5,7 @@ type InfoStoryProps = { setShow?: Function };
 
 const InfoStory = ({ setShow }: InfoStoryProps) => {
   const {
-    state: { current, main },
+    state: { main },
     updateData,
   } = useContext(StoryContext);
   return (
@@ -24,12 +24,12 @@ const InfoStory = ({ setShow }: InfoStoryProps) => {
         </span>
       </p>
       <ul className="flex overflow-x-hidden max-w-[368px]">
-        {current.storyList.map((item, index) => (
+        {main.map((item, index) => (
           <li
             aria-hidden
             onClick={() => {
               updateData("indexRun", index);
-              updateData("main", current.storyList[index]);
+              updateData("current", main[index]);
             }}
             key={item?.id}
             className="mr-2 cursor-pointer flex-shrink-0 flex items-center justify-center w-[120px] h-40"
@@ -39,7 +39,7 @@ const InfoStory = ({ setShow }: InfoStoryProps) => {
                 item.id === main.id ? "w-full h-full" : "w-5/6 h-5/6"
               } object-cover`}
               alt=""
-              src={item.src}
+              src={item.url}
             />
           </li>
         ))}

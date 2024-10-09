@@ -32,25 +32,25 @@ const ContentStory = () => {
       timeOut = setTimeout(() => {
         if (timeCurrent + 1 > 10) {
           updateData("timeCurrent", 0);
-          if (indexRun + 1 === current.storyList.length) {
+          if (indexRun + 1 === main.length) {
             updateData("indexRun", 0);
             if (indexStory + 1 === storyList.length) {
               updateData("indexStory", 0);
               updateData("indexRun", 0);
-              updateData("main", storyList[0].storyList[0]);
+              updateData("current", storyList[0][0]);
 
-              updateData("current", storyList[0]);
+              updateData("main", storyList[0]);
             } else {
               updateData("indexRun", 0);
               updateData("indexStory", indexStory + 1);
 
-              updateData("current", storyList[indexStory + 1]);
+              updateData("main", storyList[indexStory + 1]);
 
-              updateData("main", storyList[indexStory + 1].storyList[0]);
+              updateData("current", storyList[indexStory + 1][0]);
             }
           } else {
             updateData("indexRun", indexRun + 1);
-            updateData("main", current.storyList[indexRun + 1]);
+            updateData("current", main[indexRun + 1]);
           }
         } else {
           updateData("timeCurrent", timeCurrent + 1);
@@ -71,24 +71,26 @@ const ContentStory = () => {
       className="w-7/12 story-right bg-gray-400 dark:bg-dark-third mt-5 m-2 rounded-lg relative"
       style={{ height: "calc(100% - 90px)" }}
     >
-      <audio ref={refAudio} className="hidden" autoPlay>
-        <track
-          default
-          kind="captions"
-          srcLang="en"
-          src={JSON.parse(main.music).src}
-        />
-      </audio>
+      {
+        <audio ref={refAudio} className="hidden" autoPlay>
+          <track
+            default
+            kind="captions"
+            srcLang="en"
+            // src={JSON.parse(main.music).src}
+          />
+        </audio>
+      }
       <div className="w-full h-full flex items-center">
         <img
-          src={main.src}
+          src={current.url}
           className="w-full img-story object-cover"
           alt=""
           style={{ maxHeight: "calc(100%)" }}
         />
       </div>
       {current && main && <HeaderStoryView refAudio={refAudio} />}
-      {user.id !== current.groupStory.userGroupStory.id && (
+      {user.id !== current.user.id && (
         <ScrollContainer className=" w-full p-2 absolute bottom-2 flex max-w-full overflow-x-auto">
           <div className="w-10/12 relative flex-shrink-0 flex items-center">
             <input
@@ -98,10 +100,7 @@ const ContentStory = () => {
               placeholder="Trả lời.."
               className="w-full p-2 rounded-3xl bg-black bg-opacity-50 text-white"
             />
-            <i
-              className="far fa-paper-plane cursor-pointer absolute right-4 top-0.5 text-2xl 
-                    text-gray-200"
-            />
+            <i className="far fa-paper-plane cursor-pointer absolute right-4 top-0.5 text-2xl text-gray-200" />
           </div>
           <div className="flex gap-2 items-center ml-3">
             {allFeel.map((feel) => (
@@ -115,41 +114,36 @@ const ContentStory = () => {
           </div>
         </ScrollContainer>
       )}
-      {current?.groupStory &&
-        !show &&
-        user.id === current.groupStory.userGroupStory.id && (
-          <div
-            aria-hidden
-            onClick={() => updateData("show", true)}
-            className="absolute -bottom-12 cursor-pointer left-2 p-2 z-50"
-          >
-            <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
-              <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl" />
-              <br></br>
-              <span className="text-white font-semibold mt-2">4 người xem</span>
-            </div>
-            <div className="flex pl-2">
-              <img
-                src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
-                alt=""
-                className="w-7 h-7 rounded-full -ml-2 z-30 object-cover border-white border-2 
-                        border-solid"
-              />
-              <img
-                src="http://res.cloudinary.com/tratahuong01/image/upload/v1638973763/Avatar/kxqbimjteg5ka9cbqh6y.jpg"
-                alt=""
-                className="w-7 h-7 rounded-full -ml-2 z-20 object-cover border-white border-2 
-                        border-solid"
-              />
-              <img
-                src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
-                alt=""
-                className="w-7 h-7 rounded-full -ml-2 z-10 object-cover border-white border-2 
-                        border-solid"
-              />
-            </div>
+      {current && !show && user.id === current.user.id && (
+        <div
+          aria-hidden
+          onClick={() => updateData("show", true)}
+          className="absolute -bottom-12 cursor-pointer left-2 p-2 z-50"
+        >
+          <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
+            <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl" />
+            <br></br>
+            <span className="text-white font-semibold mt-2">4 người xem</span>
           </div>
-        )}
+          <div className="flex pl-2">
+            <img
+              src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
+              alt=""
+              className="w-7 h-7 rounded-full -ml-2 z-30 object-cover border-white border-2 border-solid"
+            />
+            <img
+              src="http://res.cloudinary.com/tratahuong01/image/upload/v1638973763/Avatar/kxqbimjteg5ka9cbqh6y.jpg"
+              alt=""
+              className="w-7 h-7 rounded-full -ml-2 z-20 object-cover border-white border-2 border-solid"
+            />
+            <img
+              src="https://res.cloudinary.com/tratahuong01/image/upload/v1624453911/Story/z9kkojxij5zgav74969q.png"
+              alt=""
+              className="w-7 h-7 rounded-full -ml-2 z-10 object-cover border-white border-2 border-solid"
+            />
+          </div>
+        </div>
+      )}
       <div
         className="w-1/4 bg-white flex p-1.5 absolute top-1/2 left-16 rounded-lg"
         style={{ transform: "rotate(-25deg)" }}
@@ -169,7 +163,7 @@ const ContentStory = () => {
           </p>
         </div>
       </div>
-      {show && user.id === current.groupStory.userGroupStory.id && (
+      {show && user.id === current.user.id && (
         <InfoStory setShow={(status) => updateData("show", status)} />
       )}
     </div>

@@ -1,8 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import WrapperLogged from "../Wrapper/WrapperLogged";
 import { StoryContext, StoryProvider } from "@/contexts/StoryContext";
 import ViewStoryLeft from "@/modules/ViewStory/ViewStoryLeft";
 import ViewStoryRight from "@/modules/ViewStory/ViewStoryRight";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
+import { getStoryByUser } from "@/apis/storyAPI";
 
 const ViewStory = () => {
   //
@@ -22,17 +26,31 @@ const ViewStory = () => {
   );
 };
 
+type WrapperViewStoryProps = {
+  fullScreen?: boolean;
+  setFullScreen: Function;
+};
+
 const WrapperViewStory = ({
   fullScreen,
   setFullScreen,
-}: {
-  fullScreen?: boolean;
-  setFullScreen: Function;
-}) => {
+}: WrapperViewStoryProps) => {
   //
+  const user = useSelector<RootState, User>(getUser);
   const {
     state: { current, main, storyList },
+    updateData,
   } = useContext(StoryContext);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getStoryByUser(user.id);
+      updateData("storyList", result);
+      updateData("main", result[0]);
+      updateData("current", result[0][0]);
+    };
+
+    fetchData();
+  }, [user]);
   //
   return (
     <>
@@ -43,11 +61,9 @@ const WrapperViewStory = ({
       >
         <ViewStoryLeft fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </div>
-      {current?.storyList
-        ? main &&
-          current &&
-          storyList.length > 0 && <ViewStoryRight fullScreen={fullScreen} />
-        : "End"}
+      {main && current && storyList.length > 0 && (
+        <ViewStoryRight fullScreen={fullScreen} />
+      )}
       <div
         aria-hidden
         onClick={() => setFullScreen(!fullScreen)}

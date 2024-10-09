@@ -99,11 +99,14 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     if (!parent && file && "name" in file) {
       formData.append("media_new", file);
     }
-    if (parent && "name" in replyFileComment[parent]) {
-      formData.append("media_new", replyFileComment[parent]);
+    if (parent && replyFileComment[parent]) {
+      "name" in replyFileComment[parent] &&
+        formData.append("media_new", replyFileComment[parent]);
     }
-    if (edit && file && "name" in file) {
-      formData.append("media_old", JSON.parse(comment.content.text)?.url);
+    if (edit && file) {
+      file &&
+        "name" in file &&
+        formData.append("media_old", JSON.parse(comment.content.text)?.url);
     }
     refContent.current.innerText = "";
     if (parent) {
