@@ -47,7 +47,6 @@ const Input = (
   return (
     <>
       {label && <p className="font-semibold mb-2">{label}</p>}
-
       <div className={`${wrapper || ""} ${width || "w-full"} relative`.trim()}>
         <input
           ref={ref}

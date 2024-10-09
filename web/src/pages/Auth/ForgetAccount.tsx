@@ -40,7 +40,7 @@ const ForgetAccount = () => {
           type="button"
           className="px-4 mr-5 py-2 rounded-lg bg-gray-500 text-white"
         >
-          Huỷ
+          Cancel
         </Button>
         <Button
           onClick={async () => {

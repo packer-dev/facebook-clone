@@ -27,12 +27,11 @@ const PopoverEmoji = ({ handleClick }: { handleClick: Function }) => {
       <li
         aria-hidden
         onClick={() => setCategoryActive(item.category)}
-        className={`flex justify-center py-2 px-3 mx-0.5 rounded-lg text-xl cursor-pointer 
-            ${
-              categoryActive === item.category
-                ? " bg-gray-300 dark:bg-dark-third"
-                : " hover:bg-gray-300 dark:hover:bg-dark-third"
-            }`}
+        className={`flex justify-center py-2 px-3 mx-0.5 rounded-lg text-xl cursor-pointer ${
+          categoryActive === item.category
+            ? " bg-gray-300 dark:bg-dark-third"
+            : " hover:bg-gray-300 dark:hover:bg-dark-third"
+        }`}
         key={item?.emoji}
       >
         {item.thumbnail}

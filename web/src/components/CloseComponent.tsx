@@ -15,8 +15,6 @@ const CloseComponent = ({
   handleClick,
   children,
 }: CloseComponentProps) => {
-  //
-  //
   return (
     <div
       aria-hidden

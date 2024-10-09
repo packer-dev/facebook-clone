@@ -31,9 +31,7 @@ const Avatar = ({
         />
       )}
       {online && (
-        <div
-          className={`w-3 h-3 rounded-full bg-green-500 absolute bottom-1 -mr-1 right-0 border-2 border-white`}
-        />
+        <div className="w-3 h-3 rounded-full bg-green-500 absolute bottom-1 -mr-1 right-0 border-2 border-white" />
       )}
       {children}
     </div>
