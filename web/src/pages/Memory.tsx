@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import memory_header from "@/assets/images/memory_1.png";
 import { PostDTO } from "@/interfaces/Post";
-import ItemPostMemory from "@/components/ItemPost/ItemPostMemory";
+import ItemPostMemory from "@/modules/ItemPost/ItemPostMemory";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { useSelector } from "react-redux";
 import { getUser, RootState } from "@/reducers";

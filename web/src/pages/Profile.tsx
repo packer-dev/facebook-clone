@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from "react";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
-import FriendCanKnow from "@/components/FriendCanKnow";
+import FriendCanKnow from "@/modules/FriendCanKnow";
 import CategoryProfile from "@/modules/Profile/CategoryProfile";
 import HeaderProfile from "@/modules/Profile/HeaderProfile";
 import InviteProfile from "@/modules/Profile/InviteProfile";

@@ -1,6 +1,6 @@
 import * as React from "react";
-import Avatar from "../Avatar";
-import GroupAvatar from "../GroupAvatar";
+import Avatar from "../../components/Avatar";
+import GroupAvatar from "../../components/GroupAvatar";
 import { useSelector } from "react-redux";
 import { getCall, RootState } from "@/reducers";
 import { CallProps } from "@/reducers/call";

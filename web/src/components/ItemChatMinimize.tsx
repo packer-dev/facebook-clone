@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
-import Avatar from "../Avatar";
-import GroupAvatar from "../GroupAvatar";
+import Avatar from "./Avatar";
+import GroupAvatar from "./GroupAvatar";
 import { Group } from "@/interfaces/Group";
 import { generateUUID } from "@/utils";
 import {

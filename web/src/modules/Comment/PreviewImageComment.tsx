@@ -1,5 +1,5 @@
 import * as React from "react";
-import CloseComponent from "../CloseComponent";
+import CloseComponent from "../../components/CloseComponent";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
 
 type PreviewImageCommentProps = {

@@ -14,9 +14,9 @@ import { createPost, editPost } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
-import MediaDisplay from "@/components/MediaDisplay";
+import MediaDisplay from "@/modules/MediaDisplay";
 import { Button } from "@/components/ui/button";
-import ItemPost from "@/components/ItemPost";
+import ItemPost from "@/modules/ItemPost";
 
 const ModalPost = () => {
   //

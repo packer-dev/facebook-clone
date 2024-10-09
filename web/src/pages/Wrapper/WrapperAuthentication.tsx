@@ -33,7 +33,7 @@ const WrapperAuthentication = ({
   }, [user?.id]);
   //
   return (
-    <WrapperPage login>
+    <WrapperPage>
       <div className={`w-full h-screen ${notFound ? "overflow-hidden" : ""}`}>
         <HeaderSignedOut hideFormLogin={hideFormLogin} />
         {notFound ? (

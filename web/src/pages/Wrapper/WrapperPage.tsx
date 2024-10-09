@@ -15,7 +15,6 @@ import { updateDataCall } from "@/reducers/call";
 type WrapperPageProps = {
   white?: boolean;
   children?: React.ReactNode;
-  login?: boolean;
 };
 
 const WrapperPage = ({ white, children }: WrapperPageProps) => {

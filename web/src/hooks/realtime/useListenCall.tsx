@@ -15,10 +15,9 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 const useListenCall = () => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
-  const { acceptUser, peer, remoteStream, callStatus } = useSelector<
-    RootState,
-    CallProps
-  >(getCall);
+  const { acceptUser, peer, callStatus } = useSelector<RootState, CallProps>(
+    getCall
+  );
   const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const dispatch = useDispatch<AppDispatch>();
   const listenCall = (data: any) => {
@@ -90,6 +89,7 @@ const useListenCall = () => {
         })
       );
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callStatus, peer]);
 };
 

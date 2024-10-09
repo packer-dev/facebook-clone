@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ItemPost from "@/components/ItemPost";
-import LoadingPost from "@/components/ItemPost/LoadingPost";
+import ItemPost from "@/modules/ItemPost";
+import LoadingPost from "@/modules/ItemPost/LoadingPost";
 import { AppDispatch, RootState, getCommon } from "@/reducers";
 import { getPostByIdUser } from "@/apis/postAPIs";
 import { CommonDataProps, updateDataCommon } from "@/reducers/common";

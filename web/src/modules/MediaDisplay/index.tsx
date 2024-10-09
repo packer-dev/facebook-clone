@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
 import ItemMedia from "./ItemMedia";
 import { PostContext } from "@/contexts/PostContext/PostContext";
-import { Button } from "../ui/button";
+import { Button } from "../../components/ui/button";
 
 type MediaDisplayProps = {
   medias: (Media | File)[];

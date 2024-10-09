@@ -27,7 +27,7 @@ const Login = () => {
   useTitle("Login");
   //
   return (
-    <WrapperPage white login>
+    <WrapperPage white>
       <div className="w-full relative bg-gray-50">
         <div className="w-full mx-auto sm:w-full md:w-full lg:w-full xl:w-3/4 2xl:w-3/4">
           <SaveLogin />

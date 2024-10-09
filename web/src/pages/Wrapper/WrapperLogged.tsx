@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderLogged from "@/modules/Header/HeaderLogged";
-import ItemChat from "@/components/ItemChat";
+import ItemChat from "@/modules/ItemChat";
 import WrapperPage from "./WrapperPage";
 import { AppDispatch, RootState, getUser, getUserChat } from "@/reducers";
 import {

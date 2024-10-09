@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
-import { Button } from "../ui/button";
+import { Button } from "../../components/ui/button";
 
 type ItemFriendCanKnowProps = {
   item: User;

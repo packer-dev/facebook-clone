@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Media } from "@/interfaces/Media";
 import { Post } from "@/interfaces/Post";
-import MediaDisplay from "@/components/MediaDisplay";
+import MediaDisplay from "@/modules/MediaDisplay";
 
 export type NormalPostProps = {
   imageVideoPostList: Media[];

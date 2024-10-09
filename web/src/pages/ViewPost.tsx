@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderLoggedRight from "@/modules/Header/HeaderLogged/HeaderLoggedRight";
-import ItemPost from "@/components/ItemPost";
+import ItemPost from "@/modules/ItemPost";
 import ButtonViewPostTop from "@/modules/ViewPost/ButtonViewPostTop";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 import * as StringUtils from "@/utils/StringUtils";
 import { getPostById } from "@/apis/postAPIs";
 import { PostDTO } from "@/interfaces/Post";
-import ItemMedia from "@/components/MediaDisplay/ItemMedia";
-import ItemCommentPostMain from "@/components/Comment/ItemCommentPostMain";
+import ItemMedia from "@/modules/MediaDisplay/ItemMedia";
+import ItemCommentPostMain from "@/modules/Comment/ItemCommentPostMain";
 import { getCommentByPost } from "@/apis/commentAPIs";
 import { CommentDTO } from "@/interfaces/Comment";
 

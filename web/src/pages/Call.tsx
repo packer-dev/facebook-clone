@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import ExtensionCall from "@/components/Call/ExtensionCall";
-import ItemExtensionCall from "@/components/Call/ExtensionCall/ItemExtensionCall";
-import InfoCalling from "@/components/Call/InfoCalling";
-import NotifyRight from "@/components/Call/NotifyRight";
+import ExtensionCall from "@/modules/Call/ExtensionCall";
+import ItemExtensionCall from "@/modules/Call/ExtensionCall/ItemExtensionCall";
+import InfoCalling from "@/modules/Call/InfoCalling";
+import NotifyRight from "@/modules/Call/NotifyRight";
 import messenger from "@/assets/sound/messenger.mp3";
 import { useSelector } from "react-redux";
 import { getCall, getSocket, getUser, RootState } from "@/reducers";

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { PAGE_VIEW_POST } from "@/constants/Config";
 import { ImageVideoProps } from ".";
-import ItemMedia from "@/components/MediaDisplay/ItemMedia";
+import ItemMedia from "@/modules/MediaDisplay/ItemMedia";
 
 const DataImageVideo = ({ imageVideo }: { imageVideo: ImageVideoProps }) => {
   switch (imageVideo.media.type) {
