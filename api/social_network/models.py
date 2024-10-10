@@ -201,6 +201,7 @@ class Notification(BaseModel):
     is_read: bool
     last_time_update: str
     main_id: str
+    sender: User
 
 
 class Story(BaseModel):
