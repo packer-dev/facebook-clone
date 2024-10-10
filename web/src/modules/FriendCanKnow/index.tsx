@@ -6,7 +6,6 @@ import { User } from "@/interfaces/User";
 import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const FriendCanKnow = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
     getUserProfile
@@ -14,14 +13,12 @@ const FriendCanKnow = () => {
   const [users, setUsers] = useState([]);
   const [show, setShow] = useState(true);
   useEffect(() => {
-    //
     const fetchData = async () => {
       setUsers([]);
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile?.id, user]);
-  //
   return (
     users.length > 0 && (
       <div className="w-full px-2 py-0.5 shadow-lv1 bg-white dark:bg-dark-third dark:text-white rounded-lg relative">

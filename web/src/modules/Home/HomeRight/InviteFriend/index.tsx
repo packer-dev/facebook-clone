@@ -7,19 +7,15 @@ import { getFriendUser } from "@/apis/userAPIs";
 import { FriendProfileDTO, User } from "@/interfaces/User";
 
 const InviteFriend = () => {
-  //
   const [list, setList] = useState<FriendProfileDTO[]>([]);
   const user = useSelector<RootState, User>(getUser);
   useEffect(() => {
-    //
     const fetch = async () => {
       const result = await getFriendUser(user.id, 2);
       setList(result || []);
     };
     fetch();
-    //
   }, [user?.id]);
-  //
   return list ? (
     <>
       <div className="w-full flex items-center justify-between">

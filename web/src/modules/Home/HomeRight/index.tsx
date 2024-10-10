@@ -4,8 +4,6 @@ import InviteFriend from "./InviteFriend";
 import UserActivity from "./UserActivity";
 
 const HomeRight = () => {
-  //
-  //
   return (
     <div className="fixed hidden h-screen lg:block lg:w-1/3 xl:w-1/4 lg:left-2/3 xl:left-3/4 top-0 pt-16 home__right">
       <div className="content-right wrapper-content-right overflow-y-auto py-0 px-2.5 w-full h-full">

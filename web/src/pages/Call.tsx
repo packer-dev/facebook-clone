@@ -15,7 +15,6 @@ import WrapperLogged from "./Wrapper/WrapperLogged";
 import VideoUserMedia from "@/components/VideoUserMedia";
 
 const Call = () => {
-  //
   const {
     mode,
     showVideo,

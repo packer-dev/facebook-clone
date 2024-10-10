@@ -7,11 +7,9 @@ import { Story } from "@/interfaces/Story";
 import { getStoryByUser } from "@/apis/storyAPI";
 
 const StoryList = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const [stories, setStories] = useState<Story[][]>([]);
   useEffect(() => {
-    //
     if (user) {
       const fetchData = async () => {
         const result = await getStoryByUser(user.id);
@@ -21,7 +19,6 @@ const StoryList = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
-  //
   return stories.length ? (
     [...stories]
       .slice(0, 5)

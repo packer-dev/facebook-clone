@@ -6,10 +6,8 @@ import { ItemCategoryHomeProps } from "./categories";
 import { User } from "@/interfaces/User";
 
 const ItemHomeLeft = ({ image, label, link }: ItemCategoryHomeProps) => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
-  //
   return (
     <li
       aria-hidden

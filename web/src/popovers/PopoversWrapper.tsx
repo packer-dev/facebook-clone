@@ -11,8 +11,6 @@ type PopoversWrapperProps = {
 };
 
 const PopoversWrapper = ({ children, button }: PopoversWrapperProps) => {
-  //
-  //
   return (
     <Popover>
       <PopoverTrigger>{button}</PopoverTrigger>

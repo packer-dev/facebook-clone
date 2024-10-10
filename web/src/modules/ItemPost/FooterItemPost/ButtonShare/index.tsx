@@ -2,12 +2,8 @@ import React, { useRef } from "react";
 import PopupShare from "../PopupShare";
 
 const ButtonShare = () => {
-  //
   const refPopup = useRef<any>();
   let count = 0;
-  //
-
-  // Click
   const handleClick = (element) => {
     const current = element.target;
     if (!current) {

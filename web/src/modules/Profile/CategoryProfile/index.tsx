@@ -4,7 +4,6 @@ import { PAGE_PROFILE } from "@/constants/Config";
 import { Button } from "@/components/ui/button";
 
 const CategoryProfile = ({ id }: { id: string | number }) => {
-  //
   const categories = [
     {
       id: 0,
@@ -42,7 +41,6 @@ const CategoryProfile = ({ id }: { id: string | number }) => {
   const [active, setActive] = useState(
     categories.findIndex((dt) => location.pathname.indexOf(dt.slug))
   );
-  //
   return (
     <div className="w-full relative flex-row flex justify-between items-center">
       <ul className="w-full flex py-1">

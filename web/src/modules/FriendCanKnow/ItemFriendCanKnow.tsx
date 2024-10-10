@@ -15,8 +15,6 @@ const ItemFriendCanKnow = ({
   setUsers,
   users,
 }: ItemFriendCanKnowProps) => {
-  //
-  //
   return (
     <div
       className="w-40 justify-center rounded-t-lg flex flex-shrink-0 border-2 border-solid 

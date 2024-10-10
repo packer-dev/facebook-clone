@@ -15,7 +15,6 @@ import { getGroupById } from "@/apis/groupAPIs";
 import { ItemChatContext, ItemChatProvider } from "@/contexts/ItemChatContext";
 
 const WrapperMessenger = () => {
-  //
   const user = useSelector<RootState, User>((state) => state.user);
   const params = useParams();
   const {
@@ -32,16 +31,13 @@ const WrapperMessenger = () => {
     updateDataItemChat("mini", false);
   };
   useEffect(() => {
-    //
     if (user) fetchMessageList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
   useEffect(() => {
-    //
     if (params?.id) fetchGroup();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
-  //
   return (
     <div className="w-full flex pt-16 z-10 bg-white dark:bg-dark-main lg:w-full lg:mx-auto xl:w-full h-full max-h-full">
       <div className="w-24 md:w-5/12 xl:w-1/4 shadow-xl overflow-hidden h-full ">

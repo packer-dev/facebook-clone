@@ -7,11 +7,9 @@ import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
 
 const TypeNewPassword = () => {
-  //
   const [passwordNew, setPasswordNew] = useState("");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
-  //
   return (
     <WrapperAuthentication title="Choose new password" hideFormLogin>
       <div className="w-full my-2 p-2 px-5">

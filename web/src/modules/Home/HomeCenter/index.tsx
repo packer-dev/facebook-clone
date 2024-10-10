@@ -11,11 +11,9 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
 const HomeCenter = () => {
-  //
   const navigation = useNavigate();
   const user = useSelector<RootState, User>(getUser);
   const refWrapper = useRef<HTMLDivElement>();
-  //
   return (
     <div
       ref={refWrapper}

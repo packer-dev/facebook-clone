@@ -3,7 +3,6 @@ import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { useDispatch } from "react-redux";
 
 const ItemAccount = (props: any) => {
-  //
   const { list, setList, item } = props;
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const [rememberAccount, setRememberAccount] = useState(false);

@@ -7,13 +7,11 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
 const StoryEditLeft = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const {
     state: { mode, content },
     updateData,
   } = useContext(StoryEditorContext);
-  //
   return (
     <div
       className="w-1/4 p-4 pt-0 border-t-2 border-solid border-gray-300 shadow-md 

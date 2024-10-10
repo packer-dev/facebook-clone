@@ -1,20 +1,17 @@
 import { StickerProps } from "@/config/stickers";
 import * as React from "react";
 
+type ItemStickerProps = {
+  sticker: StickerProps;
+  handleClick?: Function;
+};
+
 const ItemSticker = (
-  {
-    sticker,
-    handleClick,
-  }: {
-    sticker: StickerProps;
-    handleClick?: Function;
-  },
+  { sticker, handleClick }: ItemStickerProps,
   ref: React.RefObject<HTMLDivElement>
 ) => {
-  //
   const data = `stickerAnimation:${sticker.col}:${sticker.row}`;
   const [animation, setAnimation] = React.useState("");
-  //
   return (
     <div
       ref={ref}

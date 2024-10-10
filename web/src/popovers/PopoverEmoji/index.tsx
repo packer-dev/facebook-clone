@@ -3,7 +3,6 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import emoji from "@/config/emoji";
 
 const PopoverEmoji = ({ handleClick }: { handleClick: Function }) => {
-  //
   const listCategoryFun = () => {
     let listCategory = [];
     emoji.forEach((element) => {
@@ -45,7 +44,6 @@ const PopoverEmoji = ({ handleClick }: { handleClick: Function }) => {
     });
     return listEmoji;
   };
-  //
   return (
     <div className="w-full flex flex-col h-full overflow-hidden max-h-full">
       <div className="border-b-2 border-solid border-gray-200 shadow-lv1 w-full pb-0.5">

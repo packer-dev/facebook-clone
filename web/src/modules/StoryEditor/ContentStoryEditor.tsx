@@ -23,7 +23,7 @@ const ContentTextEdit = () => {
   return (
     <div
       ref={refContent}
-      className="text-xl text-gray-100 break-all content-story-text w-80 min-h-8 absolute contentedittable__story  
+      className="text-xl text-gray-100 break-all content-story-text w-80 min-h-8 absolute content_edit_table__story  
       top-1/2 left-1/2 rounded-2xl px-2 text-center font-bold outline-none transform -translate-y-1/2 -translate-x-1/2"
       spellCheck={false}
       style={{ color: color ? color.color : "white" }}

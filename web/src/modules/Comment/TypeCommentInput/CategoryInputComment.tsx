@@ -7,8 +7,13 @@ import React, { RefObject, forwardRef, useContext } from "react";
 import { v4 } from "uuid";
 import { ContentComment } from "@/interfaces/ContentComment";
 
+type CategoryInputCommentProps = {
+  handleSendComment: Function;
+  parent: string;
+};
+
 const CategoryInputComment = (
-  props: { handleSendComment: Function; parent: string },
+  props: CategoryInputCommentProps,
   ref: RefObject<HTMLDivElement>
 ) => {
   //

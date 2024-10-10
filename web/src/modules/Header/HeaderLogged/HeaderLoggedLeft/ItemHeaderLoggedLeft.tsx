@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { User } from "@/interfaces/User";
 
-const ItemHeaderLoggedLeft = ({ item }: { item: User }) => {
-  //
+type ItemHeaderLoggedLeftProps = { item: User };
+
+const ItemHeaderLoggedLeft = ({ item }: ItemHeaderLoggedLeftProps) => {
   const navigation = useNavigate();
-  //
   return (
     <ul
       aria-hidden

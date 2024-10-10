@@ -14,7 +14,6 @@ type ItemPostTopProps = {
 };
 
 const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const info = (() => {
     if (postDetail.post.type === 2) return `updated avatar.`;
@@ -30,7 +29,6 @@ const ItemPostTop = ({ postDetail }: ItemPostTopProps) => {
       />
     );
   })();
-  //
   return (
     <div className="w-full flex flex-row gap-1.5 mb-2 relative">
       <div className="w-12 h-12 relative">

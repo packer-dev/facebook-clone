@@ -7,11 +7,9 @@ import { Group } from "@/interfaces/Group";
 import { User } from "@/interfaces/User";
 
 const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const [groups, setGroups] = useState<Group[]>([]);
   useEffect(() => {
-    //
     const fetchData = async () => {
       const result = await getListGroupByUserId(user?.id);
       setGroups(result);
@@ -19,7 +17,6 @@ const PopoverMessage = ({ closePopover }: { closePopover: () => void }) => {
     if (user) fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
-  //
   return (
     <div className="w-full p-2 rounded-lg h-[725px]">
       <MessageList groups={groups} mini closePopover={closePopover} />

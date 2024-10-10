@@ -8,7 +8,6 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
 const HomeLeft = () => {
-  //
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
   const user = useSelector<RootState, User>(getUser);
@@ -17,7 +16,6 @@ const HomeLeft = () => {
     if (length === categories.length) return "left";
     else return "right";
   })();
-  //
   return (
     <div className="fixed h-screen pt-16 hidden sm:hidden xl:block xl:w-1/4 xl:left-0">
       <div className="pl-1.5 h-full w-4/6 overflow-x-hidden overflow-y-auto xl:w-full">

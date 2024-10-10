@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 
 const AddAccount = () => {
-  //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
-  //
   return (
     <div
       aria-hidden

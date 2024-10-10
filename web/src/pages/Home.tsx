@@ -7,10 +7,8 @@ import WrapperLogged from "./Wrapper/WrapperLogged";
 import useSetPageCurrent from "@/hooks/useSetPageCurrent";
 
 const Home = () => {
-  //
   useTitle("Facebook");
   useSetPageCurrent();
-  //
   return (
     <WrapperLogged>
       <div

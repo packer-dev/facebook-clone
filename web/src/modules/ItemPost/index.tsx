@@ -26,7 +26,6 @@ const ItemPost = ({
   hideToolbar,
   hideComment,
 }: ItemPostProps) => {
-  //
   const {
     state: { postDetail },
     updateData,
@@ -61,7 +60,6 @@ const ItemPost = ({
   }, [postDetailProps]);
   useListeningComment(postDetail?.post?.id);
   useFeelPost(postDetail?.post?.id);
-  //
   return postDetail ? (
     <div
       className={`w-full bg-white dark:bg-dark-second dark:border-dark-third border-2 border-solid shadow-lv1 ${

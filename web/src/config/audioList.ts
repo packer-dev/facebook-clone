@@ -1,33 +1,33 @@
 const audioList = [
   {
     id: 0,
-    name: "Audio Hot - 000",
+    name: "The Lost City",
     src: "https://res.cloudinary.com/tratahuong01/video/upload/v1621335275/Sound/LateNight_j4wtmo.mp3",
-    author: "Author Audio Hot - 000",
+    author: "John Doe",
   },
   {
     id: 1,
-    name: "Audio Hot - 001",
+    name: "Journey to the Stars",
     src: "https://res.cloudinary.com/tratahuong01/video/upload/v1621335275/Sound/AtMyWorst_celmsb.mp3",
-    author: "Author Audio Hot - 001",
+    author: "Emily Stone",
   },
   {
     id: 2,
-    name: "Audio Hot - 002",
+    name: "Echoes of Time",
     src: "https://res.cloudinary.com/tratahuong01/video/upload/v1621335275/Sound/3107_wilom8.mp3",
-    author: "Author Audio Hot - 002",
+    author: "David Harper",
   },
   {
     id: 3,
-    name: "Audio Hot - 003",
+    name: "The Forgotten World",
     src: "https://res.cloudinary.com/tratahuong01/video/upload/v1621335275/Sound/Mood_yclqoh.mp3",
-    author: "Author Audio Hot - 003",
+    author: "James Carter",
   },
   {
     id: 3,
-    name: "Audio Hot - 004",
+    name: "Shadows of the Past",
     src: "https://res.cloudinary.com/tratahuong01/video/upload/v1640319624/Sound/jw6mvj219dgdf8o7nhdj.mp3",
-    author: "Author Audio Hot - 004",
+    author: "Olivia Martin",
   },
 ];
 

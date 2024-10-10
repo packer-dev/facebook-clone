@@ -4,8 +4,6 @@ import { PAGE_VIEW_POST } from "@/constants/Config";
 import { PostDTO } from "@/interfaces/Post";
 
 const AvatarPost = ({ postDetail }: { postDetail: PostDTO }) => {
-  //
-  //
   return (
     <div className="w-full mx-0 my-2.5">
       <div className="w-full relative block h-[430px]">

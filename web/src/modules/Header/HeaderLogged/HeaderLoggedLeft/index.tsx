@@ -6,13 +6,11 @@ import { User } from "@/interfaces/User";
 import { searchUser } from "@/apis/userAPIs";
 
 const HeaderLoggedLeft = () => {
-  //
   const [show, setShow] = useState(false);
   const [list, setList] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
   useEffect(() => {
-    //
     let timeOut: ReturnType<typeof setTimeout>;
     if (keyword.length > 0) {
       timeOut = setTimeout(async () => {
@@ -30,7 +28,6 @@ const HeaderLoggedLeft = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword]);
-  //
   return (
     <div className="w-1/2 flex ml-1 md:w-1/4 relative">
       {show && (
@@ -43,7 +40,7 @@ const HeaderLoggedLeft = () => {
               aria-hidden
               onClick={() => setShow(false)}
               className="w-11 h-11 rounded-full text-center items-center pt-1 mt-1 cursor-pointer ml-1 
-              bx bxs-chevron-left text-3xl dark:text-gray-300"
+              bx bx-chevron-left text-3xl dark:text-gray-300"
             />
             <div className="mt-1 pl-1">
               <div

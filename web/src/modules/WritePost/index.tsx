@@ -6,10 +6,8 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 
 const WritePost = ({ view }: { view?: User }) => {
-  //
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const user = useSelector<RootState, User>(getUser);
-  //
   return (
     <div
       className="w-full bg-white mb-3 mt-2 dark:bg-dark-second m-auto rounded-lg border-2 border-solid 

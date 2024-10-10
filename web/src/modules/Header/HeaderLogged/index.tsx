@@ -3,9 +3,9 @@ import HeaderLoggedCenter from "./HeaderLoggedCenter";
 import HeaderLoggedLeft from "./HeaderLoggedLeft";
 import HeaderLoggedRight from "./HeaderLoggedRight";
 
-const HeaderLogged = ({ hideMessage }: { hideMessage?: boolean }) => {
-  //
-  //
+type HeaderLoggedProps = { hideMessage?: boolean };
+
+const HeaderLogged = ({ hideMessage }: HeaderLoggedProps) => {
   return (
     <div
       className="w-full block z-50 fixed bg-white top-0 dark:bg-dark-second border-b-2 border-solid border-gray-200 

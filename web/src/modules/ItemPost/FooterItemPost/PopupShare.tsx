@@ -1,7 +1,6 @@
 import * as React from "react";
 
 const PopupShare = React.forwardRef((props: any, ref: any) => {
-  //
   const categories = [
     {
       icon: "bx bx-share",
@@ -34,7 +33,6 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
       handleClick: () => "",
     },
   ];
-  //
   return (
     <div
       ref={ref}

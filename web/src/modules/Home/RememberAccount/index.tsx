@@ -7,23 +7,19 @@ import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
 const RememberAccount = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const [show, setShow] = useState(false);
   useEffect(() => {
-    //
     if (!user) return;
     if (localStorage.getItem("saveInHome")) {
       setShow(true);
       localStorage.removeItem("saveInHome");
     }
-    //
   }, [setShow, user]);
   const removeSaveInHome = () => {
     localStorage.removeItem("saveInHome");
     setShow(false);
   };
-  //
   return show && user ? (
     <div className="w-full my-2 bg-white p-2 relative rounded-lg">
       <div className="w-full flex items-center justify-between">

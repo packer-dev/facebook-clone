@@ -11,8 +11,11 @@ import { sendComment } from "@/apis/commentAPIs";
 import { commentModel, userModel } from "@/models";
 import { Socket } from "socket.io-client";
 import { updateDataComment } from "@/hooks/realtime/useListeningComment";
+import { ContentComment } from "@/interfaces/ContentComment";
 
-const TypeCommentInput = ({ parent }: { parent?: string }) => {
+type TypeCommentInputProps = { parent?: string };
+
+const TypeCommentInput = ({ parent }: TypeCommentInputProps) => {
   //
   const {
     state: {
@@ -28,6 +31,42 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const refContent = React.useRef<HTMLDivElement>(null);
+  const createFormData = (content: ContentComment, comment: Comment) => {
+    const formData = new FormData();
+    formData.append(
+      "comment",
+      JSON.stringify(
+        commentModel({
+          ...comment,
+          content: content,
+          user: userModel(user),
+        })
+      )
+    );
+    formData.append("post_id", postDetail.post.id);
+    if (!parent && file && "name" in file) {
+      formData.append("media_new", file);
+    }
+    if (parent && replyFileComment[parent]) {
+      "name" in replyFileComment[parent] &&
+        formData.append("media_new", replyFileComment[parent]);
+    }
+    if (edit && file) {
+      file &&
+        "name" in file &&
+        formData.append("media_old", JSON.parse(comment.content.text)?.url);
+    }
+    refContent.current.innerText = "";
+    if (parent) {
+      updateData("replyFileComment", {
+        ...replyFileComment,
+        [parent]: null,
+      });
+    } else {
+      updateData("file", null);
+    }
+    return formData;
+  };
   const handleSendComment = async (val?: any, type?: number) => {
     if (!user) return;
     const jsonString = () => {
@@ -65,13 +104,14 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     let newComments: CommentDTO[] = postDetail.comments.list;
     let newPostDetail = { ...postDetail };
     if (!edit) {
+      const mapCallback = (item) => {
+        if (item.item.id === parent) {
+          return { ...item, child: [comment, ...item.child] };
+        }
+        return item;
+      };
       newComments = parent
-        ? [...postDetail.comments.list].map((item) => {
-            if (item.item.id === parent) {
-              return { ...item, child: [comment, ...item.child] };
-            }
-            return item;
-          })
+        ? [...postDetail.comments.list].map(mapCallback)
         : [{ item: comment, child: [] }, ...postDetail.comments.list];
       newPostDetail = {
         ...postDetail,
@@ -84,39 +124,7 @@ const TypeCommentInput = ({ parent }: { parent?: string }) => {
     }
     const comment_ = { ...comment };
     delete comment_.loading;
-    const formData = new FormData();
-    formData.append(
-      "comment",
-      JSON.stringify(
-        commentModel({
-          ...comment_,
-          content: newDataComment,
-          user: userModel(user),
-        })
-      )
-    );
-    formData.append("post_id", postDetail.post.id);
-    if (!parent && file && "name" in file) {
-      formData.append("media_new", file);
-    }
-    if (parent && replyFileComment[parent]) {
-      "name" in replyFileComment[parent] &&
-        formData.append("media_new", replyFileComment[parent]);
-    }
-    if (edit && file) {
-      file &&
-        "name" in file &&
-        formData.append("media_old", JSON.parse(comment.content.text)?.url);
-    }
-    refContent.current.innerText = "";
-    if (parent) {
-      updateData("replyFileComment", {
-        ...replyFileComment,
-        [parent]: null,
-      });
-    } else {
-      updateData("file", null);
-    }
+    const formData = createFormData(newDataComment, comment_);
     comment = await sendComment(formData);
     const listComment = updateDataComment(newPostDetail, {
       edit,

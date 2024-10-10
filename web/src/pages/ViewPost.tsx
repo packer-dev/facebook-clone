@@ -13,7 +13,6 @@ import { getCommentByPost } from "@/apis/commentAPIs";
 import { CommentDTO } from "@/interfaces/Comment";
 
 const ViewPost = () => {
-  //
   const { id } = useParams();
   const [postDetail, setPostDetail] = useState<PostDTO>(null);
   const [fullscreen, setFullscreen] = useState(false);
@@ -21,7 +20,6 @@ const ViewPost = () => {
   const [scale, setScale] = useState(75);
   const [comments, setComments] = useState<CommentDTO[]>([]);
   useEffect(() => {
-    //
     const fetchData = async () => {
       const result = await getPostById(id);
       setPostDetail(result);
@@ -57,7 +55,7 @@ const ViewPost = () => {
           />
           {postDetail && index !== -1 && (
             <div className="w-full h-full flex justify-center items-center max-w-full max-h-full relative z-0 overflow-hidden">
-              {StringUtils.checkImageOrVideoToString(
+              {StringUtils.getFileTypeByExtension(
                 postDetail?.medias[index].url
               ) === "image" ? (
                 <img

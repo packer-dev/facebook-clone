@@ -6,11 +6,9 @@ import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
 const MeetRom = () => {
-  //
   const [users, setUsers] = useState([]);
   const user = useSelector<RootState, User>(getUser);
   useEffect(() => {
-    //
     const fetch = async () => {
       const result = { data: [] };
       setUsers(result.data);

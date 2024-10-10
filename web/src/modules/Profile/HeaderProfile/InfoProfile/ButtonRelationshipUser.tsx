@@ -25,7 +25,6 @@ const ButtonRelationshipUser = ({
   label,
   icon,
 }: ButtonRelationshipUserProps) => {
-  //
   const { zoom, minimize } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
@@ -34,7 +33,6 @@ const ButtonRelationshipUser = ({
     getUserProfile
   );
   const dispatch = useDispatch();
-  //
   return (
     <div className="flex-row flex gap-2">
       <Button

@@ -13,15 +13,15 @@ import { User } from "@/interfaces/User";
 import { getMessageMain } from "@/apis/messageAPIs";
 import { CommonDataProps } from "@/reducers/common";
 
+type ItemNewChatProps = { item: User; setText: Function };
+
 const ItemNewChat = forwardRef(
-  ({ item, setText }: { item: User; setText: Function }, ref: any) => {
-    //
+  ({ item, setText }: ItemNewChatProps, ref: any) => {
     const {
       state: { choose },
       updateData,
     } = useContext(ItemChatContext);
     const index = choose.findIndex((dt) => dt.id === item.id);
-    //
     return (
       <div
         aria-hidden

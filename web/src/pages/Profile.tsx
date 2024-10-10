@@ -32,7 +32,6 @@ type WrapperProfileProps = {
 
 const WrapperProfile = forwardRef(
   ({ id, children }: WrapperProfileProps, ref?: RefObject<HTMLDivElement>) => {
-    //
     const { location } = useSetPageCurrent();
     const { userProfile, loading } = useSelector<
       RootState,
@@ -42,7 +41,6 @@ const WrapperProfile = forwardRef(
     const dispatch = useDispatch<AppDispatch>();
     const refPath = useRef("");
     useEffect(() => {
-      //
       const fetchData = async () => {
         dispatch(updateDataUserProfile({ key: "loading", value: true }));
         const result = await getUserById(id);
@@ -72,7 +70,6 @@ const WrapperProfile = forwardRef(
     useEffect(() => {
       ref.current?.scrollTo(0, 0);
     }, [loading, ref]);
-    //
     if (loading) return <LoadingProfile />;
     if (userProfile) return children;
     if (!userProfile && !loading) return <NotFound />;

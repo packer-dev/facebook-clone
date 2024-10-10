@@ -18,7 +18,6 @@ import { generateUUID } from "@/utils";
 import { User } from "@/interfaces/User";
 
 const UserActivity = () => {
-  //
   const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat
   );
@@ -26,7 +25,6 @@ const UserActivity = () => {
   const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    //
     const fetch = async () => {
       const result = await getFriendsByUserId(user.id);
       dispatch(
@@ -39,7 +37,6 @@ const UserActivity = () => {
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
-  //
   return [...friends.filter((item) => item.id !== user.id)].map((item) => (
     <div
       aria-hidden

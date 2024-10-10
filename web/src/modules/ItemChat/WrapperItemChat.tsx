@@ -12,7 +12,6 @@ const WrapperItemChat = ({ children, onload }: WrapperItemChatProps) => {
   const {
     state: { loading },
   } = React.useContext(ItemChatContext);
-
   return (
     <div
       className="relative bg-white m-2 dark:bg-dark-second rounded-lg dark:border-dark-third 

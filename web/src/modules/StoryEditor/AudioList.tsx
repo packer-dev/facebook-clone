@@ -17,6 +17,7 @@ const AudioList = () => {
     //
     if (!play) {
       if (refAudio.current) {
+        setPlay(false);
         refAudio.current.pause();
       }
     }
@@ -29,8 +30,7 @@ const AudioList = () => {
   return (
     <div
       className="w-full pb-2 border-2 border-solid border-gray-200 rounded-lg bg-white dark:bg-dark-third
-      mb-2 dark:border-dark-third  text-center shadow-xl"
-      style={{ maxHeight: 384, height: 384 }}
+      mb-2 dark:border-dark-third  text-center shadow-xl max-h-[384px] h-[384px]"
     >
       <p className="font-bold text-xm text-left py-1 px-2 dark:text-white">
         Music
@@ -65,7 +65,7 @@ const AudioList = () => {
             item={item}
             refAudio={refAudio}
             play={play}
-            setPlay={setPlay}
+            // setPlay={setPlay}
           />
         ))}
       </ul>
@@ -78,7 +78,7 @@ type ItemAudioProps = {
   item: any;
   index: number;
   play?: boolean;
-  setPlay?: Function;
+  // setPlay?: Function;
 };
 
 const ItemAudio = ({ refAudio, item, index }: ItemAudioProps) => {

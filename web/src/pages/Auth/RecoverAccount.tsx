@@ -10,12 +10,10 @@ type RecoverAccountProps = {
 };
 
 const RecoverAccount = ({ verify }: RecoverAccountProps) => {
-  //
   const { token, user } = useAuthentication(true);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("email");
   const navigation = useNavigate();
-  //
   return (
     <WrapperAuthentication
       hideFormLogin

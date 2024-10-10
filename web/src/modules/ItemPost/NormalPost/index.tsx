@@ -9,7 +9,6 @@ export type NormalPostProps = {
 };
 
 const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
-  //
   const content: any = post.background ? (
     <div
       className="w-full relative h-80 bg-cover rounded-lg"

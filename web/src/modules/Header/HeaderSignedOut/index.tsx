@@ -4,11 +4,10 @@ import { PAGE_LOGIN } from "@/constants/Config";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-const HeaderSignedOut = (props: any) => {
-  //
-  const { hideFormLogin } = props;
+type HeaderSignedOutProps = { hideFormLogin?: boolean };
+
+const HeaderSignedOut = ({ hideFormLogin }: HeaderSignedOutProps) => {
   const navigation = useNavigate();
-  //
   return (
     <div className="w-full flex py-2.5 items-center justify-between border-b-2 border-solid border-gray-200 shadow-sm">
       <span

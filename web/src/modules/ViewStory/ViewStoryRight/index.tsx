@@ -11,7 +11,7 @@ const ViewStoryRight = (props) => {
   } = useContext(StoryContext);
   const processUp = () => {
     updateData("timeCurrent", 0);
-    if (indexRun + 1 === current.length) {
+    if (indexRun + 1 === main.length) {
       if (indexStory + 1 === storyList.length) {
         updateData("indexStory", 0);
         updateData("indexRun", 0);

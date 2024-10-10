@@ -4,7 +4,6 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
 const ButtonViewPostTop = (props) => {
-  //
   const navigation = useNavigate();
   const {
     scale,
@@ -15,7 +14,6 @@ const ButtonViewPostTop = (props) => {
     index,
     setIndex,
   } = props;
-  //
   return (
     <>
       <div className="flex items-center gap-3 absolute top-3 left-3 z-50">

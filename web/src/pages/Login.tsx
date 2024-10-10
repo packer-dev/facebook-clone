@@ -14,7 +14,6 @@ import { User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
 
 const Login = () => {
-  //
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
@@ -23,9 +22,7 @@ const Login = () => {
     if (user) navigation(PAGE_HOME);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
-  //
   useTitle("Login");
-  //
   return (
     <WrapperPage white>
       <div className="w-full relative bg-gray-50">

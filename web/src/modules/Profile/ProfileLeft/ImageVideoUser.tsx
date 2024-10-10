@@ -51,7 +51,7 @@ const ImageVideoUser = () => {
             style={{ paddingTop: "100%" }}
             key={imageVideo.media.id}
           >
-            {StringUtils.checkImageOrVideoToString(imageVideo.media.url) ===
+            {StringUtils.getFileTypeByExtension(imageVideo.media.url) ===
             "image" ? (
               <img
                 className="object-cover rounded-lg absolute top-0 left-0 right-0 bottom-0 w-full h-full"

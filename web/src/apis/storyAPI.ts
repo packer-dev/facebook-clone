@@ -15,3 +15,12 @@ export const getStoryByUser = async (user_id: string) => {
     },
   }).then((res) => res.data);
 };
+
+export const deleteStory = async (story_id: string, user_id: string) => {
+  return axiosInstance(`${API_URL}/story`, {
+    params: {
+      story_id,
+      user_id,
+    },
+  });
+};

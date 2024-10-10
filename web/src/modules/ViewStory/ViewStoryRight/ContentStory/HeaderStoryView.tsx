@@ -2,12 +2,27 @@ import moment from "moment";
 import React, { memo, useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoryContext } from "@/contexts/StoryContext";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { PopoverContent } from "@radix-ui/react-popover";
+import { deleteStory } from "@/apis/storyAPI";
+import { useSelector } from "react-redux";
+import { getUser, RootState } from "@/reducers";
+import { User } from "@/interfaces/User";
 
 function HeaderStoryView(props) {
   //
   const { refAudio } = props;
+  const user = useSelector<RootState, User>(getUser);
   const {
-    state: { current, timeCurrent, main, isPlaying },
+    state: {
+      current,
+      timeCurrent,
+      main,
+      isPlaying,
+      storyList,
+      indexRun,
+      indexStory,
+    },
     updateData,
   } = useContext(StoryContext);
   //
@@ -26,7 +41,7 @@ function HeaderStoryView(props) {
                 className={`bg-white py-0.5 `}
                 style={{
                   width: `${
-                    item.id === main.id ? 100 * (timeCurrent / 10) : 0
+                    item.id === current.id ? 100 * (timeCurrent / 10) : 0
                   }%`,
                 }}
               />
@@ -50,14 +65,14 @@ function HeaderStoryView(props) {
             >{`${current.user.name}`}</Link>
             &nbsp;
             <span className="text-sm text-white">
-              {moment(current.timeCreated).fromNow(true)}
+              {moment(current.time_created).fromNow(true)}
             </span>
           </p>
-          <p className="text-white text-sm">Mod(Remix) </p>
+          <p className="text-white text-sm">Mod(Remix)</p>
         </div>
         <div className="">
-          <ul className="w-full flex relative">
-            <li className=" py-2 px-2 cursor-pointer">
+          <div className="w-full flex relative">
+            <div className=" py-2 px-2 cursor-pointer">
               <i
                 aria-hidden
                 onClick={() => {
@@ -75,39 +90,71 @@ function HeaderStoryView(props) {
                   isPlaying ? "far fa-stop-circle" : "bx bx-play"
                 }`}
               />
-            </li>
-            <li className=" py-2 px-2 cursor-pointer">
-              <i className="fas fa-volume-up text-white text-2xl" />
-            </li>
-            <li className="py-2 px-2 cursor-pointer">
-              <i className="fas fa-ellipsis-h text-white text-2xl" />
-            </li>
-            <div
-              className="w-80 right-2 top-12 absolute bg-gray-200 border-2 dark:bg-dark-third dark:text-white font-bold border-solid 
-                        border-gray-300 dark:border-dark-second z-50 rounded-lg hidden"
-            >
-              <ul className="w-full">
-                <li
-                  className="w-full px-2.5 py-2 dark:bg-dark-third bg-gray-200 
-                            hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
-                >
-                  <div className="flex items-center">
-                    <i className="far fa-trash-alt text-2xl mr-3" />
-                    <span> Xóa ảnh</span>
-                  </div>
-                </li>
-                <li
-                  className="w-full px-2.5 py-2 dark:bg-dark-third bg-gray-200 
-                                hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
-                >
-                  <div className="flex items-center">
-                    <i className="fas fa-exclamation-triangle text-2xl mr-3" />
-                    <span> Đã xảy ra lỗi</span>
-                  </div>
-                </li>
-              </ul>
             </div>
-          </ul>
+            <div className=" py-2 px-2 cursor-pointer">
+              <i className="fas fa-volume-up text-white text-2xl" />
+            </div>
+            <Popover>
+              <PopoverTrigger>
+                <div className="py-2 px-2 cursor-pointer">
+                  <i className="fas fa-ellipsis-h text-white text-2xl" />
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="w-full">
+                  <div
+                    aria-hidden
+                    onClick={async () => {
+                      updateData("loading", true);
+                      await deleteStory(current.id, user.id);
+                      const indexCurrent = main.findIndex(
+                        (item) => item.id === current.id
+                      );
+                      const indexMain = storyList.findIndex(
+                        (item) => item[0].user.id === main[0].user.id
+                      );
+                      if (indexCurrent === -1 || indexMain === -1) return;
+
+                      if (indexCurrent === main.length - 1) {
+                        updateData("indexRun", 0);
+                        if (indexMain === storyList.length - 1) {
+                          alert("Story end.");
+                          return;
+                        } else {
+                          updateData("indexStory", indexStory + 1);
+                        }
+                      } else {
+                        updateData("indexRun", indexRun + 1);
+                      }
+                      updateData(
+                        "storyList",
+                        storyList.map((item) =>
+                          [...item].filter((child) => child.id !== current.id)
+                        )
+                      );
+                      updateData("loading", false);
+                    }}
+                    className="w-full px-2.5 py-2 dark:bg-dark-third bg-gray-200 
+                  hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
+                  >
+                    <div className="flex items-center">
+                      <i className="far fa-trash-alt text-2xl mr-3" />
+                      <span>Remove story</span>
+                    </div>
+                  </div>
+                  <div
+                    className="w-full px-2.5 py-2 dark:bg-dark-third bg-gray-200 
+                hover:bg-gray-300 dark:hover:bg-dark-second cursor-pointer"
+                  >
+                    <div className="flex items-center">
+                      <i className="fas fa-exclamation-triangle text-2xl mr-3" />
+                      <span>An error occurred.</span>
+                    </div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </div>

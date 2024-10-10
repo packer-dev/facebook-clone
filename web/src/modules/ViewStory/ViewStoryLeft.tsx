@@ -64,7 +64,7 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
               updateData("indexStory", index);
               updateData("main", story);
             }}
-            key={story?.id}
+            key={story[0].id}
             className={`w-full flex my-2 gap-3 cursor-pointer rounded-lg p-2
                 ${
                   story[0]?.id === current?.id
@@ -90,7 +90,7 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
             </div>
           </div>
         ))}
-      <hr className="p-2 my-3"></hr>
+      <hr className="p-2 my-3" />
     </>
   );
 };

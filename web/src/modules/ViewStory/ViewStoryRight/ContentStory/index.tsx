@@ -21,6 +21,7 @@ const ContentStory = () => {
       main,
       indexStory,
       storyList,
+      loading,
     },
     updateData,
   } = useContext(StoryContext);
@@ -81,7 +82,12 @@ const ContentStory = () => {
           />
         </audio>
       }
-      <div className="w-full h-full flex items-center">
+      <div className="w-full h-full flex items-center relative">
+        {loading && (
+          <div className="absolute top-0 left-0 bottom-0 right-0 bg-black/50 flex items-center justify-center">
+            <i className="bx bx-loader-circle text-2xl animate-spin text-white" />
+          </div>
+        )}
         <img
           src={current.url}
           className="w-full img-story object-cover"
@@ -123,7 +129,9 @@ const ContentStory = () => {
           <div className="mb-7 -ml-2  border-b-2 border-gray-200 border-solid">
             <i className="bx bx-chevron-left transform text-white rotate-90 mb-0 text-2xl" />
             <br></br>
-            <span className="text-white font-semibold mt-2">4 người xem</span>
+            <span className="text-white font-semibold mt-2">
+              4 people viewed
+            </span>
           </div>
           <div className="flex pl-2">
             <img

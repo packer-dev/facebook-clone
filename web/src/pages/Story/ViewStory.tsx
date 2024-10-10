@@ -50,6 +50,7 @@ const WrapperViewStory = ({
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   //
   return (

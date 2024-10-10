@@ -19,10 +19,8 @@ const NotFoundNotification = () => {
 };
 
 const PopoverNotification = () => {
-  //
   const [active, setActive] = useState(0);
   const [notifies, setNotifies] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-  //
   return (
     <div className="w-full p-2 rounded-lg">
       <div className="w-full flex items-center justify-between py-2">

@@ -4,13 +4,15 @@ import TypeCommentInput from "./TypeCommentInput";
 import { CommentDTO } from "@/interfaces/Comment";
 import { PostDTO } from "@/interfaces/Post";
 
+type ItemCommentPostMainProps = {
+  commentDetail: CommentDTO;
+  postDetail: PostDTO;
+};
+
 const ItemCommentPostMain = ({
   commentDetail,
   postDetail,
-}: {
-  commentDetail: CommentDTO;
-  postDetail: PostDTO;
-}) => {
+}: ItemCommentPostMainProps) => {
   //
   const [reply, setReply] = React.useState(false);
   //

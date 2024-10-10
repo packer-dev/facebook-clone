@@ -11,7 +11,6 @@ type ItemInviteFriendProps = {
 };
 
 const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
-  //
   const [loading, setLoading] = useState(false);
   const handleClick = async (status: number) => {
     setLoading(true);
@@ -19,7 +18,6 @@ const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
       setList([...list].filter((dt) => dt.user.id !== item.user.id));
     }
   };
-  //
   return (
     <div className="w-full flex relative p-4 bg-white rounded-lg dark:bg-dark-third my-2 items-center">
       <img

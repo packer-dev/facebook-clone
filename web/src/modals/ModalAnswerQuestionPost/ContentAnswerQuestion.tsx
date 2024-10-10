@@ -64,7 +64,7 @@ const ContentAnswerQuestion = ({
           className={`${
             value.length >= 105 ? "text-2xl" : "text-3xl"
           } w-full mt-16 flex justify-center text-white font-semibold break-all ${
-            edit ? "contentedittable" : ""
+            edit ? "content_editable" : ""
           } text-center`}
           spellCheck={false}
           contentEditable={edit}

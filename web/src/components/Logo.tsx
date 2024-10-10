@@ -3,7 +3,9 @@ import { PAGE_HOME } from "@/constants/Config";
 import logo from "@/assets/images/logo.png";
 import { Link } from "react-router-dom";
 
-const Logo = ({ size = 12 }: { size?: number }) => {
+type LogoProps = { size?: number };
+
+const Logo = ({ size = 12 }: LogoProps) => {
   return (
     <Link to={PAGE_HOME}>
       <img

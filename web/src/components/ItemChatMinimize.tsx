@@ -12,7 +12,9 @@ import {
 } from "@/reducers/userChat";
 import { User } from "@/interfaces/User";
 
-const ItemChatMinimize = ({ item }: { item: Group }) => {
+type ItemChatMinimizeProps = { item: Group };
+
+const ItemChatMinimize = ({ item }: ItemChatMinimizeProps) => {
   //
   const { minimize, zoom } = useSelector<RootState, UserChatReduxProps>(
     getUserChat

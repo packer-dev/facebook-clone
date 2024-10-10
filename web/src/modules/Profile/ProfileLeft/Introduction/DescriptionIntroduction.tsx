@@ -42,7 +42,7 @@ const DescriptionIntroduction = () => {
       <div className="w-full" style={{ display: show ? "block" : "none" }}>
         <div
           ref={refDescription}
-          className="w-full px-3 flex break-all contentedittable text-center justify-center items-center resize-none rounded-lg bg-gray-300 h-20"
+          className="w-full px-3 flex break-all content_editable text-center justify-center items-center resize-none rounded-lg bg-gray-300 h-20"
           contentEditable
           suppressContentEditableWarning
           onInput={(event) => {

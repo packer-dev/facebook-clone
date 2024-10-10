@@ -3,7 +3,6 @@ import stickers from "@/config/stickers";
 import ItemSticker from "./ItemSticker";
 
 const PopoverSticker = ({ handleClick }: { handleClick: Function }) => {
-  //
   const generalListSticker = () => {
     let list = [];
     stickers.forEach((element) => {
@@ -13,7 +12,6 @@ const PopoverSticker = ({ handleClick }: { handleClick: Function }) => {
     return list;
   };
   const [categoryItem, setCategoryItem] = useState("001");
-  //
   return (
     <>
       <ul className="w-full flex max-w-full overflow-x-auto">

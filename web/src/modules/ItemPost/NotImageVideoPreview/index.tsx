@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 const NotImageVideoPreview = () => {
   const [transport, setTransport] = useState<any>();
-
   return (
     <>
       <div

@@ -3,7 +3,9 @@ import ItemPost from ".";
 import { PostDTO } from "@/interfaces/Post";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 
-const ItemPostMemory = ({ postDetail }: { postDetail: PostDTO }) => {
+type ItemPostMemoryProps = { postDetail: PostDTO };
+
+const ItemPostMemory = ({ postDetail }: ItemPostMemoryProps) => {
   const { modalsAction, modalsDispatch } = useContext(ModalContext);
   return (
     <div className="w-full my-3 bg-white dark:bg-dark-second rounded-lg p-2">

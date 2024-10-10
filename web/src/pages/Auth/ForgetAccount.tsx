@@ -6,12 +6,10 @@ import WrapperAuthentication from "../Wrapper/WrapperAuthentication";
 import { Button } from "@/components/ui/button";
 
 const ForgetAccount = () => {
-  //
   const navigation = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  //
   return (
     <WrapperAuthentication title="Search your account">
       <div className="w-full px-5 mb-3">

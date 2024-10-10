@@ -1,9 +1,9 @@
 import * as React from "react";
 import allFeel from "@/config/feels";
 
-const Feels = ({ handle }: { handle?: (feel: any) => void }) => {
-  //
-  //
+type FeelsProps = { handle?: (feel: any) => void };
+
+const Feels = ({ handle }: FeelsProps) => {
   return (
     <div className="p-2 z-40">
       <ul

@@ -7,17 +7,6 @@ import WatchNewBest from "@/modules/Watch/WatchRight/WatchNewBest";
 import WrapperLogged from "./Wrapper/WrapperLogged";
 
 const Watch = () => {
-  //
-  const [postDetails, setPostDetails] = React.useState([]);
-  React.useEffect(() => {
-    //
-    const fetch = async () => {
-      setPostDetails([]);
-    };
-    fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  //
   return (
     <WrapperLogged>
       <div className="w-full h-screen pt-20 overflow-y-auto md:overflow-hidden flex flex-col md:flex-row">
@@ -47,8 +36,8 @@ const Watch = () => {
           <div className="xl:w-3/4 w-full md:w-11/12 mx-auto">
             <WatchNewBest images={Array(8).fill("")} />
             <div className="w-full p-5">
-              {postDetails ? (
-                postDetails.map((postDetail) => (
+              {false ? (
+                [].map((postDetail) => (
                   <ItemPost postDetail={postDetail} key={postDetail.post.id} />
                 ))
               ) : (

@@ -2,8 +2,6 @@ import * as React from "react";
 import ItemWatchChildren from "../ItemWatchChildren";
 
 const ListItemWatchLeft = ({ images }) => {
-  //
-  //
   return (
     <div className="w-full flex my-3">
       <div className="w-full h-full overflow-y-auto">

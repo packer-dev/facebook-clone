@@ -38,11 +38,13 @@ const StoryEditor = () => {
   }, [mode]);
   const refImage = useRef();
   const handleCreateStory = async () => {
+    if (loading || !refImage.current) return;
+
     if (refImage.current) {
       setLoading(true);
 
       html2canvas(refImage.current).then(async (canvas) => {
-        const image = canvas.toDataURL("image/png"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
+        const image = canvas.toDataURL("image/png");
         const formData = new FormData();
         formData.append("media", image);
         formData.append("user_id", user.id);
@@ -79,7 +81,7 @@ const StoryEditor = () => {
           </Button>
           <Button disabled={loading} onClick={handleCreateStory} type="button">
             {loading ? (
-              <i className="bx bx-shape-circle fa-spin text-main text-5xl">:</i>
+              <i className="bx bx-loader-circle fa-spin text-main">:</i>
             ) : (
               "Share story"
             )}

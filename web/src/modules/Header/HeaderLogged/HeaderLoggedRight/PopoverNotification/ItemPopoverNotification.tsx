@@ -20,7 +20,7 @@ const ItemPopoverNotification = ({ isRead }: { isRead?: boolean }) => {
       </div>
       <div className="pl-3 opacity-60 w-2/3">
         <p className="text-tiny ">
-          <span className="font-semibold text-base">Tiến Linh </span>
+          <span className="font-semibold text-base">Packer Tra</span>
           <span>reacted to your post.</span>
         </p>
         <p className="text-sm mt-1">3 days ago</p>

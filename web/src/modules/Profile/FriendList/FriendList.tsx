@@ -8,12 +8,10 @@ import { useSelector } from "react-redux";
 import { UserProfileReduxProps } from "@/reducers/userProfile";
 
 const FriendList = () => {
-  //
   const { userProfile } = useSelector<RootState, UserProfileReduxProps>(
     getUserProfile
   );
   const [friends, setFriends] = useState<FriendProfileDTO[]>([]);
-  //
   return (
     <WrapperContentChildProfile<FriendProfileDTO>
       label="Friends"

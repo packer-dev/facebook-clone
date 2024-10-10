@@ -5,9 +5,7 @@ import { User } from "@/interfaces/User";
 import PostListContainer from "@/modules/PostListContainer";
 
 const HomePostList = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
-  //
   return <PostListContainer mode="home" user={user} />;
 };
 

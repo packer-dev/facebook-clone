@@ -18,7 +18,6 @@ export type ItemChatProps = {
 };
 
 const ItemChat = ({ item }: ItemChatProps) => {
-  //
   const {
     state: { showSetting, group },
     updateData,
@@ -27,7 +26,6 @@ const ItemChat = ({ item }: ItemChatProps) => {
   const user = useSelector<RootState, User>(getUser);
   useEffect(() => {
     updateData("loading", true);
-
     if (item.onload) return;
 
     updateData("isNew", item.is_new);
@@ -72,7 +70,6 @@ const ItemChat = ({ item }: ItemChatProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useListeningMessage(group?.id);
-  //
   return (
     <WrapperItemChat onload={item.onload}>
       <audio ref={ref} muted src={sound} className="hidden" />

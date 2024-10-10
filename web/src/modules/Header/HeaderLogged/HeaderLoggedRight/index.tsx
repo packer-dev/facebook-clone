@@ -10,9 +10,15 @@ import { RootState, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { getNavbarAmountNew } from "@/apis/commonAPIs";
 
-const HeaderLoggedRight = (props) => {
-  //
-  const { hideMessage, hideImage } = props;
+type HeaderLoggedRightProps = {
+  hideMessage?: boolean;
+  hideImage?: boolean;
+};
+
+const HeaderLoggedRight = ({
+  hideMessage,
+  hideImage,
+}: HeaderLoggedRightProps) => {
   const user = useSelector<RootState, User>(getUser);
   const [toggle, setToggle] = React.useState(false);
   const [active, setActive] = useState(-1);
@@ -56,7 +62,6 @@ const HeaderLoggedRight = (props) => {
     };
     fetchData();
   }, [user]);
-  //
   return (
     <div className="w-1/2 flex sm:w-3/4 md:w-1/4">
       {!hideImage && (

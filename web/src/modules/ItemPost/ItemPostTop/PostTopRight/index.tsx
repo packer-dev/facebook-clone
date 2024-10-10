@@ -32,7 +32,6 @@ type PostTopRightProps = {
 };
 
 const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
-  //
   const userRedux = useSelector<RootState, User>(getUser);
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const { profilePosts } = useSelector<RootState, CommonDataProps>(getCommon);
@@ -64,7 +63,6 @@ const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
     modalsDispatch(modalsAction.loadingModal(false));
     modalsDispatch(modalsAction.closeModal());
   };
-  //
   return user?.id === post.user.id ? (
     <>
       {post.type === 1 ||

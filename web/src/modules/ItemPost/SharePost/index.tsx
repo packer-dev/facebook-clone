@@ -2,7 +2,9 @@ import { PostDTO } from "@/interfaces/Post";
 import React from "react";
 import ContentPost from "../ContentPost";
 
-const SharePost = ({ postDetail }: { postDetail: PostDTO }) => {
+type SharePostProps = { postDetail: PostDTO };
+
+const SharePost = ({ postDetail }: SharePostProps) => {
   return (
     <div className="px-4">
       <div className="border-t border-solid border-gray-300">

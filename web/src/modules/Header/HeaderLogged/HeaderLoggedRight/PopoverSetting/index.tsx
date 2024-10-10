@@ -7,11 +7,9 @@ import { User } from "@/interfaces/User";
 import { logout } from "@/reducers/user";
 
 const PopoverSetting = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  //
   return (
     <div className="w-full p-2 rounded-lg">
       <div

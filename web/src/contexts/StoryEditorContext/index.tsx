@@ -21,8 +21,6 @@ export const StoryEditorContext =
   AppContext<StoryEditorContextProps>(initialState);
 
 export const StoryEditorProvider = ({ children }: { children?: ReactNode }) => {
-  //
-  //
   return (
     <AppProvider<StoryEditorContextProps>
       initialState={initialState}

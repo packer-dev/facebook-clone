@@ -25,7 +25,6 @@ const ItemWatchChildren = ({
   right = false,
   index,
 }: ItemWatchChildrenProps) => {
-  //
   const imageExist =
     image === "icon" ? (
       <CircleIcon className="text-white w-10 h-10 bg-blue-400 text-xl fas fa-play" />
@@ -36,7 +35,6 @@ const ItemWatchChildren = ({
         className="w-11 h-11 rounded-full object-cover"
       />
     );
-  //
   return (
     <div
       aria-hidden

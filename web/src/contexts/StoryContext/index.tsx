@@ -1,16 +1,17 @@
 import React, { ReactNode } from "react";
 import { AppContext, AppProvider } from "../AppContext";
-import stories from "@/config/stories";
+import { Story } from "@/interfaces/Story";
 
 type StoryContextProps = {
-  current: any;
+  current: Story;
   isPlaying: boolean;
   indexStory: number;
   timeCurrent: number;
-  main: any;
+  main: Story[];
   indexRun: number;
   show: boolean;
-  storyList: any[];
+  storyList: Story[][];
+  loading: boolean;
 };
 
 const initialState: StoryContextProps = {
@@ -21,7 +22,8 @@ const initialState: StoryContextProps = {
   main: null,
   indexRun: 0,
   show: false,
-  storyList: stories,
+  storyList: [],
+  loading: false,
 };
 
 export const StoryContext = AppContext<StoryContextProps>(initialState);

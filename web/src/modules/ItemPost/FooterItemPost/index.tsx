@@ -28,7 +28,6 @@ type FooterItemPostProps = {
 };
 
 const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
-  //
   const { pageCurrent, homePosts, profilePosts } = useSelector<
     RootState,
     CommonDataProps
@@ -82,7 +81,6 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
       })
     );
   };
-  //
   return (
     <>
       <div className="w-full flex text-sm text-gray-700 dark:text-gray-300 justify-between items-center my-1.5">

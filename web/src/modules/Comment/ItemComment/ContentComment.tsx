@@ -2,8 +2,10 @@ import ItemSticker from "@/popovers/PopoverSticker/ItemSticker";
 import { CommentDTO } from "@/interfaces/Comment";
 import * as React from "react";
 
+type ContentCommentProps = { commentPost: CommentDTO };
+
 const ContentComment = (
-  { commentPost }: { commentPost: CommentDTO },
+  { commentPost }: ContentCommentProps,
   ref: React.RefObject<HTMLImageElement>
 ) => {
   switch (commentPost.item.content.type) {

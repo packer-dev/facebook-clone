@@ -16,10 +16,8 @@ const Component = ({ children }: { children: React.ReactNode }) => {
 };
 
 const NotFound = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const navigation = useNavigate();
-
   return (
     <Component>
       <div className="w-full h-screen flex justify-center items-center">

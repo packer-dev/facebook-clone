@@ -5,7 +5,7 @@ type InfoStoryProps = { setShow?: Function };
 
 const InfoStory = ({ setShow }: InfoStoryProps) => {
   const {
-    state: { main },
+    state: { main, current },
     updateData,
   } = useContext(StoryContext);
   return (
@@ -36,7 +36,7 @@ const InfoStory = ({ setShow }: InfoStoryProps) => {
           >
             <img
               className={`${
-                item.id === main.id ? "w-full h-full" : "w-5/6 h-5/6"
+                item.id === current.id ? "w-full h-full" : "w-5/6 h-5/6"
               } object-cover`}
               alt=""
               src={item.url}

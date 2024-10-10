@@ -11,13 +11,11 @@ type VerifyCodeAccountProps = {
 };
 
 const VerifyCodeAccount = ({ verifyAccountNew }: VerifyCodeAccountProps) => {
-  //
   const [code, setCode] = React.useState("");
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const { token } = useAuthentication();
   const navigate = useNavigate();
-  //
   return (
     <WrapperAuthentication
       title={verifyAccountNew ? "Account Verification" : "Reset Your Password"}
