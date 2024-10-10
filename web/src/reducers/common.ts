@@ -1,6 +1,7 @@
 import { PostDTO } from "@/interfaces/Post";
 import { FriendProfileDTO, User } from "@/interfaces/User";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Notification } from "@/interfaces/Notification";
 
 export type CommonDataProps = {
   friends: User[];
@@ -8,6 +9,7 @@ export type CommonDataProps = {
   homePosts: PostDTO[];
   profilePosts: PostDTO[];
   pageCurrent?: string;
+  notifications: Notification[];
 };
 
 const initialState: CommonDataProps = {
@@ -16,6 +18,7 @@ const initialState: CommonDataProps = {
   homePosts: [],
   profilePosts: [],
   pageCurrent: "",
+  notifications: [],
 };
 
 const commonSlice = createSlice({

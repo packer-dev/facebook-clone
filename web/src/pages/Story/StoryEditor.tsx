@@ -16,24 +16,17 @@ import { storyModel } from "@/models";
 import { createStory } from "@/apis/storyAPI";
 
 const StoryEditor = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
   const {
-    state: { data, mode },
+    state: { data, mode, audio },
     updateData,
   } = useContext(StoryEditorContext);
   useEffect(() => {
-    //
-    if (mode === 1) {
-      if (!data) {
-        navigation(PAGE_CREATE_STORY);
-      }
-    } else {
-      updateData("data", backgroundStory[0]);
-    }
     updateData("mode", mode);
+    if (mode === 1 && !data) navigation(PAGE_CREATE_STORY);
+    updateData("data", backgroundStory[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
   const refImage = useRef();
@@ -48,13 +41,17 @@ const StoryEditor = () => {
         const formData = new FormData();
         formData.append("media", image);
         formData.append("user_id", user.id);
-        formData.append("story", JSON.stringify(storyModel({ user })));
+        formData.append(
+          "story",
+          JSON.stringify(
+            storyModel({ user, music: audio ? JSON.stringify(audio) : "" })
+          )
+        );
         await createStory(formData);
         navigation(PAGE_HOME);
       });
     }
   };
-  //
   return (
     <form
       action=""

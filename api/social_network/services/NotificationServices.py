@@ -27,26 +27,23 @@ async def mark_read_notification(user_id: str):
     return True
 
 
-async def add_notification(notification: Notification, type: int):
+async def add_notification(notification: Notification):
     ref = db.reference("social-network")
     notifications = new_value(
         ref.child("notifications").child(notification.user.id).get(), []
     )
 
-    if type == 1:
-        index = -1
-        for pos, item in enumerate(notifications):
-            if item["main_id"] == notification.main_id:
-                index = pos
-                break
-        if index != -1:
-            notification = notifications[index]
-            notification["last_update_time"] = str(datetime.now())
+    check = [item for item in notifications if item["main_id"] == notification.main_id]
+    check = check[0] if len(check) > 0 else None
+
+    if check:
+        notification.id = check["id"]
     else:
         notification.id = str(uuid.uuid4())
-        notification.time_created = str(datetime.now())
-        notification.last_update_time = str(datetime.now())
-        notifications = [notification.model_dump()] + notifications
+
+    notification.time_created = str(datetime.now())
+    notification.last_time_update = str(datetime.now())
+    notifications = [notification.model_dump()] + notifications
     ref.child("notifications").child(notification.user.id).set(notifications)
 
     return notification

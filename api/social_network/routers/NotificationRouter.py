@@ -9,18 +9,18 @@ from social_network.auth.JWTServices import get_user_from_token
 
 router = APIRouter(
     prefix="/api/social-network/v1/notification",
-    dependencies=[Depends(get_user_from_token)],
+    # dependencies=[Depends(get_user_from_token)],
 )
 
 
-@router.get("/user")
+@router.get("")
 async def get_notification_by_user_api(user_id: str):
     return await get_notification_by_user(user_id)
 
 
 @router.post("")
-async def add_notification_api(notification: Notification, type: int):
-    return await add_notification(notification, type)
+async def add_notification_api(notification: Notification):
+    return await add_notification(notification)
 
 
 @router.get("/mark")

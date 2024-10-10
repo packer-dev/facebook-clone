@@ -3,12 +3,10 @@ import foregroundStory from "@/config/foregroundStory";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 
 const ColorTextList = () => {
-  //
   const {
     state: { color },
     updateData,
   } = useContext(StoryEditorContext);
-  //
   return (
     <div className="w-full">
       <div

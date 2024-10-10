@@ -4,6 +4,7 @@ import { Group } from "./interfaces/Group";
 import { Media } from "./interfaces/Media";
 import { Member } from "./interfaces/Member";
 import { Message } from "./interfaces/Message";
+import { Notification } from "./interfaces/Notification";
 import { Post } from "./interfaces/Post";
 import { Story } from "./interfaces/Story";
 import { User } from "./interfaces/User";
@@ -123,4 +124,15 @@ export const storyModel = (story?: Story) => ({
   url: story?.url || "",
   user: story?.user || null,
   time_created: story?.time_created || "",
+});
+
+export const notificationModel = (notification?: Notification) => ({
+  id: notification?.id || "",
+  content: notification?.content || "",
+  is_read: notification?.is_read || "",
+  time_created: notification?.time_created || "",
+  last_time_update: notification?.last_time_update || "",
+  type: notification?.type || 1,
+  user: userModel(notification.user) || null,
+  main_id: notification?.main_id || "",
 });

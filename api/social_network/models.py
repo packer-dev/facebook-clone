@@ -195,11 +195,12 @@ class RelationshipPayload(BaseModel):
 class Notification(BaseModel):
     id: str
     type: int  # 1 love #2 comment #3 reply comment
-    main_id: str
+    content: str
     user: User
     time_created: str
     is_read: bool
     last_time_update: str
+    main_id: str
 
 
 class Story(BaseModel):

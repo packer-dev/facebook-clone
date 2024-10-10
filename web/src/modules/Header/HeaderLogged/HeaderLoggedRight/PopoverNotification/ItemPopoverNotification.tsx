@@ -1,6 +1,15 @@
+import { Notification } from "@/interfaces/Notification";
 import * as React from "react";
 
-const ItemPopoverNotification = ({ isRead }: { isRead?: boolean }) => {
+type ItemPopoverNotificationProps = {
+  isRead?: boolean;
+  notification: Notification;
+};
+
+const ItemPopoverNotification = ({
+  isRead,
+  notification,
+}: ItemPopoverNotificationProps) => {
   return (
     <div
       className="my-1 w-full px-1 py-1.5 cursor-pointer flex rounded-sm hover:bg-gray-100 
@@ -8,7 +17,7 @@ const ItemPopoverNotification = ({ isRead }: { isRead?: boolean }) => {
     >
       <div className="w-16 h-16 relative mt-0.5">
         <img
-          src="https://res.cloudinary.com/tratahuong01/image/upload/v1621772815/Avatar/nuwie9ee0luvlnu8wvqe.jpg"
+          src={notification.user.avatar}
           alt=""
           className="w-full h-full rounded-full shadow-lv1 object-cover"
         />
