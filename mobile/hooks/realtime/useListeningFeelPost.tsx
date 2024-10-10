@@ -1,7 +1,7 @@
 import { AppContext } from "@/contexts";
 import { useContext, useEffect } from "react";
 
-const useFeelPost = (postId: string) => {
+const useListeningFeelPost = (postId: string) => {
   const {
     state: { socket, user, list_post },
     updateData,
@@ -25,4 +25,4 @@ const useFeelPost = (postId: string) => {
   }, []);
 };
 
-export default useFeelPost;
+export default useListeningFeelPost;
