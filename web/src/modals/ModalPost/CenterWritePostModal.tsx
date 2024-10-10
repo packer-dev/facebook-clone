@@ -163,7 +163,7 @@ const CenterWritePostModal = () => {
               }
             >
               <PopoverEmoji
-                handleClick={(item: any) => {
+                handleClick={(item) => {
                   postsDispatch(
                     postsAction.updateData(
                       "content",

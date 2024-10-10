@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import favorites from "@/config/favorites";
+import favorites, { FavoriteProps } from "@/config/favorites";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import Input from "@/components/Input";
 import { User } from "@/interfaces/User";
@@ -13,12 +13,18 @@ type ModalFavoriteProps = {
   userProfile: User;
 };
 
+export type FavoriteContentProps = {
+  choose: FavoriteProps[];
+  list: FavoriteProps[];
+  search: string;
+};
+
 const ModalFavorite = ({
   updateUserProfile,
   userProfile,
 }: ModalFavoriteProps) => {
   //
-  const [content, setContent] = useState({
+  const [content, setContent] = useState<FavoriteContentProps>({
     choose: JSON.parse(userProfile?.favorites || "[]"),
     list: favorites,
     search: "",

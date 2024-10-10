@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const CallAgain = ({ match }: any) => {
+const CallAgain = ({ match }) => {
   return (
     <div
       className="p-2 flex justify-center absolute bottom-6 transform 

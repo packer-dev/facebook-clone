@@ -10,8 +10,8 @@ import { User } from "@/interfaces/User";
 export type ContentMessageProps = {
   item: Message;
   groupMessage?: Group;
-  margin?: any;
-  left?: any;
+  margin?: string;
+  left?: boolean;
 };
 
 export default forwardRef(function ContentMessage(

@@ -20,20 +20,27 @@ import { Member } from "@/interfaces/Member";
 import { CallProps, updateDataCall } from "@/reducers/call";
 import { Socket } from "socket.io-client";
 
-const ItemHeaderContentMessageTop = (props: any) => {
-  //
-  const { handleClick } = props;
-  //
+type ItemHeaderContentMessageTopProps = {
+  handleClick?: Function;
+  mini?: boolean;
+  children?: React.ReactNode;
+};
+
+const ItemHeaderContentMessageTop = ({
+  handleClick,
+  children,
+  mini,
+}: ItemHeaderContentMessageTopProps) => {
   return (
     <li
       aria-hidden
       onClick={() => handleClick?.()}
       className={`${
-        props.mini ? "w-8 h-8" : "w-9 h-9"
+        mini ? "w-8 h-8" : "w-9 h-9"
       } flex justify-center hover:bg-gray-200 dark:hover:bg-dark-third 
         items-center rounded-full cursor-pointer`}
     >
-      {props.children}
+      {children}
     </li>
   );
 };
@@ -216,9 +223,9 @@ const ContentMessageTop = () => {
                     mini={mini}
                     handleClick={() => {
                       if (zoom.length === 2) {
-                        const arrayFirst: any = [...zoom].filter(
-                          (data) => data.id !== idItemChat
-                        );
+                        const arrayFirst = [...zoom]
+                          .filter((data) => data.id !== idItemChat)
+                          .map((item) => item.group);
                         const arraySecond =
                           minimize.length > 0
                             ? [minimize[minimize.length - 1]]

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
+import { ActivityProps } from "@/config/feelActivityList";
 
 type ItemActivityPostProps = {
-  item: any;
-  setActivity: (activity: any) => void;
+  item: ActivityProps;
+  setActivity: (activity: ActivityProps) => void;
 };
 
 const ItemActivityPost = ({ item, setActivity }: ItemActivityPostProps) => {
@@ -24,8 +25,8 @@ const ItemActivityPost = ({ item, setActivity }: ItemActivityPostProps) => {
 };
 
 type ItemActivityChildPostProps = {
-  item: any;
-  activity: any;
+  item: ActivityProps;
+  activity: ActivityProps;
 };
 
 const ItemActivityChildPost = ({
@@ -62,9 +63,9 @@ const ItemActivityChildPost = ({
 };
 
 type ActivityPostProps = {
-  activities: any[];
-  activity: any;
-  setActivity: (activity: any) => void;
+  activities: ActivityProps[];
+  activity: ActivityProps;
+  setActivity: (activity: ActivityProps) => void;
 };
 
 const ActivityPost = ({

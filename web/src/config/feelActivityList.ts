@@ -1,4 +1,11 @@
-const feelList = [
+export type FeelProps = {
+  id: string;
+  data: string;
+  label: string;
+  list?: FeelProps[];
+};
+
+const feelList: FeelProps[] = [
   {
     id: "0",
     data: "😀",
@@ -31,7 +38,14 @@ const feelList = [
   },
 ];
 
-const activityList = [
+export type ActivityProps = {
+  id: string;
+  data: string;
+  label: string;
+  list?: ActivityProps[];
+};
+
+const activityList: ActivityProps[] = [
   {
     id: "0",
     data: "🎉",

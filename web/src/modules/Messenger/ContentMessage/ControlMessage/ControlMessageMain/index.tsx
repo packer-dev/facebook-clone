@@ -1,3 +1,4 @@
+import { StickerProps } from "@/config/stickers";
 import { ItemChatContext } from "@/contexts/ItemChatContext";
 import PopoverSticker from "@/popovers/PopoverSticker";
 import PopoversWrapper from "@/popovers/PopoversWrapper";
@@ -98,7 +99,9 @@ const ControlMessageMain = ({ handleSend }: { handleSend: Function }) => {
             </div>
           }
         >
-          <PopoverSticker handleClick={(item: any) => handleSend(item, 2)} />
+          <PopoverSticker
+            handleClick={(item: StickerProps) => handleSend(item, 2)}
+          />
         </PopoversWrapper>
 
         <div className="float-left cursor-pointer p-1 fill-65676B hover:bg-gray-200 rounded-full  dark:hover:bg-dark-third">

@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import emoji from "@/config/emoji";
 
-const PopoverEmoji = ({ handleClick }: { handleClick: Function }) => {
+type PopoverEmojiProps = {
+  handleClick: (item: string) => void;
+};
+
+const PopoverEmoji = ({ handleClick }: PopoverEmojiProps) => {
   const listCategoryFun = () => {
     let listCategory = [];
     emoji.forEach((element) => {

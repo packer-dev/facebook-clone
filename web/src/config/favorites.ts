@@ -1,4 +1,10 @@
-const favorites = [
+export type FavoriteProps = {
+  id: string;
+  icon: string;
+  name: string;
+};
+
+const favorites: FavoriteProps[] = [
   {
     id: "0",
     icon: "💻",

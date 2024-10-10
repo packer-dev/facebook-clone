@@ -1,4 +1,5 @@
 import { Notification } from "@/interfaces/Notification";
+import moment from "moment";
 import * as React from "react";
 
 type ItemPopoverNotificationProps = {
@@ -17,22 +18,30 @@ const ItemPopoverNotification = ({
     >
       <div className="w-16 h-16 relative mt-0.5">
         <img
-          src={notification.user.avatar}
+          src={notification.sender.avatar}
           alt=""
           className="w-full h-full rounded-full shadow-lv1 object-cover"
         />
         <img
-          src="https://res.cloudinary.com/ensonet-dev/image/upload/v1639997973/Reactions/haha_b2vqtv.png"
+          src={
+            notification.type === 1
+              ? JSON.parse(notification.content)?.icon
+              : "https://res.cloudinary.com/ensonet-dev/image/upload/v1639997973/Reactions/haha_b2vqtv.png"
+          }
           alt=""
           className="w-6 h-6 shadow-lv1 rounded-full absolute -bottom-0.5 -right-0.5 object-cover"
         />
       </div>
       <div className="pl-3 opacity-60 w-2/3">
         <p className="text-tiny ">
-          <span className="font-semibold text-base">Packer Tra</span>
-          <span>reacted to your post.</span>
+          <span className="font-semibold text-base">
+            {notification.sender.name}
+          </span>
+          <span>{JSON.parse(notification.content)?.content}</span>
         </p>
-        <p className="text-sm mt-1">3 days ago</p>
+        <p className="text-sm mt-1">
+          {moment(notification.time_created).fromNow()}
+        </p>
       </div>
       {!isRead && (
         <span className="w-3.5 h-3.5 rounded-full bg-main absolute top-1/2 transform -translate-y-1/2 right-3.5" />

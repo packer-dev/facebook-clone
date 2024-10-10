@@ -173,7 +173,7 @@ const ControlMessage = () => {
               }
             >
               <PopoverEmoji
-                handleClick={(item: any) => {
+                handleClick={(item) => {
                   refContent.current.innerText += item;
                 }}
               />

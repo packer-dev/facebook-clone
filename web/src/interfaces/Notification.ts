@@ -9,6 +9,7 @@ export interface Notification {
   is_read?: boolean;
   last_time_update?: string;
   main_id?: string;
+  sender?: User;
 }
 
 export const emulator = (type: number) => {

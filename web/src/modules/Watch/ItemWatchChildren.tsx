@@ -4,12 +4,12 @@ import CircleIcon from "@/components/CircleIcon";
 
 export type ItemWatchChildrenProps = {
   image?: string | boolean;
-  data?: any;
+  data?: string;
   multiline?: string;
   name?: string;
   handleClick?: Function;
-  active?: any;
-  position?: any;
+  active?: boolean;
+  position?: number;
   right?: boolean;
   index?: number;
 };

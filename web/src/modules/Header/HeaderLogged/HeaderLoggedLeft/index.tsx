@@ -48,7 +48,7 @@ const HeaderLoggedLeft = () => {
                 flex items-center justify-center cursor-pointer"
               >
                 <Input
-                  handleChange={(data: any) => {
+                  handleChange={(data) => {
                     setLoading(true);
                     setKeyword(data);
                   }}

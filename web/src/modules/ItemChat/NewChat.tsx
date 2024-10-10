@@ -1,5 +1,6 @@
 import React, {
   forwardRef,
+  RefObject,
   useContext,
   useEffect,
   useRef,
@@ -16,7 +17,7 @@ import { CommonDataProps } from "@/reducers/common";
 type ItemNewChatProps = { item: User; setText: Function };
 
 const ItemNewChat = forwardRef(
-  ({ item, setText }: ItemNewChatProps, ref: any) => {
+  ({ item, setText }: ItemNewChatProps, ref: RefObject<HTMLDivElement>) => {
     const {
       state: { choose },
       updateData,

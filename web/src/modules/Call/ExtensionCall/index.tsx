@@ -6,7 +6,7 @@ import { CallProps, updateDataCall } from "@/reducers/call";
 import { useNavigate } from "react-router-dom";
 import { PAGE_HOME } from "@/constants/Config";
 
-const ExtensionCall = (props: any, ref: React.RefObject<HTMLVideoElement>) => {
+const ExtensionCall = () => {
   //
   const { showAudio, showVideo, localStream } = useSelector<
     RootState,

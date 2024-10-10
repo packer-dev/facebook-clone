@@ -1,6 +1,14 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, ReactNode, RefObject } from "react";
 
-const PopoverHeaderRightWrapper = (props: any, ref: any) => {
+type PopoverHeaderRightWrapperProps = {
+  active?: number;
+  children?: ReactNode;
+};
+
+const PopoverHeaderRightWrapper = (
+  props: PopoverHeaderRightWrapperProps,
+  ref: RefObject<HTMLDivElement>
+) => {
   return (
     <div
       ref={ref}

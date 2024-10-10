@@ -9,7 +9,7 @@ export type NormalPostProps = {
 };
 
 const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
-  const content: any = post.background ? (
+  const content: JSX.Element = post.background ? (
     <div
       className="w-full relative h-80 bg-cover rounded-lg"
       style={{
@@ -43,7 +43,10 @@ const NormalPost = ({ imageVideoPostList, post }: NormalPostProps) => {
                 alt=""
                 className="w-full h-full rounded-full object-cover shadow-lv1 mx-auto shadow-lg"
               />
-              <span className="py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rouned-full bg-red-600 text-white font-semibold">
+              <span
+                className="py-1.5 px-4 text-sm absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 rounded-full
+               bg-red-600 text-white font-semibold"
+              >
                 A&Q
               </span>
             </div>

@@ -1,9 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "@/contexts/ModalContext/ModalContext";
 import { useDispatch } from "react-redux";
+import { User } from "@/interfaces/User";
 
-const ItemAccount = (props: any) => {
-  const { list, setList, item } = props;
+type ItemAccountProps = {
+  list: User[];
+  setList: (list: User[]) => void;
+  item: User;
+};
+
+const ItemAccount = ({ list, setList, item }: ItemAccountProps) => {
   const { modalsDispatch, modalsAction } = useContext(ModalContext);
   const [rememberAccount, setRememberAccount] = useState(false);
   const dispatch = useDispatch();
@@ -52,10 +58,10 @@ const ItemAccount = (props: any) => {
             });
           }
         }
-        modalsDispatch(modalsAction.openModalLogin(item));
+        modalsDispatch(modalsAction.openModalLogin(!!item));
       }
     } else {
-      modalsDispatch(modalsAction.openModalLogin(item));
+      modalsDispatch(modalsAction.openModalLogin(!!item));
     }
     setLoading(false);
   };
@@ -75,7 +81,7 @@ const ItemAccount = (props: any) => {
         onClick={handleLogin}
         className="font-semibold my-3 text-center text-xm"
       >
-        {`${item.firstName} ${item.lastName}`}
+        {`${item.name}`}
       </p>
       <span
         aria-hidden

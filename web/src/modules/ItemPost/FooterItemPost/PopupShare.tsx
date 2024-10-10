@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const PopupShare = React.forwardRef((props: any, ref: any) => {
+const PopupShare = () => {
   const categories = [
     {
       icon: "bx bx-share",
@@ -35,7 +35,6 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
   ];
   return (
     <div
-      ref={ref}
       className="hidden bg-white my-4 bottom-full absolute w-80 p-1 animate__animated animate__fadeIn
         rounded-lg dark:bg-dark-second z-50 shadow-lv1"
     >
@@ -53,6 +52,6 @@ const PopupShare = React.forwardRef((props: any, ref: any) => {
       </ul>
     </div>
   );
-});
+};
 
 export default PopupShare;

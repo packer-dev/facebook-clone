@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { PostContext } from "@/contexts/PostContext/PostContext";
+import { FeelProps } from "@/config/feelActivityList";
 
 type ItemFeelPostProps = {
-  item: any;
+  item: FeelProps;
 };
 
 const ItemFeelPost = ({ item }: ItemFeelPostProps) => {
@@ -31,7 +32,7 @@ const ItemFeelPost = ({ item }: ItemFeelPostProps) => {
 };
 
 type FeelPostProps = {
-  feels: any[];
+  feels: FeelProps[];
 };
 
 const FeelPost = ({ feels }: FeelPostProps) => {

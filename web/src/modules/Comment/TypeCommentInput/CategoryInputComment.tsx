@@ -23,7 +23,10 @@ const CategoryInputComment = (
   } = useContext(ItemPostContext);
   const { handleSendComment } = props;
   const id = v4();
-  const handleClick = (type: any, event: any) => {
+  const handleClick = (
+    type: number,
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     const current = event.target;
     if (!current) {
       return;
@@ -47,7 +50,7 @@ const CategoryInputComment = (
             }
           >
             <PopoverEmoji
-              handleClick={(item: string) => {
+              handleClick={(item) => {
                 updateData("dataComment", {
                   ...dataComment,
                   text: dataComment.text + item,
@@ -123,9 +126,7 @@ const CategoryInputComment = (
             }
           >
             <PopoverSticker
-              handleClick={(item: any) =>
-                handleSendComment(JSON.stringify(item), 2)
-              }
+              handleClick={(item) => handleSendComment(JSON.stringify(item), 2)}
             />
           </PopoversWrapper>
         </div>

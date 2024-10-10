@@ -1,8 +1,18 @@
-import React, { forwardRef } from "react";
+import { FavoriteProps } from "@/config/favorites";
+import React, { forwardRef, RefObject } from "react";
+import { FavoriteContentProps } from ".";
+
+type ItemFavoriteProps = {
+  choose?: boolean;
+  item: FavoriteProps;
+  setContent?: (value: FavoriteContentProps) => void;
+  content?: FavoriteContentProps;
+  disabled?: boolean;
+};
 
 export default forwardRef(function ItemFavorite(
-  { choose, item, setContent, content, disabled }: any,
-  ref: any
+  { choose, item, setContent, content, disabled }: ItemFavoriteProps,
+  ref: RefObject<HTMLTextAreaElement>
 ) {
   return (
     <div

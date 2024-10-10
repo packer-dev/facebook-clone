@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import SettingMessageChild from "./SettingMessageChild";
 import { useSelector } from "react-redux";
 import { RootState, getUser } from "@/reducers";
@@ -8,10 +8,15 @@ import { ItemChatContext } from "@/contexts/ItemChatContext";
 import { nameGroup } from "@/utils";
 import { User } from "@/interfaces/User";
 
-const WrapperItemSetting = (props: any) => {
-  //
+type ItemSettingProps = {
+  children?: ReactNode;
+  show?: boolean;
+  name?: string;
+  component?: Function;
+};
+
+const WrapperItemSetting = (props: ItemSettingProps) => {
   const [show, setShow] = useState(!!props.children);
-  //
   return (
     <>
       <li
@@ -28,7 +33,7 @@ const WrapperItemSetting = (props: any) => {
   );
 };
 
-const ItemSetting = (props: any) => {
+const ItemSetting = (props: ItemSettingProps) => {
   return (
     <>
       {props.name}
@@ -42,13 +47,11 @@ const ItemSetting = (props: any) => {
 };
 
 const SettingMessage = () => {
-  //
   const user = useSelector<RootState, User>(getUser);
   const {
     state: { group },
   } = useContext(ItemChatContext);
   const member = group?.members.find((item) => item.user.id !== user.id);
-  //
   return (
     <div className="w-1/3 hidden xl:block pr-2 wrapper-content-right shadow-xl h-full overflow-y-auto">
       <div className="w-full mt-2">
@@ -79,14 +82,11 @@ const SettingMessage = () => {
         </p>
       </div>
       <ul className="w-full py-2">
-        <WrapperItemSetting component={ItemSetting} name={`Custom chat`}>
+        <WrapperItemSetting component={ItemSetting} name="Custom chat">
           <SettingMessageChild group={group} />
         </WrapperItemSetting>
-        <WrapperItemSetting component={ItemSetting} name={`Shared file`} />
-        <WrapperItemSetting
-          component={ItemSetting}
-          name={`Shared media file`}
-        />
+        <WrapperItemSetting component={ItemSetting} name="Shared file" />
+        <WrapperItemSetting component={ItemSetting} name="Shared media file" />
       </ul>
     </div>
   );

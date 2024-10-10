@@ -20,7 +20,7 @@ type EditOrDeleteCommentProps = {
 
 const EditOrDeleteComment = (
   { commentPost, postId, parent }: EditOrDeleteCommentProps,
-  ref: any
+  ref: React.RefObject<HTMLDivElement>
 ) => {
   //
   const user = useSelector<RootState, User>(getUser);

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import stickers from "@/config/stickers";
+import stickers, { StickerProps } from "@/config/stickers";
 import ItemSticker from "./ItemSticker";
 
-const PopoverSticker = ({ handleClick }: { handleClick: Function }) => {
+type PopoverStickerProps = {
+  handleClick: (sticker: StickerProps) => void;
+};
+
+const PopoverSticker = ({ handleClick }: PopoverStickerProps) => {
   const generalListSticker = () => {
     let list = [];
     stickers.forEach((element) => {
