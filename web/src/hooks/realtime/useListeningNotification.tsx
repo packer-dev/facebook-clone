@@ -20,6 +20,8 @@ const useListeningNotification = () => {
     if (!data) return;
 
     data = JSON.parse(data);
+    if (data?.notification?.sender?.id === user.id) return;
+
     dispatch(
       updateDataCommon({
         key: "notifications",

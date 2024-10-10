@@ -9,7 +9,7 @@ import { ItemPostContext, ItemPostProvider } from "@/contexts/ItemPostContext";
 import ItemCommentPostMain from "../Comment/ItemCommentPostMain";
 import { getCommentByPost } from "@/apis/commentAPIs";
 import useListeningComment from "@/hooks/realtime/useListeningComment";
-import useFeelPost from "@/hooks/realtime/useFeelPost";
+import useListeningFeelPost from "@/hooks/realtime/useListeningFeelPost";
 import SharePost from "./SharePost";
 
 type ItemPostProps = {
@@ -59,7 +59,7 @@ const ItemPost = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postDetailProps]);
   useListeningComment(postDetail?.post?.id);
-  useFeelPost(postDetail?.post?.id);
+  useListeningFeelPost(postDetail?.post?.id);
   return postDetail ? (
     <div
       className={`w-full bg-white dark:bg-dark-second dark:border-dark-third border-2 border-solid shadow-lv1 ${

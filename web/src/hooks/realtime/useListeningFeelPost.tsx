@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Socket } from "socket.io-client";
 
-const useFeelPost = (postId: string) => {
+const useListeningFeelPost = (postId: string) => {
   const user = useSelector<RootState, User>(getUser);
   const socket = useSelector<RootState, Socket>(getSocket);
   const location = useLocation();
@@ -44,4 +44,4 @@ const useFeelPost = (postId: string) => {
   }, []);
 };
 
-export default useFeelPost;
+export default useListeningFeelPost;
