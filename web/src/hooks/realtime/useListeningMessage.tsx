@@ -14,8 +14,10 @@ const useListeningMessage = (groupId: string) => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const audio = new Audio(audio_notice);
 
-  const listenChat = (data: any) => {
-    data = JSON.parse(data);
+  const listenChat = (data_: string) => {
+    if (!data_) return;
+
+    let data = JSON.parse(data_);
     if (user?.id === data?.message?.user?.id && data.type === "message") return;
     audio.play();
     updateData("messages", [...messages, data?.message]);

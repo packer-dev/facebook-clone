@@ -20,8 +20,10 @@ const useListenCall = () => {
   );
   const { modalsAction, modalsDispatch } = useContext(ModalContext);
   const dispatch = useDispatch<AppDispatch>();
-  const listenCall = (data: any) => {
-    data = JSON.parse(data);
+  const listenCall = (data_: string) => {
+    if (!data_) return;
+
+    let data = JSON.parse(data_);
     const accept = async () => {
       if (!navigator?.mediaDevices) return;
       dispatch(

@@ -11,6 +11,6 @@ export interface Group {
   time_created?: string;
   last_time_update?: string;
   image?: string;
-  seen?: any;
+  seen?: Object;
   multiple?: boolean;
 }

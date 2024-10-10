@@ -1,9 +1,9 @@
 import * as React from "react";
 
 type ItemColorProps = {
-  item: any;
-  color: any;
-  setColor: (color: any) => void;
+  item: string;
+  color: string;
+  setColor: (color: string) => void;
 };
 
 const ItemColor = ({ item, color, setColor }: ItemColorProps) => {

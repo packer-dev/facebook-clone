@@ -16,10 +16,10 @@ const useListeningNotification = () => {
   const socket = useSelector<RootState, Socket>(getSocket);
   const user = useSelector<RootState, User>(getUser);
   const dispatch = useDispatch<AppDispatch>();
-  const listenChat = (data: any) => {
-    if (!data) return;
+  const listenChat = (data_: string) => {
+    if (!data_) return;
 
-    data = JSON.parse(data);
+    let data = JSON.parse(data_);
     if (data?.notification?.sender?.id === user.id) return;
 
     dispatch(
