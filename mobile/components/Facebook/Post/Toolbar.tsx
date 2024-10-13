@@ -36,7 +36,7 @@ const Toolbar = ({ post, medias, feel, handleFeel, loading }: ToolbarProps) => {
   const handleLike = async () => {
     if (!user) return;
 
-    const result = await sendFeelPost(post?.id ?? "", user?.id);
+    const result = await sendFeelPost(post?.id ?? "", user?.id, 1);
     updateData(
       "list_post",
       [...list_post].map((item) => {

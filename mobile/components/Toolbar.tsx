@@ -99,7 +99,7 @@ const Toolbar = ({ friend, keyboardHeight }: ToolbarProps) => {
   };
   //
   return (
-    <View style={tailwind(`absolute bottom-0 left-0 pb-3 bg-white w-full`)}>
+    <View style={tailwind(`bg-white w-full`)}>
       <View style={{ ...tailwind(`flex-row gap-4 p-2 items-center`), width }}>
         {showKeyboard && (
           <TouchableOpacity onPress={() => updateData("showKeyboard", false)}>

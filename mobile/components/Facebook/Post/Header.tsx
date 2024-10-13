@@ -71,9 +71,9 @@ const Header = ({
   };
   const descriptionSmall = () => {
     switch (post?.type) {
-      case 3:
-        return " updated his profile picture.";
       case 2:
+        return " updated his profile picture.";
+      case 3:
         return " updated his cover photo.";
       default:
         return "";

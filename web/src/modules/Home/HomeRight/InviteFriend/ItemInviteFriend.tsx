@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AVATAR_DEFAULT, PAGE_PROFILE } from "@/constants/Config";
-import { FriendProfileDTO } from "@/interfaces/User";
+import { FriendProfileDTO, User } from "@/interfaces/User";
 import { Button } from "@/components/ui/button";
+import { sendRelationship } from "@/apis/userAPIs";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, getCommon, getUser, RootState } from "@/reducers";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
 
 type ItemInviteFriendProps = {
   list: FriendProfileDTO[];
@@ -11,11 +15,25 @@ type ItemInviteFriendProps = {
 };
 
 const ItemInviteFriend = ({ item, list, setList }: ItemInviteFriendProps) => {
+  const user = useSelector<RootState, User>(getUser);
+  const { friends } = useSelector<RootState, CommonDataProps>(getCommon);
+  const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState(false);
   const handleClick = async (status: number) => {
     setLoading(true);
-    if (status === 0) {
-      setList([...list].filter((dt) => dt.user.id !== item.user.id));
+    await sendRelationship({
+      user1: item.user.id,
+      user2: user.id,
+      status: status ? "accept" : "",
+    });
+    setList([...list].filter((dt) => dt.user.id !== item.user.id));
+    if (status === 3) {
+      dispatch(
+        updateDataCommon({
+          key: "friends",
+          value: [...friends, item.user],
+        })
+      );
     }
   };
   return (

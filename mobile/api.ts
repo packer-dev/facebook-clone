@@ -3,6 +3,7 @@ import { API_URL } from "./config";
 import { User } from "./interfaces/User";
 import { Group } from "./interfaces/Group";
 import { Message } from "./interfaces/Message";
+import axiosInstance from "./apis/api";
 
 export const registerAPI = async (param: User) =>
   fetch(`${API_URL}/register`, {
@@ -31,13 +32,13 @@ export const sendMessageAPI = async ({
     group: groupModel(group),
     message: messageModel(message),
   };
-  return fetch(`${API_URL}/message/send`, {
+  return axiosInstance(`${API_URL}/message/send`, {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    data: JSON.stringify(body),
     method: "POST",
   })
-    .then((res) => res.json())
+    .then((res) => res.data)
     .catch((err) => err);
 };

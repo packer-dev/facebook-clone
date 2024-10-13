@@ -44,8 +44,8 @@ const FooterCreatePost = () => {
     }
   };
   return (
-    <Panel hideOverlay>
-      <View style={tailwind(`px-3 pt-6 -mb-3 flex-row justify-between`)}>
+    <Panel hideOverlay notUseContainer>
+      <View style={tailwind(`px-3 py-3 flex-row justify-between`)}>
         <TouchableOpacity onPress={pickImage} style={tailwind(`mx-auto`)}>
           <Feather name="image" size={24} style={tailwind(`text-green-600`)} />
         </TouchableOpacity>

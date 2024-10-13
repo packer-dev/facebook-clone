@@ -1,4 +1,4 @@
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, View, TouchableWithoutFeedback } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import tailwind from "@/tailwind";
 
@@ -47,29 +47,27 @@ const MediaDisplay = ({ medias = [], width, real }: MediaDisplayProps) => {
     >
       <View style={tailwind(`flex-row gap-1`)}>
         {medias?.slice(0, 2).map((media, index) => (
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={() =>
               navigation.navigate("DetailImagePost", { medias, index })
             }
             key={media.uri}
-            style={[
-              tailwind(``),
-              {
-                width: medias.length >= 2 ? widthTopOne : widthTopTwo,
-                height: medias.length >= 2 ? heightTopOne : 500,
-              },
-            ]}
           >
             <Image
-              style={tailwind(`w-full h-full`)}
+              style={[
+                {
+                  width: medias.length >= 2 ? widthTopOne : widthTopTwo,
+                  height: medias.length >= 2 ? heightTopOne : 500,
+                },
+              ]}
               source={{ uri: media.uri }}
             />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         ))}
       </View>
       <View style={tailwind(`flex-row gap-1`)}>
         {medias?.slice(2, 5).map((media, index) => (
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={() =>
               navigation.navigate("DetailImagePost", {
                 medias,
@@ -77,35 +75,38 @@ const MediaDisplay = ({ medias = [], width, real }: MediaDisplayProps) => {
               })
             }
             key={media.uri}
-            style={[
-              tailwind(`relative`),
-              {
-                width: medias.length === 3 ? widthBottomOne : widthBottom,
-                height: medias.length === 3 ? heightBottomOne : heightBottom,
-              },
-            ]}
           >
-            <Image
-              source={{ uri: media.uri }}
-              style={tailwind(`w-full h-full`)}
-            />
-            {index === 2 && medias?.length > 5 && (
-              <View
-                style={[
-                  tailwind(
-                    `absolute top-0 left-0 right-0 bottom-0z-50 flex-row items-center justify-center`
-                  ),
-                  {
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  },
-                ]}
-              >
-                <Text style={tailwind(`font-bold text-3xl text-white`)}>
-                  +{medias.length - 5}
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
+            <View
+              style={[
+                tailwind(`relative`),
+                {
+                  width: medias.length === 3 ? widthBottomOne : widthBottom,
+                  height: medias.length === 3 ? heightBottomOne : heightBottom,
+                },
+              ]}
+            >
+              <Image
+                source={{ uri: media.uri }}
+                style={tailwind(`w-full h-full`)}
+              />
+              {index === 2 && medias?.length > 5 && (
+                <View
+                  style={[
+                    tailwind(
+                      `absolute top-0 left-0 right-0 bottom-0 z-50 flex-row items-center justify-center`
+                    ),
+                    {
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                  ]}
+                >
+                  <Text style={tailwind(`font-bold text-3xl text-white`)}>
+                    +{medias.length - 5}
+                  </Text>
+                </View>
+              )}
+            </View>
+          </TouchableWithoutFeedback>
         ))}
       </View>
     </View>

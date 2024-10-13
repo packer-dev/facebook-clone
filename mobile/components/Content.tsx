@@ -10,7 +10,7 @@ const Content = () => {
     state: { messages, user },
   } = React.useContext(AppContext);
   return (
-    <View style={tailwind(`flex-col gap-3 pt-3 pb-12`)}>
+    <View style={tailwind(`flex-col gap-3 pt-3 pb-3`)}>
       {messages?.map((message) =>
         message?.user?.id === user?.id ? (
           <CurrentUser message={message} key={message.id} />

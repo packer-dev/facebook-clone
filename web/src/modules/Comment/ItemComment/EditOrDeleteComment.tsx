@@ -7,10 +7,12 @@ import {
   TITLE_MODAL_DELETE_COMMENT,
 } from "@/constants/ModalWarningConfig";
 import { CommentDTO } from "@/interfaces/Comment";
-import { useSelector } from "react-redux";
-import { getUser, RootState } from "@/reducers";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, getCommon, getUser, RootState } from "@/reducers";
 import { deleteComment } from "@/apis/commentAPIs";
 import { ItemPostContext } from "@/contexts/ItemPostContext";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { useLocation } from "react-router-dom";
 
 type EditOrDeleteCommentProps = {
   commentPost: CommentDTO;
@@ -28,11 +30,16 @@ const EditOrDeleteComment = (
     updateData,
     state: { postDetail },
   } = React.useContext(ItemPostContext);
+  const { homePosts, profilePosts } = useSelector<RootState, CommonDataProps>(
+    getCommon
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const { modalsDispatch, modalsAction } = React.useContext(ModalContext);
+  const location = useLocation();
   const handleEvent = async () => {
     modalsDispatch(modalsAction.loadingModal(true));
     await deleteComment(postId, commentPost?.item.id);
-    updateData("postDetail", {
+    const newPostDetail = {
       ...postDetail,
       comments: {
         ...postDetail.comments,
@@ -53,7 +60,17 @@ const EditOrDeleteComment = (
             }),
         total: postDetail.comments.total - 1,
       },
-    });
+    };
+    updateData("postDetail", newPostDetail);
+    dispatch(
+      updateDataCommon({
+        key: location.pathname === "/" ? "homePosts" : "profilePosts",
+        value: [...(location.pathname === "/" ? homePosts : profilePosts)].map(
+          (item) =>
+            item.post.id === newPostDetail.post.id ? newPostDetail : item
+        ),
+      })
+    );
     modalsDispatch(modalsAction.closeModal());
   };
   const refControl = React.useRef<HTMLDivElement>();

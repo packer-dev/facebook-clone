@@ -25,8 +25,11 @@ const StoryEditor = () => {
   } = useContext(StoryEditorContext);
   useEffect(() => {
     updateData("mode", mode);
-    if (mode === 1 && !data) navigation(PAGE_CREATE_STORY);
-    updateData("data", backgroundStory[0]);
+    if (mode === 1 && !data) {
+      navigation(PAGE_CREATE_STORY);
+      return;
+    }
+    // updateData("data", backgroundStory[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
   const refImage = useRef();

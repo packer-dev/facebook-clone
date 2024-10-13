@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Toolbar from "@/components/Toolbar";
 import { AppContext } from "@/contexts";
 import useKeyboard from "@/hooks/useKeyboard";
-import useListeningMessage from "@/hooks/useListeningMessage";
+import useListeningMessage from "@/hooks/realtime/useListeningMessage";
 import tailwind from "@/tailwind";
 import * as React from "react";
 import {

@@ -29,10 +29,10 @@ const ItemChat = ({ item }: ItemChatProps) => {
     if (item.onload) return;
 
     updateData("isNew", item.is_new);
-    updateData("group", item.group);
-    updateData("userParam", item.user);
+    item.group && updateData("group", item.group);
+    item.user && updateData("userParam", item.user);
     updateData("idItemChat", item.id);
-    updateData("choose", [item.user]);
+    item.user && updateData("choose", [item.user]);
     if (item.user) {
       const fetchDataUser = async () => {
         const result = await getMessageMain(user?.id, item.user.id);

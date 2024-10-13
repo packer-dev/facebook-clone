@@ -4,7 +4,7 @@ import Toolbar from "./Toolbar";
 import LocalStream from "./LocalStream";
 import { AppContext } from "@/contexts";
 import { imageGroup, nameGroup } from "@/utils";
-import useListeningCaller from "@/hooks/useListeningCaller";
+import useListeningCaller from "@/hooks/realtime/useListeningCaller";
 import tailwind from "@/tailwind";
 
 const RunningCall = ({ route }: any) => {

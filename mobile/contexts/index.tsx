@@ -58,7 +58,7 @@ export type ContextInitProps = {
 const init: ContextInitProps = {
   showKeyboard: false,
   messages: [],
-  socket: io("https://server-facebook-clone.onrender.com/"),
+  socket: io("http://192.168.1.9:4444"),
   popup: [],
   panel: {
     ui: null,

@@ -13,7 +13,11 @@ const ItemMessageRight = ({ item, groupMessage }: ItemMessageRightProps) => {
   //
   return (
     <div className="mess-user chat-rights z-0 w-full py-1 flex relative justify-end">
-      <div className="mess-user-r1 pl-2 flex mr-4 relative z-20 w-3/4">
+      <div
+        className={`mess-user-r1 flex ${
+          item.content.type < 4 ? "mr-4 pl-2 w-3/4" : "w-full"
+        } relative z-20`}
+      >
         {item.content.type !== 0 ? (
           <div className={item.content.type < 4 ? "ml-auto" : "w-full"}>
             <ContentMessage

@@ -9,8 +9,6 @@ type ItemMessageLeftProps = {
 };
 
 const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
-  //
-  //
   return (
     <div className="mess-user z-0 chat-lefts w-full flex relative">
       {item.content.type < 4 && (
@@ -22,7 +20,11 @@ const ItemMessageLeft = ({ item, groupMessage }: ItemMessageLeftProps) => {
           />
         </div>
       )}
-      <div className="mess-user-r1 pl-2 flex z-50 relative px-1.5 rounded-sm w-3/4">
+      <div
+        className={`flex z-50 relative px-1.5 rounded-sm ${
+          item.content.type < 4 ? "w-3/4 pl-2 mess-user-r1" : "w-full"
+        }`}
+      >
         <ContentMessage item={item} left groupMessage={groupMessage} />
       </div>
     </div>

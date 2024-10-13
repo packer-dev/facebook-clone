@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PAGE_CREATE_STORY } from "@/constants/Config";
@@ -7,20 +7,36 @@ import RememberAccount from "../RememberAccount";
 import HomePostList from "./HomePostList";
 import MeetRom from "./MeetRom";
 import StoryList from "./StoryList";
-import { RootState, getUser } from "@/reducers";
+import { RootState, getCommon, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
+import { CommonDataProps } from "@/reducers/common";
 
 const HomeCenter = () => {
   const navigation = useNavigate();
   const user = useSelector<RootState, User>(getUser);
-  const refWrapper = useRef<HTMLDivElement>();
+  const { reloadPost, loadingPost } = useSelector<RootState, CommonDataProps>(
+    getCommon
+  );
+  useEffect(() => {
+    const container = document.querySelector("#scroll__home");
+    if (!container) return;
+
+    container.scrollTo(0, 0);
+  }, [reloadPost]);
   return (
     <div
-      ref={refWrapper}
       className="center-content relative left-0 px-2 pt-16 w-full sm:mx-auto md:w-3/4 lg:mx-0 
       lg:w-4/6 lg:left-0! xl:w-1/2 xl:px-8 xl:left-1/4"
     >
-      <div className="w-full xl:w-[600px] mx-auto">
+      <div className="w-full xl:w-[600px] mx-auto relative">
+        {loadingPost && (
+          <div
+            className="w-14 h-14 rounded-full bg-white shadow-lg border border-solid border-gray-200 flex items-center 
+          justify-center left-1/2 transform -translate-x-1/2 absolute"
+          >
+            <span className="bx bx-loader-circle text-3xl text-blue-500 animate-spin"></span>
+          </div>
+        )}
         <div className="flex my-4 relative gap-1">
           <div
             aria-hidden

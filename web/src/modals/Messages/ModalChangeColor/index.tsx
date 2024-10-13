@@ -36,7 +36,7 @@ const ModalChangeColor = ({ updateGroup, group }: ModalChangeColorProps) => {
       value={color}
     >
       <div className="w-full py-4 flex justify-center">
-        <ul className="pl-2 flex flex-wrap">
+        <ul className="w-full grid grid-cols-6 gap-3">
           {colors.map((item) => (
             <ItemColor
               item={item}

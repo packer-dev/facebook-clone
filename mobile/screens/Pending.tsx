@@ -21,8 +21,10 @@ const Pending = () => {
     const fetchData = async () => {
       const token = await SecureStore.getItemAsync("token");
       const userResponse = await checkTokenExpired(token || "");
-      if (userResponse) updateData("user", userResponse.token);
-      navigation.navigate(userResponse?.user ? "Facebook" : "Login");
+      if (!userResponse) navigation.navigate("Login");
+      updateData("user", userResponse.user);
+      SecureStore.setItem("token", userResponse.token);
+      navigation.navigate("Facebook");
     };
     fetchData();
     // eslint-disable-next-line  react-hooks/exhaustive-deps

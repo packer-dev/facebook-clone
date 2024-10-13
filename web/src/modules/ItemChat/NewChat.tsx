@@ -22,7 +22,9 @@ const ItemNewChat = forwardRef(
       state: { choose },
       updateData,
     } = useContext(ItemChatContext);
-    const index = choose.findIndex((dt) => dt.id === item.id);
+    const index = choose
+      .filter((item) => item)
+      .findIndex((dt) => dt?.id === item?.id);
     return (
       <div
         aria-hidden
@@ -91,7 +93,7 @@ const NewChat = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const result = await getMessageMain(user?.id, choose[0].id);
+      const result = await getMessageMain(user?.id, choose[0]?.id);
       updateData("messages", result?.messages);
       setLoading(false);
     };
@@ -106,22 +108,24 @@ const NewChat = () => {
           <div className="pl-2 font-semibold py-2 dark:text-white">To :</div>
           <div className="flex-1 flex">
             <div className="w-auto flex flex-wrap">
-              {choose.map((item) => (
-                <div
-                  key={item?.id}
-                  aria-hidden
-                  onClick={() =>
-                    updateData(
-                      "choose",
-                      [...choose].filter((dt) => dt.id !== item.id)
-                    )
-                  }
-                  className="mr-1 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
-                >
-                  {`${item.name}`}
-                  <span className="ml-1 text-xm">&times;</span>
-                </div>
-              ))}
+              {choose
+                .filter((item) => item)
+                .map((item) => (
+                  <div
+                    key={item?.id}
+                    aria-hidden
+                    onClick={() =>
+                      updateData(
+                        "choose",
+                        [...choose].filter((dt) => dt.id !== item?.id)
+                      )
+                    }
+                    className="mr-1 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
+                  >
+                    {`${item?.name}`}
+                    <span className="ml-1 text-xm">&times;</span>
+                  </div>
+                ))}
             </div>
             <div
               onInput={(event) => {
@@ -145,7 +149,7 @@ const NewChat = () => {
               .filter(
                 (item) =>
                   item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1 &&
-                  choose.findIndex((child) => child.id === item.id) === -1
+                  choose.findIndex((child) => child?.id === item?.id) === -1
               )
               .map((item) => (
                 <ItemNewChat

@@ -18,7 +18,7 @@ const ItemMediaList = ({ media, status }: ItemMediaListProps) => {
   const mediaObj = "media" in media ? media.media : null;
   return (
     <TouchableOpacity
-      onPress={() => "user" in media && updateData("visit", userObj)}
+      onPress={() => "user" in media && updateData("visit", userObj?.user)}
       style={{ ...tailwind(`my-1`), width: (width - 16) / 3 }}
     >
       <Image

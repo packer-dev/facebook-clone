@@ -9,6 +9,7 @@ import AvatarContent from "./Content/AvatarContent";
 import CoverContent from "./Content/CoverContent";
 import BackgroundContent from "./Content/BackgroundContent";
 import AnswerQuestionContent from "./Content/AnswerQuestionContent";
+import { CommentDTO } from "@/interfaces/Comment";
 
 const width = Dimensions.get("window").width;
 
@@ -17,14 +18,14 @@ type ContentProps = {
   medias: Media[];
   feel: string[];
   loading?: boolean;
-  comment: number;
+  comments: CommentDTO[];
 };
 
 const Content = ({
   post,
   medias = [],
   feel = [],
-  comment = 0,
+  comments = [],
   loading,
 }: ContentProps) => {
   return (
@@ -81,10 +82,10 @@ const Content = ({
               />
             </View>
           )}
-          {!!comment && (
+          {!!comments.length && (
             <View style={tailwind(`flex-row items-center`)}>
               <Text style={tailwind(`px-1 text-gray-700 font-bold`)}>
-                {comment}
+                {comments.length}
               </Text>
               <Text style={tailwind(`text-gray-700`)}>Comments</Text>
             </View>

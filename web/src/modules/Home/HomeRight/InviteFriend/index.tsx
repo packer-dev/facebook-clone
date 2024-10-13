@@ -16,7 +16,7 @@ const InviteFriend = () => {
     };
     fetch();
   }, [user?.id]);
-  return list ? (
+  return list?.length ? (
     <>
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">

@@ -24,6 +24,7 @@ import {
   UserProfileReduxProps,
 } from "@/reducers/userProfile";
 import { User } from "@/interfaces/User";
+import { updateDataCommon } from "@/reducers/common";
 
 type WrapperProfileProps = {
   id?: string;
@@ -62,6 +63,7 @@ const WrapperProfile = forwardRef(
             value: result,
           })
         );
+        dispatch(updateDataCommon({ key: "profilePosts", value: [] }));
         dispatch(updateDataUserProfile({ key: "loading", value: false }));
       };
       if (refPath.current.indexOf("profile")) fetchData();

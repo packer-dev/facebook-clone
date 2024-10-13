@@ -14,6 +14,7 @@ async def get_comment_by_id_post(
 ):
     ref = db.reference("social-network")
     comments = new_value(ref.child("comments").child(post_id).get(), [])
+    users = new_value(ref.child("users").get(), [])
     filter_comment = []
     if parent == "":
         filter_comment = [item for item in comments if item["level"] == 1]
@@ -27,7 +28,7 @@ async def get_comment_by_id_post(
         "total": len(filter_comment),
         "list": [
             {
-                "item": resComment.dict(item),
+                "item": resComment.dict(item, users),
                 "child": [
                     resComment.dict(child)
                     for child in filter_comment

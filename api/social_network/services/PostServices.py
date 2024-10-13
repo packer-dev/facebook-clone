@@ -250,7 +250,7 @@ async def get_post_by_id(post_id: str):
     feels = new_value(ref.child("feel-post").child(post_id).get(), [])
     comments = new_value(ref.child("comments").get(), [])
     return {
-        "post": resPost.dict(post=response),
+        "post": resPost.dict(post=update_user_post(users, response)),
         "medias": new_value(
             ref.child("medias").child("posts").child(response["id"]).get(), []
         ),

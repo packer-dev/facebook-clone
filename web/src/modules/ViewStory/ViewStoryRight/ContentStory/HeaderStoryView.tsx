@@ -95,7 +95,11 @@ function HeaderStoryView(props) {
               <i className="fas fa-volume-up text-white text-2xl" />
             </div>
             <Popover>
-              <PopoverTrigger>
+              <PopoverTrigger
+                onClick={() => {
+                  updateData("isPlaying", false);
+                }}
+              >
                 <div className="py-2 px-2 cursor-pointer">
                   <i className="fas fa-ellipsis-h text-white text-2xl" />
                 </div>

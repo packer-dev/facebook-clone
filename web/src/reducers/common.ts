@@ -10,6 +10,8 @@ export type CommonDataProps = {
   profilePosts: PostDTO[];
   pageCurrent?: string;
   notifications: Notification[];
+  loadingPost?: boolean;
+  reloadPost?: number;
 };
 
 const initialState: CommonDataProps = {
@@ -19,6 +21,8 @@ const initialState: CommonDataProps = {
   profilePosts: [],
   pageCurrent: "",
   notifications: [],
+  loadingPost: true,
+  reloadPost: 0,
 };
 
 const commonSlice = createSlice({

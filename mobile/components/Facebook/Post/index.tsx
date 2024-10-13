@@ -7,7 +7,7 @@ import {
   Keyboard,
   Dimensions,
   ActivityIndicator,
-  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 import Header from "./Header";
 import Content from "./Content";
@@ -20,6 +20,8 @@ import { generateUUID, getCurrentDateTime } from "@/utils";
 import { getCommentByPost, sendComment } from "@/apis/commentAPIs";
 import tailwind from "@/tailwind";
 import BoardSticker from "@/components/Commons/BoardSticker";
+import { userModel } from "@/models";
+import useListeningComment from "@/hooks/realtime/useListeningComment";
 
 const width = Dimensions.get("window").width - 24;
 
@@ -41,7 +43,7 @@ const Post = (props: any) => {
     setValue("");
     let comment: Comment = {
       id: "",
-      user,
+      user: userModel(user),
       content: {
         id: generateUUID(),
         text: type === 1 ? value : val,
@@ -49,7 +51,7 @@ const Post = (props: any) => {
       },
       time_created: getCurrentDateTime(),
       last_time_update: getCurrentDateTime(),
-      level: type,
+      level: 1,
       parent: "",
       loading: true,
     };
@@ -75,14 +77,17 @@ const Post = (props: any) => {
     props.post && props.isDetail && fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.post]);
+  useListeningComment(props?.post?.id, comments, setComments);
   //
   return (
-    <View
+    <KeyboardAvoidingView
       style={tailwind(props.isDetail ? "flex-1" : `py-1 bg-gray-300 -mt-1`)}
     >
       <View
         style={tailwind(
-          `bg-white flex-col gap-3 ${props.isDetail ? "relative flex-1" : ""}`
+          `bg-white flex-col gap-3 ${
+            props.isDetail ? "relative flex-1 pb-3" : ""
+          }`
         )}
       >
         {loading && (
@@ -104,26 +109,20 @@ const Post = (props: any) => {
             <View style={tailwind(`flex-col gap-3 pb-12`)}>
               <Content {...props} loading={props.loading} />
               <Toolbar {...props} loading={props.loading} />
-              <Comments {...props} list={props?.comments?.list} />
+              {!!comments?.length && <Comments {...props} list={comments} />}
             </View>
           </ScrollView>
         ) : (
           <>
             <Content {...props} loading={props.loading} />
             <Toolbar {...props} loading={props.loading} />
-            <Comments {...props} list={comments} />
+            {comments.length > 0 && <Comments {...props} list={comments} />}
           </>
         )}
         {props.isDetail && (
-          <View
-            style={tailwind(
-              `w-full absolute bottom-0 left-0 flex-col bg-white`
-            )}
-          >
+          <View style={tailwind(`w-full flex-col bg-white`)}>
             <View
-              style={tailwind(`flex-row px-3 pt-3 ${
-                Platform.OS === "ios" ? "pb-3" : ""
-              } border-t border-gray-300 
+              style={tailwind(`flex-row px-3 pt-3 border-t border-gray-300 
               gap-3 items-center`)}
             >
               <TouchableOpacity>
@@ -177,7 +176,7 @@ const Post = (props: any) => {
           </View>
         )}
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

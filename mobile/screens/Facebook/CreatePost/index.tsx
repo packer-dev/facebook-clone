@@ -9,6 +9,7 @@ import {
   Platform,
   StatusBar,
   Keyboard,
+  KeyboardAvoidingView,
 } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
@@ -152,71 +153,77 @@ const CreatePost = ({ route }: any) => {
             paddingBottom: Platform.OS === "android" ? 8 : 0,
           }}
         >
-          <View
-            style={tailwind(
-              `flex-row justify-between pt-3 pb-5 border-b border-gray-300 px-3 bg-gray-100 items-center`
-            )}
-          >
-            <TouchableOpacity onPress={() => navigation.navigate("Facebook")}>
-              <AntDesign name="left" size={24} color="black" />
-            </TouchableOpacity>
-            <Text style={tailwind(`font-bold text-xl`)}>
-              {post ? "Edit" : "Create"} post
-            </Text>
-            <Text
-              onPress={handlePost}
+          <KeyboardAvoidingView style={tailwind(`flex-1 flex-col`)}>
+            <View
               style={tailwind(
-                `font-bold text-${
-                  value.length === 0 ? "gray-600" : "primary"
-                } text-lg`
+                `flex-row justify-between pt-3 pb-5 border-b border-gray-300 px-3 bg-gray-100 items-center`
               )}
             >
-              {post ? "Update" : "Post"}
-            </Text>
-          </View>
-          <View style={tailwind(`flex-1 flex-col bg-white p-3`)}>
-            <View style={tailwind(`flex-row gap-3 pb-3`)}>
-              <Avatar size={14} uri={user?.avatar} />
-              <View>
-                <Text style={tailwind(`font-bold text-lg`)}>{user?.name}</Text>
-                <View
-                  style={tailwind(
-                    `p-1 rounded-lg flex-row gap-2 bg-blue-200 items-center justify-center mt-1`
-                  )}
-                >
-                  <Entypo
-                    name="globe"
-                    size={14}
-                    style={tailwind(`text-blue-700`)}
-                  />
-                  <Text style={tailwind(`text-blue-700`)}>Public</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Facebook")}>
+                <AntDesign name="left" size={24} color="black" />
+              </TouchableOpacity>
+              <Text style={tailwind(`font-bold text-xl`)}>
+                {post ? "Edit" : "Create"} post
+              </Text>
+              <Text
+                onPress={handlePost}
+                style={tailwind(
+                  `font-bold text-${
+                    value.length === 0 ? "gray-600" : "primary"
+                  } text-lg`
+                )}
+              >
+                {post ? "Update" : "Post"}
+              </Text>
+            </View>
+            <View style={tailwind(`flex-1 flex-col bg-white p-3`)}>
+              <View style={tailwind(`flex-row gap-3 pb-3`)}>
+                <Avatar size={14} uri={user?.avatar} />
+                <View>
+                  <Text style={tailwind(`font-bold text-lg`)}>
+                    {user?.name}
+                  </Text>
+                  <View
+                    style={tailwind(
+                      `p-1 rounded-lg flex-row gap-2 bg-blue-200 items-center justify-center mt-1`
+                    )}
+                  >
+                    <Entypo
+                      name="globe"
+                      size={14}
+                      style={tailwind(`text-blue-700`)}
+                    />
+                    <Text style={tailwind(`text-blue-700`)}>Public</Text>
+                  </View>
                 </View>
               </View>
+              <View style={tailwind(`flex-1`)}>
+                <ScrollView>
+                  <TextInput
+                    multiline
+                    ref={inputRef}
+                    placeholder="What do you think?"
+                    placeholderTextColor="gray"
+                    style={tailwind(`py-4`)}
+                    value={value}
+                    onChangeText={setValue}
+                  />
+                  {fullMedia?.length > 0 && !postContext?.background && (
+                    <MediaDisplay medias={fullMedia} width={width} />
+                  )}
+                  {postContext?.background && (
+                    <BackgroundContent
+                      background={postContext.background}
+                      content={value}
+                    />
+                  )}
+                </ScrollView>
+              </View>
+              <FooterCreatePost />
             </View>
-            <ScrollView>
-              <TextInput
-                multiline
-                ref={inputRef}
-                placeholder="What do you think?"
-                placeholderTextColor="gray"
-                style={tailwind(`py-4`)}
-                value={value}
-                onChangeText={setValue}
-              />
-              {fullMedia?.length > 0 && !postContext?.background && (
-                <MediaDisplay medias={fullMedia} width={width} />
-              )}
-              {postContext?.background && (
-                <BackgroundContent
-                  background={postContext.background}
-                  content={value}
-                />
-              )}
-            </ScrollView>
-          </View>
+          </KeyboardAvoidingView>
         </SafeAreaView>
       </View>
-      <FooterCreatePost />
     </View>
   );
 };

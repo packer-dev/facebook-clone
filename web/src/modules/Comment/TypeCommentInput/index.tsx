@@ -1,7 +1,13 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PreviewImageComment from "../PreviewImageComment";
-import { RootState, getSocket, getUser } from "@/reducers";
+import {
+  AppDispatch,
+  RootState,
+  getCommon,
+  getSocket,
+  getUser,
+} from "@/reducers";
 import CategoryInputComment from "./CategoryInputComment";
 import { User } from "@/interfaces/User";
 import { Comment, CommentDTO } from "@/interfaces/Comment";
@@ -12,6 +18,8 @@ import { commentModel, userModel } from "@/models";
 import { Socket } from "socket.io-client";
 import { updateDataComment } from "@/hooks/realtime/useListeningComment";
 import { ContentComment } from "@/interfaces/ContentComment";
+import { CommonDataProps, updateDataCommon } from "@/reducers/common";
+import { useLocation } from "react-router-dom";
 
 type TypeCommentInputProps = { parent?: string };
 
@@ -29,8 +37,13 @@ const TypeCommentInput = ({ parent }: TypeCommentInputProps) => {
     updateData,
   } = React.useContext(ItemPostContext);
   const socket = useSelector<RootState, Socket>(getSocket);
+  const { homePosts, profilePosts } = useSelector<RootState, CommonDataProps>(
+    getCommon
+  );
   const user = useSelector<RootState, User>(getUser);
+  const location = useLocation();
   const refContent = React.useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch<AppDispatch>();
   const createFormData = (content: ContentComment, comment: Comment) => {
     const formData = new FormData();
     formData.append(
@@ -132,13 +145,23 @@ const TypeCommentInput = ({ parent }: TypeCommentInputProps) => {
       comment,
       level: parent ? 2 : 1,
     });
-    updateData("postDetail", {
+    const newPostDetail_ = {
       ...newPostDetail,
       comments: {
         ...newPostDetail.comments,
         list: listComment,
       },
-    });
+    };
+    updateData("postDetail", newPostDetail_);
+    dispatch(
+      updateDataCommon({
+        key: location.pathname === "/" ? "homePosts" : "profilePosts",
+        value: [...(location.pathname === "/" ? homePosts : profilePosts)].map(
+          (item) =>
+            item.post.id === newPostDetail_.post.id ? newPostDetail_ : item
+        ),
+      })
+    );
     socket.emit("send-comment", {
       level: parent ? 2 : 1,
       edit,

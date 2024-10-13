@@ -14,6 +14,7 @@ type PanelProps = {
   name?: string;
   hideOverlay?: boolean;
   backgroundColor?: string;
+  notUseContainer?: boolean;
 };
 
 const Panel = ({
@@ -21,6 +22,7 @@ const Panel = ({
   name,
   hideOverlay,
   backgroundColor,
+  notUseContainer,
 }: PanelProps) => {
   const {
     state: { panel },
@@ -29,7 +31,10 @@ const Panel = ({
   if (panel?.payload?.hidden) return <></>;
   return hideOverlay ? (
     <View
-      style={{ ...styles.container, ...tailwind(`border-t border-gray-300`) }}
+      style={{
+        ...(notUseContainer ? { paddingTop: 20 } : styles.container),
+        ...tailwind(`border-t border-gray-300`),
+      }}
     >
       <View style={styles.button} />
       {!!name && <Text style={styles.title}>{name}</Text>}

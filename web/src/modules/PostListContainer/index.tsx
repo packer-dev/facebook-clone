@@ -15,18 +15,18 @@ type PostListContainerProps = {
 
 const PostListContainer = ({ mode, user }: PostListContainerProps) => {
   //
-  const { homePosts, profilePosts } = useSelector<RootState, CommonDataProps>(
-    getCommon
-  );
+  const { homePosts, profilePosts, loadingPost, reloadPost } = useSelector<
+    RootState,
+    CommonDataProps
+  >(getCommon);
   const dispatch = useDispatch<AppDispatch>();
   const [total, setTotal] = useState(0);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(false);
   const limit = 5;
   useEffect(() => {
     //
     const fetch = async () => {
-      setLoading(true);
+      dispatch(updateDataCommon({ key: "loadingPost", value: true }));
       const result = await getPostByIdUser(
         user.id,
         mode === "home" ? "false" : "true",
@@ -43,35 +43,40 @@ const PostListContainer = ({ mode, user }: PostListContainerProps) => {
         })
       );
       setTotal(result?.total || 0);
-      setLoading(false);
+      dispatch(updateDataCommon({ key: "loadingPost", value: false }));
     };
     fetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id, offset]);
+  }, [user?.id, offset, reloadPost]);
   //
   return (
     <>
-      {(mode === "home" ? homePosts : profilePosts)?.map(
-        (postDetail, index) => (
-          <ItemPost postDetail={postDetail} key={postDetail.post.id + index} />
-        )
-      )}
-      {!loading && !(mode === "home" ? homePosts : profilePosts)?.length && (
-        <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
-          There are no posts yet.
-        </p>
-      )}
-      {loading && (
+      {!loadingPost &&
+        (mode === "home" ? homePosts : profilePosts)?.map(
+          (postDetail, index) => (
+            <ItemPost
+              postDetail={postDetail}
+              key={postDetail.post.id + index}
+            />
+          )
+        )}
+      {!loadingPost &&
+        !(mode === "home" ? homePosts : profilePosts)?.length && (
+          <p className="my-4 text-center text-gray-600 font-semibold dark:text-gray-300">
+            There are no posts yet.
+          </p>
+        )}
+      {loadingPost && (
         <>
           <LoadingPost />
           <LoadingPost />
         </>
       )}
-      {!loading && limit * (offset || 1) < total ? (
+      {!loadingPost && limit * (offset || 1) < total ? (
         <Button
           className="w-full"
           onClick={() => setOffset(offset + 1)}
-          loading={loading}
+          loading={loadingPost}
         >
           View more
         </Button>

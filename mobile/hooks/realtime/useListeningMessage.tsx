@@ -1,6 +1,6 @@
 import React from "react";
 import { AppContext } from "@/contexts/index";
-import useSound from "./useSound";
+import useSound from "../useSound";
 
 const useListeningMessage = (groupId: string) => {
   const {

@@ -19,6 +19,7 @@ const DetailPost = ({ route }: any) => {
     const fetchData = async () => {
       setLoading(true);
       const post = await getPostById(route?.params?.post?.id);
+
       if (!post) {
         navigation.goBack();
       }
@@ -33,11 +34,11 @@ const DetailPost = ({ route }: any) => {
       <SafeAreaView
         style={[
           {
-            ...tailwind(
+            ...(tailwind(
               `flex-col ${
                 showKeyboard && Platform.OS === "ios" ? "" : "flex-1"
               }`
-            ),
+            ) as any),
           },
           showKeyboard && Platform.OS === "ios" ? { height } : {},
           {
@@ -52,6 +53,7 @@ const DetailPost = ({ route }: any) => {
             post={response?.post}
             medias={response?.medias}
             feel={response?.feel}
+            comments={response?.comments}
             navigation={navigation}
             keyboardHeight={keyboardHeight}
             handleFeel={(result: any) =>
