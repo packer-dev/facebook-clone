@@ -4,6 +4,7 @@ from social_network.services.StoryServices import (
     get_story_by_user,
     add_story,
     delete_story,
+    get_story_profile_by_user_id,
 )
 import json
 from social_network.models import Story, User
@@ -11,6 +12,11 @@ from social_network.models import Story, User
 router = APIRouter(
     prefix="/api/social-network/v1/story",
 )
+
+
+@router.get("/profile")
+async def get_story_profile_by_user_id_api(user_id: str, limit: int, offset: int):
+    return await get_story_profile_by_user_id(user_id, limit, offset)
 
 
 @router.get("")

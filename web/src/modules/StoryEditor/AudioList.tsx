@@ -22,7 +22,7 @@ const AudioList = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [play]);
+  }, [play, refAudio]);
   const {
     state: { audio },
   } = useContext(StoryEditorContext);
@@ -35,21 +35,9 @@ const AudioList = () => {
       <p className="font-bold text-xm text-left py-1 px-2 dark:text-white">
         Music
       </p>
-      <audio
-        ref={refAudio}
-        autoPlay
-        className="hidden"
-        loop
-        src={audio ? audio.src : ""}
-      >
-        <track
-          src="path-to-captions.vtt"
-          kind="captions"
-          srcLang="en"
-          label="English"
-          default
-        />
-      </audio>
+      {audio && (
+        <audio ref={refAudio} src={audio.src} className="hidden" loop />
+      )}
       <Input
         type="text"
         name=""
@@ -65,7 +53,7 @@ const AudioList = () => {
             item={item}
             refAudio={refAudio}
             play={play}
-            // setPlay={setPlay}
+            setPlay={setPlay}
           />
         ))}
       </ul>
@@ -78,10 +66,10 @@ type ItemAudioProps = {
   item: any;
   index: number;
   play?: boolean;
-  // setPlay?: Function;
+  setPlay?: Function;
 };
 
-const ItemAudio = ({ refAudio, item, index }: ItemAudioProps) => {
+const ItemAudio = ({ refAudio, item, index, setPlay }: ItemAudioProps) => {
   //
   const {
     state: { audio },
@@ -95,7 +83,7 @@ const ItemAudio = ({ refAudio, item, index }: ItemAudioProps) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audio]);
+  }, [audio, refAudio]);
   //
   return (
     <li
@@ -122,16 +110,21 @@ const ItemAudio = ({ refAudio, item, index }: ItemAudioProps) => {
       <div
         aria-hidden
         onClick={() => {
-          if (refAudio.current) {
-            refAudio.current.play();
-            updateData("audio", item);
-            if (!current) {
+          updateData("audio", item);
+          const timeOut = setTimeout(() => {
+            if (refAudio.current) {
               refAudio.current.play();
-            } else {
-              refAudio.current.pause();
+              if (!current) {
+                refAudio.current.play();
+                setPlay(true);
+              } else {
+                refAudio.current.pause();
+                setPlay(false);
+              }
+              setCurrent(!current);
             }
-            setCurrent(!current);
-          }
+            clearTimeout(timeOut);
+          }, 200);
         }}
         className="absolute top-3 right-3 dark:text-white cursor-pointer"
       >

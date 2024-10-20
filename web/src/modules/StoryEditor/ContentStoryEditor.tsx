@@ -6,7 +6,6 @@ import React, {
   useRef,
 } from "react";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
-import imageAsset from "@/assets/images/51655920_280807142616755_4913279188888190976_n_aj6bex.jpeg";
 
 const ContentTextEdit = () => {
   //
@@ -33,12 +32,19 @@ const ContentTextEdit = () => {
 
 export default forwardRef(function ContentStoryEditor(
   props,
-  ref: RefObject<HTMLImageElement>
+  ref: RefObject<HTMLDivElement>
 ) {
   //
+  const refCanvas = useRef<HTMLCanvasElement>();
   const {
     state: { data, audio },
   } = useContext(StoryEditorContext);
+  useEffect(() => {
+    if (!ref.current || !refCanvas.current) return;
+
+    refCanvas.current.width = ref.current.offsetWidth;
+    refCanvas.current.height = ref.current.offsetHeight;
+  }, [data, refCanvas, ref]);
   //
   return (
     <div
@@ -57,7 +63,7 @@ export default forwardRef(function ContentStoryEditor(
             style={{ zIndex: -1 }}
           >
             <img
-              src={data?.name ? URL.createObjectURL(data) : imageAsset}
+              src={data?.name ? URL.createObjectURL(data) : data?.src}
               alt=""
               className="w-full h-full object-cover opacity-30"
               style={{ filter: "blur(8px)" }}
@@ -66,10 +72,7 @@ export default forwardRef(function ContentStoryEditor(
           <img
             id="myImage"
             className="w-full rounded-lg h-4/5 object-cover"
-            // style={
-            //   data?.name ? { maxHeight: 612 } : { maxHeight: 612, height: 612 }
-            // }
-            src={data?.name ? URL.createObjectURL(data) : imageAsset}
+            src={data?.name ? URL.createObjectURL(data) : data?.src}
             alt=""
           />
           {audio && (
@@ -94,10 +97,9 @@ export default forwardRef(function ContentStoryEditor(
         </div>
       </div>
       <canvas
+        ref={refCanvas}
         id="myCanvas"
         className="hidden justify-center items-center"
-        width="450"
-        height="612"
       />
     </div>
   );

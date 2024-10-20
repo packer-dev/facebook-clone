@@ -72,16 +72,15 @@ const ContentStory = () => {
       className="w-7/12 story-right bg-gray-400 dark:bg-dark-third mt-5 m-2 rounded-lg relative"
       style={{ height: "calc(100% - 90px)" }}
     >
-      {
-        <audio ref={refAudio} className="hidden" autoPlay>
-          <track
-            default
-            kind="captions"
-            srcLang="en"
-            // src={JSON.parse(main.music).src}
-          />
-        </audio>
-      }
+      {current?.music && (
+        <audio
+          ref={refAudio}
+          className="hidden"
+          src={JSON.parse(current.music).src}
+          autoPlay
+          loop
+        ></audio>
+      )}
       <div className="w-full h-full flex items-center relative">
         {loading && (
           <div className="absolute top-0 left-0 bottom-0 right-0 bg-black/50 flex items-center justify-center">

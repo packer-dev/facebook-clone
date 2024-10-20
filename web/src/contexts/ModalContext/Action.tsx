@@ -151,3 +151,9 @@ export const openModalCaller = (data: any) => {
     data,
   };
 };
+
+export const openModalDeveloper = () => {
+  return {
+    type: constants.OPEN_MODAL_DEVELOPER,
+  };
+};

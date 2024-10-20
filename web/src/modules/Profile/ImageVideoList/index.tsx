@@ -21,9 +21,9 @@ const ImageVideoList = ({ image }: { image?: boolean }) => {
   const [imageVideos, setImageVideos] = useState<ImageVideoProps[]>([]);
   return (
     <WrapperContentChildProfile<ImageVideoProps>
-      label={image ? "Image" : "Video"}
+      label={image ? "Photos" : "Videos"}
       setData={setImageVideos}
-      getResultAPI={() => getMediaByUserId(userProfile?.id, 1)}
+      getResultAPI={() => getMediaByUserId(userProfile?.id, image ? 1 : 2)}
     >
       <div className="w-full grid grid-cols-5 gap-1">
         {imageVideos?.map((imageVideo) => (

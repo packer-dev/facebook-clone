@@ -9,7 +9,7 @@ import { getMessageMain } from "@/apis/messageAPIs";
 import { useSelector } from "react-redux";
 import { RootState, getUser } from "@/reducers";
 import { ZoomUserChatProps } from "@/reducers/userChat";
-import { getGroupAndMessageByIdGroup, getGroupById } from "@/apis/groupAPIs";
+import { getGroupById } from "@/apis/groupAPIs";
 import { User } from "@/interfaces/User";
 import useListeningMessage from "@/hooks/realtime/useListeningMessage";
 
@@ -48,7 +48,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
       const fetchDataGroup = async () => {
         const result = await getGroupById(item.group.id);
         updateData("group", item.group);
-        updateData("messages", result || []);
+        updateData("messages", result.messages || []);
         updateData("loading", false);
       };
       fetchDataGroup();
@@ -60,7 +60,7 @@ const ItemChat = ({ item }: ItemChatProps) => {
   useEffect(() => {
     if (item.onload) {
       const fetchData = async () => {
-        const result = await getGroupAndMessageByIdGroup(item?.localStorage);
+        const result = await getGroupById(item?.localStorage);
         updateData("group", result?.group);
         updateData("messages", result?.messages || []);
         updateData("members", result?.group?.members || []);

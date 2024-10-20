@@ -4,20 +4,20 @@ import { groupModel } from "../models";
 import axiosInstance from "./api";
 
 export const getGroupById = async (groupId: string) => {
-  return axiosInstance(`${API_URL}/group/id`, {
-    params: {
-      group_id: groupId,
-    },
-  }).then((res) => res.data);
-};
-
-export const getGroupAndMessageByIdGroup = async (groupId: string) => {
   return axiosInstance(`${API_URL}/group`, {
     params: {
       group_id: groupId,
     },
   }).then((res) => res.data);
 };
+
+// export const getGroupAndMessageByIdGroup = async (groupId: string) => {
+//   return axiosInstance(`${API_URL}/group`, {
+//     params: {
+//       group_id: groupId,
+//     },
+//   }).then((res) => res.data);
+// };
 
 export const getListGroupByUserId = async (userId: string) => {
   return axiosInstance(`${API_URL}/message/list`, {

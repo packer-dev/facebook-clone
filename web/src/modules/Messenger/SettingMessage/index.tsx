@@ -24,7 +24,7 @@ const WrapperItemSetting = (props: ItemSettingProps) => {
         onClick={() => {
           if (props.children) setShow(!show);
         }}
-        className="w-full font-semibold py-2.5 px-4 cursor-pointer hover:bg-gray-300 dark:hover:bg-dark-third rounded-lg dark:text-white relative"
+        className="w-full font-semibold py-2.5 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-third rounded-lg dark:text-white relative"
       >
         {props.component({ show, name: props.name })}
       </li>
@@ -50,10 +50,11 @@ const SettingMessage = () => {
   const user = useSelector<RootState, User>(getUser);
   const {
     state: { group },
+    updateData,
   } = useContext(ItemChatContext);
   const member = group?.members.find((item) => item.user.id !== user.id);
   return (
-    <div className="w-1/3 hidden xl:block pr-2 wrapper-content-right shadow-xl h-full overflow-y-auto">
+    <div className="w-1/3 hidden xl:block pr-2 wrapper-content-right shadow-xl px-2 h-full overflow-y-auto">
       <div className="w-full mt-2">
         {group?.members?.length > 0 && group?.multiple ? (
           <>
@@ -83,7 +84,10 @@ const SettingMessage = () => {
       </div>
       <ul className="w-full py-2">
         <WrapperItemSetting component={ItemSetting} name="Custom chat">
-          <SettingMessageChild group={group} />
+          <SettingMessageChild
+            group={group}
+            updateGroup={(group) => updateData("group", group)}
+          />
         </WrapperItemSetting>
         <WrapperItemSetting component={ItemSetting} name="Shared file" />
         <WrapperItemSetting component={ItemSetting} name="Shared media file" />

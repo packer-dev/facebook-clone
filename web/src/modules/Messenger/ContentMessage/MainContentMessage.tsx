@@ -62,7 +62,7 @@ export default memo(function MainContentMessage() {
           </div>
         )}
         <div className="flex flex-col gap-2 py-2">
-          {messages.map((item) => {
+          {messages?.map((item) => {
             if (item.user.id === user.id)
               return (
                 <ItemMessageRight

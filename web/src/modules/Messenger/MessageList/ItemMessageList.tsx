@@ -30,36 +30,42 @@ const ItemMessageList = ({
   //
   const user = useSelector<RootState, User>(getUser);
   const userChat = useSelector<RootState, UserChatReduxProps>(getUserChat);
-  const { updateData: updateDataItemChat } = React.useContext(ItemChatContext);
+  const {
+    state: { group: groupState },
+    updateData: updateDataItemChat,
+  } = React.useContext(ItemChatContext);
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigate();
   const member = group?.members?.find((item) => item.user.id !== user?.id);
+  const handleItem = () => {
+    if (mini) {
+      dispatch(
+        updateDataUserChat({
+          key: "zoom",
+          value: [
+            ...userChat.zoom,
+            {
+              id: generateUUID(),
+              group,
+            } as ZoomUserChatProps,
+          ],
+        })
+      );
+      closePopover?.();
+    } else {
+      navigation(PAGE_MESSENGER + `/${group.id}`);
+      updateDataItemChat("group", group);
+    }
+  };
   //
   return (
     <div
       aria-hidden
-      onClick={() => {
-        if (mini) {
-          dispatch(
-            updateDataUserChat({
-              key: "zoom",
-              value: [
-                ...userChat.zoom,
-                {
-                  id: generateUUID(),
-                  group,
-                } as ZoomUserChatProps,
-              ],
-            })
-          );
-          closePopover?.();
-        } else {
-          navigation(PAGE_MESSENGER + `/${group.id}`);
-          updateDataItemChat("group", group);
-        }
-      }}
-      className="w-full mess-person user__chat__child cursor-pointer flex relative py-2 px-1 
-        dark:hover:bg-dark-third hover:bg-gray-200  "
+      onClick={handleItem}
+      className={`w-full mess-person user__chat__child cursor-pointer flex relative py-2 px-1 mb-1 
+        dark:hover:bg-dark-third ${
+          group?.id === groupState?.id ? "" : "hover:"
+        }bg-gray-100`}
     >
       <div className="w-full flex justify-center md:w-auto mr-3">
         <div className="xl:w-14 xl:h-14 object-cover rounded-full mx-auto relative w-16 h-16">

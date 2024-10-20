@@ -143,7 +143,7 @@ const ControlMessage = () => {
     >
       {files?.length && <SendImageVideo mini={mini} files={files} />}
       <ControlMessageMain handleSend={handleSend} />
-      <div className="w-9/12 relative">
+      <div className="flex-1 relative">
         <div className="w-full relative">
           <div
             aria-hidden

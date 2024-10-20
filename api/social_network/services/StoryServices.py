@@ -58,8 +58,18 @@ async def get_story_by_user(user_id):
     return response
 
 
+async def get_story_profile_by_user_id(user_id, limit, offset):
+    ref = db.reference("social-network")
+
+    stories = new_value(ref.child("stories").get(), {})
+    stories = stories[user_id] if user_id in stories else []
+    sorted_data = sorted(stories, key=lambda x: x["time_created"], reverse=True)
+    sorted_data = sorted_data[offset : limit * (1 if offset == 0 else offset)]
+    return {"list": sorted_data, "total": len(stories)}
+
+
 async def add_story(user_id: str, story: Story, media: str):
-    result = await upload_media_base64(media, "Stories")
+    result = await upload_media_base64(media, "FacebookNative/Stories")
 
     ref = db.reference("social-network")
 

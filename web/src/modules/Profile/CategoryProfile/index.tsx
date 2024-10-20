@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PAGE_PROFILE } from "@/constants/Config";
 import { Button } from "@/components/ui/button";
@@ -41,9 +41,17 @@ const CategoryProfile = ({ id }: { id: string | number }) => {
   const [active, setActive] = useState(
     categories.findIndex((dt) => location.pathname.indexOf(dt.slug))
   );
+  useEffect(() => {
+    const index = categories.findIndex(
+      (item) => item.slug && location.pathname.indexOf(item.slug) !== -1
+    );
+    if (index !== -1) {
+      setActive(index);
+    }
+  }, [location.pathname]);
   return (
     <div className="w-full relative flex-row flex justify-between items-center">
-      <ul className="w-full flex py-1">
+      <ul className="w-full flex py-1 gap-1">
         {categories.map((category) => (
           <li
             aria-hidden

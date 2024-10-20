@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AudioList from "@/modules/StoryEditor/AudioList";
 import ColorTextList from "@/modules/StoryEditor/ColorTextList";
-import backgroundStory from "@/config/backgroundStory";
 import { PAGE_CREATE_STORY, PAGE_HOME } from "@/constants/Config";
 import { StoryEditorContext } from "@/contexts/StoryEditorContext";
 import html2canvas from "html2canvas";
@@ -14,6 +13,7 @@ import { getUser, RootState } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { storyModel } from "@/models";
 import { createStory } from "@/apis/storyAPI";
+import backgroundStory from "@/config/backgroundStory";
 
 const StoryEditor = () => {
   const user = useSelector<RootState, User>(getUser);
@@ -25,35 +25,41 @@ const StoryEditor = () => {
   } = useContext(StoryEditorContext);
   useEffect(() => {
     updateData("mode", mode);
-    if (mode === 1 && !data) {
+    if ((mode === 1 && !data) || mode === -1) {
       navigation(PAGE_CREATE_STORY);
-      return;
+    } else {
+      mode === 0 && updateData("data", backgroundStory[0]);
+      updateData("mode", mode);
     }
-    // updateData("data", backgroundStory[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
-  const refImage = useRef();
+  const refImage = useRef<HTMLDivElement>();
   const handleCreateStory = async () => {
-    if (loading || !refImage.current) return;
+    if (loading || !refImage.current || !refImage.current) return;
 
-    if (refImage.current) {
-      setLoading(true);
+    setLoading(true);
 
-      html2canvas(refImage.current).then(async (canvas) => {
-        const image = canvas.toDataURL("image/png");
-        const formData = new FormData();
-        formData.append("media", image);
-        formData.append("user_id", user.id);
-        formData.append(
-          "story",
-          JSON.stringify(
-            storyModel({ user, music: audio ? JSON.stringify(audio) : "" })
-          )
-        );
-        await createStory(formData);
-        navigation(PAGE_HOME);
-      });
-    }
+    html2canvas(refImage.current, {
+      scale: 2, // Tăng độ phân giải
+      useCORS: true, // Hỗ trợ tải ảnh từ nguồn khác
+      logging: true, // Để kiểm tra thông tin khi render
+      width: refImage.current.offsetWidth, // Đặt kích thước chính xác
+      height: refImage.current.offsetHeight,
+    }).then(async (canvas) => {
+      const image = canvas.toDataURL("image/png");
+
+      const formData = new FormData();
+      formData.append("media", image);
+      formData.append("user_id", user.id);
+      formData.append(
+        "story",
+        JSON.stringify(
+          storyModel({ user, music: audio ? JSON.stringify(audio) : "" })
+        )
+      );
+      await createStory(formData);
+      navigation(PAGE_HOME);
+    });
   };
   return (
     <form
@@ -68,6 +74,7 @@ const StoryEditor = () => {
         cols={30}
         rows={10}
         className="hidden"
+        spellCheck={false}
       />
       <StoryEditLeft />
       <div className="w-2/4 bg-gray-200 dark:bg-dark-main story-right shadow-3xl h-full flex flex-col">

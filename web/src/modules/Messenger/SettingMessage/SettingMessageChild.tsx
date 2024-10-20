@@ -24,7 +24,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
           <li
             aria-hidden
             onClick={() => navigation(`${PAGE_MESSENGER}/${group?.id}`)}
-            className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+            className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justify-center w-8">
@@ -40,7 +40,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
               modalsAction.openModalChangeColor(group, updateGroup)
             )
           }
-          className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+          className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justify-center w-8">
@@ -55,7 +55,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
               modalsAction.openModalChangeEmoji(group, updateGroup)
             )
           }
-          className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+          className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
                 py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justify-center w-8">
@@ -72,7 +72,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
               modalsAction.openModalChangeNickName(group, updateGroup)
             );
           }}
-          className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+          className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
           py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
         >
           <div className="flex justify-center w-8">
@@ -82,7 +82,7 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
         </li>
         {!hide && (
           <li
-            className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+            className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
                 py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justify-center w-8">
@@ -93,7 +93,9 @@ const SettingMessageChild = (props: SettingMessageChildProps) => {
         )}
         {hide && (
           <li
-            className="w-full rounded-lg hover:bg-gray-200 dark:hover:bg-dark-third 
+            aria-hidden
+            onClick={() => modalsDispatch(modalsAction.openModalDeveloper())}
+            className="w-full rounded-lg hover:bg-gray-100 dark:hover:bg-dark-third 
             py-2 px-2 font-semibold cursor-pointer dark:text-white flex"
           >
             <div className="flex justify-center w-8">

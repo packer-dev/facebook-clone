@@ -66,7 +66,11 @@ const WrapperProfile = forwardRef(
         dispatch(updateDataCommon({ key: "profilePosts", value: [] }));
         dispatch(updateDataUserProfile({ key: "loading", value: false }));
       };
-      if (refPath.current.indexOf("profile")) fetchData();
+      if (
+        refPath.current.indexOf("profile") &&
+        location.pathname.split("/")[2] !== userProfile?.id
+      )
+        fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, userProfile?.id]);
     useEffect(() => {
@@ -112,7 +116,7 @@ const Profile = () => {
               </div>
             </div>
           )}
-          <div className="w-full relative bg-gray-100 dark:bg-dark-main pt-3">
+          <div className="w-full relative bg-gray-50 dark:bg-dark-main pt-3">
             <div className="mx-auto relative w-full lg:flex xl:w-63% md:w-4/5 lg:w-3/4 md:mx-auto lg:flex-wrap rounded-lg">
               <Routes>
                 {routes.map((route) => (

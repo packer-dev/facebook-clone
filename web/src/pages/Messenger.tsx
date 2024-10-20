@@ -18,7 +18,7 @@ const WrapperMessenger = () => {
   const user = useSelector<RootState, User>((state) => state.user);
   const params = useParams();
   const {
-    state: { groups, group, messages },
+    state: { groups, group, messages, loading },
     updateData: updateDataItemChat,
   } = useContext(ItemChatContext);
   const fetchMessageList = async () => {
@@ -27,15 +27,20 @@ const WrapperMessenger = () => {
   };
   const fetchGroup = async () => {
     const result = await getGroupById(params.id);
-    updateDataItemChat("messages", result);
+    updateDataItemChat("messages", result.messages);
+    updateDataItemChat("group", result.group);
     updateDataItemChat("mini", false);
+    updateDataItemChat("loading", false);
   };
   useEffect(() => {
     if (user) fetchMessageList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
   useEffect(() => {
+    updateDataItemChat("loading", true);
     if (params?.id) fetchGroup();
+    else updateDataItemChat("loading", true);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
   return (
@@ -45,8 +50,8 @@ const WrapperMessenger = () => {
           <MessageList groups={groups} />
         </div>
       </div>
-      <div className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 dark:border-dark-second z-40">
-        {messages && group ? (
+      <div className="w-full md:w-7/12 xl:w-3/4 flex h-full border-x-2 border-solid border-gray-100 dark:border-dark-second z-40 relative">
+        {!loading && messages && group && params?.id && (
           <>
             <div className="w-full z-50 xl:w-2/3 h-full max-h-full overflow-hidden flex flex-col">
               <ContentMessageTop />
@@ -55,9 +60,15 @@ const WrapperMessenger = () => {
             </div>
             <SettingMessage />
           </>
-        ) : (
+        )}
+        {loading && (
+          <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <i className="bx bx-loader-circle dark:text-white text-blue-500 animate-spin text-5xl" />
+          </div>
+        )}
+        {!loading && !params?.id && (
           <div className={`w-full h-full flex justify-center items-center`}>
-            <div className="w-11/12 md:w-2/3 lg:w-5/12 xl:w-30% text-center mx-auto">
+            <div className="w-11/12 md:w-2/3 lg:w-5/12 xl:w-30% text-center mx-auto relative">
               <img
                 src="https://static.xx.fbcdn.net/rsrc.php/yN/r/MnQWcWb6SrY.svg"
                 alt=""

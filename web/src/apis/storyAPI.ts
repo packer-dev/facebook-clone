@@ -22,5 +22,20 @@ export const deleteStory = async (story_id: string, user_id: string) => {
       story_id,
       user_id,
     },
+    method: "DELETE",
   });
+};
+
+export const getStoryProfile = async (
+  user_id: string,
+  limit: number,
+  offset: number
+) => {
+  return axiosInstance(`${API_URL}/story/profile`, {
+    params: {
+      user_id,
+      limit,
+      offset,
+    },
+  }).then((res) => res.data);
 };
