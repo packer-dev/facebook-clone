@@ -30,7 +30,6 @@ const WrapperContentChildProfile = <T,>({
     let timeOut: ReturnType<typeof setTimeout>;
     const fetchData = async () => {
       const result = await getResultAPI();
-      console.log(result);
       setData(result?.list || result);
       setLoading(false);
     };

@@ -58,7 +58,7 @@ export type ContextInitProps = {
 const init: ContextInitProps = {
   showKeyboard: false,
   messages: [],
-  socket: io("http://192.168.1.9:4444"),
+  socket: io("http://192.168.1.8:4444"),
   popup: [],
   panel: {
     ui: null,

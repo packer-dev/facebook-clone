@@ -1,4 +1,4 @@
-export const API_URL = "http://192.168.1.9:8000/api/social-network/v1";
+export const API_URL = "http://192.168.1.8:8000/api/social-network/v1";
 //
 export const AVATAR_DEFAULT =
   "https://res.cloudinary.com/ensonet-dev/image/upload/v1641124176/default-avatar_leprc2.png";
