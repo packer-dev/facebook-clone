@@ -51,19 +51,19 @@ const FooterItemPost = ({ postDetail }: FooterItemPostProps) => {
       user?.id,
       type
     );
-    if (!result) {
+    if (result) {
+      newPostDetail.feel = checkUser
+        ? [...newPostDetail.feel].map((item) => {
+            if (item.id === checkUser.id) return result;
+            return item;
+          })
+        : [result, ...newPostDetail.feel];
+    } else {
       newPostDetail.feel = [...newPostDetail.feel].filter(
         (item) => item.id !== checkUser?.id
       );
-    } else {
-      newPostDetail.feel = !checkUser
-        ? [result, ...newPostDetail.feel]
-        : [...newPostDetail.feel].map((item) => {
-            if (item.id === checkUser.id) return result;
-            return item;
-          });
     }
-    const isProfile = pageCurrent.indexOf(PAGE_PROFILE) !== -1;
+    const isProfile = pageCurrent.includes(PAGE_PROFILE);
     dispatch(
       updateDataCommon({
         key: isProfile ? "profilePosts" : "homePosts",

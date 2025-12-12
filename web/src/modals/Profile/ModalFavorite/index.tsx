@@ -42,8 +42,8 @@ const ModalFavorite = ({
             ref={ref}
             placeholder="What do you do for fun?"
             handleChange={(data) => {
-              const get = favorites.filter(
-                (dt) => dt.name.toLowerCase().indexOf(data.toLowerCase()) !== -1
+              const get = favorites.filter((dt) =>
+                dt.name.toLowerCase().includes(data.toLowerCase())
               );
               setContent({ ...content, list: get, search: data });
             }}

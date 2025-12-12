@@ -89,7 +89,7 @@ const HeaderLoggedRight = ({
             aria-hidden
             onClick={async () => {
               setToggle(!toggle);
-              document.body.className = !toggle ? "dark" : "";
+              document.body.className = toggle ? "" : "dark";
             }}
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
@@ -104,13 +104,13 @@ const HeaderLoggedRight = ({
               className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
               dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
             >
-              <i className="bx bxl-messenger text-2xl" />
+              <i className="bx  bxs-message-bubble text-2xl" />
               {!!amount.watch && (
                 <span
                   className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
               bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
                 >
-                  {amount.watch > 9 ? 9 : amount.watch}+
+                  {Math.min(amount.watch, 9)}+
                 </span>
               )}
             </li>
@@ -127,7 +127,7 @@ const HeaderLoggedRight = ({
                 className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 
               bg-red-500 px-1 h-5 rounded-full flex justify-center items-center"
               >
-                {amount.notification > 9 ? 9 : amount.notification}+
+                {Math.min(amount.notification, 9)}+
               </span>
             )}
           </li>

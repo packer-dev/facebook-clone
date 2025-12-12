@@ -29,12 +29,12 @@ const Watch = () => {
             </div>
           </div>
           <div className="w-auto md:w-full flex-1 overflow-y-auto absolute md:static -top-1.5 left-28">
-            <ListItemWatchLeft images={Array(8).fill("")} />
+            <ListItemWatchLeft images={new Array(8).fill("")} />
           </div>
         </div>
         <div className="w-full md:w-2/3 lg:w-3/4 h-auto lg:h-full overflow-y-auto">
           <div className="xl:w-3/4 w-full md:w-11/12 mx-auto">
-            <WatchNewBest images={Array(8).fill("")} />
+            <WatchNewBest images={new Array(8).fill("")} />
             <div className="w-full p-5">
               {false ? (
                 [].map((postDetail) => (

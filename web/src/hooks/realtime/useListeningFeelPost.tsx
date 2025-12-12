@@ -27,7 +27,7 @@ const useListeningFeelPost = (postId: string) => {
 
       const { sender, feel } = JSON.parse(data);
       if (sender === user?.id) return;
-      const isProfile = location.pathname.indexOf(PAGE_PROFILE) === -1;
+      const isProfile = location.pathname.includes(PAGE_PROFILE);
       dispatch(
         updateDataCommon({
           key: isProfile ? "profilePosts" : "homePosts",

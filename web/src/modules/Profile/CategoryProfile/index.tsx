@@ -43,11 +43,12 @@ const CategoryProfile = ({ id }: { id: string | number }) => {
   );
   useEffect(() => {
     const index = categories.findIndex(
-      (item) => item.slug && location.pathname.indexOf(item.slug) !== -1
+      (item) => item.slug && location.pathname?.includes(item.slug)
     );
     if (index !== -1) {
       setActive(index);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
   return (
     <div className="w-full relative flex-row flex justify-between items-center">

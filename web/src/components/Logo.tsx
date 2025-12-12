@@ -1,14 +1,13 @@
-import * as React from "react";
 import { PAGE_HOME } from "@/constants/Config";
-import logo from "@/assets/images/logo.png";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/reducers";
 import { updateDataCommon } from "@/reducers/common";
+import * as React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 type LogoProps = { size?: number };
 
-const Logo = ({ size = 12 }: LogoProps) => {
+const Logo = ({ size = 10 }: LogoProps) => {
   const dispatch = useDispatch<AppDispatch>();
   return (
     <Link
@@ -22,12 +21,7 @@ const Logo = ({ size = 12 }: LogoProps) => {
       }
       to={PAGE_HOME}
     >
-      <img
-        className={`w-${size} shadow-lv1 rounded-full sm:w-${size} border border-gray-200 border-solid`}
-        src={logo}
-        alt=""
-        srcSet=""
-      />
+      <i className="bxr bxs-owl text-main text-4xl" />
     </Link>
   );
 };

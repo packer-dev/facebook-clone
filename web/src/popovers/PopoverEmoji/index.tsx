@@ -62,9 +62,9 @@ const PopoverEmoji = ({ handleClick }: PopoverEmojiProps) => {
               aria-hidden
               onClick={() => handleClick?.(item)}
               className={`w-9 h-9 flex justify-center text-2xl cursor-pointer items-center ${
-                item !== "icon"
-                  ? "hover:bg-gray-300 dark:hover:bg-dark-third"
-                  : "bg-gray-300 dark:bg-dark-third"
+                item === "icon"
+                  ? "bg-gray-300 dark:bg-dark-third"
+                  : "hover:bg-gray-300 dark:hover:bg-dark-third"
               }`}
               key={item + index}
             >

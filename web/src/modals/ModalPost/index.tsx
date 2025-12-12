@@ -88,7 +88,7 @@ const ModalPost = () => {
               }),
             })
           );
-        } else if (pageCurrent.indexOf(PAGE_PROFILE) !== -1) {
+        } else if (pageCurrent.includes(PAGE_PROFILE)) {
           dispatch(
             updateDataCommon({
               key: "profilePosts",

@@ -49,7 +49,7 @@ const ItemAccount = ({ list, setList, item }: ItemAccountProps) => {
       };
       if (result.data.users) {
         const tokenParse = result.data.token;
-        if (tokenParse.exp > Math.floor(new Date().getTime() / 1000)) {
+        if (tokenParse.exp > Math.floor(Date.now() / 1000)) {
           if (result.data.users) {
             localStorage.setItem("user", result.data.token.exp.toString());
             dispatch({

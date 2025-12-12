@@ -108,24 +108,22 @@ const NewChat = () => {
           <div className="pl-2 font-semibold py-2 dark:text-white">To :</div>
           <div className="flex-1 flex">
             <div className="w-auto flex flex-wrap">
-              {choose
-                .filter((item) => item)
-                .map((item) => (
-                  <div
-                    key={item?.id}
-                    aria-hidden
-                    onClick={() =>
-                      updateData(
-                        "choose",
-                        [...choose].filter((dt) => dt.id !== item?.id)
-                      )
-                    }
-                    className="mr-1 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
-                  >
-                    {`${item?.name}`}
-                    <span className="ml-1 text-xm">&times;</span>
-                  </div>
-                ))}
+              {choose.filter(Boolean).map((item) => (
+                <div
+                  key={item?.id}
+                  aria-hidden
+                  onClick={() =>
+                    updateData(
+                      "choose",
+                      [...choose].filter((dt) => dt.id !== item?.id)
+                    )
+                  }
+                  className="mr-1 mb-2 break-all rounded-full text-sm w-auto cursor-pointer p-1.5 bg-blue-300 text-blue-500 font-bold"
+                >
+                  {`${item?.name}`}
+                  <span className="ml-1 text-xm">&times;</span>
+                </div>
+              ))}
             </div>
             <div
               onInput={(event) => {
@@ -148,8 +146,8 @@ const NewChat = () => {
             {friends
               .filter(
                 (item) =>
-                  item.name.toLowerCase().indexOf(text.toLowerCase()) !== -1 &&
-                  choose.findIndex((child) => child?.id === item?.id) === -1
+                  item.name.toLowerCase().includes(text.toLowerCase()) &&
+                  choose.some((child) => child?.id === item?.id)
               )
               .map((item) => (
                 <ItemNewChat

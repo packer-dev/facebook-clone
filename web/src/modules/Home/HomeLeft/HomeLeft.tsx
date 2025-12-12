@@ -53,7 +53,7 @@ const HomeLeft = () => {
             }}
             className="cursor-pointer rounded-lg flex p-2.5 hover:bg-gray-200 font-bold dark:hover:bg-dark-third"
           >
-            <div className="w-10 h-10 rounded-full bg-gray-300 flex justify-center items-center">
+            <div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-dark-second flex justify-center items-center">
               <span
                 className={`${
                   loading

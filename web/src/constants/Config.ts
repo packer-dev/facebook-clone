@@ -1,6 +1,4 @@
-//eslint-disable-next-line
 export const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-//eslint-disable-next-line
 export const REGEX_PHONE = /^(\+91-|\+91|0)?\d{10}$/;
 //
 export const API_URL = process.env.REACT_APP_API_URL;
