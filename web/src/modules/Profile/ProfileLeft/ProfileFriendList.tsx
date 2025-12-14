@@ -50,7 +50,9 @@ const ProfileFriendList = () => {
           </p>
           <span className="color-word">{list.length} friends</span>
         </div>
-        <div className="w-1/2 mt-2.5 pr-2.5 text-right text-main">View all</div>
+        <div className="w-1/2 mt-2.5 pr-2.5 text-right text-primary">
+          View all
+        </div>
       </div>
       <div className="w-full pt-4 grid grid-cols-3 gap-1">
         {list.slice(0, 9).map((friend) => (

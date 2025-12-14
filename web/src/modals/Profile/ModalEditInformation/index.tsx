@@ -89,7 +89,7 @@ const ModalEditInformation = ({
             modalsDispatch(modalsAction.closeModal());
           }}
           type="button"
-          className="cursor-pointer w-1/4 border-none font-semibold bg-main text-white rounded-lg p-2 mx-2"
+          className="cursor-pointer w-1/4 border-none font-semibold bg-primary text-white rounded-lg p-2 mx-2"
         >
           Save
         </Button>

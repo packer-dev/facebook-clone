@@ -21,7 +21,7 @@ const Logo = ({ size = 10 }: LogoProps) => {
       }
       to={PAGE_HOME}
     >
-      <i className="bxr bxs-owl text-main text-4xl" />
+      <i className="bxr bxs-owl text-primary text-4xl" />
     </Link>
   );
 };

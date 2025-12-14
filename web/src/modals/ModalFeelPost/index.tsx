@@ -13,7 +13,7 @@ const ModalFeelPost = () => {
   const [loading, setLoading] = useState(true);
   const [activity, setActivity] = useState<any>(
     posts.activity
-      ? [...feelActivityList.activities].filter(
+      ? [...feelActivityList.activities].some(
           (item) => item.id === posts.activity.idActivity
         )[0]
       : null
@@ -42,7 +42,7 @@ const ModalFeelPost = () => {
           }}
           className={`${
             type === 0
-              ? "border-b-4 border-main text-main"
+              ? "border-b-4 border-main text-primary"
               : "border-white dark:border-dark-third"
           } p-3 border-solid font-semibold cursor-pointer`}
         >
@@ -56,7 +56,7 @@ const ModalFeelPost = () => {
           }}
           className={`${
             type === 1
-              ? "border-b-4 border-main text-main"
+              ? "border-b-4 border-main text-primary"
               : "border-white dark:border-dark-third"
           } p-3 border-solid font-semibold cursor-pointer`}
         >

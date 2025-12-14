@@ -32,7 +32,7 @@ const PopoverSetting = () => {
       <hr className="border-gray-300 my-1.5 dark:border-dark-third" />
       <div className="p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-third flex w-full items-center">
         <span
-          className="bx bx-error-alt text-2xl w-8 h-8 rounded-full flex justify-center items-center 
+          className="bx bxs-cog text-2xl w-8 h-8 rounded-full flex justify-center items-center 
           bg-gray-200 dark:bg-dark-third dark:text-white"
         />
         <div className="pl-3">
@@ -51,7 +51,7 @@ const PopoverSetting = () => {
         className="p-2 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-dark-third flex w-full items-center"
       >
         <span
-          className="bx bx-log-out text-2xl w-8 h-8 rounded-full flex justify-center items-center 
+          className="bx bxs-arrow-out-right-stroke-circle-half text-2xl w-8 h-8 rounded-full flex justify-center items-center 
           bg-gray-200 dark:bg-dark-third dark:text-white"
         />
         <div className="pl-3">

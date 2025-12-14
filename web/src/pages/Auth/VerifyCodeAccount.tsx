@@ -49,7 +49,7 @@ const VerifyCodeAccount = ({ verifyAccountNew }: VerifyCodeAccountProps) => {
       </div>
       <hr />
       <div className="w-full py-3 mt-1 flex justify-between items-center">
-        <Link to="" className="text-main text-sm ml-5">
+        <Link to="" className="text-primary text-sm ml-5">
           Don't have a code?
         </Link>
         <div className="">

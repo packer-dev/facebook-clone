@@ -48,10 +48,12 @@ const ItemWatchChildren = ({
         `md:hover:bg-gray-200 md:bg-transparent bg-gray-200 dark:hover:bg-dark-third rounded-full md:rounded-lg`
       } cursor-pointer ${right || index <= 1 ? "flex" : "hidden md:flex"}`}
     >
-      {!image ? (
+      {image ? (
+        imageExist
+      ) : (
         <div
           className={`w-9 h-9 ml-1 rounded-full items-center justify-center
-            ${active ? "bg-main" : "bg-gray-200"}  ${
+            ${active ? "bg-primary" : "bg-gray-200"}  ${
             right ? "flex" : `hidden md:flex`
           }`}
         >
@@ -67,14 +69,12 @@ const ItemWatchChildren = ({
             }}
           />
         </div>
-      ) : (
-        imageExist
       )}
       <div className={`${right ? "ml-3" : "ml-0 md:ml-3"}`}>
         <p className="font-semibold text-sm dark:text-gray-300">{name}</p>
         {multiline && (
-          <div className="mt-0.5 text-main text-sm flex items-center">
-            <span className="w-2 h-2 rounded-full mr-2 bg-main" />
+          <div className="mt-0.5 text-primary text-sm flex items-center">
+            <span className="w-2 h-2 rounded-full mr-2 bg-primary" />
             <span className="text-sm">{multiline}</span>
           </div>
         )}

@@ -36,7 +36,7 @@ const ImageVideoUser = () => {
             <br />
           </p>
         </div>
-        <div className="w-full text-right mt-2.5 mr-2.5 text-main">
+        <div className="w-full text-right mt-2.5 mr-2.5 text-primary">
           View all
         </div>
       </div>

@@ -29,12 +29,12 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
   };
 
   const validationSchema = Yup.object().shape(
-    !loginFast
-      ? {
+    loginFast
+      ? validationObject
+      : {
           ...validationObject,
           email: Yup.string().required("Email is required."),
         }
-      : validationObject
   );
 
   const {
@@ -121,12 +121,12 @@ const FormLogin: React.FC<FormLoginProps> = ({ remember, loginFast }) => {
       <Button
         loading={loading}
         disabled={loading}
-        className="mx-auto w-full p-3 my-2.5 border-none rounded-md bg-main text-sm text-white font-semibold"
+        className="mx-auto w-full p-3 my-2.5 border-none rounded-md bg-primary text-sm text-white font-semibold"
         type="submit"
       >
         Login
       </Button>
-      <p className="text-main bg-white py-4 cursor-pointer text-center">
+      <p className="text-primary bg-white py-4 cursor-pointer text-center">
         <Link to={PAGE_FORGET_ACCOUNT}>Forgot Account</Link>
       </p>
     </form>

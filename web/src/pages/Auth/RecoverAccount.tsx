@@ -89,7 +89,7 @@ const RecoverAccount = ({ verify }: RecoverAccountProps) => {
                 onClick={async () => setLoading(true)}
                 disabled={!email}
                 loading={loading}
-                className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
+                className="px-4 py-2 mr-5 rounded-lg bg-primary text-white"
               >
                 Continue
               </Button>

@@ -45,7 +45,7 @@ const ItemFriendCanKnow = ({
               setUsers([...users].filter((dt) => dt.id !== item.id));
             }}
             disabled
-            // className="w-full justify-center p-0.5 my-2 rounded-md text-main bg-blue-100
+            // className="w-full justify-center p-0.5 my-2 rounded-md text-primary bg-blue-100
             // flex items-center hover:bg-blue-200 font-semibold"
           >
             <i className="bx bx-user-plus text-2xl mr-1" /> Add friend

@@ -39,7 +39,7 @@ export default forwardRef(function ItemFavorite(
         }
       }}
       className={`px-1 py-0.5 flex items-center justify-center rounded-full ${
-        choose ? "bg-blue-200 text-main" : ""
+        choose ? "bg-blue-200 text-primary" : ""
       } border-2 text-sm cursor-pointer border-gray-200 border-solid dark:border-dark-third`}
     >
       <span className="pl-1.5 text-xl">{item.icon}</span>

@@ -46,7 +46,7 @@ const WrapperContentChildProfile = <T,>({
   }, [userProfile?.id, location.pathname]);
   return (
     <>
-      <div className="py-2 px-4 mb-2 text-center border-b-2 border-solid border-main text-main">
+      <div className="py-2 px-4 mb-2 text-center border-b-2 border-solid border-main text-primary">
         {label}
       </div>
       {

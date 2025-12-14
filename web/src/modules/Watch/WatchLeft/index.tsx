@@ -18,7 +18,7 @@ const ListItemWatchLeft = ({ images }) => {
         <hr className="border-gray-300 my-2 hidden md:flex" />
         <div className="w-full hidden md:flex justify-between items-center">
           <span className="font-bold dark:text-gray-300">Following</span>
-          <span className="text-main">Manage</span>
+          <span className="text-primary">Manage</span>
         </div>
         <div className="my-2 hidden md:block">
           <ItemWatchChildren

@@ -13,7 +13,7 @@ const HeaderSignedOut = ({ hideFormLogin }: HeaderSignedOutProps) => {
       <span
         aria-hidden
         onClick={() => navigation(PAGE_LOGIN)}
-        className=" pl-3 text-2xl font-bold text-main cursor-pointer"
+        className=" pl-3 text-2xl font-bold text-primary cursor-pointer"
       >
         Facebook
         <br />

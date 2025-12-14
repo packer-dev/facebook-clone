@@ -44,7 +44,7 @@ const ItemPopoverNotification = ({
         </p>
       </div>
       {!isRead && (
-        <span className="w-3.5 h-3.5 rounded-full bg-main absolute top-1/2 transform -translate-y-1/2 right-3.5" />
+        <span className="w-3.5 h-3.5 rounded-full bg-primary absolute top-1/2 transform -translate-y-1/2 right-3.5" />
       )}
     </div>
   );

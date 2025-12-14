@@ -25,7 +25,7 @@ const NotImageVideoPreview = () => {
         <div className="flex justify-center items-center relative w-[50px] h-[50px]">
           <span
             className={`fas fa-mobile-alt text-2xl w-10 h-10 rounded-full mx-auto flex justify-center items-center 
-            ${transport ? "bg-main text-white" : "bg-gray-300"}`}
+            ${transport ? "bg-primary text-white" : "bg-gray-300"}`}
           />
           {transport && (
             <div

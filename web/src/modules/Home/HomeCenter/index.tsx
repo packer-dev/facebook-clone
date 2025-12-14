@@ -34,7 +34,7 @@ const HomeCenter = () => {
             className="w-14 h-14 rounded-full bg-white shadow-lg border border-solid border-gray-200 flex items-center 
           justify-center left-1/2 transform -translate-x-1/2 absolute"
           >
-            <span className="bx bx-loader-circle text-3xl text-blue-500 animate-spin"></span>
+            <span className="bx bx-loader-dots text-3xl text-primary animate-spin"></span>
           </div>
         )}
         <div className="flex my-4 relative gap-1">
@@ -51,7 +51,7 @@ const HomeCenter = () => {
             <div className="w-full rounded-b-lg bg-white dark:bg-dark-second relative h-[50px]">
               <div
                 className="w-11 h-11 rounded-full border-4 border-solid border-white dark:border-dark-second 
-              absolute dark:bg-dark-second bottom-0 pt-1 bg-main left-1/2 transform -translate-x-1/2 -top-5 -mr-2 "
+              absolute dark:bg-dark-second bottom-0 pt-1 bg-primary left-1/2 transform -translate-x-1/2 -top-5 -mr-2 "
               >
                 <i className="fas fa-plus pt-1.5 text-white" />
               </div>

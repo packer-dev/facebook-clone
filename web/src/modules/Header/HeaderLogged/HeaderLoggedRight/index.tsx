@@ -121,7 +121,7 @@ const HeaderLoggedRight = ({
             className="cursor-pointer relative h-10 ml-1 mr-1 w-10 bg-gray-200 
             dark:bg-dark-third dark:text-white text-center rounded-full flex justify-center items-center"
           >
-            <i className="bx bx-bell text-xl" />
+            <i className="bx bxs-bell text-xl" />
             {!!amount.notification && (
               <span
                 className="absolute -top-2 -right-2 text-xs transform scale-90 text-white font-semibold 

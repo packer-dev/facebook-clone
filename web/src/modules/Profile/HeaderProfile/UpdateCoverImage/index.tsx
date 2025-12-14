@@ -62,7 +62,7 @@ const UpdateCoverImage = ({
         </Button>
         <Button
           onClick={handleUpdateCoverImage}
-          className="rounded-md md:px-10 md:py-2 p-1.5 font-semibold bg-main text-white"
+          className="rounded-md md:px-10 md:py-2 p-1.5 font-semibold bg-primary text-white"
         >
           {loadingCover ? (
             <i className="bx bx-shape-circle fa-spin" />

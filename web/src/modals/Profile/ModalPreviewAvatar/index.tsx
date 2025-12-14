@@ -83,7 +83,7 @@ const ModalPreviewAvatar = ({ image, user }: ModalPreviewAvatarProps) => {
           </Button>
           <Button
             onClick={handleUpdateAvatar}
-            className=" rounded-md px-10 py-2 font-semibold bg-main text-white"
+            className=" rounded-md px-10 py-2 font-semibold bg-primary text-white"
           >
             Save Changes
           </Button>

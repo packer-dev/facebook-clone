@@ -22,9 +22,9 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
         </span>
         <br />
         <div className="flex items-center my-2 gap-2">
-          <span className="text-sm text-main">Archive</span>
-          <span className="text-sm text-main">·</span>
-          <span className="text-sm text-main">Setting</span>
+          <span className="text-sm text-primary">Archive</span>
+          <span className="text-sm text-primary">·</span>
+          <span className="text-sm text-primary">Setting</span>
         </div>
         <div
           aria-hidden
@@ -41,7 +41,7 @@ const ViewStoryLeft = ({ fullScreen, setFullScreen }: ViewStoryLeftProps) => {
       <p className="font-semibold my-2 dark:text-white">Your story</p>
       <div className="cursor-pointer w-full flex p-2 gap-3 items-center">
         <div className="w-12 h-12 rounded-full bg-gray-100 flex justify-center items-center">
-          <i className="fas fa-plus text-main" />
+          <i className="fas fa-plus text-primary" />
         </div>
         <div className="flex-1">
           <p className="font-semibold pb-1 dark:text-white">Create story</p>

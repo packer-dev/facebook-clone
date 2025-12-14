@@ -72,7 +72,7 @@ const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
             onClick={() => {
               modalsDispatch(modalsAction.openModalPost({ post, medias }));
             }}
-            className="bx bx-edit-alt absolute top-0 right-8 text-xl text-gray-800 hover:text-main 
+            className="bx bx-edit-alt absolute top-0 right-8 text-xl text-gray-800 hover:text-primary 
         cursor-pointer dark:text-gray-300"
           />
         ))}
@@ -88,7 +88,7 @@ const PostTopRight = ({ user, post, medias }: PostTopRightProps) => {
             )
           );
         }}
-        className="bx bx-trash-alt absolute top-0 right-1 text-xl text-gray-800 hover:text-main
+        className="bx bx-trash-alt absolute top-0 right-1 text-xl text-gray-800 hover:text-primary
             cursor-pointer dark:text-gray-300"
       />
     </>

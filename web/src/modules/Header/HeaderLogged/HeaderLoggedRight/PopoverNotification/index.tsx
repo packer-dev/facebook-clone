@@ -41,7 +41,7 @@ const PopoverNotification = () => {
               setActive(0);
             }}
             className={`px-4 py-1.5 rounded-full ${
-              active === 0 ? "bg-blue-100 text-main" : "bg-gray-300"
+              active === 0 ? "bg-blue-100 text-primary" : "bg-gray-300"
             } font-semibold`}
           >
             All
@@ -53,7 +53,7 @@ const PopoverNotification = () => {
               setActive(1);
             }}
             className={`px-4 py-1.5 rounded-full ${
-              active === 1 ? "bg-blue-100 text-main" : "bg-gray-200"
+              active === 1 ? "bg-blue-100 text-primary" : "bg-gray-200"
             } font-semibold`}
           >
             Unread
@@ -62,12 +62,12 @@ const PopoverNotification = () => {
       </ul>
       <div className="w-full flex items-center justify-between py-1">
         <p className="font-semibold dark:text-gray-300">New</p>
-        <Link to="" className="text-main">
+        <Link to="" className="text-primary">
           View all
         </Link>
       </div>
       <div className="w-full overflow-y-auto overflow-x-hidden dark:text-white max-h-[600px]">
-        {notifications.filter((item) => item.is_read === !active).length > 0 ? (
+        {notifications.some((item) => item.is_read === !active) ? (
           notifications.map((notification) => (
             <ItemPopoverNotification
               isRead={active === 0}

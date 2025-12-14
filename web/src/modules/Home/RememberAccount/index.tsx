@@ -74,7 +74,7 @@ const RememberAccount = () => {
               );
               removeSaveInHome();
             }}
-            className="w-1/2 p-2 rounded-lg font-semibold text-main bg-blue-100"
+            className="w-1/2 p-2 rounded-lg font-semibold text-primary bg-blue-100"
           >
             OK
           </Button>

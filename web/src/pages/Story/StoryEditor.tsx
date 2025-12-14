@@ -88,7 +88,7 @@ const StoryEditor = () => {
           </Button>
           <Button disabled={loading} onClick={handleCreateStory} type="button">
             {loading ? (
-              <i className="bx bx-loader-circle fa-spin text-main">:</i>
+              <i className="bx bx-loader-circle fa-spin text-primary">:</i>
             ) : (
               "Share story"
             )}

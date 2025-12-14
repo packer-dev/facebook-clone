@@ -2,7 +2,7 @@
   outline: 0 !important;
 }
 :root {
-  --color: oklch(60% 0.118 184.704);
+  --color: #0f172a;
 }
 ::-webkit-scrollbar {
   height: 6px;
@@ -397,13 +397,13 @@ input {
 .bg-1877F2 {
   background-color: var(--color);
 }
-.text-main {
+.text-primary {
   color: var(--color);
 }
 .bg-main {
   background-color: var(--color);
 }
-.hover\:text-main:hover {
+.hover\:text-primary:hover {
   color: var(--color);
 }
 .hover\:bg-main:hover {

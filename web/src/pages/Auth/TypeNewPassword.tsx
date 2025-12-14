@@ -41,7 +41,7 @@ const TypeNewPassword = () => {
               navigation(PAGE_LOGIN);
             }}
             loading={loading}
-            className="px-4 py-2 mr-5 rounded-lg bg-main text-white"
+            className="px-4 py-2 mr-5 rounded-lg bg-primary text-white"
           >
             Next
           </Button>

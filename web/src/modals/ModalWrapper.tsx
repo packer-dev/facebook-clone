@@ -44,7 +44,7 @@ const ModalWrapper = ({
               className="absolute top-0 left-0 bg-white bg-opacity-50 z-30 
               flex justify-center items-center bottom-0 right-0"
             >
-              <i className="fas fa-circle-notch fa-spin text-main text-2xl" />
+              <i className="fas fa-circle-notch fa-spin text-primary text-2xl" />
             </div>
           )}
         </div>

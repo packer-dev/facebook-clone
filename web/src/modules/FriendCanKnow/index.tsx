@@ -26,7 +26,7 @@ const FriendCanKnow = () => {
           <p className="font-semibold">People You May Know</p>
           <span
             aria-hidden
-            className="text-main font-semibold text-sm cursor-pointer"
+            className="text-primary font-semibold text-sm cursor-pointer"
             onClick={() => setShow(!show)}
           >
             {show ? "Hide" : "Show"}
@@ -34,14 +34,16 @@ const FriendCanKnow = () => {
         </div>
         {show && (
           <div className="w-full max-w-full flex gap-2 overflow-x-auto dark:bg-dark-third">
-            {[...users.filter((item) => item.id !== user.id)].map((item) => (
-              <ItemFriendCanKnow
-                item={item}
-                key={item.id}
-                users={users}
-                setUsers={setUsers}
-              />
-            ))}
+            {users
+              .filter((item) => item.id !== user.id)
+              .map((item) => (
+                <ItemFriendCanKnow
+                  item={item}
+                  key={item.id}
+                  users={users}
+                  setUsers={setUsers}
+                />
+              ))}
           </div>
         )}
       </div>

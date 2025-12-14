@@ -48,7 +48,7 @@ export default memo(function HeaderProfile() {
               <>
                 {loadingCover && (
                   <div className="w-full h-60 lg:h-96 absolute top-0 left-0 z-20 bg-opacity-50 bg-white flex justify-center items-center">
-                    <i className="fas fa-spinner fa-pulse text-5xl text-main" />
+                    <i className="fas fa-spinner fa-pulse text-5xl text-primary" />
                   </div>
                 )}
                 <div className="z-10 p-1.5 bg-gray-50 dark:bg-dark-second absolute text-center rounded-lg bottom-3 right-10 md:right-3">

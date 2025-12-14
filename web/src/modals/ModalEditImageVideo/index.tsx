@@ -115,14 +115,14 @@ const ModalEditImageVideo = () => {
           />
           <label htmlFor="inputFileUpload">
             {" "}
-            <span className="px-5 py-2 text-main font-semibold flex items-center">
+            <span className="px-5 py-2 text-primary font-semibold flex items-center">
               <i className="bx bxs-add-to-queue text-xl mr-2" />
               <span>Add image/video</span>
             </span>
           </label>
           <Button
             onClick={() => postsDispatch(postsAction.returnModalPost())}
-            className="px-5 py-2 rounded-lg bg-main text-white font-semibold"
+            className="px-5 py-2 rounded-lg bg-primary text-white font-semibold"
           >
             Done
           </Button>

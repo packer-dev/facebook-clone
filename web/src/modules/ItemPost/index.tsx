@@ -101,7 +101,7 @@ const ItemPost = ({
               <p
                 aria-hidden
                 onClick={handleViewMore}
-                className="text-main text-sm font-semibold cursor-pointer"
+                className="text-primary text-sm font-semibold cursor-pointer"
               >
                 {loading ? "Loading..." : "View more"}
               </p>

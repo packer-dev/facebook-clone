@@ -37,7 +37,7 @@ const NotFound = () => {
               if (user) navigation(PAGE_HOME);
               else navigation(PAGE_LOGIN);
             }}
-            className="px-5 py-2 my-5 rounded-md bg-main text-white font-semibold"
+            className="px-5 py-2 my-5 rounded-md bg-primary text-white font-semibold"
           >
             {user ? "Go to news feed" : "Back to login page"}
           </Button>
