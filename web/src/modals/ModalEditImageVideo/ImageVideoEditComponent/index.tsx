@@ -26,7 +26,7 @@ const ImageVideoEditComponent = ({
     if ("url" in element) {
       result = [...imageVideo.old].filter((item) => item.id !== element.id);
     } else {
-      result = [...Array.from(imageVideo.new || [])].filter(
+      result = Array.from(imageVideo.new || []).filter(
         (item) => item.name !== element.name
       );
     }

@@ -69,13 +69,13 @@ const ItemNickName = ({ item, group, updateGroup }: ItemNickNameProps) => {
         />
       </div>
       <div aria-hidden onClick={() => setShow(true)} className="flex-1 pl-3">
-        <p className={`flex items-center flex-wrap ${!show ? "" : "hidden"}`}>
+        <p className={`flex items-center flex-wrap ${show ? "hidden" : ""}`}>
           <span className="w-full font-semibold block dark:text-white">
-            {!nickName ? `${item.user.name}` : nickName}
+            {nickName ?? `${item.user.name}`}
           </span>
           <br />
           <span className="w-full text-sm text-gray-700 dark:text-white py-0.5 flex items-center font-semibold">
-            {!nickName ? "Nickname" : `${item.user.name}`}
+            {nickName ? `${item.user.name}` : "Nickname"}
           </span>
         </p>
         <input
@@ -94,7 +94,7 @@ const ItemNickName = ({ item, group, updateGroup }: ItemNickNameProps) => {
           aria-hidden
           onClick={() => setShow(true)}
           className={`fas fa-pen-nib cursor-pointer dark:text-white ml-5 text-xl flex items-center ${
-            !show ? "" : "hidden"
+            show ? "hidden" : ""
           }`}
         />
         <i

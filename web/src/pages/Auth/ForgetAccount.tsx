@@ -44,10 +44,10 @@ const ForgetAccount = () => {
           onClick={async () => {
             setLoading(true);
             const result = { data: { users: null, token: "" } };
-            if (!result.data.users) {
-              setError("Account not found.");
-            } else {
+            if (result.data.users) {
               navigation(`${PAGE_RECOVER_ACCOUNT}?token=${result.data.token}`);
+            } else {
+              setError("Account not found.");
             }
             setLoading(false);
           }}

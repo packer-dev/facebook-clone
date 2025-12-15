@@ -68,9 +68,9 @@ const ModalChangeEmoji = ({ updateGroup, group }: ModalChangeEmojiProps) => {
             aria-hidden
             onClick={() => setIcon(item)}
             className={`w-12 h-12 flex rounded-sm mb-1 justify-center text-2xl cursor-pointer items-center ${
-              item !== icon
-                ? "hover:bg-gray-300 dark:hover:bg-dark-third"
-                : "bg-gray-300 dark:bg-dark-third"
+              item === icon
+                ? "bg-gray-300 dark:bg-dark-third"
+                : "hover:bg-gray-300 dark:hover:bg-dark-third"
             }`}
             key={item?.id}
           >
