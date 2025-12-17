@@ -10,6 +10,7 @@ import StoryList from "./StoryList";
 import { RootState, getCommon, getUser } from "@/reducers";
 import { User } from "@/interfaces/User";
 import { CommonDataProps } from "@/reducers/common";
+import { Button } from "@/components/ui/button";
 
 const HomeCenter = () => {
   const navigation = useNavigate();
@@ -49,12 +50,11 @@ const HomeCenter = () => {
               alt=""
             />
             <div className="w-full rounded-b-lg bg-white dark:bg-dark-second relative h-[50px]">
-              <div
-                className="w-11 h-11 rounded-full border-4 border-solid border-white dark:border-dark-second 
-              absolute dark:bg-dark-second bottom-0 pt-1 bg-primary left-1/2 transform -translate-x-1/2 -top-5 -mr-2 "
-              >
-                <i className="fas fa-plus pt-1.5 text-white" />
-              </div>
+              <Button
+                icon="fas fa-plus"
+                size="icon"
+                className="absolute left-1/2 transform -translate-x-1/2 rounded-full -top-5 -mr-2 border-4 border-solid border-white pt-1"
+              />
               <p className="text-center text-sm font-bold pt-6 pb-0 dark:text-white">
                 Create story
               </p>

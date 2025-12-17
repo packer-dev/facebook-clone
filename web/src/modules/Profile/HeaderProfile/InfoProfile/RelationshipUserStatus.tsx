@@ -103,15 +103,17 @@ const RelationshipUserStatus = () => {
           <Button
             onClick={() => navigation(PAGE_CREATE_STORY)}
             className="mr-2 font-semibold text-sm"
-          >
-            <div className="w-5 h-5 mr-1.5 rounded-full bg-white flex justify-center items-center">
-              <i className="bx bx-plus text-black" />
-            </div>
-            Add story
-          </Button>
-          <Button variant="secondary">
-            <i className="bx bxs-pencil text-xl mr-2" /> Edit profile
-          </Button>
+            icon="bx bx-plus"
+            attrs={{
+              iconClassName: "text-white",
+            }}
+            text="Add story"
+          />
+          <Button
+            variant="secondary"
+            icon="bx bxs-pencil"
+            text="Edit profile"
+          />
         </>
       )}
     </div>
